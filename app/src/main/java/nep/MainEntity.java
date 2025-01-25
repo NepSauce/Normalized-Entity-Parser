@@ -8,10 +8,10 @@
 
 package nep;
 
-import javax.swing.ImageIcon;
 import javax.swing.SwingUtilities;
 
 import nep.swing.NepFrame;
+import nep.swing.panels.ExamLocationPanel;
 
 public class MainEntity{
     /**
@@ -19,17 +19,14 @@ public class MainEntity{
      * 
      * @param args Command-line arguments 
      */
-    @SuppressWarnings("Convert2Lambda")
+    @SuppressWarnings({"Convert2Lambda", "unused"})
     public static void main(String[] args){
-       SwingUtilities.invokeLater(new Runnable(){
+       SwingUtilities.invokeLater(new Runnable() {
         @Override
-        public void run(){
-            NepFrame frame = new NepFrame();
-            frame.setVisible(true);
-
-            ImageIcon logo = new ImageIcon("logo.png");
-            frame.setIconImage(logo.getImage());
-        }
+           public void run() {
+               NepFrame nepFrame = new NepFrame();
+               ExamLocationPanel examLocationPanel = new ExamLocationPanel();
+           }
        });
     }
 }
