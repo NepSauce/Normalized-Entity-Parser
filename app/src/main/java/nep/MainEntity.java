@@ -1,4 +1,8 @@
 /**
+ * Entry point for the Nep application.
+ * 
+ * @author Zawad Atif
+ * @author Nafisah Nubah
  * 
  */
 
@@ -13,8 +17,7 @@ public class MainEntity{
     /**
      * Runs the program on the EDT (Event Dispatch Thread)
      * 
-     * @param args
-     * @return void
+     * @param args Command-line arguments 
      */
     @SuppressWarnings("Convert2Lambda")
     public static void main(String[] args){
