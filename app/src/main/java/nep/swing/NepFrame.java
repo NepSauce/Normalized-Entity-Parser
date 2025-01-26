@@ -6,6 +6,7 @@ import java.awt.Color;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 
+import nep.swing.panels.DatePickerPanel;
 import nep.swing.panels.ExamAddedPanel;
 import nep.swing.panels.ExamLocationPanel;
 
@@ -33,6 +34,9 @@ public class NepFrame extends JFrame{
 
         ExamAddedPanel examAddedPanel = new ExamAddedPanel();
         add(examAddedPanel.getExamAddedPanel());
+
+        DatePickerPanel datePickerPanel = new DatePickerPanel();
+        add(datePickerPanel.getDatePickerPanel());
 
         setLayout(null);
     }

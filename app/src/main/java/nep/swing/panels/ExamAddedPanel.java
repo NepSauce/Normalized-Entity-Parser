@@ -7,6 +7,7 @@ import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.Border;
@@ -49,27 +50,35 @@ public class ExamAddedPanel {
         addButton.setBounds(50, selectedPanelHeight + 5, 150, 30); 
         addButton.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {
-                addHorizontalPanel();
+            public void actionPerformed(ActionEvent e){
+                addRosterToPanel("");
             }
         });
         
         selectedPanel.add(addButton);
     }
 
-    public JPanel getExamAddedPanel() {
+    public JPanel getExamAddedPanel(){
         return selectedPanel;
     }
 
-    public JPanel getExamListPanel() {
+    public JPanel getExamListPanel(){
         return examListPanel;
     }
     
-    private void addHorizontalPanel() {
+    /**
+     * 
+     * @param rosterDetails
+     */
+    private void addRosterToPanel(String rosterDetails){
         JPanel newPanel = new JPanel();
         newPanel.setBounds(5, currentXPosition, selectedPanelWidth - 15, 25); 
-        newPanel.setBackground(new Color(100, 100, 100)); 
+        newPanel.setBackground(new Color(238,238,238,255)); 
 
+        JLabel detailString = new JLabel(rosterDetails);
+        detailString.setBounds(0, 0, 0, 20);
+
+        newPanel.add(detailString);
         examListPanel.add(newPanel);
 
         currentXPosition += 30; 
