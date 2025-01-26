@@ -1,7 +1,6 @@
 package nep.swing.panels;
 
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -13,13 +12,16 @@ import javax.swing.border.BevelBorder;
 import javax.swing.border.Border;
 import javax.swing.border.TitledBorder;
 
+@SuppressWarnings("FieldMayBeFinal")
 public class ExamAddedPanel {
     private JPanel selectedPanel;
     private JPanel examListPanel;
-    private int selectedPanelWidth, selectedPanelHeight;
+    private int selectedPanelWidth;
+    private int selectedPanelHeight;
     private int currentXPosition = 25;
     private ArrayList<String> addedRosterArray;
 
+    @SuppressWarnings("Convert2Lambda")
     public ExamAddedPanel() {
         selectedPanelHeight = 175;
         selectedPanelWidth = 250;
@@ -43,9 +45,8 @@ public class ExamAddedPanel {
 
         selectedPanel.add(examListPanel);
 
-        // Add button to trigger adding new horizontal panels
         JButton addButton = new JButton("Add Exam");
-        addButton.setBounds(50, selectedPanelHeight + 5, 150, 30); // Adjusted position to fit within the new height
+        addButton.setBounds(50, selectedPanelHeight + 5, 150, 30); 
         addButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -63,19 +64,16 @@ public class ExamAddedPanel {
     public JPanel getExamListPanel() {
         return examListPanel;
     }
-
+    
     private void addHorizontalPanel() {
         JPanel newPanel = new JPanel();
-        newPanel.setBounds(5, currentXPosition, selectedPanelWidth - 15, 25); // New panel next to previous one
-        newPanel.setBackground(new Color(100, 100, 100)); // Example background color
+        newPanel.setBounds(5, currentXPosition, selectedPanelWidth - 15, 25); 
+        newPanel.setBackground(new Color(100, 100, 100)); 
 
-        // Add a title to the new panel (optional)
-        // Add the new panel to the main panel
         examListPanel.add(newPanel);
 
-        // Update X position for the next panel
-        currentXPosition += 30; // Adjust this value based on the size of the panels
-        selectedPanel.revalidate(); // Revalidate the panel to update the layout
-        selectedPanel.repaint(); // Repaint to show the new panel
+        currentXPosition += 30; 
+        selectedPanel.revalidate(); 
+        selectedPanel.repaint(); 
     }
 }
