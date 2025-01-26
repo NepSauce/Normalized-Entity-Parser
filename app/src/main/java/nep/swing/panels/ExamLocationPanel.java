@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import javax.swing.BorderFactory;
 import javax.swing.JComboBox;
 import javax.swing.JPanel;
+import javax.swing.border.BevelBorder;
 import javax.swing.border.Border;
 import javax.swing.border.TitledBorder;
 
@@ -29,15 +30,16 @@ public class ExamLocationPanel {
 
         examPanel = new JPanel();
         examPanel.setLayout(null);
-        examPanel.setBackground(Color.LIGHT_GRAY);
-        examPanel.setBounds(50, 50, examPanelWidth, examPanelHeight);
+        examPanel.setBackground(Color.WHITE);
+        examPanel.setBounds(25, 35, examPanelWidth , examPanelHeight - 50);
+        examPanel.setBorder(BorderFactory.createBevelBorder(BevelBorder.LOWERED));
 
         JPanel locationPanel = new JPanel();
         locationPanel.setLayout(null);
         locationPanel.setBounds(5, 5, examPanelWidth - 10, examPanelHeight - 10);
-        locationPanel.setBackground(Color.LIGHT_GRAY);
+        locationPanel.setBackground(Color.WHITE);
 
-        Border lineBorder = BorderFactory.createLineBorder(Color.WHITE, 2);
+        Border lineBorder = BorderFactory.createLineBorder(new Color(76, 74, 72, 255), 0);
 
         TitledBorder titledBorder = new TitledBorder(lineBorder, "Exam Location");
         titledBorder.setTitleFont(new java.awt.Font("Arial", java.awt.Font.BOLD, 16));
@@ -54,7 +56,20 @@ public class ExamLocationPanel {
         locationPanel.add(locationDropdown);
     }
 
+    /**
+     * Retrieves the outermost container for the exam location panel.
+     *
+     * @return examPanel - the JPanel representing the exam location panel
+     */
     public JPanel getExamLocationPanel(){
         return examPanel;
+    }
+
+    /**
+     * 
+     * @param location The location added to the ArrayList
+     */
+    public void addExamLocation(String location){
+        locationArray.add(location);
     }
 }

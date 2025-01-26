@@ -11,7 +11,6 @@ package nep;
 import javax.swing.SwingUtilities;
 
 import nep.swing.NepFrame;
-import nep.swing.panels.ExamLocationPanel;
 
 public class MainEntity{
     /**
@@ -25,7 +24,6 @@ public class MainEntity{
         @Override
            public void run() {
                NepFrame nepFrame = new NepFrame();
-               ExamLocationPanel examLocationPanel = new ExamLocationPanel();
            }
        });
     }

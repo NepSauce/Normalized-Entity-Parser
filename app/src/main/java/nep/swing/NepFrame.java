@@ -1,10 +1,12 @@
 package nep.swing;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 
+import nep.swing.panels.ExamAddedPanel;
 import nep.swing.panels.ExamLocationPanel;
 
 public class NepFrame extends JFrame{
@@ -14,12 +16,13 @@ public class NepFrame extends JFrame{
      */
     public NepFrame(){
         setTitle("NEP");
-        setSize(600, 500);
+        setSize(600, 350);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         setResizable(false);
         setVisible(true);
-
+        getContentPane().setBackground(new Color(238,238,238,255));
+        
         ImageIcon logo = new ImageIcon("Media/logo.png");
         setIconImage(logo.getImage());
 
@@ -27,6 +30,9 @@ public class NepFrame extends JFrame{
 
         ExamLocationPanel examLocationPanel = new ExamLocationPanel();
         add(examLocationPanel.getExamLocationPanel());
+
+        ExamAddedPanel examAddedPanel = new ExamAddedPanel();
+        add(examAddedPanel.getExamAddedPanel());
 
         setLayout(null);
     }
