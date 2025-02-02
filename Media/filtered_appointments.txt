@@ -1,8 +1,8 @@
 Time: 8:30 AM, Course Code: CIVL 4515
 Time: 8:30 AM, Course Code: math 1000
 Time: 8:30 AM, Course Code: HIST 3226
-Time: 8:30 AM, Course Code: PSYO 3970
-Time: 8:30 AM, Course Code: NESC 3970
+Time: 8:30 AM, Course Code: NESC/PSYO 3970
+Time: 8:30 AM, Course Code: PSYO/NESC 3970
 Time: 8:30 AM, Course Code: COMM 3409
 Time: 8:30 AM, Course Code: BIOC 3700
 Time: 8:30 AM, Course Code: MATH 1000
