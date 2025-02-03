@@ -11,19 +11,14 @@ Course Code: busi 6015
 Course Code: bioc 3700
   - 8:30 AM
 
-Course Code: comm 3409
-  - 8:30 AM
-
 Course Code: visc 5340
   - 12:30 PM
 
-Course Code: psyo 2000
+Course Code: comm 2202-03
   - 3:30 PM
   - 3:30 PM
 
 Course Code: comm 2202
-  - 3:30 PM
-  - 3:30 PM
   - 3:30 PM
   - 3:30 PM
   - 3:30 PM
@@ -33,6 +28,9 @@ Course Code: math 1000
   - 8:30 AM
 
 Course Code: civl 4515
+  - 8:30 AM
+
+Course Code: comm 3409-
   - 8:30 AM
 
 Course Code: poli 2210
@@ -50,6 +48,10 @@ Course Code: biol 2003
   - 8:30 AM
   - 8:30 AM
   - 8:30 AM
+
+Course Code: nesc/psyo 2000
+  - 3:30 PM
+  - 3:30 PM
 
 Course Code: kine 2320
   - 3:30 PM

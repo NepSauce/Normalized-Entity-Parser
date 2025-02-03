@@ -5,17 +5,18 @@ import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class PDFCleaner {
     public static void main(String[] args) {
-        String inputFilePath = "Media/output.txt";  // Path to your input text file
-        String outputFilePath = "Media/filtered_appointments.txt";  // Path to your output text file
-        String groupedFilePath = "Media/grouped_appointments.txt";  // Path to the grouped output file
+        //        String inputFilePath = "Media/output.txt";  // Path to your input text file
+//        String outputFilePath = "Media/filtered_appointments.txt";  // Path to your output text file
+//        String groupedFilePath = "Media/grouped_appointments.txt";  // Path to the grouped output file
+        String inputFilePath = "C:/Projects/NEP/Normalized-Entity-Parser/Media/output.txt";  // Path to your input text file
+        String outputFilePath = "C:/Projects/NEP/Normalized-Entity-Parser/Media/filtered_appointments.txt";  // Path to your output text file
+        String groupedFilePath = "C:/Projects/NEP/Normalized-Entity-Parser/Media/grouped_appointments.txt";  // Path to the grouped output file
         filterAppointments(inputFilePath, outputFilePath, groupedFilePath);
     }
 
@@ -24,6 +25,7 @@ public class PDFCleaner {
         BufferedWriter writer = null;
         BufferedWriter groupedWriter = null;
         StringBuilder fullText = new StringBuilder();  // To hold all the lines as a single string
+        Map<String, String> stringMap = new HashMap<>();
 
         // Map to store grouped times by normalized course code
         Map<String, List<String>> courseCodeMap = new HashMap<>();
@@ -47,8 +49,8 @@ public class PDFCleaner {
             writer = new BufferedWriter(new FileWriter(outputFilePath));
             groupedWriter = new BufferedWriter(new FileWriter(groupedFilePath));
 
-            // Regular expression to match the time and course code(s)
-            String regex = "(\\d{1,2}:\\d{2} [APM]{2}).*?((\\w{4,6}(?:/\\w{4,6})?) \\d{4})";
+            // Regular expression to match the time and course code(s) including section numbers
+            String regex = "(\\d{1,2}:\\d{2} [APM]{2}).*?((\\w{4,6}(?:/\\w{4,6})?)\\s*\\d{4}(?:\\s*-\\s*\\d{2})?)";
             Pattern pattern = Pattern.compile(regex);
 
             // Use a matcher on the full text
@@ -60,8 +62,13 @@ public class PDFCleaner {
                 String courseCode = matcher.group(2);
 
                 // Normalize the course code for grouping
-                String normalizedCourseCode = normalizeCourseCode(courseCode);
-
+                getCrossListings(courseCode, stringMap);
+//                for (Map.Entry<String, String> entry : stringMap.entrySet()) {
+//                    System.out.println("Key: " + entry.getKey() + ", Value: " + entry.getValue());
+//                }
+                String normalizedCourseCode = normalizeCourseCode(courseCode, stringMap);
+                courseCode = courseCode.replaceAll("\\s*-\\s*", "-");
+                normalizedCourseCode = normalizedCourseCode.replaceAll("\\s*-\\s*", "-");
                 // Write to the filtered_appointments.txt file
                 writer.write("Time: " + time + ", Course Code: " + courseCode);
                 writer.newLine();
@@ -74,25 +81,6 @@ public class PDFCleaner {
             for (Map.Entry<String, List<String>> entry : courseCodeMap.entrySet()) {
                 String normalizedCourseCode = entry.getKey();
                 List<String> times = entry.getValue();
-
-                // Sort the times in ascending order
-                times.sort((time1, time2) -> {
-                    try {
-                        SimpleDateFormat format = new SimpleDateFormat("h:mm a");
-
-                        // Clean the time strings before parsing
-                        time1 = time1.trim().replace('\u00A0', ' '); // Trim and replace non-breaking spaces
-                        time2 = time2.trim().replace('\u00A0', ' '); // Trim and replace non-breaking spaces
-
-                        Date date1 = format.parse(time1);
-                        Date date2 = format.parse(time2);
-                        System.err.println(date1);
-                        return date1.compareTo(date2);
-                    } catch (ParseException e) {
-                        e.printStackTrace();
-                        return 0;
-                    }
-                });
 
                 groupedWriter.write("Course Code: " + normalizedCourseCode);
                 groupedWriter.newLine();
@@ -125,26 +113,64 @@ public class PDFCleaner {
     }
 
     /**
-     * Normalizes the course code to handle cross-listed courses.
-     * For example, "PSYO/NESC 2000" and "NESC/PSYO 2000" will both be normalized to "PSYO/NESC 2000".
+     * Normalizes the course code to handle cross-listed courses and section numbers.
+     * For example, "PSYO/NESC 2000-01" and "NESC/PSYO 2000-01" will both be normalized to "PSYO/NESC 2000-01".
      */
-    private static String normalizeCourseCode(String courseCode) {
-        // Split the course code into parts (e.g., "PSYO/NESC 2000" -> ["PSYO/NESC", "2000"])
+    private static String normalizeCourseCode(String courseCode, Map<String, String> stringMap) {
+        // Split the course code into parts (e.g., "PSYO/NESC 2000-01" -> ["PSYO/NESC", "2000-01"])
         String[] parts = courseCode.split(" ");
+        if(parts[0].contains("/")){
+            if(stringMap.containsValue(parts[0])){
+                return courseCode.toLowerCase();
+            }
+            else if(stringMap.containsKey(parts[0])){
+                String toReturn = stringMap.get(parts[0]) + " " + parts[1];
+                return toReturn.toLowerCase();
+            }
+        }
+
         if (parts.length < 2) {
             return courseCode.toLowerCase();  // If no course number, return as is
         }
 
+        if(stringMap.containsKey(parts[0])){
+            String toReturn = stringMap.get(parts[0]) + " " + parts[1];
+            return toReturn.toLowerCase();
+        }
+
         String codePart = parts[0];  // e.g., "PSYO/NESC"
-        String numberPart = parts[1];  // e.g., "2000"
+        String numberPart = parts[1];  // e.g., "2000-01"
 
         // Split the code part by "/" to handle cross-listed courses
         String[] codes = codePart.split("/");
         Arrays.sort(codes);  // Sort the codes alphabetically to ensure consistent grouping
 
-        // Rebuild the normalized course code (e.g., "NESC/PSYO 2000" -> "PSYO/NESC 2000")
+        // Rebuild the normalized course code (e.g., "NESC/PSYO 2000-01" -> "PSYO/NESC 2000-01")
         String normalizedCode = String.join("/", codes) + " " + numberPart;
 
         return normalizedCode.toLowerCase();  // Return in lowercase for case-insensitive grouping
+    }
+
+    public static void getCrossListings(String courseCode, Map<String, String> stringMap){
+        String[] parts = courseCode.split(" ");
+        if(parts[0].contains("/")){
+            if(!stringMap.containsKey(parts[0]) && !stringMap.containsValue(parts[0])){
+                String[] crosslisted = parts[0].split("/");
+                stringMap.put(crosslisted[0], parts[0]);
+                stringMap.put(crosslisted[1], parts[0]);
+                String reversed = crosslisted[1] + "/" + crosslisted[0];
+                stringMap.put(reversed, parts[0]);
+            }
+        }
+    }
+
+    public static String getKeyByValue(Map<String, String> map, String value) {
+        // Iterate through the map
+        for (Map.Entry<String, String> entry : map.entrySet()) {
+            if (entry.getValue().equals(value)) {
+                return entry.getKey();  // Return the key if the value matches
+            }
+        }
+        return null;  // Return null if no matching value is found
     }
 }

@@ -9,8 +9,11 @@ import org.apache.pdfbox.text.PDFTextStripper;
 public class PDFConversion{
 
     public static void main(String[] args) {
-        String pdfPath = "Media/roster.pdf";
-        String outputTextPath = "Media/output.txt"; 
+//        String pdfPath = "Media/roster.pdf";
+//        String outputTextPath = "Media/output.txt";
+
+        String pdfPath = "C:/Projects/NEP/Normalized-Entity-Parser/Media/roster.PDF";
+        String outputTextPath = "C:/Projects/NEP/Normalized-Entity-Parser/Media/output.txt";
 
         try {
             try ( 
