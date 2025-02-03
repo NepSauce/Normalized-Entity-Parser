@@ -38,19 +38,23 @@ public class DatePickerPanel{
         datePickerPanel.setBorder(BorderFactory.createBevelBorder(BevelBorder.LOWERED));
 
         Border bevelBorder = BorderFactory.createBevelBorder(BevelBorder.LOWERED);
-
         Border lineBorder = BorderFactory.createLineBorder(new Color(80, 80, 80), 0);
         TitledBorder titledBorder = new TitledBorder(lineBorder, "Select a Date");
         titledBorder.setTitleFont(new java.awt.Font("Arial", java.awt.Font.BOLD, 16));
 
-        Border compoundBorder = BorderFactory.createCompoundBorder(bevelBorder, titledBorder);
-        datePickerPanel.setBorder(compoundBorder);
+        Border emptyBorder = BorderFactory.createEmptyBorder(5, 0, 0, 0);
+
+        Border compoundBorder = BorderFactory.createCompoundBorder(emptyBorder, titledBorder);
+        Border finalBorder = BorderFactory.createCompoundBorder(bevelBorder, compoundBorder);
+
+        datePickerPanel.setBorder(finalBorder);
+
 
         dayComboBox = new JComboBox<>();
         dayComboBox.setBounds(0,0,0,0);
         dayComboBox.setEnabled(false);
         monthComboBox = new JComboBox<>();
-        monthComboBox.setBounds(10,10,0,0);
+        monthComboBox.setBounds(50,10,0,0);
         yearComboBox = new JComboBox<>();
         yearComboBox.setBounds(0,0,0,0);
 

@@ -47,7 +47,7 @@ public class ExamLocationPanel {
         locationPanel.setBorder(titledBorder);
 
         locationDropdown = new JComboBox<>();
-        locationDropdown.setBounds(5, 20, examPanelWidth - 20, 30);
+        locationDropdown.setBounds(5, 25, examPanelWidth - 20, 30);
 
         for (String location : locationArray){
             locationDropdown.addItem(location);
