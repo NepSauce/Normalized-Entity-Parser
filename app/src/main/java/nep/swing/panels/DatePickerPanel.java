@@ -36,8 +36,33 @@ public class DatePickerPanel{
         titledBorder.setTitleFont(new java.awt.Font("Arial", java.awt.Font.BOLD, 16));
 
         Border compoundBorder = BorderFactory.createCompoundBorder(bevelBorder, titledBorder);
-
         datePickerPanel.setBorder(compoundBorder);
+
+        dayComboBox = new JComboBox<>();
+        dayComboBox.setBounds(0,0,0,0);
+        monthComboBox = new JComboBox<>();
+        monthComboBox.setBounds(10,10,0,0);
+        yearComboBox = new JComboBox<>();
+        yearComboBox.setBounds(0,0,0,0);
+
+        datePickerPanel.add(yearComboBox);   
+        yearComboBox.addItem("  Year  ");
+        datePickerPanel.add(monthComboBox);
+        monthComboBox.addItem("  Month  ");
+        datePickerPanel.add(dayComboBox);
+        dayComboBox.addItem("  Day  ");
+    }
+
+    public void populateDayComboBox(String month){
+        
+    }
+
+    public void populateMonthComboBox(){
+
+    }
+
+    public void populateYearComboBox(){
+        
     }
 
     public JPanel getDatePickerPanel(){
