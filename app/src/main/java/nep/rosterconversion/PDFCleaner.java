@@ -11,12 +11,9 @@ import java.util.regex.Pattern;
 
 public class PDFCleaner {
     public static void main(String[] args) {
-        //        String inputFilePath = "Media/output.txt";  // Path to your input text file
-//        String outputFilePath = "Media/filtered_appointments.txt";  // Path to your output text file
-//        String groupedFilePath = "Media/grouped_appointments.txt";  // Path to the grouped output file
-        String inputFilePath = "C:/Projects/NEP/Normalized-Entity-Parser/Media/output.txt";  // Path to your input text file
-        String outputFilePath = "C:/Projects/NEP/Normalized-Entity-Parser/Media/filtered_appointments.txt";  // Path to your output text file
-        String groupedFilePath = "C:/Projects/NEP/Normalized-Entity-Parser/Media/grouped_appointments.txt";  // Path to the grouped output file
+        String inputFilePath = "Media/output.txt";  // Path to your input text file
+        String outputFilePath = "Media/filtered_appointments.txt";  // Path to your output text file
+        String groupedFilePath = "Media/grouped_appointments.txt";  // Path to the grouped output file
         filterAppointments(inputFilePath, outputFilePath, groupedFilePath);
     }
 
@@ -63,11 +60,8 @@ public class PDFCleaner {
 
                 // Normalize the course code for grouping
                 getCrossListings(courseCode, stringMap);
-//                for (Map.Entry<String, String> entry : stringMap.entrySet()) {
-//                    System.out.println("Key: " + entry.getKey() + ", Value: " + entry.getValue());
-//                }
-                String normalizedCourseCode = normalizeCourseCode(courseCode, stringMap);
                 courseCode = courseCode.replaceAll("\\s*-\\s*", "-");
+                String normalizedCourseCode = normalizeCourseCode(courseCode, stringMap);
                 normalizedCourseCode = normalizedCourseCode.replaceAll("\\s*-\\s*", "-");
                 // Write to the filtered_appointments.txt file
                 writer.write("Time: " + time + ", Course Code: " + courseCode);
