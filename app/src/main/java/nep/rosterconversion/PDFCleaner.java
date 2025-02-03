@@ -82,10 +82,21 @@ public class PDFCleaner {
                 String normalizedCourseCode = entry.getKey();
                 List<String> times = entry.getValue();
 
-                groupedWriter.write("Course Code: " + normalizedCourseCode);
+                groupedWriter.write("Course Code: " + normalizedCourseCode.toUpperCase());
                 groupedWriter.newLine();
+                // Create a map to store the count of each time
+                Map<String, Integer> timeCountMap = new HashMap<>();
+
+                // Count the occurrences of each time in the 'times' list
                 for (String time : times) {
-                    groupedWriter.write("  - " + time);
+                    timeCountMap.put(time, timeCountMap.getOrDefault(time, 0) + 1);
+                }
+
+                // Now write the time and its count to the groupedWriter
+                for (Map.Entry<String, Integer> timeEntry : timeCountMap.entrySet()) {
+                    String time = timeEntry.getKey();
+                    int count = timeEntry.getValue();
+                    groupedWriter.write(time + " (" + count + ")");
                     groupedWriter.newLine();
                 }
                 groupedWriter.newLine();  // Add a blank line between course codes
