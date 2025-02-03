@@ -2,6 +2,9 @@ package nep.swing.panels;
 
 import java.awt.Color;
 import java.awt.FlowLayout;
+import java.time.Year;
+import java.util.ArrayList;
+import java.util.Collections;
 
 import javax.swing.BorderFactory;
 import javax.swing.JComboBox;
@@ -18,7 +21,10 @@ public class DatePickerPanel{
     private JComboBox<String> monthComboBox;
     private JComboBox<String> yearComboBox;
     private JPanel datePickerPanel;
+    private ArrayList<String> monthArray;
+    private int currentYear;
 
+    @SuppressWarnings("OverridableMethodCallInConstructor")
     public DatePickerPanel(){
         datePanelHeight = 175;
         datePanelWidth = 250;
@@ -51,6 +57,10 @@ public class DatePickerPanel{
         monthComboBox.addItem("  Month  ");
         datePickerPanel.add(dayComboBox);
         dayComboBox.addItem("  Day  ");
+
+        populateYearComboBox();
+        populateMonthComboBox();
+
     }
 
     public void populateDayComboBox(String month){
@@ -58,11 +68,22 @@ public class DatePickerPanel{
     }
 
     public void populateMonthComboBox(){
+        monthArray = new ArrayList<>();
 
+        Collections.addAll(monthArray, "January", "February", "March", "April", "May", "June", 
+            "July", "August", "September", "October", "November", "December");
+        
+        for (String month : monthArray){
+            monthComboBox.addItem(month);
+        }
     }
 
     public void populateYearComboBox(){
+        currentYear = Year.now().getValue();
         
+        for (int i = currentYear - 5; i <= currentYear + 5; i++){
+            yearComboBox.addItem(String.valueOf(i));
+        }
     }
 
     public JPanel getDatePickerPanel(){
