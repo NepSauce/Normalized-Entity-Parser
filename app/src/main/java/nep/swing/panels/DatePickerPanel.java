@@ -28,7 +28,7 @@ public class DatePickerPanel{
     private int currentYear;
 
     @SuppressWarnings("Convert2Lambda")
-    public DatePickerPanel() {
+    public DatePickerPanel(){
         datePanelHeight = 175;
         datePanelWidth = 250;
 
@@ -80,6 +80,7 @@ public class DatePickerPanel{
             @Override
             public void actionPerformed(ActionEvent monthPicked){
                 String selectedMonth = (String) monthComboBox.getSelectedItem();
+
                 if (selectedMonth != null && !selectedMonth.equals("  Month")){
                     dayComboBox.setEnabled(true);
                     populateDayComboBox(selectedMonth);
@@ -96,6 +97,7 @@ public class DatePickerPanel{
             @Override
             public void actionPerformed(ActionEvent yearPicked){
                 String selectedMonth = (String) monthComboBox.getSelectedItem();
+
                 if (selectedMonth != null && !selectedMonth.equals("  Month")){
                     populateDayComboBox(selectedMonth);
                 }
@@ -145,7 +147,7 @@ public class DatePickerPanel{
 
     private void populateYearComboBox(){
         currentYear = Year.now().getValue();
-        
+
         for (int i = currentYear - 5; i <= currentYear + 5; i++){
             yearComboBox.addItem(String.valueOf(i));
         }
