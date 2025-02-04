@@ -17,7 +17,7 @@ import javax.swing.border.Border;
 import javax.swing.border.TitledBorder;
 
 @SuppressWarnings("FieldMayBeFinal")
-public class DatePickerPanel {
+public class DatePickerPanel{
     private int datePanelWidth;
     private int datePanelHeight;
     private JComboBox<String> dayComboBox;
@@ -76,14 +76,15 @@ public class DatePickerPanel {
         populateYearComboBox();
         populateMonthComboBox();
 
-        monthComboBox.addActionListener(new ActionListener() {
+        monthComboBox.addActionListener(new ActionListener(){
             @Override
-            public void actionPerformed(ActionEvent monthPicked) {
+            public void actionPerformed(ActionEvent monthPicked){
                 String selectedMonth = (String) monthComboBox.getSelectedItem();
-                if (selectedMonth != null && !selectedMonth.equals("  Month")) {
+                if (selectedMonth != null && !selectedMonth.equals("  Month")){
                     dayComboBox.setEnabled(true);
                     populateDayComboBox(selectedMonth);
-                } else {
+                } 
+                else{
                     dayComboBox.setEnabled(false);
                     dayComboBox.removeAllItems();
                     dayComboBox.addItem("  Day  ");
@@ -91,28 +92,29 @@ public class DatePickerPanel {
             }
         });
 
-        yearComboBox.addActionListener(new ActionListener() {
+        yearComboBox.addActionListener(new ActionListener(){
             @Override
-            public void actionPerformed(ActionEvent yearPicked) {
+            public void actionPerformed(ActionEvent yearPicked){
                 String selectedMonth = (String) monthComboBox.getSelectedItem();
-                if (selectedMonth != null && !selectedMonth.equals("  Month")) {
+                if (selectedMonth != null && !selectedMonth.equals("  Month")){
                     populateDayComboBox(selectedMonth);
                 }
             }
         });
     }
 
-    private void populateDayComboBox(String month) {
+    private void populateDayComboBox(String month){
         dayComboBox.removeAllItems();
         dayComboBox.addItem("  Day  ");
         int daysInMonth = getDaysInMonth(month);
-        for (int i = 1; i <= daysInMonth; i++) {
+
+        for (int i = 1; i <= daysInMonth; i++){
             dayComboBox.addItem(String.valueOf(i));
         }
     }
 
-    private int getDaysInMonth(String month) {
-        return switch (month) {
+    private int getDaysInMonth(String month){
+        return switch (month){
             case "January", "March", "May", "July", "August", "October", "December" -> 31;
             case "April", "June", "September", "November" -> 30;
             case "February" -> isLeapYear() ? 29 : 28;
@@ -120,32 +122,36 @@ public class DatePickerPanel {
         };
     }
 
-    private boolean isLeapYear() {
+    private boolean isLeapYear(){
         String selectedYear = (String) yearComboBox.getSelectedItem();
-        if (selectedYear == null || selectedYear.equals("  Year  ")) {
+
+        if (selectedYear == null || selectedYear.equals("  Year  ")){
             return false;
         }
         int year = Integer.parseInt(selectedYear);
+
         return (year % 4 == 0 && year % 100 != 0) || (year % 400 == 0);
     }
 
-    private void populateMonthComboBox() {
+    private void populateMonthComboBox(){
         monthArray = new ArrayList<>();
         Collections.addAll(monthArray, "January", "February", "March", "April", "May", "June",
                 "July", "August", "September", "October", "November", "December");
-        for (String month : monthArray) {
+
+        for (String month : monthArray){
             monthComboBox.addItem(month);
         }
     }
 
-    private void populateYearComboBox() {
+    private void populateYearComboBox(){
         currentYear = Year.now().getValue();
-        for (int i = currentYear - 5; i <= currentYear + 5; i++) {
+        
+        for (int i = currentYear - 5; i <= currentYear + 5; i++){
             yearComboBox.addItem(String.valueOf(i));
         }
     }
 
-    public JPanel getDatePickerPanel() {
+    public JPanel getDatePickerPanel(){
         return datePickerPanel;
     }
 }

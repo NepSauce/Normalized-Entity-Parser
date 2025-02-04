@@ -30,7 +30,7 @@ public class ExamAddedPanel {
         selectedPanel = new JPanel();
         selectedPanel.setLayout(null);
         selectedPanel.setBackground(Color.WHITE);
-        selectedPanel.setBounds(300, 35, selectedPanelWidth, selectedPanelHeight + 65); // Increased height to fit the button
+        selectedPanel.setBounds(300, 35, selectedPanelWidth, selectedPanelHeight + 65);
         selectedPanel.setBorder(BorderFactory.createBevelBorder(BevelBorder.LOWERED));
 
         examListPanel = new JPanel();
