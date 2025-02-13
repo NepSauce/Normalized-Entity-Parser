@@ -9,6 +9,7 @@ import javax.swing.JFrame;
 import nep.swing.panels.DatePickerPanel;
 import nep.swing.panels.ExamAddedPanel;
 import nep.swing.panels.ExamLocationPanel;
+import nep.swing.panels.SettingsTab;
 
 public class NepFrame extends JFrame{
     /**
@@ -37,6 +38,9 @@ public class NepFrame extends JFrame{
 
         DatePickerPanel datePickerPanel = new DatePickerPanel();
         add(datePickerPanel.getDatePickerPanel());
+
+        SettingsTab settingsTab = new SettingsTab();
+        add(settingsTab.getSettingsTab());
 
         setLayout(null);
     }

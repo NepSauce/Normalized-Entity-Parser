@@ -46,7 +46,7 @@ public class ExamAddedPanel {
 
         selectedPanel.add(examListPanel);
 
-        JButton addButton = new JButton("Add Exam");
+        JButton addButton = new JButton("Add Roster");
         addButton.setBounds(50, selectedPanelHeight + 5, 150, 30); 
         addButton.addActionListener(new ActionListener() {
             @Override
