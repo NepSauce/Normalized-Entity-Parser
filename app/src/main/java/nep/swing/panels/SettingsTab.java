@@ -2,6 +2,8 @@ package nep.swing.panels;
 
 import javax.swing.JTabbedPane;
 
+import nep.swing.panels.tabpanels.CommandButtonPanel;
+
 public class SettingsTab {
     JTabbedPane tabbedPane;
 

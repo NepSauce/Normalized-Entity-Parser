@@ -74,4 +74,19 @@ public class ExamLocationPanel {
         locationArray.add(location);
         locationDropdown.addItem(location);
     }
+
+    /**
+     * Returns Null for debugging if no location is selected
+     * @return selectedLocation
+     */
+    public String getExamLocation(){
+        String selectedLocation = (String) locationDropdown.getSelectedItem();
+
+        if(selectedLocation.equals("Select a Location")){
+            return null;
+        }
+        else{
+            return selectedLocation;
+        }
+    }
 }

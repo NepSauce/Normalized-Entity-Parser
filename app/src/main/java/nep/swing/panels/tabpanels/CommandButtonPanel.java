@@ -1,4 +1,4 @@
-package nep.swing.panels;
+package nep.swing.panels.tabpanels;
 
 import java.awt.Color;
 

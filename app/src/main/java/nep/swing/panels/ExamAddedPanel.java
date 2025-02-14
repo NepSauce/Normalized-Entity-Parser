@@ -24,7 +24,7 @@ public class ExamAddedPanel {
 
     @SuppressWarnings("Convert2Lambda")
     public ExamAddedPanel() {
-        selectedPanelHeight = 175;
+        selectedPanelHeight = 125;
         selectedPanelWidth = 250;
 
         selectedPanel = new JPanel();
@@ -35,7 +35,7 @@ public class ExamAddedPanel {
 
         examListPanel = new JPanel();
         examListPanel.setLayout(null);
-        examListPanel.setBounds(5, 5, selectedPanelWidth - 10, selectedPanelHeight);
+        examListPanel.setBounds(5, 5, selectedPanelWidth - 10, selectedPanelHeight - 10);
         examListPanel.setBackground(Color.WHITE);
 
         Border lineBorder = BorderFactory.createLineBorder(new Color(80, 80, 80), 0);
@@ -47,7 +47,7 @@ public class ExamAddedPanel {
         selectedPanel.add(examListPanel);
 
         JButton addButton = new JButton("Add Roster");
-        addButton.setBounds(50, selectedPanelHeight + 5, 150, 30); 
+        addButton.setBounds(50, selectedPanelHeight - 50, 150, 30); 
         addButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e){
@@ -75,7 +75,7 @@ public class ExamAddedPanel {
         newPanel.setBounds(5, currentXPosition, selectedPanelWidth - 15, 25); 
         newPanel.setBackground(new Color(238,238,238,255)); 
 
-        JLabel detailString = new JLabel(rosterDetails);
+        JLabel detailString = new JLabel("Balls");
         detailString.setBounds(0, 0, 0, 20);
 
         newPanel.add(detailString);
