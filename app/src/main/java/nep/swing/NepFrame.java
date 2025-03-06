@@ -39,7 +39,7 @@ public class NepFrame extends JFrame{
         DatePickerPanel datePickerPanel = new DatePickerPanel();
         add(datePickerPanel.getDatePickerPanel());
 
-        SettingsTab settingsTab = new SettingsTab();
+        SettingsTab settingsTab = new SettingsTab(examLocationPanel, examAddedPanel, datePickerPanel);
         add(settingsTab.getSettingsTab());
 
         setLayout(null);

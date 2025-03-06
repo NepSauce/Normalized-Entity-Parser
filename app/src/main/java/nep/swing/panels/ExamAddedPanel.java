@@ -1,12 +1,9 @@
 package nep.swing.panels;
 
 import java.awt.Color;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
-import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.BevelBorder;
@@ -45,17 +42,6 @@ public class ExamAddedPanel {
         examListPanel.setBorder(titledBorder);
 
         selectedPanel.add(examListPanel);
-
-        JButton addButton = new JButton("Add Roster");
-        addButton.setBounds(50, selectedPanelHeight - 50, 150, 30); 
-        addButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e){
-                addRosterToPanel("");
-            }
-        });
-        
-        selectedPanel.add(addButton);
     }
 
     public JPanel getExamAddedPanel(){
@@ -65,12 +51,16 @@ public class ExamAddedPanel {
     public JPanel getExamListPanel(){
         return examListPanel;
     }
+
+    public void addRosterToPanel(){
+        
+    }
     
     /**
      * 
      * @param rosterDetails
      */
-    private void addRosterToPanel(String rosterDetails){
+    public void addRosterToPanel(String rosterDetails){
         JPanel newPanel = new JPanel();
         newPanel.setBounds(5, currentXPosition, selectedPanelWidth - 15, 25); 
         newPanel.setBackground(new Color(238,238,238,255)); 
