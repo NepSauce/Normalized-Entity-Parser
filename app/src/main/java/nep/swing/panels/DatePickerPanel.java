@@ -156,4 +156,39 @@ public class DatePickerPanel{
     public JPanel getDatePickerPanel(){
         return datePickerPanel;
     }
+
+    public int getDayInt(){
+        String dayString = (String) dayComboBox.getSelectedItem();
+        int dayInt = Integer.parseInt(dayString);
+
+        if (dayString.equals("  Day  ")){
+            return 0;
+        }
+        else{
+            return dayInt;
+        }
+    }
+
+    public String getMonthInt(){
+        String monthString = (String) monthComboBox.getSelectedItem();
+
+        if (monthString.equals("  Month  ")){
+            return null;
+        }
+        else{
+            return monthString;
+        }
+    }
+
+    public int getYearInt(){
+        String yearString = (String) yearComboBox.getSelectedItem();
+        int yearInt = Integer.parseInt(yearString);
+
+        if (yearString.equals("  Day  ")){
+            return 0;
+        }
+        else{
+            return yearInt;
+        }
+    }
 }

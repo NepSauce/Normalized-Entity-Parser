@@ -35,7 +35,7 @@ public class ExamAddedPanel {
 
         examListPanel = new JPanel();
         examListPanel.setLayout(null);
-        examListPanel.setBounds(5, 5, selectedPanelWidth - 10, selectedPanelHeight - 10);
+        examListPanel.setBounds(5, 5, selectedPanelWidth - 10, selectedPanelHeight + 55);
         examListPanel.setBackground(Color.WHITE);
 
         Border lineBorder = BorderFactory.createLineBorder(new Color(80, 80, 80), 0);
