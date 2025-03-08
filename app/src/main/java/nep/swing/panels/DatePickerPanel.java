@@ -169,7 +169,7 @@ public class DatePickerPanel{
         }
     }
 
-    public String getMonthInt(){
+    public String getMonthString(){
         String monthString = (String) monthComboBox.getSelectedItem();
 
         if (monthString.equals("  Month  ")){

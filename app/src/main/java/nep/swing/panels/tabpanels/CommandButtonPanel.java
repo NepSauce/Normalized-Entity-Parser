@@ -11,6 +11,7 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.border.BevelBorder;
 
+import nep.entityclass.RosterEntityDetails;
 import nep.swing.panels.DatePickerPanel;
 import nep.swing.panels.ExamAddedPanel;
 import nep.swing.panels.ExamLocationPanel;
@@ -20,9 +21,11 @@ public class CommandButtonPanel {
     private JButton addExamLocationButton;
     private JButton clearExamLocationButton;
     private JPanel commandButtonPanel;
+    private DatePickerPanel datePickerPanel;
 
     @SuppressWarnings("Convert2Lambda")
     public CommandButtonPanel(ExamLocationPanel examLocationPanel, ExamAddedPanel examAddedPanel, DatePickerPanel datePickerPanel){ 
+        this.datePickerPanel = datePickerPanel;
         commandButtonPanel = new JPanel();
         commandButtonPanel.setLayout(new BoxLayout(commandButtonPanel, BoxLayout.X_AXIS));
         commandButtonPanel.setBackground(Color.WHITE);
@@ -47,6 +50,12 @@ public class CommandButtonPanel {
         commandButtonPanel.add(Box.createVerticalStrut(0));
         commandButtonPanel.add(clearExamLocationButton);
         commandButtonPanel.add(Box.createVerticalStrut(0));
+    }
+
+    public void saveRosterObject(){
+        int day = datePickerPanel.getDayInt();
+        String month = datePickerPanel.getMonthString();
+        int year = datePickerPanel.getYearInt();
     }
 
     public JPanel getCommandButtonPanel(){

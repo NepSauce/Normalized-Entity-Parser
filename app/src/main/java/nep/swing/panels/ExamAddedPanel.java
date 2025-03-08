@@ -52,7 +52,7 @@ public class ExamAddedPanel {
         return examListPanel;
     }
 
-    public void addRosterToPanel(){
+    public void getRosterInformation(){
         
     }
     
