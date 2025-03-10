@@ -1,6 +1,7 @@
 package nep.swing.panels;
 
 import java.awt.Color;
+import java.awt.Desktop.Action;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
@@ -55,18 +56,15 @@ public class RosterAddedPanel{
         addRosterPDFButton.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e){
-                JFileChooser fileChooser = new JFileChooser();
-                fileChooser.setFileFilter(new javax.swing.filechooser.FileNameExtensionFilter("PDF Files", "pdf"));
-                int returnValue = fileChooser.showOpenDialog(null);
-                
-                if (returnValue == JFileChooser.APPROVE_OPTION){
-                    selectedFile = fileChooser.getSelectedFile();
-                    fileAbsolutePath = selectedFile.getAbsolutePath();
-                    checkFileExists = true;
-                } 
-                else{
-                    checkFileExists = false;
-                }
+                openFileExplorerAndValidate();
+            }
+        });
+
+        removeRosterPDFButton = new JButton();
+        removeRosterPDFButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e){
+                clearRosterInfo();
             }
         });
 
@@ -81,6 +79,21 @@ public class RosterAddedPanel{
         
     }
 
+    public void openFileExplorerAndValidate(){
+        JFileChooser fileChooser = new JFileChooser();
+        fileChooser.setFileFilter(new javax.swing.filechooser.FileNameExtensionFilter("PDF Files", "pdf"));
+        int returnValue = fileChooser.showOpenDialog(null);
+        
+        if (returnValue == JFileChooser.APPROVE_OPTION){
+            selectedFile = fileChooser.getSelectedFile();
+            fileAbsolutePath = selectedFile.getAbsolutePath();
+            checkFileExists = true;
+        } 
+        else{
+            checkFileExists = false;
+        }
+    }
+
     public JPanel getRosterBrowsingPanel(){
         return rosterBrowsingPanel;
     }
@@ -91,6 +104,10 @@ public class RosterAddedPanel{
 
     public String getAbsoluteFilePath(){
         return fileAbsolutePath;
+    }
+
+    public boolean getCheckFileExists(){
+        return checkFileExists;
     }
 
 }

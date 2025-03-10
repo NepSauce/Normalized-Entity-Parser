@@ -12,7 +12,6 @@ public class SettingsTab {
         CommandButtonPanel commandButtonPanel = new CommandButtonPanel(examLocationPanel, examAddedPanel, datePickerPanel, rosterAddedPanel);
         tabbedPane.addTab("Base", commandButtonPanel.getCommandButtonPanel());
         tabbedPane.setBounds(25, 230, 250, 85);
-
     }
 
     public JTabbedPane getSettingsTab(){
