@@ -39,9 +39,9 @@ public class DatePickerPanel {
         Border bevelBorder = BorderFactory.createBevelBorder(BevelBorder.LOWERED);
         Border lineBorder = BorderFactory.createLineBorder(new Color(80, 80, 80), 0);
         TitledBorder titledBorder = new TitledBorder(lineBorder, "Select a Date");
-        titledBorder.setTitleFont(new Font("Arial", Font.BOLD, 16));
+        titledBorder.setTitleFont(new Font("Arial", Font.BOLD, 14));
 
-        Border emptyBorder = BorderFactory.createEmptyBorder(5, 0, 0, 0);
+        Border emptyBorder = BorderFactory.createEmptyBorder(5, 5, 0, 0);
         Border compoundBorder = BorderFactory.createCompoundBorder(emptyBorder, titledBorder);
         Border finalBorder = BorderFactory.createCompoundBorder(bevelBorder, compoundBorder);
         datePickerPanel.setBorder(finalBorder);

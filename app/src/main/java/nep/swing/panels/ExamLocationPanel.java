@@ -43,7 +43,7 @@ public class ExamLocationPanel {
         Border lineBorder = BorderFactory.createLineBorder(new Color(76, 74, 72, 255), 0);
 
         TitledBorder titledBorder = new TitledBorder(lineBorder, "Exam Location");
-        titledBorder.setTitleFont(new java.awt.Font("Arial", java.awt.Font.BOLD, 16));
+        titledBorder.setTitleFont(new java.awt.Font("Arial", java.awt.Font.BOLD, 14));
         locationPanel.setBorder(titledBorder);
 
         locationDropdown = new JComboBox<>();
