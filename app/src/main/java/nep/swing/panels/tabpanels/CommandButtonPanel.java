@@ -16,6 +16,7 @@ import nep.entityclass.RosterEntityDetails;
 import nep.swing.panels.DatePickerPanel;
 import nep.swing.panels.ExamAddedPanel;
 import nep.swing.panels.ExamLocationPanel;
+import nep.util.FieldValidator;
 
 @SuppressWarnings("FieldMayBeFinal")
 public class CommandButtonPanel {
@@ -46,14 +47,21 @@ public class CommandButtonPanel {
                 int day = datePickerPanel.getDayInt();
                 String month = datePickerPanel.getMonthString();
                 int year = datePickerPanel.getYearInt();
-                saveRosterObject(location, day, month, year);
-
-
-                String rosterDetails = location + " " + day + "/" + month + "/" + year;
-
-                examAddedPanel.addRosterToPanel(rosterDetails);
+        
+                FieldValidator newValidator = new FieldValidator(location, day, month, year);
+                newValidator.generateErrorMessage(); 
+                String errorMessage = newValidator.getErrorMessage();
+                System.out.println(errorMessage);
+        
+                if (errorMessage == null){  
+                    String rosterDetails = location + " " + day + "/" + month + "/" + year;
+                    examAddedPanel.addRosterToPanel(rosterDetails);
+                } 
+                else{
+                    
+                }
             }
-        });
+        });        
 
         clearExamLocationButton = new JButton("Reset Panel");
         clearExamLocationButton.addActionListener(new ActionListener(){
@@ -77,10 +85,6 @@ public class CommandButtonPanel {
         RosterEntityDetails newRosterEntity = new RosterEntityDetails(location, day, month, year);
         rosterObjectEntityList.add(newRosterEntity);
         System.out.println("Roster Detail Added.");
-    }
-
-    public void checkMissingFields(){
-
     }
 
     public JPanel getCommandButtonPanel(){

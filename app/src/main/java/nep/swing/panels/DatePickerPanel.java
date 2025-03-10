@@ -164,7 +164,7 @@ public class DatePickerPanel {
         return monthString;
     }
 
-    public int getYearInt() {
+    public int getYearInt(){
         String yearString = (String) yearComboBox.getSelectedItem();
 
         if (yearString.equals("  Year  ")) {
