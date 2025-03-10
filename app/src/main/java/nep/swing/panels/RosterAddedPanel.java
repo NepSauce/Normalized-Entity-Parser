@@ -26,6 +26,7 @@ public class RosterAddedPanel{
 
     public RosterAddedPanel(){
         this.checkFileExists = false;
+        this.fileAbsolutePath = null;
 
         browsingPanelHeight = 50;
         browsingPanelWidth = 250;

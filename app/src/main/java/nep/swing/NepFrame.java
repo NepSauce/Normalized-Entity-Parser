@@ -43,7 +43,7 @@ public class NepFrame extends JFrame{
         RosterAddedPanel rosterAddedPanel = new RosterAddedPanel();
         add(rosterAddedPanel.getRosterBrowsingPanel());
 
-        SettingsTab settingsTab = new SettingsTab(examLocationPanel, examAddedPanel, datePickerPanel);
+        SettingsTab settingsTab = new SettingsTab(examLocationPanel, examAddedPanel, datePickerPanel, rosterAddedPanel);
         add(settingsTab.getSettingsTab());
 
         setLayout(null);

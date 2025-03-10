@@ -3,18 +3,29 @@ package nep.util;
 import java.util.ArrayList;
 
 public class FieldValidator{
+    private String fileAbsolutePath;
     private String location;
     private int day;
     private String month;
     private int year;
     private String errorMessage;
 
-    public FieldValidator(String location, int day, String month, int year){
+    public FieldValidator(String fileAbsolutePath, String location, int day, String month, int year){
+        this.fileAbsolutePath = fileAbsolutePath;
         this.location = location;
         this.day = day;
         this.month = month;
         this.year = year;
         this.errorMessage = null;
+    }
+
+    private boolean validatePDFSelection(){
+        if (fileAbsolutePath == null){
+            return true;
+        }
+        else{
+            return false;
+        }
     }
 
     private boolean validateLocationSelection(){
@@ -58,11 +69,14 @@ public class FieldValidator{
         StringBuilder errorMessageBuilder = new StringBuilder(); 
     
         if (validateLocationSelection() || validateDaySelection() 
-            || validateMonthSelection() || validateYearSelection()) {
+            || validateMonthSelection() || validateYearSelection()
+            || validatePDFSelection()) {
             errorMessageBuilder.append("Please Insert a Valid ");
             
             ArrayList<String> missingFields = new ArrayList<>();
-    
+            if (validatePDFSelection()){
+                missingFields.add("PDF");
+            }
             if (validateLocationSelection()){
                 missingFields.add("Location");
             }
@@ -77,9 +91,10 @@ public class FieldValidator{
             }
     
             errorMessageBuilder.append(String.join(", ", missingFields));
-            this.errorMessage = errorMessageBuilder.toString(); // Set the error message
-        } else {
-            this.errorMessage = null; // **Clear the error message if everything is valid**
+            this.errorMessage = errorMessageBuilder.toString();
+        } 
+        else{
+            this.errorMessage = null;
         }
     
         System.out.println(this.errorMessage); // Debugging output
@@ -88,6 +103,4 @@ public class FieldValidator{
     public String getErrorMessage(){
         return errorMessage;
     }
-
-
 }

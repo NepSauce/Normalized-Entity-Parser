@@ -16,6 +16,7 @@ import nep.entityclass.RosterEntityDetails;
 import nep.swing.panels.DatePickerPanel;
 import nep.swing.panels.ExamAddedPanel;
 import nep.swing.panels.ExamLocationPanel;
+import nep.swing.panels.RosterAddedPanel;
 import nep.util.FieldValidator;
 
 @SuppressWarnings("FieldMayBeFinal")
@@ -25,13 +26,15 @@ public class CommandButtonPanel {
     private JPanel commandButtonPanel;
     private DatePickerPanel datePickerPanel;
     private ExamLocationPanel examLocationPanel;
+    private RosterAddedPanel rosterAddedPanel;
     private LinkedList<RosterEntityDetails> rosterObjectEntityList;
 
     @SuppressWarnings("Convert2Lambda")
-    public CommandButtonPanel(ExamLocationPanel examLocationPanel, ExamAddedPanel examAddedPanel, DatePickerPanel datePickerPanel){ 
+    public CommandButtonPanel(ExamLocationPanel examLocationPanel, ExamAddedPanel examAddedPanel, DatePickerPanel datePickerPanel, RosterAddedPanel rosterAddedPanel){ 
         this.rosterObjectEntityList = new LinkedList<>();
         this.datePickerPanel = datePickerPanel;
         this.examLocationPanel = examLocationPanel;
+        this.rosterAddedPanel = rosterAddedPanel;
 
         commandButtonPanel = new JPanel();
         commandButtonPanel.setLayout(new BoxLayout(commandButtonPanel, BoxLayout.X_AXIS));
@@ -43,22 +46,23 @@ public class CommandButtonPanel {
         addExamLocationButton.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e){
+                String fileAbsolutePath = rosterAddedPanel.getAbsoluteFilePath();
                 String location = examLocationPanel.getExamLocation();
                 int day = datePickerPanel.getDayInt();
                 String month = datePickerPanel.getMonthString();
                 int year = datePickerPanel.getYearInt();
         
-                FieldValidator newValidator = new FieldValidator(location, day, month, year);
+                FieldValidator newValidator = new FieldValidator(fileAbsolutePath, location, day, month, year);
                 newValidator.generateErrorMessage(); 
                 String errorMessage = newValidator.getErrorMessage();
                 System.out.println(errorMessage);
         
                 if (errorMessage == null){  
-                    String rosterDetails = location + " " + day + "/" + month + "/" + year;
+                    String rosterDetails = location + " " + day + "-" + month + "-" + year;
                     examAddedPanel.addRosterToPanel(rosterDetails);
                 } 
                 else{
-                    
+                    // UI Level Warning 
                 }
             }
         });        

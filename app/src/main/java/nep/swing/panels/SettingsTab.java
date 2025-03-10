@@ -7,9 +7,9 @@ import nep.swing.panels.tabpanels.CommandButtonPanel;
 public class SettingsTab {
     JTabbedPane tabbedPane;
 
-    public SettingsTab(ExamLocationPanel examLocationPanel, ExamAddedPanel examAddedPanel, DatePickerPanel datePickerPanel){
+    public SettingsTab(ExamLocationPanel examLocationPanel, ExamAddedPanel examAddedPanel, DatePickerPanel datePickerPanel, RosterAddedPanel rosterAddedPanel){
         tabbedPane = new JTabbedPane();
-        CommandButtonPanel commandButtonPanel = new CommandButtonPanel(examLocationPanel, examAddedPanel, datePickerPanel);
+        CommandButtonPanel commandButtonPanel = new CommandButtonPanel(examLocationPanel, examAddedPanel, datePickerPanel, rosterAddedPanel);
         tabbedPane.addTab("Base", commandButtonPanel.getCommandButtonPanel());
         tabbedPane.setBounds(25, 230, 250, 85);
 
