@@ -65,7 +65,7 @@ public class ExamAddedPanel {
         newPanel.setBounds(5, currentXPosition, selectedPanelWidth - 15, 25); 
         newPanel.setBackground(new Color(238,238,238,255)); 
 
-        JLabel detailString = new JLabel("Balls");
+        JLabel detailString = new JLabel(rosterDetails);
         detailString.setBounds(0, 0, 0, 20);
 
         newPanel.add(detailString);
@@ -74,5 +74,9 @@ public class ExamAddedPanel {
         currentXPosition += 30; 
         selectedPanel.revalidate(); 
         selectedPanel.repaint(); 
+    }
+
+    public void clearAllRostersFromPanel(){
+        
     }
 }

@@ -3,6 +3,7 @@ package nep.swing.panels.tabpanels;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.LinkedList;
 
 import javax.swing.BorderFactory;
 import javax.swing.Box;
@@ -22,10 +23,15 @@ public class CommandButtonPanel {
     private JButton clearExamLocationButton;
     private JPanel commandButtonPanel;
     private DatePickerPanel datePickerPanel;
+    private ExamLocationPanel examLocationPanel;
+    private LinkedList<RosterEntityDetails> rosterObjectEntityList;
 
     @SuppressWarnings("Convert2Lambda")
     public CommandButtonPanel(ExamLocationPanel examLocationPanel, ExamAddedPanel examAddedPanel, DatePickerPanel datePickerPanel){ 
+        this.rosterObjectEntityList = new LinkedList<>();
         this.datePickerPanel = datePickerPanel;
+        this.examLocationPanel = examLocationPanel;
+
         commandButtonPanel = new JPanel();
         commandButtonPanel.setLayout(new BoxLayout(commandButtonPanel, BoxLayout.X_AXIS));
         commandButtonPanel.setBackground(Color.WHITE);
@@ -36,11 +42,26 @@ public class CommandButtonPanel {
         addExamLocationButton.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e){
-                examAddedPanel.addRosterToPanel("");
+                String location = examLocationPanel.getExamLocation();
+                int day = datePickerPanel.getDayInt();
+                String month = datePickerPanel.getMonthString();
+                int year = datePickerPanel.getYearInt();
+                saveRosterObject(location, day, month, year);
+
+
+                String rosterDetails = location + " " + day + "/" + month + "/" + year;
+
+                examAddedPanel.addRosterToPanel(rosterDetails);
             }
         });
 
         clearExamLocationButton = new JButton("Reset Panel");
+        clearExamLocationButton.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e){
+                
+            }
+        });
 
         addExamLocationButton.setAlignmentX(JButton.LEFT_ALIGNMENT);
         clearExamLocationButton.setAlignmentX(JButton.LEFT_ALIGNMENT);
@@ -52,10 +73,14 @@ public class CommandButtonPanel {
         commandButtonPanel.add(Box.createVerticalStrut(0));
     }
 
-    public void saveRosterObject(){
-        int day = datePickerPanel.getDayInt();
-        String month = datePickerPanel.getMonthString();
-        int year = datePickerPanel.getYearInt();
+    public void saveRosterObject(String location, int day, String month, int year){
+        RosterEntityDetails newRosterEntity = new RosterEntityDetails(location, day, month, year);
+        rosterObjectEntityList.add(newRosterEntity);
+        System.out.println("Roster Detail Added.");
+    }
+
+    public void checkMissingFields(){
+
     }
 
     public JPanel getCommandButtonPanel(){
