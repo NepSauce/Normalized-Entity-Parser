@@ -19,7 +19,7 @@ public class NepFrame extends JFrame{
      */
     public NepFrame(){
         setTitle("NEP");
-        setSize(600, 350);
+        setSize(600, 400);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         setResizable(false);
