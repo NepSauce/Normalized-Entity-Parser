@@ -72,6 +72,14 @@ public class RosterAddedPanel{
         rosterTextPanel.add(addRosterPDFButton);
     }
 
+    public void displayRosterInfo(){
+
+    }
+
+    public void clearRosterInfo(){
+        
+    }
+
     public JPanel getRosterBrowsingPanel(){
         return rosterBrowsingPanel;
     }
