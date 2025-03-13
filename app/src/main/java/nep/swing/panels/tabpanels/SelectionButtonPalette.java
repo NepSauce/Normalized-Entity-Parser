@@ -19,8 +19,8 @@ import nep.swing.panels.ExamLocationPanel;
 import nep.swing.panels.RosterAddedPanel;
 import nep.util.FieldValidator;
 
-@SuppressWarnings("FieldMayBeFinal")
-public class SelectionButtonPalette {
+@SuppressWarnings({"FieldMayBeFinal", "unused"})
+public class SelectionButtonPalette{
     private JButton addExamLocationButton;
     private JButton clearExamLocationButton;
     private JPanel selectionButtonPanel;
@@ -31,33 +31,29 @@ public class SelectionButtonPalette {
 
     @SuppressWarnings("Convert2Lambda")
     public SelectionButtonPalette(ExamLocationPanel examLocationPanel, ExamAddedPanel examAddedPanel, 
-        DatePickerPanel datePickerPanel, RosterAddedPanel rosterAddedPanel) { 
+        DatePickerPanel datePickerPanel, RosterAddedPanel rosterAddedPanel){ 
         
         this.rosterObjectEntityList = new LinkedList<>();
         this.datePickerPanel = datePickerPanel;
         this.examLocationPanel = examLocationPanel;
         this.rosterAddedPanel = rosterAddedPanel;
 
-        // Create the panel
         selectionButtonPanel = new JPanel();
-        selectionButtonPanel.setLayout(new GridLayout(1, 2, 5, 3)); // 1 row, 2 columns, 5px horizontal gap
+        selectionButtonPanel.setLayout(new GridLayout(1, 2, 5, 0)); 
         selectionButtonPanel.setBackground(Color.WHITE);
         selectionButtonPanel.setBorder(BorderFactory.createBevelBorder(BevelBorder.LOWERED));
-        selectionButtonPanel.setBounds(25, 225, 250, 50); // Keep the given bounds
+        selectionButtonPanel.setBounds(25, 225, 250, 50); 
 
-        // Create buttons
         addExamLocationButton = new JButton("Add Exam");
         clearExamLocationButton = new JButton("Reset Date");
 
-        // Set button sizes explicitly
         Dimension buttonSize = new Dimension(120, 40);
         addExamLocationButton.setPreferredSize(buttonSize);
         clearExamLocationButton.setPreferredSize(buttonSize);
 
-        // Add action listeners
-        addExamLocationButton.addActionListener(new ActionListener() {
+        addExamLocationButton.addActionListener(new ActionListener(){
             @Override
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(ActionEvent e){
                 String fileAbsolutePath = rosterAddedPanel.getAbsoluteFilePath();
                 String location = examLocationPanel.getExamLocation();
                 int day = datePickerPanel.getDayInt();
@@ -69,19 +65,19 @@ public class SelectionButtonPalette {
                 String errorMessage = newValidator.getErrorMessage();
                 System.out.println(errorMessage);
         
-                if (errorMessage == null) {  
+                if (errorMessage == null){  
                     String rosterDetails = location + " " + day + "-" + month + "-" + year;
                     examAddedPanel.addRosterToPanel(rosterDetails);
                 } 
-                else {
+                else{
                     // UI Level Warning
                 }
             }
         });
 
-        clearExamLocationButton.addActionListener(new ActionListener() {
+        clearExamLocationButton.addActionListener(new ActionListener(){
             @Override
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(ActionEvent e){
                 // Reset date
             }
         });
@@ -91,13 +87,13 @@ public class SelectionButtonPalette {
         selectionButtonPanel.add(clearExamLocationButton);
     }
 
-    public void saveRosterObject(String location, int day, String month, int year) {
+    public void saveRosterObject(String location, int day, String month, int year){
         RosterEntityDetails newRosterEntity = new RosterEntityDetails(location, day, month, year);
         rosterObjectEntityList.add(newRosterEntity);
         System.out.println("Roster Detail Added.");
     }
 
-    public JPanel getSelectionButtonPanel() {
+    public JPanel getSelectionButtonPanel(){
         return selectionButtonPanel;
     }
 }
