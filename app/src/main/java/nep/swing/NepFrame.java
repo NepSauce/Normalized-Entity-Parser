@@ -7,6 +7,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 
 import nep.swing.panels.DatePickerPanel;
+import nep.swing.panels.DevTab;
 import nep.swing.panels.ExamAddedPanel;
 import nep.swing.panels.ExamLocationPanel;
 import nep.swing.panels.RosterAddedPanel;
@@ -19,7 +20,7 @@ public class NepFrame extends JFrame{
      */
     public NepFrame(){
         setTitle("NEP");
-        setSize(600, 400);
+        setSize(600, 375);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         setResizable(false);
@@ -46,7 +47,11 @@ public class NepFrame extends JFrame{
         SettingsTab settingsTab = new SettingsTab(examLocationPanel, examAddedPanel, datePickerPanel, rosterAddedPanel);
         add(settingsTab.getSettingsTab());
 
+        DevTab devTab = new DevTab(examLocationPanel, examAddedPanel, datePickerPanel, rosterAddedPanel);
+        add (devTab.getDevTab());
+
         setLayout(null);
+
+
     }
-    // k111am28***
 }
