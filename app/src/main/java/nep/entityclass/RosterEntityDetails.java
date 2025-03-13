@@ -2,7 +2,7 @@ package nep.entityclass;
 
 @SuppressWarnings("unused")
 public class RosterEntityDetails{
-    private String INPUT_DIRECTORY;
+    private String inputDirectory;
     private final String LOCATION;
     private final int DAY;
     private final String MONTH;
@@ -16,7 +16,7 @@ public class RosterEntityDetails{
     }
 
     public RosterEntityDetails(String directory, String location, int day, String month, int year){
-        this.INPUT_DIRECTORY = directory;
+        this.inputDirectory = directory;
         this.LOCATION = location;
         this.DAY = day;
         this.MONTH = month;
@@ -40,10 +40,10 @@ public class RosterEntityDetails{
     }
 
     public String getDirectory(){
-        return INPUT_DIRECTORY;
+        return inputDirectory;
     }
 
     public void setDirectory(String newDirectory){
-        INPUT_DIRECTORY = newDirectory;
+        inputDirectory = newDirectory;
     }
 }

@@ -20,7 +20,7 @@ public class ExamAddedPanel {
     private ArrayList<String> addedRosterArray;
 
     @SuppressWarnings("Convert2Lambda")
-    public ExamAddedPanel() {
+    public ExamAddedPanel(){
         selectedPanelHeight = 125;
         selectedPanelWidth = 250;
 

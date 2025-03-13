@@ -11,8 +11,6 @@ public class DevTab {
         DatePickerPanel datePickerPanel, RosterAddedPanel rosterAddedPanel){
         devPane = new JTabbedPane();
         devPane.setBounds(300 , 240, 250, 85);
-        
-        
     }
 
     public JTabbedPane getDevTab(){
