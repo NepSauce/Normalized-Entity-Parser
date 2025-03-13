@@ -2,7 +2,7 @@ package nep.entityclass;
 
 @SuppressWarnings("unused")
 public class RosterEntityDetails{
-    private String INPUT_DIRECTORY = "";
+    private String INPUT_DIRECTORY;
     private final String LOCATION;
     private final int DAY;
     private final String MONTH;
