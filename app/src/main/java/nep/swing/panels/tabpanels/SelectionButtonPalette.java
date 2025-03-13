@@ -1,13 +1,13 @@
 package nep.swing.panels.tabpanels;
 
 import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.LinkedList;
 
 import javax.swing.BorderFactory;
-import javax.swing.Box;
-import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.border.BevelBorder;
@@ -31,22 +31,33 @@ public class SelectionButtonPalette {
 
     @SuppressWarnings("Convert2Lambda")
     public SelectionButtonPalette(ExamLocationPanel examLocationPanel, ExamAddedPanel examAddedPanel, 
-        DatePickerPanel datePickerPanel, RosterAddedPanel rosterAddedPanel){ 
+        DatePickerPanel datePickerPanel, RosterAddedPanel rosterAddedPanel) { 
+        
         this.rosterObjectEntityList = new LinkedList<>();
         this.datePickerPanel = datePickerPanel;
         this.examLocationPanel = examLocationPanel;
         this.rosterAddedPanel = rosterAddedPanel;
 
+        // Create the panel
         selectionButtonPanel = new JPanel();
-        selectionButtonPanel.setLayout(new BoxLayout(selectionButtonPanel, BoxLayout.X_AXIS));
+        selectionButtonPanel.setLayout(new GridLayout(1, 2, 5, 3)); // 1 row, 2 columns, 5px horizontal gap
         selectionButtonPanel.setBackground(Color.WHITE);
         selectionButtonPanel.setBorder(BorderFactory.createBevelBorder(BevelBorder.LOWERED));
-        selectionButtonPanel.setBounds(25, 225, 250, 50);
+        selectionButtonPanel.setBounds(25, 225, 250, 50); // Keep the given bounds
 
+        // Create buttons
         addExamLocationButton = new JButton("Add Exam");
-        addExamLocationButton.addActionListener(new ActionListener(){
+        clearExamLocationButton = new JButton("Reset Date");
+
+        // Set button sizes explicitly
+        Dimension buttonSize = new Dimension(120, 40);
+        addExamLocationButton.setPreferredSize(buttonSize);
+        clearExamLocationButton.setPreferredSize(buttonSize);
+
+        // Add action listeners
+        addExamLocationButton.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e){
+            public void actionPerformed(ActionEvent e) {
                 String fileAbsolutePath = rosterAddedPanel.getAbsoluteFilePath();
                 String location = examLocationPanel.getExamLocation();
                 int day = datePickerPanel.getDayInt();
@@ -58,42 +69,35 @@ public class SelectionButtonPalette {
                 String errorMessage = newValidator.getErrorMessage();
                 System.out.println(errorMessage);
         
-                if (errorMessage == null){  
+                if (errorMessage == null) {  
                     String rosterDetails = location + " " + day + "-" + month + "-" + year;
                     examAddedPanel.addRosterToPanel(rosterDetails);
                 } 
-                else{
-                    // UI Level Warning 
+                else {
+                    // UI Level Warning
                 }
             }
-        });        
+        });
 
-        clearExamLocationButton = new JButton("Reset Date");
-        clearExamLocationButton.addActionListener(new ActionListener(){
+        clearExamLocationButton.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e){
+            public void actionPerformed(ActionEvent e) {
                 // Reset date
             }
         });
 
-        addExamLocationButton.setAlignmentX(JButton.LEFT_ALIGNMENT);
-        clearExamLocationButton.setAlignmentX(JButton.LEFT_ALIGNMENT);
-
-        selectionButtonPanel.add(Box.createVerticalStrut(0));
+        // Add buttons to the panel
         selectionButtonPanel.add(addExamLocationButton);
-        selectionButtonPanel.add(Box.createVerticalStrut(0));
         selectionButtonPanel.add(clearExamLocationButton);
-        selectionButtonPanel.add(Box.createVerticalStrut(0));
     }
 
-    public void saveRosterObject(String location, int day, String month, int year){
+    public void saveRosterObject(String location, int day, String month, int year) {
         RosterEntityDetails newRosterEntity = new RosterEntityDetails(location, day, month, year);
         rosterObjectEntityList.add(newRosterEntity);
         System.out.println("Roster Detail Added.");
     }
 
-    public JPanel getSelectionButtonPanel(){
+    public JPanel getSelectionButtonPanel() {
         return selectionButtonPanel;
     }
-    
 }

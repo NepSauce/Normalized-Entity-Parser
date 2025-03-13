@@ -1,11 +1,12 @@
 package nep.swing.panels.tabpanels;
 
 import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
-import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.border.BevelBorder;
@@ -15,27 +16,54 @@ import nep.swing.panels.ExamAddedPanel;
 import nep.swing.panels.ExamLocationPanel;
 import nep.swing.panels.RosterAddedPanel;
 
-public class PanelButtonPalette {
+public class PanelButtonPalette{
     private JButton submitAllRostersButton;
-    private JButton clearAllRostersFromPanel;
-    private JButton undoLastRosterFromPanel;
+    private JButton clearAllRostersFromPanelButton;
+    private JButton undoLastRosterFromPanelButton;
     private JPanel panelButtonPanel;
 
     public PanelButtonPalette(ExamLocationPanel examLocationPanel, ExamAddedPanel examAddedPanel, 
         DatePickerPanel datePickerPanel, RosterAddedPanel rosterAddedPanel){
+
         panelButtonPanel = new JPanel();
-        panelButtonPanel.setLayout(new  BoxLayout(panelButtonPanel, BoxLayout.X_AXIS));
+        panelButtonPanel.setLayout(new GridLayout(1, 3, 5, 3));
         panelButtonPanel.setBackground(Color.WHITE);
         panelButtonPanel.setBorder(BorderFactory.createBevelBorder(BevelBorder.LOWERED));
-        panelButtonPanel.setBounds(25, 225, 250, 50);
+        panelButtonPanel.setBounds(25, 225, 250, 50); // Keep the given bounds
 
         submitAllRostersButton = new JButton("Submit");
-        submitAllRostersButton.addActionListener(new ActionListener(){
+        clearAllRostersFromPanelButton = new JButton("Clear");
+        undoLastRosterFromPanelButton = new JButton("Undo");
+
+        Dimension buttonSize = new Dimension(80, 40);
+        submitAllRostersButton.setPreferredSize(buttonSize);
+        clearAllRostersFromPanelButton.setPreferredSize(buttonSize);
+        undoLastRosterFromPanelButton.setPreferredSize(buttonSize);
+
+        submitAllRostersButton.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e){
-                
+            public void actionPerformed(ActionEvent e) {
+                // Submit all rosters
             }
         });
+
+        clearAllRostersFromPanelButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // Clear all rosters
+            }
+        });
+
+        undoLastRosterFromPanelButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // Undo last roster submission
+            }
+        });
+
+        panelButtonPanel.add(submitAllRostersButton);
+        panelButtonPanel.add(clearAllRostersFromPanelButton);
+        panelButtonPanel.add(undoLastRosterFromPanelButton);
     }
 
     public JPanel getPanelButtonPanel(){
