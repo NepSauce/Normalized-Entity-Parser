@@ -172,4 +172,8 @@ public class DatePickerPanel {
         }
         return Integer.parseInt(yearString);
     }
+
+    public void resetDate(){
+        
+    }
 }

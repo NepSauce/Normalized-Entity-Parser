@@ -20,27 +20,28 @@ import nep.swing.panels.RosterAddedPanel;
 import nep.util.FieldValidator;
 
 @SuppressWarnings("FieldMayBeFinal")
-public class CommandButtonPanel {
+public class SelectionButtonPalette {
     private JButton addExamLocationButton;
     private JButton clearExamLocationButton;
-    private JPanel commandButtonPanel;
+    private JPanel selectionButtonPanel;
     private DatePickerPanel datePickerPanel;
     private ExamLocationPanel examLocationPanel;
     private RosterAddedPanel rosterAddedPanel;
     private LinkedList<RosterEntityDetails> rosterObjectEntityList;
 
     @SuppressWarnings("Convert2Lambda")
-    public CommandButtonPanel(ExamLocationPanel examLocationPanel, ExamAddedPanel examAddedPanel, DatePickerPanel datePickerPanel, RosterAddedPanel rosterAddedPanel){ 
+    public SelectionButtonPalette(ExamLocationPanel examLocationPanel, ExamAddedPanel examAddedPanel, 
+        DatePickerPanel datePickerPanel, RosterAddedPanel rosterAddedPanel){ 
         this.rosterObjectEntityList = new LinkedList<>();
         this.datePickerPanel = datePickerPanel;
         this.examLocationPanel = examLocationPanel;
         this.rosterAddedPanel = rosterAddedPanel;
 
-        commandButtonPanel = new JPanel();
-        commandButtonPanel.setLayout(new BoxLayout(commandButtonPanel, BoxLayout.X_AXIS));
-        commandButtonPanel.setBackground(Color.WHITE);
-        commandButtonPanel.setBorder(BorderFactory.createBevelBorder(BevelBorder.LOWERED));
-        commandButtonPanel.setBounds(25, 225, 250, 50);
+        selectionButtonPanel = new JPanel();
+        selectionButtonPanel.setLayout(new BoxLayout(selectionButtonPanel, BoxLayout.X_AXIS));
+        selectionButtonPanel.setBackground(Color.WHITE);
+        selectionButtonPanel.setBorder(BorderFactory.createBevelBorder(BevelBorder.LOWERED));
+        selectionButtonPanel.setBounds(25, 225, 250, 50);
 
         addExamLocationButton = new JButton("Add Exam");
         addExamLocationButton.addActionListener(new ActionListener(){
@@ -67,22 +68,22 @@ public class CommandButtonPanel {
             }
         });        
 
-        clearExamLocationButton = new JButton("Reset Panel");
+        clearExamLocationButton = new JButton("Reset Date");
         clearExamLocationButton.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e){
-                
+                // Reset date
             }
         });
 
         addExamLocationButton.setAlignmentX(JButton.LEFT_ALIGNMENT);
         clearExamLocationButton.setAlignmentX(JButton.LEFT_ALIGNMENT);
 
-        commandButtonPanel.add(Box.createVerticalStrut(0));
-        commandButtonPanel.add(addExamLocationButton);
-        commandButtonPanel.add(Box.createVerticalStrut(0));
-        commandButtonPanel.add(clearExamLocationButton);
-        commandButtonPanel.add(Box.createVerticalStrut(0));
+        selectionButtonPanel.add(Box.createVerticalStrut(0));
+        selectionButtonPanel.add(addExamLocationButton);
+        selectionButtonPanel.add(Box.createVerticalStrut(0));
+        selectionButtonPanel.add(clearExamLocationButton);
+        selectionButtonPanel.add(Box.createVerticalStrut(0));
     }
 
     public void saveRosterObject(String location, int day, String month, int year){
@@ -91,8 +92,8 @@ public class CommandButtonPanel {
         System.out.println("Roster Detail Added.");
     }
 
-    public JPanel getCommandButtonPanel(){
-        return commandButtonPanel;
+    public JPanel getSelectionButtonPanel(){
+        return selectionButtonPanel;
     }
     
 }

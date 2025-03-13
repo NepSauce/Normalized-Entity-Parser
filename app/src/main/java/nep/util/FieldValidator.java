@@ -97,7 +97,7 @@ public class FieldValidator{
             this.errorMessage = null;
         }
     
-        System.out.println(this.errorMessage); // Debugging output
+        System.out.println(this.errorMessage);
     }
     
     public String getErrorMessage(){

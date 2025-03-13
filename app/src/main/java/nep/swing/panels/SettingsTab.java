@@ -2,16 +2,21 @@ package nep.swing.panels;
 
 import javax.swing.JTabbedPane;
 
-import nep.swing.panels.tabpanels.CommandButtonPanel;
+import nep.swing.panels.tabpanels.PanelButtonPalette;
+import nep.swing.panels.tabpanels.SelectionButtonPalette;
 
 public class SettingsTab {
     JTabbedPane tabbedPane;
 
     public SettingsTab(ExamLocationPanel examLocationPanel, ExamAddedPanel examAddedPanel, DatePickerPanel datePickerPanel, RosterAddedPanel rosterAddedPanel){
         tabbedPane = new JTabbedPane();
-        CommandButtonPanel commandButtonPanel = new CommandButtonPanel(examLocationPanel, examAddedPanel, datePickerPanel, rosterAddedPanel);
-        tabbedPane.addTab("Base", commandButtonPanel.getCommandButtonPanel());
+
+        SelectionButtonPalette commandButtonPanel = new SelectionButtonPalette(examLocationPanel, examAddedPanel, datePickerPanel, rosterAddedPanel);
+        tabbedPane.addTab("Selection", commandButtonPanel.getSelectionButtonPanel());
         tabbedPane.setBounds(25, 240, 250, 85);
+
+        PanelButtonPalette panelButtonPalette = new PanelButtonPalette(examLocationPanel, examAddedPanel, datePickerPanel, rosterAddedPanel);
+        tabbedPane.addTab("Panel", panelButtonPalette.getPanelButtonPanel());
     }
 
     public JTabbedPane getSettingsTab(){
