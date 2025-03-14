@@ -174,6 +174,12 @@ public class DatePickerPanel {
     }
 
     public void resetDate(){
-        
+        yearComboBox.removeAllItems();
+        yearComboBox.addItem("  Year  ");
+        populateYearComboBox();
+
+        monthComboBox.removeAllItems();
+        monthComboBox.addItem("  Month  ");
+        populateMonthComboBox();
     }
 }

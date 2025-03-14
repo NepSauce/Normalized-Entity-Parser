@@ -22,7 +22,7 @@ import nep.util.FieldValidator;
 @SuppressWarnings({"FieldMayBeFinal", "unused"})
 public class SelectionButtonPalette{
     private JButton addExamLocationButton;
-    private JButton clearExamLocationButton;
+    private JButton resetDateButton;
     private JPanel selectionButtonPanel;
     private DatePickerPanel datePickerPanel;
     private ExamLocationPanel examLocationPanel;
@@ -45,11 +45,11 @@ public class SelectionButtonPalette{
         selectionButtonPanel.setBounds(25, 225, 250, 50); 
 
         addExamLocationButton = new JButton("Add Exam");
-        clearExamLocationButton = new JButton("Reset Date");
+        resetDateButton = new JButton("Reset Date");
 
         Dimension buttonSize = new Dimension(120, 40);
         addExamLocationButton.setPreferredSize(buttonSize);
-        clearExamLocationButton.setPreferredSize(buttonSize);
+        resetDateButton.setPreferredSize(buttonSize);
 
         addExamLocationButton.addActionListener(new ActionListener(){
             @Override
@@ -75,16 +75,16 @@ public class SelectionButtonPalette{
             }
         });
 
-        clearExamLocationButton.addActionListener(new ActionListener(){
+        resetDateButton.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e){
-                // Reset date
+                datePickerPanel.resetDate();
             }
         });
 
         // Add buttons to the panel
         selectionButtonPanel.add(addExamLocationButton);
-        selectionButtonPanel.add(clearExamLocationButton);
+        selectionButtonPanel.add(resetDateButton);
     }
 
     public void saveRosterObject(String location, int day, String month, int year){
