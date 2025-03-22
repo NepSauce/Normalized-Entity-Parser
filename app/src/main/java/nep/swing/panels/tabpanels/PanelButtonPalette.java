@@ -21,15 +21,23 @@ public class PanelButtonPalette{
     private JButton clearAllRostersFromPanelButton;
     private JButton undoLastRosterFromPanelButton;
     private JPanel panelButtonPanel;
+    private JPanel panelButtonBorderPanel;
 
     public PanelButtonPalette(ExamLocationPanel examLocationPanel, ExamAddedPanel examAddedPanel, 
         DatePickerPanel datePickerPanel, RosterAddedPanel rosterAddedPanel){
 
         panelButtonPanel = new JPanel();
-        panelButtonPanel.setLayout(new GridLayout(1, 3, 5, 0));
+        panelButtonPanel.setLayout(null);
         panelButtonPanel.setBackground(Color.WHITE);
         panelButtonPanel.setBorder(BorderFactory.createBevelBorder(BevelBorder.LOWERED));
-        panelButtonPanel.setBounds(25, 225, 250, 50); 
+        panelButtonPanel.setBounds(25, 240, 250, 40);
+        
+        panelButtonBorderPanel = new JPanel();
+        panelButtonBorderPanel.setLayout(new GridLayout(1, 2, 10 ,20));
+        panelButtonBorderPanel.setBackground(Color.WHITE);
+        panelButtonBorderPanel.setBounds(10, 7, 230, 30);
+
+        panelButtonPanel.add(panelButtonBorderPanel);
 
         submitAllRostersButton = new JButton("Submit");
         clearAllRostersFromPanelButton = new JButton("Clear");
@@ -61,9 +69,9 @@ public class PanelButtonPalette{
             }
         });
 
-        panelButtonPanel.add(submitAllRostersButton);
-        panelButtonPanel.add(clearAllRostersFromPanelButton);
-        panelButtonPanel.add(undoLastRosterFromPanelButton);
+        panelButtonBorderPanel.add(submitAllRostersButton);
+        panelButtonBorderPanel.add(clearAllRostersFromPanelButton);
+        panelButtonBorderPanel.add(undoLastRosterFromPanelButton);
     }
 
     public JPanel getPanelButtonPanel(){
