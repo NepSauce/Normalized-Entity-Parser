@@ -43,12 +43,12 @@ public class SelectionButtonPalette{
         selectionButtonPanel.setLayout(null);
         selectionButtonPanel.setBackground(Color.WHITE);
         selectionButtonPanel.setBorder(BorderFactory.createBevelBorder(BevelBorder.LOWERED));
-        selectionButtonPanel.setBounds(25, 225, 250, 50); 
+        selectionButtonPanel.setBounds(25, 240, 250, 40); 
 
         selectionButtonBorderPanel = new JPanel();
         selectionButtonBorderPanel.setLayout(new GridLayout(1, 2, 10 ,20));
         selectionButtonBorderPanel.setBackground(Color.WHITE);
-        selectionButtonBorderPanel.setBounds(10 ,10 , 230, 40);
+        selectionButtonBorderPanel.setBounds(10 ,7 , 230, 30);
 
         selectionButtonPanel.add(selectionButtonBorderPanel);
 
