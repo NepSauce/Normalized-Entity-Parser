@@ -181,5 +181,9 @@ public class DatePickerPanel {
         monthComboBox.removeAllItems();
         monthComboBox.addItem("  Month  ");
         populateMonthComboBox();
+
+        dayComboBox.removeAllItems();
+        dayComboBox.addItem("  Day  ");
+        dayComboBox.setEnabled(false);     
     }
 }

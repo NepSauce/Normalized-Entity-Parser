@@ -23,6 +23,7 @@ import nep.util.FieldValidator;
 public class SelectionButtonPalette{
     private JButton addExamLocationButton;
     private JButton resetDateButton;
+    private JPanel selectionButtonBorderPanel;
     private JPanel selectionButtonPanel;
     private DatePickerPanel datePickerPanel;
     private ExamLocationPanel examLocationPanel;
@@ -39,10 +40,17 @@ public class SelectionButtonPalette{
         this.rosterAddedPanel = rosterAddedPanel;
 
         selectionButtonPanel = new JPanel();
-        selectionButtonPanel.setLayout(new GridLayout(1, 2, 5, 0)); 
+        selectionButtonPanel.setLayout(null);
         selectionButtonPanel.setBackground(Color.WHITE);
         selectionButtonPanel.setBorder(BorderFactory.createBevelBorder(BevelBorder.LOWERED));
         selectionButtonPanel.setBounds(25, 225, 250, 50); 
+
+        selectionButtonBorderPanel = new JPanel();
+        selectionButtonBorderPanel.setLayout(new GridLayout(1, 2, 10 ,20));
+        selectionButtonBorderPanel.setBackground(Color.WHITE);
+        selectionButtonBorderPanel.setBounds(10 ,10 , 230, 40);
+
+        selectionButtonPanel.add(selectionButtonBorderPanel);
 
         addExamLocationButton = new JButton("Add Exam");
         resetDateButton = new JButton("Reset Date");
@@ -83,8 +91,8 @@ public class SelectionButtonPalette{
         });
 
         // Add buttons to the panel
-        selectionButtonPanel.add(addExamLocationButton);
-        selectionButtonPanel.add(resetDateButton);
+        selectionButtonBorderPanel.add(addExamLocationButton);
+        selectionButtonBorderPanel.add(resetDateButton);
     }
 
     public void saveRosterObject(String location, int day, String month, int year){
