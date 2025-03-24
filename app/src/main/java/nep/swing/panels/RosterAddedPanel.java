@@ -97,6 +97,7 @@ public class RosterAddedPanel{
             selectedFile = fileChooser.getSelectedFile();
             fileAbsolutePath = selectedFile.getAbsolutePath();
             checkFileExists = true;
+            setRosterLabel(selectedFile.getName());
         } 
         else{
             checkFileExists = false;
@@ -120,7 +121,12 @@ public class RosterAddedPanel{
     }
 
     public void setRosterLabel(String newLabel){
-
+        if (newLabel.length() > 20) {
+            rosterPDFLabel.setText(newLabel.substring(0, 15) + "...pdf");
+        }
+        else{
+            rosterPDFLabel.setText(newLabel);
+        }
     }
 
 }
