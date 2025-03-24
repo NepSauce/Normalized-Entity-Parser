@@ -51,7 +51,7 @@ public class RosterAddedPanel{
         titledBorder.setTitleFont(new java.awt.Font("Arial", java.awt.Font.BOLD, 14));
         rosterButtonPanel.setBorder(titledBorder);
 
-        rosterPDFLabel = new JLabel("What the sigma");
+        rosterPDFLabel = new JLabel();
         rosterPDFLabel.setLayout(null);
         rosterPDFLabel.setBounds(10, 5, browsingPanelWidth - 20, browsingPanelHeight - 10);
         rosterPDFLabel.setBackground(Color.BLACK);
