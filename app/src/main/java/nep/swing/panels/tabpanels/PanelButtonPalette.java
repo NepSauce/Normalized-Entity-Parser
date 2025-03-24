@@ -33,9 +33,9 @@ public class PanelButtonPalette{
         panelButtonPanel.setBounds(25, 240, 250, 40);
         
         panelButtonBorderPanel = new JPanel();
-        panelButtonBorderPanel.setLayout(new GridLayout(1, 2, 10 ,20));
+        panelButtonBorderPanel.setLayout(new GridLayout(1, 2, 5 ,20));
         panelButtonBorderPanel.setBackground(Color.WHITE);
-        panelButtonBorderPanel.setBounds(10, 7, 230, 30);
+        panelButtonBorderPanel.setBounds(5, 5, 220, 30);
 
         panelButtonPanel.add(panelButtonBorderPanel);
 
@@ -43,7 +43,7 @@ public class PanelButtonPalette{
         clearAllRostersFromPanelButton = new JButton("Clear");
         undoLastRosterFromPanelButton = new JButton("Undo");
 
-        Dimension buttonSize = new Dimension(80, 40);
+        Dimension buttonSize = new Dimension(80, 50);
         submitAllRostersButton.setPreferredSize(buttonSize);
         clearAllRostersFromPanelButton.setPreferredSize(buttonSize);
         undoLastRosterFromPanelButton.setPreferredSize(buttonSize);

@@ -11,7 +11,7 @@ public class SettingsTab {
     public SettingsTab(ExamLocationPanel examLocationPanel, ExamAddedPanel examAddedPanel, 
         DatePickerPanel datePickerPanel, RosterAddedPanel rosterAddedPanel){
         tabbedPane = new JTabbedPane();
-        tabbedPane.setBounds(25, 240, 250, 70);
+        tabbedPane.setBounds(25, 240, 250, 80);
 
         SelectionButtonPalette commandButtonPanel = new SelectionButtonPalette(examLocationPanel, 
             examAddedPanel, datePickerPanel, rosterAddedPanel);

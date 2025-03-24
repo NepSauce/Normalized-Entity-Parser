@@ -46,16 +46,16 @@ public class SelectionButtonPalette{
         selectionButtonPanel.setBounds(25, 240, 250, 40); 
 
         selectionButtonBorderPanel = new JPanel();
-        selectionButtonBorderPanel.setLayout(new GridLayout(1, 2, 10 ,20));
+        selectionButtonBorderPanel.setLayout(new GridLayout(1, 2, 5 ,20));
         selectionButtonBorderPanel.setBackground(Color.WHITE);
-        selectionButtonBorderPanel.setBounds(10 ,7 , 230, 30);
+        selectionButtonBorderPanel.setBounds(5 ,5 , 220, 30);
 
         selectionButtonPanel.add(selectionButtonBorderPanel);
 
         addExamLocationButton = new JButton("Add Exam");
         resetDateButton = new JButton("Reset Date");
 
-        Dimension buttonSize = new Dimension(120, 40);
+        Dimension buttonSize = new Dimension(120, 50);
         addExamLocationButton.setPreferredSize(buttonSize);
         resetDateButton.setPreferredSize(buttonSize);
 
