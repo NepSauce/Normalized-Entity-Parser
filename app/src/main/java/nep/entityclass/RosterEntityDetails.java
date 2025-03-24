@@ -23,19 +23,19 @@ public class RosterEntityDetails{
         this.YEAR = year;
     }
 
-    public String getLOCATION(){
+    public String getLocation(){
         return LOCATION;
     }
 
-    public int getDAY(){
+    public int getDay(){
         return DAY;
     }
 
-    public String getMONTH(){
+    public String getMonth(){
         return MONTH;
     }
 
-    public int getYEAR(){
+    public int getYear(){
         return YEAR;
     }
 
@@ -45,5 +45,10 @@ public class RosterEntityDetails{
 
     public void setDirectory(String newDirectory){
         inputDirectory = newDirectory;
+    }
+
+    @Override
+    public String toString(){
+        return this.inputDirectory + this.LOCATION + this.YEAR + this.MONTH + this.DAY;
     }
 }

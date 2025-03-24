@@ -5,6 +5,7 @@ import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.LinkedList;
 
 import javax.swing.BorderFactory;
@@ -28,13 +29,13 @@ public class SelectionButtonPalette{
     private DatePickerPanel datePickerPanel;
     private ExamLocationPanel examLocationPanel;
     private RosterAddedPanel rosterAddedPanel;
-    private LinkedList<RosterEntityDetails> rosterObjectEntityList;
+    private ArrayList<RosterEntityDetails> rosterObjectEntityList;
 
     @SuppressWarnings("Convert2Lambda")
     public SelectionButtonPalette(ExamLocationPanel examLocationPanel, ExamAddedPanel examAddedPanel, 
         DatePickerPanel datePickerPanel, RosterAddedPanel rosterAddedPanel){ 
         
-        this.rosterObjectEntityList = new LinkedList<>();
+        this.rosterObjectEntityList = new ArrayList<>();
         this.datePickerPanel = datePickerPanel;
         this.examLocationPanel = examLocationPanel;
         this.rosterAddedPanel = rosterAddedPanel;
@@ -71,11 +72,22 @@ public class SelectionButtonPalette{
                 FieldValidator newValidator = new FieldValidator(fileAbsolutePath, location, day, month, year);
                 newValidator.generateErrorMessage(); 
                 String errorMessage = newValidator.getErrorMessage();
-                System.out.println(errorMessage);
         
                 if (errorMessage == null){  
-                    String rosterDetails = location + " " + day + "-" + month + "-" + year;
-                    examAddedPanel.addRosterToPanel(rosterDetails);
+                    if (!checkLocationInList(location)){
+                        String rosterDetails = location + " " + day + "-" + month + "-" + year;
+                        examAddedPanel.addRosterToPanel(rosterDetails);
+
+                        RosterEntityDetails newRosterDetails = new RosterEntityDetails(fileAbsolutePath, location, day, month, year);
+                        rosterObjectEntityList.add(newRosterDetails);
+
+                        for (int i = 0; i < rosterObjectEntityList.size(); i++){
+                            System.out.println(rosterObjectEntityList.get(i).toString());
+                        }
+                    }
+                    else{
+                        // Location already exists in the ArrayList
+                    }
                 } 
                 else{
                     // UI Level Warning
@@ -103,5 +115,14 @@ public class SelectionButtonPalette{
 
     public JPanel getSelectionButtonPanel(){
         return selectionButtonPanel;
+    }
+
+    public boolean checkLocationInList(String newLocation){
+        for (int i = 0; i < rosterObjectEntityList.size(); i++){
+            if (rosterObjectEntityList.get(i).getLocation().equalsIgnoreCase(newLocation)){
+                return true;
+            }
+        }
+        return false;
     }
 }
