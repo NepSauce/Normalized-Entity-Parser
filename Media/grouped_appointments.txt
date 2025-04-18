@@ -1,51 +1,51 @@
-Course Code: COMM 1503
-12:00 PM (1)
-
-Course Code: HIST 3226
-8:30 AM (2)
-
-Course Code: BUSI 6015
-8:30 AM (1)
-
 Course Code: BIOC 3700
-8:30 AM (1)
-
-Course Code: VISC 5340
-12:30 PM (1)
-
-Course Code: COMM 2202-03
-3:30 PM (2)
-
-Course Code: COMM 2202
-3:30 PM (3)
-
-Course Code: MATH 1000
-8:30 AM (2)
-
-Course Code: CIVL 4515
-8:30 AM (1)
-
-Course Code: COMM 3409-01
-8:30 AM (1)
-
-Course Code: POLI 2210
-6:30 PM (1)
-
-Course Code: NESC/PSYO 3970
-8:30 AM (2)
-
-Course Code: OCCU 5012
-1:00 PM (2)
+1 - [location] - 8:30 AM
 
 Course Code: BIOL 2003
-8:30 AM (3)
+3 - [location] - 8:30 AM
 
-Course Code: NESC/PSYO 2000
-3:30 PM (2)
+Course Code: BUSI 6015
+1 - [location] - 8:30 AM
+
+Course Code: CIVL 4515
+1 - [location] - 8:30 AM
+
+Course Code: COMM 1503
+1 - [location] - 12:00 PM
+
+Course Code: COMM 2202
+3 - [location] - 3:30 PM
+
+Course Code: COMM 2202-03
+2 - [location] - 3:30 PM
+
+Course Code: COMM 3409
+1 - [location] - 8:30 AM
+
+Course Code: HIST 3226
+2 - [location] - 8:30 AM
 
 Course Code: KINE 2320
-3:30 PM (3)
+3 - [location] - 3:30 PM
+
+Course Code: MATH 1000
+2 - [location] - 8:30 AM
+
+Course Code: NESC/PSYO 3970
+2 - [location] - 8:30 AM
+
+Course Code: OCCU 5012
+2 - [location] - 1:00 PM
+
+Course Code: POLI 2210
+1 - [location] - 6:30 PM
+
+Course Code: PSYO 2000
+2 - [location] - 3:30 PM
 
 Course Code: SOSA 3033
-1:30 PM (2)
+2 - [location] - 1:30 PM
+
+Course Code: VISC 5340
+1 - [location] - 12:30 PM
 

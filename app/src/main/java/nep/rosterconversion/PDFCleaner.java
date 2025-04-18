@@ -1,181 +1,67 @@
 package nep.rosterconversion;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.util.*;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class PDFCleaner {
     public static void main(String[] args) {
-        String inputFilePath = "Media/output.txt";  // Path to your input text file
-        String outputFilePath = "Media/filtered_appointments.txt";  // Path to your output text file
-        String groupedFilePath = "Media/grouped_appointments.txt";  // Path to the grouped output file
+        String inputFilePath = "Media/output.txt";
+        String outputFilePath = "Media/filtered_appointments.txt";
+        String groupedFilePath = "Media/grouped_appointments.txt";
         filterAppointments(inputFilePath, outputFilePath, groupedFilePath);
     }
 
     public static void filterAppointments(String inputFilePath, String outputFilePath, String groupedFilePath) {
-        BufferedReader reader = null;
-        BufferedWriter writer = null;
-        BufferedWriter groupedWriter = null;
-        StringBuilder fullText = new StringBuilder();  // To hold all the lines as a single string
-        Map<String, String> stringMap = new HashMap<>();
-
-        // Map to store grouped times by normalized course code
-        Map<String, List<String>> courseCodeMap = new HashMap<>();
-
-        try {
-            reader = new BufferedReader(new FileReader(inputFilePath));
+        try (BufferedReader reader = new BufferedReader(new FileReader(inputFilePath));
+             BufferedWriter filteredWriter = new BufferedWriter(new FileWriter(outputFilePath));
+             BufferedWriter groupedWriter = new BufferedWriter(new FileWriter(groupedFilePath))) {
+            
+            Map<String, Map<String, Integer>> courseGroups = new TreeMap<>(); // Course -> (Time -> Count)
             String line;
 
-            // Read all lines and append them into one single string
             while ((line = reader.readLine()) != null) {
-                // Remove the line containing the "Printed: ..." timestamp
-                line = line.replaceAll("Printed:.*", "");
-
-                // Remove the line containing the "Location: ..." information
-                line = line.replaceAll("Location:.*", "");
-
-                // Append the cleaned line
-                fullText.append(line).append(" ");  // Add space between lines
+                line = line.replaceAll("[\\[\\]]", "");
+                String[] parts = line.split("\\|");
+                if (parts.length >= 5) {
+                    String time = parts[4].trim();
+                    String originalCourse = parts[2].trim();
+                    String normalizedCourse = normalizeCrossListedCourse(originalCourse);
+                    
+                    // Write to filtered appointments
+                    filteredWriter.write(String.format("Time: %s, Course Code: %s%n", time, originalCourse));
+                    
+                    // Group by course and time
+                    courseGroups
+                        .computeIfAbsent(normalizedCourse, k -> new TreeMap<>())
+                        .merge(time, 1, Integer::sum);
+                }
             }
 
-            writer = new BufferedWriter(new FileWriter(outputFilePath));
-            groupedWriter = new BufferedWriter(new FileWriter(groupedFilePath));
-
-            // Regular expression to match the time and course code(s) including section numbers
-            String regex = "(\\d{1,2}:\\d{2} [APM]{2}).*?((\\w{4,6}(?:/\\w{4,6})?)\\s*\\d{4}(?:\\s*-\\s*\\d{2})?)";
-            Pattern pattern = Pattern.compile(regex);
-
-            // Use a matcher on the full text
-            Matcher matcher = pattern.matcher(fullText.toString());
-
-            // Filter and write to the output file
-            while (matcher.find()) {
-                String time = matcher.group(1);
-                String courseCode = matcher.group(2);
-
-                // Normalize the course code for grouping
-                getCrossListings(courseCode, stringMap);
-                courseCode = courseCode.replaceAll("\\s*-\\s*", "-");
-                String normalizedCourseCode = normalizeCourseCode(courseCode, stringMap);
-                normalizedCourseCode = normalizedCourseCode.replaceAll("\\s*-\\s*", "-");
-                // Write to the filtered_appointments.txt file
-                writer.write("Time: " + time + ", Course Code: " + courseCode);
-                writer.newLine();
-
-                // Group times by normalized course code
-                courseCodeMap.computeIfAbsent(normalizedCourseCode, k -> new ArrayList<>()).add(time);
-            }
-
-            // Write grouped data to the grouped_appointments.txt file
-            for (Map.Entry<String, List<String>> entry : courseCodeMap.entrySet()) {
-                String normalizedCourseCode = entry.getKey();
-                List<String> times = entry.getValue();
-
-                groupedWriter.write("Course Code: " + normalizedCourseCode.toUpperCase());
+            // Write grouped appointments
+            for (Map.Entry<String, Map<String, Integer>> courseEntry : courseGroups.entrySet()) {
+                groupedWriter.write(String.format("Course Code: %s%n", courseEntry.getKey()));
+                
+                for (Map.Entry<String, Integer> timeEntry : courseEntry.getValue().entrySet()) {
+                    groupedWriter.write(String.format("%d - [location] - %s%n", 
+                                      timeEntry.getValue(), timeEntry.getKey()));
+                }
                 groupedWriter.newLine();
-                // Create a map to store the count of each time
-                Map<String, Integer> timeCountMap = new HashMap<>();
-
-                // Count the occurrences of each time in the 'times' list
-                for (String time : times) {
-                    timeCountMap.put(time, timeCountMap.getOrDefault(time, 0) + 1);
-                }
-
-                // Now write the time and its count to the groupedWriter
-                for (Map.Entry<String, Integer> timeEntry : timeCountMap.entrySet()) {
-                    String time = timeEntry.getKey();
-                    int count = timeEntry.getValue();
-                    groupedWriter.write(time + " (" + count + ")");
-                    groupedWriter.newLine();
-                }
-                groupedWriter.newLine();  // Add a blank line between course codes
             }
 
-            System.out.println("Filtered appointments have been written to " + outputFilePath);
-            System.out.println("Grouped appointments have been written to " + groupedFilePath);
+            System.out.println("Successfully generated output files.");
         } catch (IOException e) {
+            System.err.println("Error processing files: " + e.getMessage());
             e.printStackTrace();
-        } finally {
-            try {
-                if (reader != null) {
-                    reader.close();
-                }
-                if (writer != null) {
-                    writer.close();
-                }
-                if (groupedWriter != null) {
-                    groupedWriter.close();
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
         }
     }
 
-    /**
-     * Normalizes the course code to handle cross-listed courses and section numbers.
-     * For example, "PSYO/NESC 2000-01" and "NESC/PSYO 2000-01" will both be normalized to "PSYO/NESC 2000-01".
-     */
-    private static String normalizeCourseCode(String courseCode, Map<String, String> stringMap) {
-        // Split the course code into parts (e.g., "PSYO/NESC 2000-01" -> ["PSYO/NESC", "2000-01"])
+    private static String normalizeCrossListedCourse(String courseCode) {
         String[] parts = courseCode.split(" ");
-        if(parts[0].contains("/")){
-            if(stringMap.containsValue(parts[0])){
-                return courseCode.toLowerCase();
-            }
-            else if(stringMap.containsKey(parts[0])){
-                String toReturn = stringMap.get(parts[0]) + " " + parts[1];
-                return toReturn.toLowerCase();
-            }
+        if (parts.length == 2 && parts[0].contains("/")) {
+            String[] departments = parts[0].split("/");
+            Arrays.sort(departments);
+            return String.join("/", departments) + " " + parts[1];
         }
-
-        if (parts.length < 2) {
-            return courseCode.toLowerCase();  // If no course number, return as is
-        }
-
-        if(stringMap.containsKey(parts[0])){
-            String toReturn = stringMap.get(parts[0]) + " " + parts[1];
-            return toReturn.toLowerCase();
-        }
-
-        String codePart = parts[0];  // e.g., "PSYO/NESC"
-        String numberPart = parts[1];  // e.g., "2000-01"
-
-        // Split the code part by "/" to handle cross-listed courses
-        String[] codes = codePart.split("/");
-        Arrays.sort(codes);  // Sort the codes alphabetically to ensure consistent grouping
-
-        // Rebuild the normalized course code (e.g., "NESC/PSYO 2000-01" -> "PSYO/NESC 2000-01")
-        String normalizedCode = String.join("/", codes) + " " + numberPart;
-
-        return normalizedCode.toLowerCase();  // Return in lowercase for case-insensitive grouping
-    }
-
-    public static void getCrossListings(String courseCode, Map<String, String> stringMap){
-        String[] parts = courseCode.split(" ");
-        if(parts[0].contains("/")){
-            if(!stringMap.containsKey(parts[0]) && !stringMap.containsValue(parts[0])){
-                String[] crosslisted = parts[0].split("/");
-                stringMap.put(crosslisted[0], parts[0]);
-                stringMap.put(crosslisted[1], parts[0]);
-                String reversed = crosslisted[1] + "/" + crosslisted[0];
-                stringMap.put(reversed, parts[0]);
-            }
-        }
-    }
-
-    public static String getKeyByValue(Map<String, String> map, String value) {
-        // Iterate through the map
-        for (Map.Entry<String, String> entry : map.entrySet()) {
-            if (entry.getValue().equals(value)) {
-                return entry.getKey();  // Return the key if the value matches
-            }
-        }
-        return null;  // Return null if no matching value is found
+        return courseCode;
     }
 }
