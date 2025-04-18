@@ -1,51 +1,136 @@
-Course Code: BIOC 3700
-1 - [location] - 8:30 AM
+Course Code: BIOC 3700                            Duration:
+ 1 - [location] - 8:30 AM                         Permitted Materials:
+                                                  Exam Source:
+                                                  Medium:
+                                                  PU/DEL:
+                                                  Password:
+                                                  Notes:
 
-Course Code: BIOL 2003
-3 - [location] - 8:30 AM
+Course Code: BIOL 2003                            Duration:
+ 3 - [location] - 8:30 AM                         Permitted Materials:
+                                                  Exam Source:
+                                                  Medium:
+                                                  PU/DEL:
+                                                  Password:
+                                                  Notes:
 
-Course Code: BUSI 6015
-1 - [location] - 8:30 AM
+Course Code: BUSI 6015                            Duration:
+ 1 - [location] - 8:30 AM                         Permitted Materials:
+                                                  Exam Source:
+                                                  Medium:
+                                                  PU/DEL:
+                                                  Password:
+                                                  Notes:
 
-Course Code: CIVL 4515
-1 - [location] - 8:30 AM
+Course Code: CIVL 4515                            Duration:
+ 1 - [location] - 8:30 AM                         Permitted Materials:
+                                                  Exam Source:
+                                                  Medium:
+                                                  PU/DEL:
+                                                  Password:
+                                                  Notes:
 
-Course Code: COMM 1503
-1 - [location] - 12:00 PM
+Course Code: COMM 1503                            Duration:
+ 1 - [location] - 12:00 PM                        Permitted Materials:
+                                                  Exam Source:
+                                                  Medium:
+                                                  PU/DEL:
+                                                  Password:
+                                                  Notes:
 
-Course Code: COMM 2202
-3 - [location] - 3:30 PM
+Course Code: COMM 2202                            Duration:
+ 3 - [location] - 3:30 PM                         Permitted Materials:
+                                                  Exam Source:
+                                                  Medium:
+                                                  PU/DEL:
+                                                  Password:
+                                                  Notes:
 
-Course Code: COMM 2202-03
-2 - [location] - 3:30 PM
+Course Code: COMM 2202-03                         Duration:
+ 2 - [location] - 3:30 PM                         Permitted Materials:
+                                                  Exam Source:
+                                                  Medium:
+                                                  PU/DEL:
+                                                  Password:
+                                                  Notes:
 
-Course Code: COMM 3409
-1 - [location] - 8:30 AM
+Course Code: COMM 3409                            Duration:
+ 1 - [location] - 8:30 AM                         Permitted Materials:
+                                                  Exam Source:
+                                                  Medium:
+                                                  PU/DEL:
+                                                  Password:
+                                                  Notes:
 
-Course Code: HIST 3226
-2 - [location] - 8:30 AM
+Course Code: HIST 3226                            Duration:
+ 2 - [location] - 8:30 AM                         Permitted Materials:
+                                                  Exam Source:
+                                                  Medium:
+                                                  PU/DEL:
+                                                  Password:
+                                                  Notes:
 
-Course Code: KINE 2320
-3 - [location] - 3:30 PM
+Course Code: KINE 2320                            Duration:
+ 3 - [location] - 3:30 PM                         Permitted Materials:
+                                                  Exam Source:
+                                                  Medium:
+                                                  PU/DEL:
+                                                  Password:
+                                                  Notes:
 
-Course Code: MATH 1000
-2 - [location] - 8:30 AM
+Course Code: MATH 1000                            Duration:
+ 2 - [location] - 8:30 AM                         Permitted Materials:
+                                                  Exam Source:
+                                                  Medium:
+                                                  PU/DEL:
+                                                  Password:
+                                                  Notes:
 
-Course Code: NESC/PSYO 3970
-2 - [location] - 8:30 AM
+Course Code: NESC/PSYO 3970                       Duration:
+ 2 - [location] - 8:30 AM                         Permitted Materials:
+                                                  Exam Source:
+                                                  Medium:
+                                                  PU/DEL:
+                                                  Password:
+                                                  Notes:
 
-Course Code: OCCU 5012
-2 - [location] - 1:00 PM
+Course Code: OCCU 5012                            Duration:
+ 2 - [location] - 1:00 PM                         Permitted Materials:
+                                                  Exam Source:
+                                                  Medium:
+                                                  PU/DEL:
+                                                  Password:
+                                                  Notes:
 
-Course Code: POLI 2210
-1 - [location] - 6:30 PM
+Course Code: POLI 2210                            Duration:
+ 1 - [location] - 6:30 PM                         Permitted Materials:
+                                                  Exam Source:
+                                                  Medium:
+                                                  PU/DEL:
+                                                  Password:
+                                                  Notes:
 
-Course Code: PSYO 2000
-2 - [location] - 3:30 PM
+Course Code: PSYO 2000                            Duration:
+ 2 - [location] - 3:30 PM                         Permitted Materials:
+                                                  Exam Source:
+                                                  Medium:
+                                                  PU/DEL:
+                                                  Password:
+                                                  Notes:
 
-Course Code: SOSA 3033
-2 - [location] - 1:30 PM
+Course Code: SOSA 3033                            Duration:
+ 2 - [location] - 1:30 PM                         Permitted Materials:
+                                                  Exam Source:
+                                                  Medium:
+                                                  PU/DEL:
+                                                  Password:
+                                                  Notes:
 
-Course Code: VISC 5340
-1 - [location] - 12:30 PM
+Course Code: VISC 5340                            Duration:
+ 1 - [location] - 12:30 PM                        Permitted Materials:
+                                                  Exam Source:
+                                                  Medium:
+                                                  PU/DEL:
+                                                  Password:
+                                                  Notes:
 
