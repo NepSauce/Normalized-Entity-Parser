@@ -1,7 +1,6 @@
 package nep.swing.panels;
 
 import java.awt.Color;
-import java.awt.Desktop.Action;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
