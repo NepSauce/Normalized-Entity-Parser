@@ -15,7 +15,7 @@ import org.apache.pdfbox.text.PDFTextStripper;
 public class PDFConversion {
 
     public static void main(String[] args) {
-        String pdfPath = "Media/roster.pdf";
+        String pdfPath = "Media/rosterG28.pdf"; //test using one of the following: rosterMAH.pdf, rosterG28.pdf, rosterALTLOC.pdf
         String outputTextPath = "Media/output.txt";
 
         try {
@@ -92,22 +92,60 @@ public class PDFConversion {
             
             // Extract Course Code
             String courseCode = "";
-            Matcher courseMatcher = Pattern.compile("([A-Za-z]{3,4}(?:/[A-Za-z]{3,4})?\\s\\d{4}(?:-\\d{2})?)")
-                                         .matcher(record);
-            if (courseMatcher.find()) {
-                courseCode = courseMatcher.group().toUpperCase();
+            Matcher courseMatcher = Pattern.compile("(?<=^|\\s|\\n)([A-Za-z]{3,4}(?:/[A-Za-z]{3,4})?[- ]\\d{4}(?:-\\d{2})?)")
+                                        .matcher(record);
+
+            // Find all potential course codes
+            List<String> potentialCodes = new ArrayList<>();
+            while (courseMatcher.find()) {
+                String potentialCode = courseMatcher.group().toUpperCase();
+                // Skip "COMP" and keep searching
+                if (!potentialCode.startsWith("COMP")) {
+                    potentialCodes.add(potentialCode);
+                }
             }
-            
-            if (courseCode.isEmpty()) {
-                System.err.println("Could not find course code in record: " + record);
+
+            // Use the first valid course code found (if any)
+            if (!potentialCodes.isEmpty()) {
+                courseCode = potentialCodes.get(0);
+                // Normalize the separator to space if it's a hyphen
+                courseCode = courseCode.replace('-', ' ');
+            } else {
+                System.err.println("Could not find valid course code in record: " + record);
                 continue;
             }
             
+            String location = "[location]";
+            // Pattern to match the location format: 3 digits, space, location text, then space and either hyphen or 2 digits
+            Pattern locationPattern = Pattern.compile("\\d{1,2}:\\d{2}\\s[AP]M\\s\\d{3}\\s([^-]+?)(?:\\s-|\\s\\d{2}\\s|$)");
+            Matcher locationMatcher = locationPattern.matcher(record);
+
+            if (locationMatcher.find()) {
+                location = locationMatcher.group(1).trim();
+            } else {
+                // Alternative pattern for cases like "308 WELDON W (10)"
+                Pattern altPattern = Pattern.compile("\\d{1,2}:\\d{2}\\s[AP]M\\s\\d{3}\\s([A-Z].+?)(?:\\s\\(\\d+\\+?\\d*\\)|\\s-|$)");
+                Matcher altMatcher = altPattern.matcher(record);
+                if (altMatcher.find()) {
+                    location = altMatcher.group(1).trim();
+                }
+            }
+
+            // Clean up the location
+            location = location.replaceAll("\\s\\d+$", "")
+                                .replaceAll("[.-]", "")
+                                .replaceAll("COMP\\s*", "")
+                                .trim();
+            if (location.startsWith("ER") || location.startsWith("G2")) {
+                location = "[location]";
+            }
+
             // Format the line
-            formattedLines.add(String.format("[%s | %s | %s | [Location] | %s]", 
+            formattedLines.add(String.format("[%s | %s | %s | %s | %s]", 
                 studentId, 
                 studentName, 
                 courseCode, 
+                location,
                 time));
         }
         

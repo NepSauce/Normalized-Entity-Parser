@@ -1,53 +1,5 @@
-Course Code: BIOC 3700                            Duration:
+Course Code: BIOL 3301                            Duration:
  1 - [location] - 8:30 AM                         Permitted Materials:
-                                                  Exam Source:
-                                                  Medium:
-                                                  PU/DEL:
-                                                  Password:
-                                                  Notes:
-
-Course Code: BIOL 2003                            Duration:
- 3 - [location] - 8:30 AM                         Permitted Materials:
-                                                  Exam Source:
-                                                  Medium:
-                                                  PU/DEL:
-                                                  Password:
-                                                  Notes:
-
-Course Code: BUSI 6015                            Duration:
- 1 - [location] - 8:30 AM                         Permitted Materials:
-                                                  Exam Source:
-                                                  Medium:
-                                                  PU/DEL:
-                                                  Password:
-                                                  Notes:
-
-Course Code: CIVL 4515                            Duration:
- 1 - [location] - 8:30 AM                         Permitted Materials:
-                                                  Exam Source:
-                                                  Medium:
-                                                  PU/DEL:
-                                                  Password:
-                                                  Notes:
-
-Course Code: COMM 1503                            Duration:
- 1 - [location] - 12:00 PM                        Permitted Materials:
-                                                  Exam Source:
-                                                  Medium:
-                                                  PU/DEL:
-                                                  Password:
-                                                  Notes:
-
-Course Code: COMM 2202                            Duration:
- 3 - [location] - 3:30 PM                         Permitted Materials:
-                                                  Exam Source:
-                                                  Medium:
-                                                  PU/DEL:
-                                                  Password:
-                                                  Notes:
-
-Course Code: COMM 2202-03                         Duration:
- 2 - [location] - 3:30 PM                         Permitted Materials:
                                                   Exam Source:
                                                   Medium:
                                                   PU/DEL:
@@ -62,55 +14,55 @@ Course Code: COMM 3409                            Duration:
                                                   Password:
                                                   Notes:
 
-Course Code: HIST 3226                            Duration:
- 2 - [location] - 8:30 AM                         Permitted Materials:
+Course Code: CSCI 2690                            Duration:
+ 1 - [location] - 3:30 PM                         Permitted Materials:
                                                   Exam Source:
                                                   Medium:
                                                   PU/DEL:
                                                   Password:
                                                   Notes:
 
-Course Code: KINE 2320                            Duration:
- 3 - [location] - 3:30 PM                         Permitted Materials:
+Course Code: DEHY 2805                            Duration:
+ 1 - [location] - 9:00 AM                         Permitted Materials:
                                                   Exam Source:
                                                   Medium:
                                                   PU/DEL:
                                                   Password:
                                                   Notes:
 
-Course Code: MATH 1000                            Duration:
- 2 - [location] - 8:30 AM                         Permitted Materials:
+Course Code: DENT 3002                            Duration:
+ 2 - [location] - 10:00 AM                        Permitted Materials:
                                                   Exam Source:
                                                   Medium:
                                                   PU/DEL:
                                                   Password:
                                                   Notes:
 
-Course Code: NESC/PSYO 3970                       Duration:
- 2 - [location] - 8:30 AM                         Permitted Materials:
+Course Code: ECON 1102                            Duration:
+ 1 - [location] - 8:30 AM                         Permitted Materials:
                                                   Exam Source:
                                                   Medium:
                                                   PU/DEL:
                                                   Password:
                                                   Notes:
 
-Course Code: OCCU 5012                            Duration:
- 2 - [location] - 1:00 PM                         Permitted Materials:
+Course Code: ENGL 2235                            Duration:
+ 1 - [location] - 8:30 AM                         Permitted Materials:
                                                   Exam Source:
                                                   Medium:
                                                   PU/DEL:
                                                   Password:
                                                   Notes:
 
-Course Code: POLI 2210                            Duration:
- 1 - [location] - 6:30 PM                         Permitted Materials:
+Course Code: GWST/HIST 2900                       Duration:
+ 1 - [location] - 3:30 PM                         Permitted Materials:
                                                   Exam Source:
                                                   Medium:
                                                   PU/DEL:
                                                   Password:
                                                   Notes:
 
-Course Code: PSYO 2000                            Duration:
+Course Code: KINE 2465                            Duration:
  2 - [location] - 3:30 PM                         Permitted Materials:
                                                   Exam Source:
                                                   Medium:
@@ -118,16 +70,48 @@ Course Code: PSYO 2000                            Duration:
                                                   Password:
                                                   Notes:
 
-Course Code: SOSA 3033                            Duration:
- 2 - [location] - 1:30 PM                         Permitted Materials:
+Course Code: LAWS 2002                            Duration:
+ 2 - [location] - 9:30 AM                         Permitted Materials:
                                                   Exam Source:
                                                   Medium:
                                                   PU/DEL:
                                                   Password:
                                                   Notes:
 
-Course Code: VISC 5340                            Duration:
- 1 - [location] - 12:30 PM                        Permitted Materials:
+Course Code: MARI 3063                            Duration:
+ 1 - [location] - 3:30 PM                         Permitted Materials:
+                                                  Exam Source:
+                                                  Medium:
+                                                  PU/DEL:
+                                                  Password:
+                                                  Notes:
+
+Course Code: MATH 1280                            Duration:
+ 1 - [location] - 3:30 PM                         Permitted Materials:
+                                                  Exam Source:
+                                                  Medium:
+                                                  PU/DEL:
+                                                  Password:
+                                                  Notes:
+
+Course Code: MATH 2300                            Duration:
+ 1 - [location] - 8:30 AM                         Permitted Materials:
+                                                  Exam Source:
+                                                  Medium:
+                                                  PU/DEL:
+                                                  Password:
+                                                  Notes:
+
+Course Code: MEDI 2311                            Duration:
+ 2 - [location] - 1:00 PM                         Permitted Materials:
+                                                  Exam Source:
+                                                  Medium:
+                                                  PU/DEL:
+                                                  Password:
+                                                  Notes:
+
+Course Code: STAT 1060                            Duration:
+ 1 - [location] - 1:00 PM                         Permitted Materials:
                                                   Exam Source:
                                                   Medium:
                                                   PU/DEL:
