@@ -81,12 +81,14 @@ public class SelectionButtonPalette{
                         RosterEntityDetails newRosterDetails = new RosterEntityDetails(fileAbsolutePath, location, day, month, year);
                         rosterObjectEntityList.add(newRosterDetails);
 
+                        // Debugging Total Roster Added Print
+                        // Remove
                         for (int i = 0; i < rosterObjectEntityList.size(); i++){
                             System.out.println(rosterObjectEntityList.get(i).toString());
                         }
                     }
                     else{
-                        // Location already exists in the ArrayList
+                        System.out.println("Roster Location Already Exists");
                     }
                 } 
                 else{
