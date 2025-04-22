@@ -104,7 +104,6 @@ public class SelectionButtonPalette{
             }
         });
 
-        // Add buttons to the panel
         selectionButtonBorderPanel.add(addExamLocationButton);
         selectionButtonBorderPanel.add(resetDateButton);
     }
