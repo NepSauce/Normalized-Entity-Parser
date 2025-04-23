@@ -15,7 +15,7 @@ import org.apache.pdfbox.text.PDFTextStripper;
 public class PDFConversion {
 
     public static void main(String[] args) {
-        String pdfPath = "Media/rosterG28.pdf";
+        String pdfPath = "Media/rosterALTLOC.pdf";
         String outputTextPath = "Media/output.txt";
 
         try {
