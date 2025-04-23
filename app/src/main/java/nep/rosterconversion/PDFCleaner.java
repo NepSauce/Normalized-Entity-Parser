@@ -1,72 +1,222 @@
 package nep.rosterconversion;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import java.io.*;
+import java.util.*;
 
 public class PDFCleaner {
+    private static final String[] METADATA_FIELDS = {
+        "Duration:",
+        "Permitted Materials:",
+        "Exam Source:",
+        "Medium:",
+        "PU/DEL:",
+        "Password:",
+        "Notes:"
+    };
+    
+    private static final int COURSE_CODE_WIDTH = 50;
+
     public static void main(String[] args) {
-        String inputFilePath = "Media/output.txt";  // Path to your input text file
-        String outputFilePath = "Media/filtered_appointments.txt";  // Path to your output text file
-        filterAppointments(inputFilePath, outputFilePath);
+        String inputFilePath = "Media/output.txt";
+        String outputFilePath = "Media/filtered_appointments.txt";
+        String groupedFilePath = "Media/grouped_appointments.txt";
+        filterAppointments(inputFilePath, outputFilePath, groupedFilePath);
     }
 
-    public static void filterAppointments(String inputFilePath, String outputFilePath) {
-        BufferedReader reader = null;
-        BufferedWriter writer = null;
-        StringBuilder fullText = new StringBuilder();  // To hold all the lines as a single string
+    /**
+     * Processes input file to filter appointments and generate grouped output.
+     *
+     * @param inputFilePath Path to the input file containing raw appointment data
+     * @param outputFilePath Path for the filtered appointments output file
+     * @param groupedFilePath Path for the grouped appointments output file
+     */
+    public static void filterAppointments(String inputFilePath, String outputFilePath, String groupedFilePath) {
+        try (BufferedReader reader = new BufferedReader(new FileReader(inputFilePath));
+             BufferedWriter filteredWriter = new BufferedWriter(new FileWriter(outputFilePath));
+             BufferedWriter groupedWriter = new BufferedWriter(new FileWriter(groupedFilePath))) {
+            
+            Map<String, Map<String, Map<String, Integer>>> courseGroups = processInputFile(reader, filteredWriter);
+            writeGroupedOutput(courseGroups, groupedWriter);
 
-        try {
-            reader = new BufferedReader(new FileReader(inputFilePath));
-            String line;
-
-            // Read all lines and append them into one single string
-            while ((line = reader.readLine()) != null) {
-                // Remove the line containing the "Printed: ..." timestamp
-                line = line.replaceAll("Printed:.*", "");
-                
-                // Remove the line containing the "Location: ..." information
-                line = line.replaceAll("Location:.*", "");
-
-                // Append the cleaned line
-                fullText.append(line).append(" ");  // Add space between lines
-            }
-
-            writer = new BufferedWriter(new FileWriter(outputFilePath));
-
-            // Regular expression to match the time and course code
-            String regex = "(\\d{1,2}:\\d{2} [APM]{2}).*?(\\w{4,6} \\d{4})";
-            Pattern pattern = Pattern.compile(regex);
-
-            // Use a matcher on the full text
-            Matcher matcher = pattern.matcher(fullText.toString());
-
-            // Filter and write to the output file
-            while (matcher.find()) {
-                String time = matcher.group(1);
-                String courseCode = matcher.group(2);
-                writer.write("Time: " + time + ", Course Code: " + courseCode);
-                writer.newLine();  // Write each result on a new line
-            }
-
-            System.out.println("Filtered appointments have been written to " + outputFilePath);
+            System.out.println("Successfully generated output files.");
         } catch (IOException e) {
+            System.err.println("Error processing files: " + e.getMessage());
             e.printStackTrace();
-        } finally {
-            try {
-                if (reader != null) {
-                    reader.close();
-                }
-                if (writer != null) {
-                    writer.close();
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
+        }
+    }
+
+    /**
+     * Processes the input file and builds a nested map structure for course groups.
+     *
+     * @param reader BufferedReader for the input file
+     * @param filteredWriter BufferedWriter for the filtered output
+     * @return Nested map containing grouped course information by location and time
+     * @throws IOException If there's an error reading or writing files
+     */
+    private static Map<String, Map<String, Map<String, Integer>>> processInputFile(
+            BufferedReader reader, BufferedWriter filteredWriter) throws IOException {
+        Map<String, Map<String, Map<String, Integer>>> courseGroups = new TreeMap<>();
+        String line;
+
+        while ((line = reader.readLine()) != null) {
+            processLine(line, filteredWriter, courseGroups);
+        }
+
+        return courseGroups;
+    }
+
+    /**
+     * Processes a single line from the input file.
+     *
+     * @param line The line to process
+     * @param filteredWriter BufferedWriter for the filtered output
+     * @param courseGroups Nested map to store the grouped course information
+     * @throws IOException If there's an error writing to the output
+     */
+    private static void processLine(String line, BufferedWriter filteredWriter,
+            Map<String, Map<String, Map<String, Integer>>> courseGroups) throws IOException {
+        line = line.replaceAll("[\\[\\]]", "");
+        String[] parts = line.split("\\|");
+        
+        if (parts.length >= 5) {
+            String time = parts[4].trim();
+            String originalCourse = parts[2].trim();
+            String location = parts[3].trim();
+            
+            if (location.equals("location")){
+                location = "[location]";
+            }
+
+            String normalizedCourse = normalizeCrossListedCourse(originalCourse);
+            
+            filteredWriter.write(String.format("Time: %s, Course Code: %s%n", 
+                time, originalCourse));
+            updateCourseGroups(courseGroups, normalizedCourse, location, time);
+        }
+    }
+
+    /**
+     * Updates the course groups map with new time and location information.
+     *
+     * @param courseGroups Nested map containing the grouped courses
+     * @param course The course code
+     * @param location The appointment location
+     * @param time The appointment time
+     */
+    private static void updateCourseGroups(
+            Map<String, Map<String, Map<String, Integer>>> courseGroups,
+            String course, String location, String time) {
+        courseGroups
+            .computeIfAbsent(course, k -> new TreeMap<>())
+            .computeIfAbsent(location, k -> new TreeMap<>())
+            .merge(time, 1, Integer::sum);
+    }
+
+    /**
+     * Writes the grouped appointment information to the output file.
+     *
+     * @param courseGroups Nested map containing the grouped course information
+     * @param groupedWriter BufferedWriter for the grouped output
+     * @throws IOException If there's an error writing to the output
+     */
+    private static void writeGroupedOutput(
+            Map<String, Map<String, Map<String, Integer>>> courseGroups,
+            BufferedWriter groupedWriter) throws IOException {
+        for (Map.Entry<String, Map<String, Map<String, Integer>>> courseEntry : courseGroups.entrySet()) {
+            writeCourseHeader(courseEntry.getKey(), groupedWriter);
+            writeLocationEntries(courseEntry.getValue(), groupedWriter);
+            groupedWriter.newLine();
+        }
+    }
+
+    /**
+     * Writes the course header information to the output file.
+     *
+     * @param courseCode The course code to write
+     * @param groupedWriter BufferedWriter for the grouped output
+     * @throws IOException If there's an error writing to the output
+     */
+    private static void writeCourseHeader(String courseCode, BufferedWriter groupedWriter) 
+            throws IOException {
+        String courseLine = String.format("Course Code: %s", courseCode);
+        groupedWriter.write(String.format("%-50s%s%n", courseLine, METADATA_FIELDS[0]));
+    }
+
+    /**
+     * Writes the location entries for a course to the output file.
+     *
+     * @param locationMap Map containing location information for the course
+     * @param groupedWriter BufferedWriter for the grouped output
+     * @throws IOException If there's an error writing to the output
+     */
+    private static void writeLocationEntries(
+            Map<String, Map<String, Integer>> locationMap,
+            BufferedWriter groupedWriter) throws IOException {
+        boolean firstLocation = true;
+
+        for (Map.Entry<String, Map<String, Integer>> locationEntry : locationMap.entrySet()) {
+            writeTimeEntries(locationEntry.getKey(), locationEntry.getValue(), 
+                groupedWriter, firstLocation);
+            firstLocation = false;
+        }
+    }
+
+    /**
+     * Writes the time entries for a location to the output file.
+     *
+     * @param location The location name
+     * @param timeMap Map containing time information for the location
+     * @param groupedWriter BufferedWriter for the grouped output
+     * @param firstLocation Whether this is the first location for the course
+     * @throws IOException If there's an error writing to the output
+     */
+    private static void writeTimeEntries(String location, 
+            Map<String, Integer> timeMap, BufferedWriter groupedWriter,
+            boolean firstLocation) throws IOException {
+        boolean firstTimeEntry = true;
+
+        for (Map.Entry<String, Integer> timeEntry : timeMap.entrySet()) {
+            String timeLine = String.format(" %d - %s - %s", 
+                timeEntry.getValue(), location, timeEntry.getKey());
+            groupedWriter.write(String.format("%-50s", timeLine));
+            
+            if (firstTimeEntry && firstLocation) {
+                writeMetadataFields(groupedWriter);
+                firstTimeEntry = false;
+            } else {
+                groupedWriter.write("\n");
             }
         }
+    }
+
+    /**
+     * Writes the metadata fields to the output file.
+     *
+     * @param groupedWriter BufferedWriter for the grouped output
+     * @throws IOException If there's an error writing to the output
+     */
+    private static void writeMetadataFields(BufferedWriter groupedWriter) throws IOException {
+        for (int i = 1; i < METADATA_FIELDS.length; i++) {
+            groupedWriter.write(METADATA_FIELDS[i] + "\n");
+            if (i < METADATA_FIELDS.length - 1) {
+                groupedWriter.write(String.format("%-50s", ""));
+            }
+        }
+    }
+
+    /**
+     * Normalizes cross-listed course codes by sorting department prefixes.
+     *
+     * @param courseCode The original course code
+     * @return Normalized course code with sorted department prefixes
+     */
+    private static String normalizeCrossListedCourse(String courseCode) {
+        String[] parts = courseCode.split(" ");
+        if (parts.length == 2 && parts[0].contains("/")) {
+            String[] departments = parts[0].split("/");
+            Arrays.sort(departments);
+            return String.join("/", departments) + " " + parts[1];
+        }
+        return courseCode;
     }
 }
