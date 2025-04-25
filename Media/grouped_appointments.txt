@@ -137,21 +137,14 @@ Course Code: EMSP 3250                            Duration:
                                                   Password:
                                                   Notes:
 
-Course Code: ENGL 3503                            Duration:
+Course Code: ENGL/THEA 3503                       Duration:
  2 - 2021 MCCAIN - 3:30 PM                        Permitted Materials:
                                                   Exam Source:
                                                   Medium:
                                                   PU/DEL:
                                                   Password:
                                                   Notes:
-
-Course Code: ENGL/THEA 3503                       Duration:
- 2 - 2104 MCCAIN - 3:30 PM                        Permitted Materials:
-                                                  Exam Source:
-                                                  Medium:
-                                                  PU/DEL:
-                                                  Password:
-                                                  Notes:
+ 2 - 2104 MCCAIN - 3:30 PM                        
 
 Course Code: HIST 3050                            Duration:
  1 - 2016 MCCAIN - 8:30 AM                        Permitted Materials:
@@ -282,12 +275,13 @@ Course Code: MUSC 2000                            Duration:
  1 - 3080 ROWE - 8:30 AM                          
 
 Course Code: NESC/PSYO 2140                       Duration:
- 12 - 2116 MCCAIN - 12:00 PM                      Permitted Materials:
+ 1 - 2016 MCCAIN - 3:30 PM                        Permitted Materials:
                                                   Exam Source:
                                                   Medium:
                                                   PU/DEL:
                                                   Password:
                                                   Notes:
+ 12 - 2116 MCCAIN - 12:00 PM                      
  6 - 2118 MCCAIN - 12:00 PM                       
  2 - 301A DUNN - 12:00 PM                         
 
@@ -351,14 +345,6 @@ Course Code: POLI 3581                            Duration:
                                                   Password:
                                                   Notes:
  1 - 2021 MCCAIN - 3:30 PM                        
-
-Course Code: PSYO 2140                            Duration:
- 1 - 2016 MCCAIN - 3:30 PM                        Permitted Materials:
-                                                  Exam Source:
-                                                  Medium:
-                                                  PU/DEL:
-                                                  Password:
-                                                  Notes:
 
 Course Code: RADT 1020                            Duration:
  4 - 3080 ROWE - 8:30 AM                          Permitted Materials:

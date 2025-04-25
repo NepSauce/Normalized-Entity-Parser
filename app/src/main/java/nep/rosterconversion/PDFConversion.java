@@ -15,7 +15,7 @@ import org.apache.pdfbox.text.PDFTextStripper;
 public class PDFConversion {
 
     public static void main(String[] args) {
-        String pdfPath = "Media/rosterSEXTON.pdf";
+        String pdfPath = "Media/rosterALTLOC.pdf";
         String outputTextPath = "Media/output.txt";
 
         try {
@@ -71,7 +71,7 @@ public class PDFConversion {
             if (shouldSkipLine(line)) {
                 continue;
             }
-
+            //ADD REMOVED INFO EXTRACTION HERE
             if (line.matches(".*B\\d{8}.*")) {
                 if (currentRecord.length() > 0) {
                     completeRecords.add(currentRecord.toString());
