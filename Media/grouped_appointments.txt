@@ -56,7 +56,7 @@ Course Code: CMSD 5020                            Duration:
  1 - 2184 MCCAIN - 3:30 PM                        
 
 Course Code: COMM 1101 01                         Duration:
- 3 - 2018 MCAIN 2018 - 5:30 PM                    Permitted Materials:
+ 3 - 2018 MCAIN - 5:30 PM                         Permitted Materials:
                                                   Exam Source:
                                                   Medium:
                                                   PU/DEL:
@@ -131,7 +131,7 @@ Course Code: ERTH 2002                            Duration:
                                                   Notes:
 
 Course Code: ERTH 3205                            Duration:
- 1 - 2018 MCAIN 2018 - 5:30 PM                    Permitted Materials:
+ 1 - 2018 MCAIN - 5:30 PM                         Permitted Materials:
                                                   Exam Source:
                                                   Medium:
                                                   PU/DEL:
@@ -140,7 +140,7 @@ Course Code: ERTH 3205                            Duration:
  1 - [location] - 5:30 PM                         
 
 Course Code: ERTH 3401                            Duration:
- 1 - 3080 ROWE 3080 - 8:30 AM                     Permitted Materials:
+ 1 - 3080 ROWE - 8:30 AM                          Permitted Materials:
                                                   Exam Source:
                                                   Medium:
                                                   PU/DEL:
@@ -260,7 +260,7 @@ Course Code: PHIL 2260                            Duration:
                                                   Notes:
 
 Course Code: PHIL 2810                            Duration:
- 1 - 2022 MCCAIN 2022 - 3:30 PM                   Permitted Materials:
+ 1 - 2022 MCCAIN - 3:30 PM                        Permitted Materials:
                                                   Exam Source:
                                                   Medium:
                                                   PU/DEL:
@@ -285,18 +285,16 @@ Course Code: POLI 1065                            Duration:
                                                   PU/DEL:
                                                   Password:
                                                   Notes:
- 3 - 2022 MCCAIN - 3:30 PM                        
- 1 - 2022 MCCAIN 2022 - 3:30 PM                   
+ 4 - 2022 MCCAIN - 3:30 PM                        
  4 - 2184 MCCAIN - 3:30 PM                        
 
 Course Code: POLI 3208                            Duration:
- 1 - 3080 ROWE - 8:30 AM                          Permitted Materials:
+ 2 - 3080 ROWE - 8:30 AM                          Permitted Materials:
                                                   Exam Source:
                                                   Medium:
                                                   PU/DEL:
                                                   Password:
                                                   Notes:
- 1 - 3080 ROWE 3080 - 8:30 AM                     
 
 Course Code: PSYO 2220                            Duration:
  2 - 301A DUNN - 12:00 PM                         Permitted Materials:

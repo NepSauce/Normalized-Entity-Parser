@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -283,10 +284,30 @@ public class PDFConversion {
      * @return The cleaned location
      */
     private static String cleanLocation(String location) {
-        return location.replaceAll("\\s\\d+$", "")
+        String retValue = location.replaceAll("\\s\\d+$", "")
                      .replaceAll("[.-]", "")
                      .replaceAll("COMP\\s*", "")
                      .replaceAll("(?i)\\s*(BRIGHTSPACE|WP)\\s*", "")
                      .trim();
+
+        String[] parts = retValue.split("\\s+");
+        int len = parts.length;
+        
+        for (int i = 1; i <= len / 2; i++) {
+            boolean isDuplicate = true;
+            for (int j = 0; j < i; j++) {
+                if (!parts[j].equals(parts[len - i + j])) {
+                    isDuplicate = false;
+                    break;
+                }
+            }
+            if (isDuplicate) {
+                retValue = String.join(" ", Arrays.copyOfRange(parts, 0, len - i));
+                break;
+            }
+        }
+
+        System.out.println(retValue);
+        return retValue;
     }
 }
