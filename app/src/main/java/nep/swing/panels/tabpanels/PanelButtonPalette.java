@@ -17,65 +17,60 @@ import nep.swing.panels.ExamLocationPanel;
 import nep.swing.panels.RosterAddedPanel;
 
 @SuppressWarnings("FieldMayBeFinal")
-public class PanelButtonPalette{
+public class PanelButtonPalette {
     private JButton submitAllRostersButton;
     private JButton clearAllRostersFromPanelButton;
     private JButton undoLastRosterFromPanelButton;
     private JPanel panelButtonPanel;
-    private JPanel panelButtonBorderPanel;
+    private JPanel buttonContainerPanel;
 
-    public PanelButtonPalette(ExamLocationPanel examLocationPanel, ExamAddedPanel examAddedPanel, 
-        DatePickerPanel datePickerPanel, RosterAddedPanel rosterAddedPanel){
+    public PanelButtonPalette(ExamLocationPanel examLocationPanel, ExamAddedPanel examAddedPanel,
+                               DatePickerPanel datePickerPanel, RosterAddedPanel rosterAddedPanel) {
 
         panelButtonPanel = new JPanel();
-        panelButtonPanel.setLayout(null);
+        panelButtonPanel.setLayout(null); // 1 row, 3 columns, 10px horizontal gap
         panelButtonPanel.setBackground(Color.WHITE);
         panelButtonPanel.setBorder(BorderFactory.createBevelBorder(BevelBorder.LOWERED));
-        panelButtonPanel.setBounds(25, 240, 250, 40);
-        
-        panelButtonBorderPanel = new JPanel();
-        panelButtonBorderPanel.setLayout(new GridLayout(1, 2, 5 ,20));
-        panelButtonBorderPanel.setBackground(Color.WHITE);
-        panelButtonBorderPanel.setBounds(5, 5, 220, 30);
+        panelButtonPanel.setPreferredSize(new Dimension(100, 60)); // Adjust to fit nicely
 
-        panelButtonPanel.add(panelButtonBorderPanel);
+        buttonContainerPanel = new JPanel();
+        buttonContainerPanel.setLayout(new GridLayout(1, 3, 10, 0));
+        buttonContainerPanel.setBackground(Color.WHITE);
+        buttonContainerPanel.setBounds(10, 10 , 225, 35);
+        
+        panelButtonPanel.add(buttonContainerPanel);
 
         submitAllRostersButton = new JButton("Submit");
         clearAllRostersFromPanelButton = new JButton("Clear");
         undoLastRosterFromPanelButton = new JButton("Undo");
 
-        Dimension buttonSize = new Dimension(80, 50);
-        submitAllRostersButton.setPreferredSize(buttonSize);
-        clearAllRostersFromPanelButton.setPreferredSize(buttonSize);
-        undoLastRosterFromPanelButton.setPreferredSize(buttonSize);
-
-        submitAllRostersButton.addActionListener(new ActionListener(){
+        submitAllRostersButton.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e){
+            public void actionPerformed(ActionEvent e) {
                 // Submit all rosters
             }
         });
 
-        clearAllRostersFromPanelButton.addActionListener(new ActionListener(){
+        clearAllRostersFromPanelButton.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e){
+            public void actionPerformed(ActionEvent e) {
                 // Clear all rosters
             }
         });
 
-        undoLastRosterFromPanelButton.addActionListener(new ActionListener(){
+        undoLastRosterFromPanelButton.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e){
+            public void actionPerformed(ActionEvent e) {
                 // Undo last roster submission
             }
         });
 
-        panelButtonBorderPanel.add(submitAllRostersButton);
-        panelButtonBorderPanel.add(clearAllRostersFromPanelButton);
-        panelButtonBorderPanel.add(undoLastRosterFromPanelButton);
+        buttonContainerPanel.add(submitAllRostersButton);
+        buttonContainerPanel.add(clearAllRostersFromPanelButton);
+        buttonContainerPanel.add(undoLastRosterFromPanelButton);
     }
 
-    public JPanel getPanelButtonPanel(){
+    public JPanel getPanelButtonPanel() {
         return panelButtonPanel;
     }
 }
