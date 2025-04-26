@@ -28,12 +28,12 @@ public class ExamAddedPanel {
     @SuppressWarnings("Convert2Lambda")
     public ExamAddedPanel(){
         selectedPanelHeight = 125;
-        selectedPanelWidth = 250;
+        selectedPanelWidth = 400;
 
         selectedPanel = new JPanel();
         selectedPanel.setLayout(null);
         selectedPanel.setBackground(Color.WHITE);
-        selectedPanel.setBounds(300, 35, selectedPanelWidth, selectedPanelHeight + 65);
+        selectedPanel.setBounds(300, 35, selectedPanelWidth, selectedPanelHeight);
         selectedPanel.setBorder(BorderFactory.createBevelBorder(BevelBorder.LOWERED));
 
         examListPanel = new JPanel();

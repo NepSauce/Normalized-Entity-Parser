@@ -17,6 +17,7 @@ import nep.swing.panels.DatePickerPanel;
 import nep.swing.panels.ExamAddedPanel;
 import nep.swing.panels.ExamLocationPanel;
 import nep.swing.panels.RosterAddedPanel;
+import nep.util.DisplayUIError;
 import nep.util.FieldValidator;
 
 @SuppressWarnings({"FieldMayBeFinal", "unused"})
@@ -83,7 +84,8 @@ public class SelectionButtonPalette{
                     }
                 } 
                 else{
-                    // UI Level Warning
+                    DisplayUIError newUIError = new DisplayUIError(errorMessage, 1);
+                    newUIError.displayNormalError();
                 }
             }
         });

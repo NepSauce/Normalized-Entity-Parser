@@ -17,7 +17,7 @@ import nep.swing.panels.ExamLocationPanel;
 import nep.swing.panels.RosterAddedPanel;
 
 @SuppressWarnings("FieldMayBeFinal")
-public class PanelButtonPalette {
+public class PanelButtonPalette{
     private JButton submitAllRostersButton;
     private JButton clearAllRostersFromPanelButton;
     private JButton undoLastRosterFromPanelButton;
@@ -25,13 +25,13 @@ public class PanelButtonPalette {
     private JPanel buttonContainerPanel;
 
     public PanelButtonPalette(ExamLocationPanel examLocationPanel, ExamAddedPanel examAddedPanel,
-                               DatePickerPanel datePickerPanel, RosterAddedPanel rosterAddedPanel) {
+                               DatePickerPanel datePickerPanel, RosterAddedPanel rosterAddedPanel){
         
         panelButtonPanel = new JPanel();
-        panelButtonPanel.setLayout(null); // 1 row, 3 columns, 10px horizontal gap
+        panelButtonPanel.setLayout(null);
         panelButtonPanel.setBackground(Color.WHITE);
         panelButtonPanel.setBorder(BorderFactory.createBevelBorder(BevelBorder.LOWERED));
-        panelButtonPanel.setPreferredSize(new Dimension(100, 60)); // Adjust to fit nicely
+        panelButtonPanel.setPreferredSize(new Dimension(100, 60));
 
         buttonContainerPanel = new JPanel();
         buttonContainerPanel.setLayout(new GridLayout(1, 3, 10, 0));
@@ -44,24 +44,24 @@ public class PanelButtonPalette {
         clearAllRostersFromPanelButton = new JButton("Clear");
         undoLastRosterFromPanelButton = new JButton("Undo");
 
-        submitAllRostersButton.addActionListener(new ActionListener() {
+        submitAllRostersButton.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e) {
                 // Submit all rosters
             }
         });
 
-        clearAllRostersFromPanelButton.addActionListener(new ActionListener() {
+        clearAllRostersFromPanelButton.addActionListener(new ActionListener(){
             @Override
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(ActionEvent e){
                 examAddedPanel.clearAllRostersFromPanel();
                 rosterAddedPanel.clearRosterInfo();
             }
         });
 
-        undoLastRosterFromPanelButton.addActionListener(new ActionListener() {
+        undoLastRosterFromPanelButton.addActionListener(new ActionListener(){
             @Override
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(ActionEvent e){
                 examAddedPanel.undoLastRoster();
             }
         });
@@ -71,7 +71,7 @@ public class PanelButtonPalette {
         buttonContainerPanel.add(undoLastRosterFromPanelButton);
     }
 
-    public JPanel getPanelButtonPanel() {
+    public JPanel getPanelButtonPanel(){
         return panelButtonPanel;
     }
 }
