@@ -35,14 +35,14 @@ public class NepFrame extends JFrame{
         ExamLocationPanel examLocationPanel = new ExamLocationPanel();
         add(examLocationPanel.getExamLocationPanel());
 
-        ExamAddedPanel examAddedPanel = new ExamAddedPanel();
-        add(examAddedPanel.getExamAddedPanel());
-
         DatePickerPanel datePickerPanel = new DatePickerPanel();
         add(datePickerPanel.getDatePickerPanel());
 
         RosterAddedPanel rosterAddedPanel = new RosterAddedPanel();
         add(rosterAddedPanel.getRosterBrowsingPanel());
+        
+        ExamAddedPanel examAddedPanel = new ExamAddedPanel();
+        add(examAddedPanel.getExamAddedPanel());
 
         SettingsTab settingsTab = new SettingsTab(examLocationPanel, examAddedPanel, datePickerPanel, rosterAddedPanel);
         add(settingsTab.getSettingsTab());

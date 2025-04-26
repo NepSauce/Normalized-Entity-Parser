@@ -26,7 +26,7 @@ public class PanelButtonPalette {
 
     public PanelButtonPalette(ExamLocationPanel examLocationPanel, ExamAddedPanel examAddedPanel,
                                DatePickerPanel datePickerPanel, RosterAddedPanel rosterAddedPanel) {
-
+        
         panelButtonPanel = new JPanel();
         panelButtonPanel.setLayout(null); // 1 row, 3 columns, 10px horizontal gap
         panelButtonPanel.setBackground(Color.WHITE);
@@ -54,14 +54,15 @@ public class PanelButtonPalette {
         clearAllRostersFromPanelButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // Clear all rosters
+                examAddedPanel.clearAllRostersFromPanel();
+                rosterAddedPanel.clearRosterInfo();
             }
         });
 
         undoLastRosterFromPanelButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // Undo last roster submission
+                examAddedPanel.undoLastRoster();
             }
         });
 

@@ -28,13 +28,13 @@ public class SelectionButtonPalette{
     private DatePickerPanel datePickerPanel;
     private ExamLocationPanel examLocationPanel;
     private RosterAddedPanel rosterAddedPanel;
-    private LinkedList<RosterEntityDetails> rosterObjectEntityList;
+    private static LinkedList<RosterEntityDetails> rosterObjectEntityList = new LinkedList<>();
 
     @SuppressWarnings("Convert2Lambda")
     public SelectionButtonPalette(ExamLocationPanel examLocationPanel, ExamAddedPanel examAddedPanel, 
         DatePickerPanel datePickerPanel, RosterAddedPanel rosterAddedPanel){ 
         
-        this.rosterObjectEntityList = new LinkedList<>();
+        rosterObjectEntityList.clear();
         this.datePickerPanel = datePickerPanel;
         this.examLocationPanel = examLocationPanel;
         this.rosterAddedPanel = rosterAddedPanel;
@@ -108,5 +108,9 @@ public class SelectionButtonPalette{
 
     public JPanel getSelectionButtonPanel(){
         return selectionButtonPanel;
+    }
+    
+    public static LinkedList<RosterEntityDetails> getRosterEntityList(){
+        return rosterObjectEntityList;
     }
 }
