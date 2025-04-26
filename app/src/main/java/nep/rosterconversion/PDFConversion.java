@@ -17,7 +17,7 @@ import org.apache.pdfbox.text.PDFTextStripper;
 public class PDFConversion {
     
     public static void main(String[] args) {
-        String pdfPath = "Media/rosterALTLOC.pdf";
+        String pdfPath = "Media/SEXTON-1.pdf"; //test with: MAH-0 to MAH-4, G28-0 to G28-4, ALTLOC-0 to ALTLOC-2, SEXTON-0 to SEXTON-1
         String outputTextPath = "Media/output.txt";
 
         try {
@@ -291,7 +291,7 @@ public class PDFConversion {
         String retValue = location.replaceAll("\\s\\d+$", "")
                      .replaceAll("[.-]", "")
                      .replaceAll("COMP\\s*", "")
-                     .replaceAll("(?i)\\s*(BRIGHTSPACE|WP)\\s*", "")
+                     .replaceAll("(?i)\\s*(BRIGHTSPACE|WP|READER|SCRIBE|brightspace|wp|reader|scribe|,)\\s*", "")
                      .trim();
 
         String[] parts = retValue.split("\\s+");
