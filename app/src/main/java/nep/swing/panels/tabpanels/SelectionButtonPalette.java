@@ -48,7 +48,7 @@ public class SelectionButtonPalette{
         selectionButtonBorderPanel = new JPanel();
         selectionButtonBorderPanel.setLayout(new GridLayout(1, 2, 10 ,20));
         selectionButtonBorderPanel.setBackground(Color.WHITE);
-        selectionButtonBorderPanel.setBounds(10 ,7 , 230, 30);
+        selectionButtonBorderPanel.setBounds(10 ,10 , 225, 35);
 
         selectionButtonPanel.add(selectionButtonBorderPanel);
 
