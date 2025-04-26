@@ -15,9 +15,9 @@ import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.text.PDFTextStripper;
 
 public class PDFConversion {
-
+    
     public static void main(String[] args) {
-        String pdfPath = "Media/rosterALTLOC2.pdf";
+        String pdfPath = "Media/rosterALTLOC.pdf";
         String outputTextPath = "Media/output.txt";
 
         try {
@@ -28,6 +28,10 @@ public class PDFConversion {
         } catch (IOException e) {
             System.err.println("Error processing the PDF: " + e.getMessage());
         }
+    }
+    
+    public static void generateOutputText(String pdfPath){
+    
     }
 
     /**
