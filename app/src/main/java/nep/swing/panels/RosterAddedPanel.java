@@ -118,6 +118,10 @@ public class RosterAddedPanel{
     public boolean getCheckFileExists(){
         return checkFileExists;
     }
+    
+    public String getRosterFileName(){
+        return selectedFile.getName().trim();
+    }
 
     public void setRosterLabel(String newLabel){
         if (newLabel.length() > 20) {

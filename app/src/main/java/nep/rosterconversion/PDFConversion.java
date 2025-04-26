@@ -14,6 +14,8 @@ import java.util.regex.Pattern;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.text.PDFTextStripper;
 
+import nep.util.CurrentTime;
+
 public class PDFConversion {
     
     public static void main(String[] args) {
@@ -30,8 +32,64 @@ public class PDFConversion {
         }
     }
     
-    public static void generateOutputText(String pdfPath){
+    public static String createNewFolderDirectory(int year, int month, int day){
+        String yearStr = String.valueOf(year);
+        String monthStr = String.format("%02d", month);
+        String dayStr = String.format("%02d", day);
+        
+        String baseFolderPath = "NormalizedEntityParser/" + yearStr + "/" + monthStr + "/" + dayStr + "/NormalizedObjects/";
+        
+        File folder = new File(baseFolderPath);
+        if (!folder.exists()) {
+            boolean created = folder.mkdirs();
+            if (created) {
+                System.out.println("Created folder: " + baseFolderPath);
+            }
+            else {
+                System.out.println("Failed to create folder: " + baseFolderPath);
+            }
+        }
+        else {
+            System.out.println("Folder already exists: " + baseFolderPath);
+        }
+        
+        return baseFolderPath;
+    }
     
+    public static int generateOutputText(String pdfPath, String fileName, String location){
+        CurrentTime newTime = new CurrentTime();
+        String currentTime = newTime.getCurrentTime();
+        int year = newTime.getCurrentYear();
+        int month = newTime.getCurrentMonth();
+        int day = newTime.getCurrentDay();
+        
+        String folderPath = createNewFolderDirectory(year, month, day);
+        
+        String outputTextPath = "NormalizedEntityParser/"
+                + year + "/"
+                + month + "/"
+                + day + "/"
+                + "NormalizedObjects/"
+                + "NormalizedObject(" + fileName + ").txt";
+        
+        
+        try {
+            String pdfText = convertPdfToString(pdfPath);
+            String locationType = extractLocationType(pdfText);
+            
+            if (locationType.equals(location)){
+                List<String> formattedLines = processRosterText(pdfText, locationType);
+                Files.write(Path.of(outputTextPath), formattedLines);
+                return 1;
+            }
+            else{
+                return 0;
+            }
+        }
+        catch (IOException e) {
+            System.err.println("Error processing the PDF: " + e.getMessage());
+        }
+        return 1;
     }
 
     /**

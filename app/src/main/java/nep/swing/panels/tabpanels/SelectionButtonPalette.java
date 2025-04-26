@@ -62,6 +62,7 @@ public class SelectionButtonPalette{
         addExamLocationButton.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e){
+                String fileName = rosterAddedPanel.getRosterFileName();
                 String fileAbsolutePath = rosterAddedPanel.getAbsoluteFilePath();
                 String location = examLocationPanel.getExamLocation();
                 int day = datePickerPanel.getDayInt();
@@ -73,9 +74,13 @@ public class SelectionButtonPalette{
                 String errorMessage = newValidator.getErrorMessage();
                 System.out.println(errorMessage);
         
-                if (errorMessage == null){  
+                if (errorMessage == null){
+                    saveRosterObject(fileName, fileAbsolutePath, location, day, month, year);
                     String rosterDetails = location + " " + day + "-" + month + "-" + year;
                     examAddedPanel.addRosterToPanel(rosterDetails);
+                    for (int i = 0; i < rosterObjectEntityList.size(); i++){
+                        System.out.println(rosterObjectEntityList.get(i).getLocation());
+                    }
                 } 
                 else{
                     // UI Level Warning
@@ -95,8 +100,8 @@ public class SelectionButtonPalette{
         selectionButtonBorderPanel.add(resetDateButton);
     }
 
-    public void saveRosterObject(String location, int day, String month, int year){
-        RosterEntityDetails newRosterEntity = new RosterEntityDetails(location, day, month, year);
+    public void saveRosterObject(String fileName, String directory, String location, int day, String month, int year){
+        RosterEntityDetails newRosterEntity = new RosterEntityDetails(fileName, directory, location, day, month, year);
         rosterObjectEntityList.add(newRosterEntity);
         System.out.println("Roster Detail Added.");
     }
