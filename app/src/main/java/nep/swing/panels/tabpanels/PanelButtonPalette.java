@@ -16,6 +16,7 @@ import nep.swing.panels.ExamAddedPanel;
 import nep.swing.panels.ExamLocationPanel;
 import nep.swing.panels.RosterAddedPanel;
 
+@SuppressWarnings("FieldMayBeFinal")
 public class PanelButtonPalette{
     private JButton submitAllRostersButton;
     private JButton clearAllRostersFromPanelButton;
