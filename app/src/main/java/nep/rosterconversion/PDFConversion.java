@@ -194,7 +194,7 @@ public class PDFConversion {
      */
     private static String extractCourseCode(String record) {
         Matcher courseMatcher = Pattern.compile(
-            "([A-Za-z]{2,6}/)?([A-Za-z]{2,6})\\s(\\d{4,5}(?:[\\s.-]\\d{1,2})?)"
+            "([A-Za-z]{2,6}/)?([A-Za-z]{2,6})[\\s-](\\d{4,5}(?:[\\s.-]\\d{1,2})?)"
         ).matcher(record);
 
         List<String> potentialCodes = new ArrayList<>();
