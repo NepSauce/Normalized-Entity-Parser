@@ -11,26 +11,11 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import nep.util.CurrentTime;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.text.PDFTextStripper;
 
-import nep.util.CurrentTime;
-
 public class PDFConversion {
-    
-    public static void main(String[] args) {
-        String pdfPath = "Media/rosterALTLOC.pdf";
-        String outputTextPath = "Media/output.txt";
-
-        try {
-            String pdfText = convertPdfToString(pdfPath);
-            String locationType = extractLocationType(pdfText);
-            List<String> formattedLines = processRosterText(pdfText, locationType);
-            Files.write(Path.of(outputTextPath), formattedLines);
-        } catch (IOException e) {
-            System.err.println("Error processing the PDF: " + e.getMessage());
-        }
-    }
     
     private static String newDirectoryForNormalizedObject(int year, int month, int day){
         String yearStr = String.valueOf(year);
@@ -56,40 +41,36 @@ public class PDFConversion {
         return baseFolderPath;
     }
     
-    public static int generateNormalizedObject(String pdfPath, String fileName, String location){
+    public static void generateNormalizedObject(String pdfPath, String fileName, String location){
         CurrentTime newTime = new CurrentTime();
         String currentTime = newTime.getCurrentTime();
         int year = newTime.getCurrentYear();
         int month = newTime.getCurrentMonth();
         int day = newTime.getCurrentDay();
         
+        String monthStr = String.format("%02d", month);
+        String dayStr = String.format("%02d", day);
+        
+        
         String folderPath = newDirectoryForNormalizedObject(year, month, day);
         
         String outputTextPath = "NormalizedEntityParser/"
                 + year + "/"
-                + month + "/"
-                + day + "/"
+                + monthStr + "/"
+                + dayStr + "/"
                 + "NormalizedObjects/"
                 + "NormalizedObject(" + fileName + ").txt";
-        
         
         try {
             String pdfText = convertPdfToString(pdfPath);
             String locationType = extractLocationType(pdfText);
-            
-            if (locationType.equals(location)){
-                List<String> formattedLines = processRosterText(pdfText, locationType);
-                Files.write(Path.of(outputTextPath), formattedLines);
-                return 1;
-            }
-            else{
-                return 0;
-            }
+   
+            List<String> formattedLines = processRosterText(pdfText, locationType);
+            Files.write(Path.of(outputTextPath), formattedLines);
         }
         catch (IOException e) {
             System.err.println("Error processing the PDF: " + e.getMessage());
         }
-        return 1;
     }
 
     /**

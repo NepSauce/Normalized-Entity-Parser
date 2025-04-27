@@ -20,6 +20,7 @@ import nep.swing.panels.DatePickerPanel;
 import nep.swing.panels.ExamAddedPanel;
 import nep.swing.panels.ExamLocationPanel;
 import nep.swing.panels.RosterAddedPanel;
+import nep.util.DisplayUIError;
 import nep.util.RosterObjectSplitter;
 
 @SuppressWarnings("FieldMayBeFinal")
@@ -59,9 +60,10 @@ public class PanelButtonPalette{
                 RosterObjectSplitter newSplitter = new RosterObjectSplitter(rosterEntityDetails, rosterEntityDetails.size());
                 LinkedList<String> directoryList = newSplitter.getRosterDirectory();
                 LinkedList<String> fileNameList = newSplitter.getRosterFileName();
+                LinkedList<String> locationList = newSplitter.getRosterLocation();
                 
                 for (int i = 0; i < rosterEntityDetails.size(); i++){
-                
+                    PDFConversion.generateNormalizedObject(directoryList.get(i),fileNameList.get(i), locationList.get(i));
                 }
             }
         });

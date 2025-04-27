@@ -17,6 +17,7 @@ public class RosterObjectSplitter{
         this.arrayLength = arrayLength;
         this.rosterDirectory = new LinkedList<>();
         this.rosterFileName = new LinkedList<>();
+        this.rosterLocation = new LinkedList<>();
     }
     
     public void loadInformation(){

@@ -21,13 +21,6 @@ public class PDFCleaner {
     private static final int COURSE_CODE_WIDTH = 50;
     private static final Map<String, String> crossListedCourses = new HashMap<>();
 
-    public static void main(String[] args) {
-        String inputFilePath = "Media/output.txt";
-        String outputFilePath = "Media/filtered_appointments.txt";
-        String groupedFilePath = "Media/grouped_appointments.txt";
-        filterAppointments(inputFilePath, outputFilePath, groupedFilePath);
-    }
-
     /**
      * Filters and groups the appointments based on input text file.
      *
