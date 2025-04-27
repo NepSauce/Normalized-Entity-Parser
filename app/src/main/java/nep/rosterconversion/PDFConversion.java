@@ -72,7 +72,7 @@ public class PDFConversion {
             System.err.println("Error processing the PDF: " + e.getMessage());
         }
     }
-
+    
     /**
      * Converts a PDF file into a plain text string.
      *
@@ -89,7 +89,7 @@ public class PDFConversion {
             return textStripper.getText(document);
         }
     }
-
+    
     /**
      * Extracts the location type from the PDF text.
      *
@@ -100,7 +100,7 @@ public class PDFConversion {
         Matcher matcher = Pattern.compile("Location: EXAM-SCHED(?:ULING)?-([A-Z0-9]+)").matcher(text);
         return matcher.find() ? matcher.group(1) : "UNKNOWN";
     }
-
+    
     /**
      * Processes the full roster text and extracts relevant student information in a structured format.
      *
@@ -111,20 +111,20 @@ public class PDFConversion {
     private static List<String> processRosterText(String text, String locationType) {
         List<String> formattedLines = new ArrayList<>();
         Path removedLinesPath = Path.of("Media/removedLines.txt");
-
+        
         try (BufferedWriter writer = Files.newBufferedWriter(removedLinesPath)) {
             List<String> completeRecords = buildCompleteRecords(text.split("\\r?\\n"), writer);
-
+            
             for (String record : completeRecords) {
                 String studentId = extractStudentId(record);
                 String studentName = extractStudentName(record, studentId);
                 String time = extractTime(record);
                 String courseCode = extractCourseCode(record);
                 String location = determineLocation(record, locationType);
-
+                
                 if (studentId != null && studentName != null && time != null && courseCode != null) {
-                    formattedLines.add(String.format("[%s | %s | %s | %s | %s]", 
-                        studentId, studentName, courseCode, location, time));
+                    formattedLines.add(String.format("[%s | %s | %s | %s | %s]",
+                            studentId, studentName, courseCode, location, time));
                 } else {
                     writer.write(record.trim());
                     writer.newLine();
@@ -133,10 +133,10 @@ public class PDFConversion {
         } catch (IOException e) {
             System.err.println("Error writing to removedLines.txt: " + e.getMessage());
         }
-
+        
         return formattedLines;
     }
-
+    
     /**
      * Builds complete student records from raw PDF lines.
      *
@@ -148,12 +148,12 @@ public class PDFConversion {
     private static List<String> buildCompleteRecords(String[] lines, BufferedWriter removedWriter) throws IOException {
         List<String> completeRecords = new ArrayList<>();
         StringBuilder currentRecord = new StringBuilder();
-
+        
         for (String line : lines) {
             if (shouldSkipLine(line)) {
                 continue;
             }
-
+            
             if (line.matches(".*B\\d{8}.*")) {
                 if (currentRecord.length() > 0) {
                     completeRecords.add(currentRecord.toString());
@@ -163,17 +163,17 @@ public class PDFConversion {
                 removedWriter.write(line.trim());
                 removedWriter.newLine();
             }
-
+            
             currentRecord.append(line).append(" ");
         }
-
+        
         if (currentRecord.length() > 0) {
             completeRecords.add(currentRecord.toString());
         }
-
+        
         return completeRecords;
     }
-
+    
     /**
      * Determines whether a line should be skipped from processing.
      *
@@ -181,15 +181,15 @@ public class PDFConversion {
      * @return True if the line should be skipped; otherwise, false
      */
     private static boolean shouldSkipLine(String line) {
-        return line.contains("Phone NumberStudent ID") || 
-               line.contains("All Appointments") || 
-               line.contains("Printed:") || 
-               line.contains("Location:") || 
-               line.contains("Sorted by") || 
-               line.contains("Do Not Call") ||
-               line.trim().isEmpty();
+        return line.contains("Phone NumberStudent ID") ||
+                line.contains("All Appointments") ||
+                line.contains("Printed:") ||
+                line.contains("Location:") ||
+                line.contains("Sorted by") ||
+                line.contains("Do Not Call") ||
+                line.trim().isEmpty();
     }
-
+    
     /**
      * Extracts the student ID from a record.
      *
@@ -200,7 +200,7 @@ public class PDFConversion {
         Matcher idMatcher = Pattern.compile("B\\d{8}").matcher(record);
         return idMatcher.find() ? idMatcher.group() : null;
     }
-
+    
     /**
      * Extracts the student name from a record.
      *
@@ -213,7 +213,7 @@ public class PDFConversion {
         String namePart = record.substring(0, idPosition).trim();
         return namePart.replaceAll("[^a-zA-Z, ]", "").trim();
     }
-
+    
     /**
      * Extracts the appointment time from a record.
      *
@@ -224,7 +224,7 @@ public class PDFConversion {
         Matcher timeMatcher = Pattern.compile("\\d{1,2}:\\d{2}\\s[AP]M").matcher(record);
         return timeMatcher.find() ? timeMatcher.group() : null;
     }
-
+    
     /**
      * Extracts the course code from a record.
      *
@@ -233,52 +233,52 @@ public class PDFConversion {
      */
     private static String extractCourseCode(String record) {
         Matcher courseMatcher = Pattern.compile(
-            "([A-Z]{2,6}/)?([A-Z]{2,6})\\s(\\d{4,5}(?:[\\s.-]\\d{1,2})?)"
+                "([A-Za-z]{2,6}/)?([A-Za-z]{2,6})[\\s-](\\d{4,5}(?:[\\s.-]\\d{1,2})?)"
         ).matcher(record);
-
+        
         List<String> potentialCodes = new ArrayList<>();
         while (courseMatcher.find()) {
             String fullDept = courseMatcher.group(1) != null ? courseMatcher.group(1) : "";
             String mainDept = courseMatcher.group(2);
             String rawCode = courseMatcher.group(3).replaceAll("[\\s.-]", " ").trim();
-
+            
             String[] parts = rawCode.split(" ");
             String courseNumber = parts[0];
             String section = (parts.length > 1) ? parts[1] : null;
-
+            
             if (section != null && section.matches("0[1-9]")) {
                 rawCode = courseNumber + " " + section;
             } else {
                 rawCode = courseNumber;
             }
-
+            
             String potentialCode = (fullDept + mainDept + " " + rawCode).toUpperCase();
             potentialCode = potentialCode.replaceAll("[\\s.-]", " ");
             if (!potentialCode.matches(".*(COMP|ROWE|MONA|DUNN|WELDON|MCCAIN|MCAIN|LOCATION|DALHOUSIE).*")) {
                 potentialCodes.add(potentialCode.trim());
             }
         }
-
+        
         if (!potentialCodes.isEmpty()) {
             return potentialCodes.get(0);
         }
-
+        
         Matcher deptMatcher = Pattern.compile(
-            "\\s-\\s([A-Z]{2,6})\\s\\d{4,5}|" +
-            "\\s-\\s([A-Z]{2,6})$"
+                "\\s-\\s([A-Z]{2,6})\\s\\d{4,5}|" +
+                        "\\s-\\s([A-Z]{2,6})$"
         ).matcher(record);
-
+        
         if (deptMatcher.find()) {
             String dept = deptMatcher.group(1) != null ? deptMatcher.group(1) : deptMatcher.group(2);
             if (dept != null && !dept.isEmpty() &&
-                !dept.matches("(COMP|ROWE|MONA|DUNN|WELDON|MCCAIN|MCAIN|LOCATION|DALHOUSIE)")) {
+                    !dept.matches("(COMP|ROWE|MONA|DUNN|WELDON|MCCAIN|MCAIN|LOCATION|DALHOUSIE)")) {
                 return dept;
             }
         }
-
+        
         return null;
     }
-
+    
     /**
      * Determines the appropriate location string based on the location type.
      *
@@ -293,7 +293,7 @@ public class PDFConversion {
             return locationType;
         }
     }
-
+    
     /**
      * Extracts the location from a record in case of ALTLOC location type.
      *
@@ -303,23 +303,23 @@ public class PDFConversion {
     private static String extractAltLocLocation(String record) {
         Pattern locationPattern = Pattern.compile("\\d{1,2}:\\d{2}\\s[AP]M\\s\\d{3}\\s([^-]+?)(?:\\s-|\\s\\d{2}\\s|$)");
         Matcher locationMatcher = locationPattern.matcher(record);
-
+        
         if (locationMatcher.find()) {
             String location = locationMatcher.group(1).trim();
             return cleanLocation(location);
         }
-
+        
         Pattern altPattern = Pattern.compile("\\d{1,2}:\\d{2}\\s[AP]M\\s\\d{3}\\s([A-Z].+?)(?:\\s\\(\\d+\\+?\\d*\\)|\\s-|$)");
         Matcher altMatcher = altPattern.matcher(record);
-
+        
         if (altMatcher.find()) {
             String location = altMatcher.group(1).trim();
             return cleanLocation(location);
         }
-
+        
         return "[location]";
     }
-
+    
     /**
      * Cleans up the extracted location string by removing unnecessary characters.
      *
@@ -328,11 +328,11 @@ public class PDFConversion {
      */
     private static String cleanLocation(String location) {
         String retValue = location.replaceAll("\\s\\d+$", "")
-                     .replaceAll("[.-]", "")
-                     .replaceAll("COMP\\s*", "")
-                     .replaceAll("(?i)\\s*(BRIGHTSPACE|WP)\\s*", "")
-                     .trim();
-
+                .replaceAll("[.-]", "")
+                .replaceAll("COMP\\s*", "")
+                .replaceAll("(?i)\\s*(BRIGHTSPACE|WP|READER|SCRIBE|brightspace|wp|reader|scribe|,)\\s*", "")
+                .trim();
+        
         String[] parts = retValue.split("\\s+");
         int len = parts.length;
         
@@ -349,8 +349,7 @@ public class PDFConversion {
                 break;
             }
         }
-
-        System.out.println(retValue);
+        
         return retValue;
     }
 }
