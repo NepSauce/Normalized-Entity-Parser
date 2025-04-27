@@ -32,7 +32,7 @@ public class PDFConversion {
         }
     }
     
-    public static String createNewFolderDirectory(int year, int month, int day){
+    private static String newDirectoryForNormalizedObject(int year, int month, int day){
         String yearStr = String.valueOf(year);
         String monthStr = String.format("%02d", month);
         String dayStr = String.format("%02d", day);
@@ -56,14 +56,14 @@ public class PDFConversion {
         return baseFolderPath;
     }
     
-    public static int generateOutputText(String pdfPath, String fileName, String location){
+    public static int generateNormalizedObject(String pdfPath, String fileName, String location){
         CurrentTime newTime = new CurrentTime();
         String currentTime = newTime.getCurrentTime();
         int year = newTime.getCurrentYear();
         int month = newTime.getCurrentMonth();
         int day = newTime.getCurrentDay();
         
-        String folderPath = createNewFolderDirectory(year, month, day);
+        String folderPath = newDirectoryForNormalizedObject(year, month, day);
         
         String outputTextPath = "NormalizedEntityParser/"
                 + year + "/"

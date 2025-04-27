@@ -7,10 +7,12 @@ import java.awt.*;
 public class DisplayUIError {
     private final String errorMessage;
     private int length;
+    private int errorType;
     
     
     public DisplayUIError(String errorMessage, int errorType){
         this.errorMessage = errorMessage;
+        this.errorType = errorType;
         this.length = 5000;
         int errorHeight = 120;
         int errorWidth = 200;
@@ -18,8 +20,8 @@ public class DisplayUIError {
     
     public void displayNormalError(){
         JFrame normalError = new JFrame();
-        normalError.setSize(475, 75);
-        normalError.setTitle("Non Vital Error Occurred");
+        normalError.setSize(600, 75);
+        normalError.setTitle("Error Code: " + errorType + " - Non Vital Error Occurred");
         normalError.getContentPane().setBackground(new Color(238,238,238,255));
         normalError.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         ImageIcon logo = new ImageIcon("Media/logo.png");
@@ -29,7 +31,7 @@ public class DisplayUIError {
         interiorTextLabel.setBounds(10, 10, 10, 0);
         interiorTextLabel.setBackground(Color.WHITE);
         interiorTextLabel.setOpaque(true);
-        interiorTextLabel.setText(errorMessage);
+        interiorTextLabel.setText(errorMessage + " (Error Type: " + errorType + ")");
         interiorTextLabel.setFont(new java.awt.Font("Arial", java.awt.Font.BOLD, 16));
         interiorTextLabel.setHorizontalAlignment(SwingConstants.CENTER);
         
@@ -40,7 +42,7 @@ public class DisplayUIError {
         new Timer(length, e -> normalError.dispose()).start();
     }
     
-    public void displayCriticalError(String errorMessage, int errorType, int length){
+    public void displayCriticalError(){
         JFrame criticalError = new JFrame();
         criticalError.setTitle("Critical Error Occurred");
         criticalError.setSize(475, 75);

@@ -37,6 +37,10 @@ public class RosterEntityDetails{
     public String getDirectory(){
         return inputDirectory;
     }
+    
+    public String getFileName(){
+        return fileName;
+    }
 
     public void setDirectory(String newDirectory){
         inputDirectory = newDirectory;

@@ -5,16 +5,22 @@ import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.LinkedList;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.border.BevelBorder;
 
+import nep.entityclass.RosterEntityDetails;
+import nep.rosterconversion.PDFConversion;
 import nep.swing.panels.DatePickerPanel;
 import nep.swing.panels.ExamAddedPanel;
 import nep.swing.panels.ExamLocationPanel;
 import nep.swing.panels.RosterAddedPanel;
+import nep.util.RosterObjectSplitter;
 
 @SuppressWarnings("FieldMayBeFinal")
 public class PanelButtonPalette{
@@ -23,9 +29,12 @@ public class PanelButtonPalette{
     private JButton undoLastRosterFromPanelButton;
     private JPanel panelButtonPanel;
     private JPanel buttonContainerPanel;
+    private static LinkedList<RosterEntityDetails> rosterEntityDetails = new LinkedList<>();
 
     public PanelButtonPalette(ExamLocationPanel examLocationPanel, ExamAddedPanel examAddedPanel,
                                DatePickerPanel datePickerPanel, RosterAddedPanel rosterAddedPanel){
+        
+        rosterEntityDetails = SelectionButtonPalette.getRosterEntityList();
         
         panelButtonPanel = new JPanel();
         panelButtonPanel.setLayout(null);
@@ -47,7 +56,13 @@ public class PanelButtonPalette{
         submitAllRostersButton.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e) {
-                // Submit all rosters
+                RosterObjectSplitter newSplitter = new RosterObjectSplitter(rosterEntityDetails, rosterEntityDetails.size());
+                LinkedList<String> directoryList = newSplitter.getRosterDirectory();
+                LinkedList<String> fileNameList = newSplitter.getRosterFileName();
+                
+                for (int i = 0; i < rosterEntityDetails.size(); i++){
+                
+                }
             }
         });
 
