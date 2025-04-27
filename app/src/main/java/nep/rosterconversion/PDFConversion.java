@@ -5,8 +5,10 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -23,6 +25,8 @@ public class PDFConversion {
         String dayStr = String.format("%02d", day);
         
         String baseFolderPath = "NormalizedEntityParser/" + yearStr + "/" + monthStr + "/" + dayStr + "/NormalizedObjects/";
+        
+        cleanUpOldFiles(baseFolderPath);
         
         File folder = new File(baseFolderPath);
         if (!folder.exists()) {
@@ -61,15 +65,28 @@ public class PDFConversion {
                 + "NormalizedObjects/"
                 + "NormalizedObject(" + fileName + ").txt";
         
-        try {
+        try{
             String pdfText = convertPdfToString(pdfPath);
             String locationType = extractLocationType(pdfText);
    
             List<String> formattedLines = processRosterText(pdfText, locationType);
             Files.write(Path.of(outputTextPath), formattedLines);
         }
-        catch (IOException e) {
+        catch (IOException e){
             System.err.println("Error processing the PDF: " + e.getMessage());
+        }
+    }
+    
+    private static void cleanUpOldFiles(String folderPath){
+        try {
+            Files.walk(Paths.get(folderPath))
+                    .sorted(Comparator.reverseOrder())
+                    .map(Path::toFile)
+                    .forEach(File::delete);
+            System.out.println("Old files deleted successfully.");
+        }
+        catch (IOException e) {
+            System.err.println("Error cleaning up old files: " + e.getMessage());
         }
     }
     
