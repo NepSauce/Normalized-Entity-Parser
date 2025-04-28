@@ -30,15 +30,15 @@ public class PDFConversion {
         
         File folder = new File(baseFolderPath);
         if (!folder.exists()) {
-            boolean created = folder.mkdirs();
-            if (created) {
+            boolean directoryCreated = folder.mkdirs();
+            if (directoryCreated) {
                 System.out.println("Created folder: " + baseFolderPath);
             }
-            else {
+            else{
                 System.out.println("Failed to create folder: " + baseFolderPath);
             }
         }
-        else {
+        else{
             System.out.println("Folder already exists: " + baseFolderPath);
         }
         
