@@ -1,6 +1,10 @@
 package nep.rosterconversion;
 
+import nep.util.CurrentTime;
+
 import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.*;
 
 /**
@@ -9,18 +13,70 @@ import java.util.*;
  */
 public class PDFCleaner {
     private static final String[] METADATA_FIELDS = {
-        "Duration:",
-        "Permitted Materials:",
-        "Exam Source:",
-        "Medium:",
-        "PU/DEL:",
-        "Password:",
-        "Notes:"
+            "Duration:",
+            "Permitted Materials:",
+            "Exam Source:",
+            "Medium:",
+            "PU/DEL:",
+            "Password:",
+            "Notes:"
     };
-
+    
     private static final int COURSE_CODE_WIDTH = 50;
     private static final Map<String, String> crossListedCourses = new HashMap<>();
-
+    
+    public static void main(String[] args) {
+        String inputFilePath = "Media/output.txt";
+        String outputFilePath = "Media/filtered_appointments.txt";
+        String groupedFilePath = "Media/grouped_appointments.txt";
+        filterAppointments(inputFilePath, outputFilePath, groupedFilePath);
+    }
+    
+    public static String newDirectoryForGroupedObject(int year, int month, int day){
+        String yearStr = String.valueOf(year);
+        String monthStr = String.format("%02d", month);
+        String dayStr = String.format("%02d", day);
+        
+        String baseFolderPath = "NormalizedEntityParser/" + yearStr + "/" + monthStr + "/" + dayStr + "/GroupedObjects/";
+        
+        PDFConversion.cleanUpOldFiles(baseFolderPath);
+        
+        File folder = new File(baseFolderPath);
+        if (!folder.exists()) {
+            boolean directoryCreated = folder.mkdirs();
+            if (directoryCreated) {
+                System.out.println("Created folder: " + baseFolderPath);
+            }
+            else{
+                System.out.println("Failed to create folder: " + baseFolderPath);
+            }
+        }
+        else{
+            System.out.println("Folder already exists: " + baseFolderPath);
+        }
+        
+        return baseFolderPath;
+    }
+    
+    public static void generateGroupedAppointments(String pdfPath, String fileName, String location){
+        CurrentTime newTime = new CurrentTime();
+        String currentTime = newTime.getCurrentTime();
+        int year = newTime.getCurrentYear();
+        int month = newTime.getCurrentMonth();
+        int day = newTime.getCurrentDay();
+        
+        String monthStr = String.format("%02d", month);
+        String dayStr = String.format("%02d", day);
+        String folderPath = newDirectoryForGroupedObject(year, month, day);
+        
+        String outputTextPath = "NormalizedEntityParser/"
+                + year + "/"
+                + monthStr + "/"
+                + dayStr + "/"
+                + "GroupedObjects/"
+                + "GroupedObject(" + fileName + ").txt";
+    }
+    
     /**
      * Filters and groups the appointments based on input text file.
      *
@@ -36,21 +92,21 @@ public class PDFCleaner {
             e.printStackTrace();
             return;
         }
-
+        
         try (BufferedReader reader = new BufferedReader(new FileReader(inputFilePath));
              BufferedWriter filteredWriter = new BufferedWriter(new FileWriter(outputFilePath));
              BufferedWriter groupedWriter = new BufferedWriter(new FileWriter(groupedFilePath))) {
-
+            
             Map<String, Map<String, Map<String, Integer>>> courseGroups = processInputFile(reader, filteredWriter);
             writeGroupedOutput(courseGroups, groupedWriter);
-
+            
             System.out.println("Successfully generated output files.");
         } catch (IOException e) {
             System.err.println("Error processing files: " + e.getMessage());
             e.printStackTrace();
         }
     }
-
+    
     /**
      * Builds mappings for cross-listed courses from input file lines.
      *
@@ -62,7 +118,7 @@ public class PDFCleaner {
         while ((line = reader.readLine()) != null) {
             line = line.replaceAll("[\\[\\]]", "");
             String[] parts = line.split("\\|");
-
+            
             if (parts.length >= 3) {
                 String course = parts[2].trim();
                 if (course.contains("/")) {
@@ -71,7 +127,7 @@ public class PDFCleaner {
             }
         }
     }
-
+    
     /**
      * Adds cross-listed course variants and their canonical forms to the mapping.
      *
@@ -80,26 +136,26 @@ public class PDFCleaner {
     private static void addCrossListedCourseVariations(String crossListedCourse) {
         String[] parts = crossListedCourse.split(" ");
         if (parts.length != 2) return;
-
+        
         String[] departments = parts[0].split("/");
         String courseNumber = parts[1];
-
+        
         if (departments.length < 2) return;
-
+        
         String canonicalForm = createCanonicalForm(departments, courseNumber);
         crossListedCourses.put(crossListedCourse, canonicalForm);
-
+        
         for (int i = 0; i < departments.length; i++) {
             String singleDept = departments[i] + " " + courseNumber;
             crossListedCourses.put(singleDept, canonicalForm);
-
+            
             for (int j = i + 1; j < departments.length; j++) {
                 String reversed = departments[j] + "/" + departments[i] + " " + courseNumber;
                 crossListedCourses.put(reversed, canonicalForm);
             }
         }
     }
-
+    
     /**
      * Creates a standardized canonical form for cross-listed course codes.
      *
@@ -112,7 +168,7 @@ public class PDFCleaner {
         Arrays.sort(sortedDepts);
         return String.join("/", sortedDepts) + " " + courseNumber;
     }
-
+    
     /**
      * Processes the input file and generates course group data.
      *
@@ -125,14 +181,14 @@ public class PDFCleaner {
             BufferedReader reader, BufferedWriter filteredWriter) throws IOException {
         Map<String, Map<String, Map<String, Integer>>> courseGroups = new TreeMap<>();
         String line;
-
+        
         while ((line = reader.readLine()) != null) {
             processLine(line, filteredWriter, courseGroups);
         }
-
+        
         return courseGroups;
     }
-
+    
     /**
      * Processes a single line of appointment data.
      *
@@ -142,27 +198,27 @@ public class PDFCleaner {
      * @throws IOException if writing fails.
      */
     private static void processLine(String line, BufferedWriter filteredWriter,
-            Map<String, Map<String, Map<String, Integer>>> courseGroups) throws IOException {
+                                    Map<String, Map<String, Map<String, Integer>>> courseGroups) throws IOException {
         line = line.replaceAll("[\\[\\]]", "");
         String[] parts = line.split("\\|");
-
+        
         if (parts.length >= 5) {
             String time = parts[4].trim();
             String originalCourse = parts[2].trim();
             String location = parts[3].trim();
-
+            
             if (location.equals("location")) {
                 location = "[location]";
             }
-
+            
             String normalizedCourse = normalizeCrossListedCourse(originalCourse);
-
-            filteredWriter.write(String.format("Time: %s, Course Code: %s%n", 
-                time, normalizedCourse));
+            
+            filteredWriter.write(String.format("Time: %s, Course Code: %s%n",
+                    time, normalizedCourse));
             updateCourseGroups(courseGroups, normalizedCourse, location, time);
         }
     }
-
+    
     /**
      * Returns the canonical form of a course if it is cross-listed.
      *
@@ -172,7 +228,7 @@ public class PDFCleaner {
     private static String normalizeCrossListedCourse(String courseCode) {
         return crossListedCourses.getOrDefault(courseCode, courseCode);
     }
-
+    
     /**
      * Updates the nested map structure used for grouped output.
      *
@@ -185,11 +241,11 @@ public class PDFCleaner {
             Map<String, Map<String, Map<String, Integer>>> courseGroups,
             String course, String location, String time) {
         courseGroups
-            .computeIfAbsent(course, k -> new TreeMap<>())
-            .computeIfAbsent(location, k -> new TreeMap<>())
-            .merge(time, 1, Integer::sum);
+                .computeIfAbsent(course, k -> new TreeMap<>())
+                .computeIfAbsent(location, k -> new TreeMap<>())
+                .merge(time, 1, Integer::sum);
     }
-
+    
     /**
      * Writes the grouped course output to file.
      *
@@ -206,7 +262,7 @@ public class PDFCleaner {
             groupedWriter.newLine();
         }
     }
-
+    
     /**
      * Writes the header line for each course group.
      *
@@ -214,12 +270,12 @@ public class PDFCleaner {
      * @param groupedWriter Writer for output.
      * @throws IOException if writing fails.
      */
-    private static void writeCourseHeader(String courseCode, BufferedWriter groupedWriter) 
+    private static void writeCourseHeader(String courseCode, BufferedWriter groupedWriter)
             throws IOException {
         String courseLine = String.format("Course Code: %s", courseCode);
         groupedWriter.write(String.format("%-50s%s%n", courseLine, METADATA_FIELDS[0]));
     }
-
+    
     /**
      * Writes entries grouped by location and time.
      *
@@ -231,14 +287,14 @@ public class PDFCleaner {
             Map<String, Map<String, Integer>> locationMap,
             BufferedWriter groupedWriter) throws IOException {
         boolean firstLocation = true;
-
+        
         for (Map.Entry<String, Map<String, Integer>> locationEntry : locationMap.entrySet()) {
-            writeTimeEntries(locationEntry.getKey(), locationEntry.getValue(), 
-                groupedWriter, firstLocation);
+            writeTimeEntries(locationEntry.getKey(), locationEntry.getValue(),
+                    groupedWriter, firstLocation);
             firstLocation = false;
         }
     }
-
+    
     /**
      * Writes the time and count entries for each location.
      *
@@ -248,16 +304,16 @@ public class PDFCleaner {
      * @param firstLocation Flag indicating if this is the first location.
      * @throws IOException if writing fails.
      */
-    private static void writeTimeEntries(String location, 
-            Map<String, Integer> timeMap, BufferedWriter groupedWriter,
-            boolean firstLocation) throws IOException {
+    private static void writeTimeEntries(String location,
+                                         Map<String, Integer> timeMap, BufferedWriter groupedWriter,
+                                         boolean firstLocation) throws IOException {
         boolean firstTimeEntry = true;
-
+        
         for (Map.Entry<String, Integer> timeEntry : timeMap.entrySet()) {
-            String timeLine = String.format(" %d - %s - %s", 
-                timeEntry.getValue(), location, timeEntry.getKey());
+            String timeLine = String.format(" %d - %s - %s",
+                    timeEntry.getValue(), location, timeEntry.getKey());
             groupedWriter.write(String.format("%-50s", timeLine));
-
+            
             if (firstTimeEntry && firstLocation) {
                 writeMetadataFields(groupedWriter);
                 firstTimeEntry = false;
@@ -266,7 +322,7 @@ public class PDFCleaner {
             }
         }
     }
-
+    
     /**
      * Writes additional metadata fields for grouped output.
      *

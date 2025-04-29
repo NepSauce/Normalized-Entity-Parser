@@ -6,10 +6,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -77,7 +74,7 @@ public class PDFConversion {
         }
     }
     
-    private static void cleanUpOldFiles(String folderPath){
+    public static void cleanUpOldFiles(String folderPath){
         try {
             Files.walk(Paths.get(folderPath))
                     .sorted(Comparator.reverseOrder())
@@ -88,6 +85,10 @@ public class PDFConversion {
         catch (IOException e) {
             System.err.println("Error cleaning up old files: " + e.getMessage());
         }
+    }
+    
+    public static void mergeObjectFiles(LinkedList<String> filePath){
+    
     }
     
     /**
