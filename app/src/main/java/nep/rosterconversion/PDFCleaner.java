@@ -3,8 +3,6 @@ package nep.rosterconversion;
 import nep.util.CurrentTime;
 
 import java.io.*;
-import java.nio.file.Files;
-import java.nio.file.Path;
 import java.util.*;
 
 /**
@@ -39,7 +37,7 @@ public class PDFCleaner {
         
         String baseFolderPath = "NormalizedEntityParser/" + yearStr + "/" + monthStr + "/" + dayStr + "/GroupedObjects/";
         
-        PDFConversion.cleanUpOldFiles(baseFolderPath);
+        PDFConversion.deleteFilesInFolder(baseFolderPath);
         
         File folder = new File(baseFolderPath);
         if (!folder.exists()) {

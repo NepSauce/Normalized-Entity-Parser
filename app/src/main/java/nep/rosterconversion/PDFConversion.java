@@ -23,7 +23,7 @@ public class PDFConversion {
         
         String baseFolderPath = "NormalizedEntityParser/" + yearStr + "/" + monthStr + "/" + dayStr + "/NormalizedObjects/";
         
-        cleanUpOldFiles(baseFolderPath);
+        deleteFilesInFolder(baseFolderPath);
         
         File folder = new File(baseFolderPath);
         if (!folder.exists()) {
@@ -74,7 +74,7 @@ public class PDFConversion {
         }
     }
     
-    public static void cleanUpOldFiles(String folderPath){
+    public static void deleteFilesInFolder(String folderPath){
         try {
             Files.walk(Paths.get(folderPath))
                     .sorted(Comparator.reverseOrder())
