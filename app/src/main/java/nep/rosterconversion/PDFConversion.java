@@ -18,15 +18,27 @@ import org.apache.pdfbox.text.PDFTextStripper;
 public class PDFConversion {
     static StringBuilder combinedNormalizedObject = new StringBuilder();
     
-    private static String newDirectoryForRemovedObject(int year, int month, int day){
-        return "";
+    private static String newDirectoryForRemovedObject(){
+        String baseFolderPath = "NormalizedEntityParser/RemovedObjects";
+        
+        File folder = new File(baseFolderPath);
+        if (!folder.exists()) {
+            boolean directoryCreated = folder.mkdirs();
+            if (directoryCreated) {
+                System.out.println("Created folder: " + baseFolderPath);
+            }
+            else{
+                System.out.println("Failed to create folder: " + baseFolderPath);
+            }
+        }
+        else{
+            System.out.println("Folder already exists: " + baseFolderPath);
+        }
+        
+        return baseFolderPath;
     }
     
-    private static String newDirectoryForCombinedObject(int year, int month, int day){
-        String yearStr = String.valueOf(year);
-        String monthStr = String.format("%02d", month);
-        String dayStr = String.format("%02d", day);
-        
+    private static String newDirectoryForCombinedObject(){
         String baseFolderPath = "NormalizedEntityParser/CombinedObjects";
         
         File folder = new File(baseFolderPath);
@@ -45,6 +57,7 @@ public class PDFConversion {
         
         return baseFolderPath;
     }
+    
     
     private static String newDirectoryForNormalizedObject(int year, int month, int day){
         String yearStr = String.valueOf(year);
@@ -78,13 +91,11 @@ public class PDFConversion {
         int month = newTime.getCurrentMonth();
         int day = newTime.getCurrentDay();
         
-        String folderPath = newDirectoryForCombinedObject(year, month, day);
-        
         String outputTextPath = "NormalizedEntityParser/"
                 + "CombinedObjects/"
                 + "CombinedObject(" + safeTime + ").txt";
         
-        String combinedTextPath = newDirectoryForCombinedObject(year, month, day);
+        String combinedTextPath = newDirectoryForCombinedObject();
         
         try (FileWriter writer = new FileWriter(outputTextPath)) {
             writer.write(combinedNormalizedObject.toString());
@@ -130,6 +141,7 @@ public class PDFConversion {
     public static void emptyCombinedNormalizedObjectContents(){
         combinedNormalizedObject.setLength(0);
     }
+    
     private static void deleteRemovedObjectFile(){
         String outputTextPath = "NormalizedEntityParser/"
                 + "RemovedObjects/";
@@ -217,8 +229,10 @@ public class PDFConversion {
         String currentTime = newTime.getCurrentTime();
         String safeTime = currentTime.replace(":", "-");
         
+        newDirectoryForRemovedObject();
+        
         List<String> formattedLines = new ArrayList<>();
-        Path removedLinesPath = Path.of("NormalizedEntityParser/RemovedObjects(" + safeTime +").txt");
+        Path removedLinesPath = Path.of("NormalizedEntityParser/RemovedObjects/RemovedObject(" + safeTime +").txt");
         
         try (BufferedWriter writer = Files.newBufferedWriter(removedLinesPath)) {
             List<String> completeRecords = buildCompleteRecords(text.split("\\r?\\n"), writer);
@@ -237,7 +251,9 @@ public class PDFConversion {
                     combinedNormalizedObject.append(format);
                     combinedNormalizedObject.append("\n");
                 } else {
-                    writer.write(record.trim());
+                    String removedFormat = String.format("[DalID: %s |Name: %s |Code: %s |Location: %s |Time: %s]",
+                            studentId, studentName, courseCode, location, time);
+                    writer.write(removedFormat);
                     writer.newLine();
                 }
             }
