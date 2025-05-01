@@ -230,7 +230,7 @@ public class PDFConversion {
                 String courseCode = extractCourseCode(record);
                 String location = determineLocation(record, locationType);
                 
-                if (studentId != null && studentName != null && time != null && courseCode != null) {
+                if (studentId != null && studentName != null && time != null && courseCode != null && location != null) {
                     String format = String.format("[%s | %s | %s | %s | %s]",
                             studentId, studentName, courseCode, location, time);
                     formattedLines.add(format);
