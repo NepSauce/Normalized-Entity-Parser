@@ -57,7 +57,8 @@ public class PanelButtonPalette{
         submitAllRostersButton.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e) {
-                PDFConversion.deleteFilesInFolder();
+                PDFConversion.deleteCombinedObjectFile();
+                
                 RosterObjectSplitter newSplitter = new RosterObjectSplitter(rosterEntityDetails, rosterEntityDetails.size());
                 LinkedList<String> directoryList = newSplitter.getRosterDirectory();
                 LinkedList<String> fileNameList = newSplitter.getRosterFileName();
@@ -68,7 +69,6 @@ public class PanelButtonPalette{
                 }
                 
                 PDFConversion.generateCombinedObject();
-                PDFConversion.emptyCombinedNormalizedObjectContents();
             }
         });
 
