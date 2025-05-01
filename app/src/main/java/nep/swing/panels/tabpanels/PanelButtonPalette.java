@@ -57,18 +57,21 @@ public class PanelButtonPalette{
         submitAllRostersButton.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e) {
-                PDFConversion.deleteCombinedObjectFile();
-                
                 RosterObjectSplitter newSplitter = new RosterObjectSplitter(rosterEntityDetails, rosterEntityDetails.size());
                 LinkedList<String> directoryList = newSplitter.getRosterDirectory();
                 LinkedList<String> fileNameList = newSplitter.getRosterFileName();
                 LinkedList<String> locationList = newSplitter.getRosterLocation();
                 
-                for (int i = 0; i < rosterEntityDetails.size(); i++){
-                    PDFConversion.generateNormalizedObject(directoryList.get(i),fileNameList.get(i), locationList.get(i));
+                if (!directoryList.isEmpty()) {
+                    PDFConversion.deleteCombinedObjectFile();
+                    PDFConversion.emptyCombinedNormalizedObjectContents();
+                    
+                    for (int i = 0; i < rosterEntityDetails.size(); i++) {
+                        PDFConversion.generateNormalizedObject(directoryList.get(i), fileNameList.get(i), locationList.get(i));
+                    }
+                    
+                    PDFConversion.generateCombinedObject();
                 }
-                
-                PDFConversion.generateCombinedObject();
             }
         });
 
