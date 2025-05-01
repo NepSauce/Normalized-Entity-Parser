@@ -428,7 +428,7 @@ public class PDFConversion {
             return cleanLocation(location);
         }
         
-        return "[location]";
+        return null;
     }
     
     /**
