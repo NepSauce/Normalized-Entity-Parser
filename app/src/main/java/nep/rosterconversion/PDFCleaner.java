@@ -37,8 +37,6 @@ public class PDFCleaner {
         
         String baseFolderPath = "NormalizedEntityParser/" + yearStr + "/" + monthStr + "/" + dayStr + "/GroupedObjects/";
         
-        PDFConversion.deleteFilesInFolder(baseFolderPath);
-        
         File folder = new File(baseFolderPath);
         if (!folder.exists()) {
             boolean directoryCreated = folder.mkdirs();

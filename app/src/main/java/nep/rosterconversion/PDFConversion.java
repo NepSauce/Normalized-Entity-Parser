@@ -2,6 +2,7 @@ package nep.rosterconversion;
 
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -15,15 +16,15 @@ import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.text.PDFTextStripper;
 
 public class PDFConversion {
+    private static String normalizedObject;
+    static StringBuilder combinedNormalizedObject;
     
-    private static String newDirectoryForNormalizedObject(int year, int month, int day){
+    private static String newDirectoryForCombinedObject(int year, int month, int day){
         String yearStr = String.valueOf(year);
         String monthStr = String.format("%02d", month);
         String dayStr = String.format("%02d", day);
         
-        String baseFolderPath = "NormalizedEntityParser/" + yearStr + "/" + monthStr + "/" + dayStr + "/NormalizedObjects/";
-        
-        deleteFilesInFolder(baseFolderPath);
+        String baseFolderPath = "NormalizedEntityParser/" + yearStr + "/" + monthStr + "/" + dayStr + "/CombinedObjects";
         
         File folder = new File(baseFolderPath);
         if (!folder.exists()) {
@@ -42,9 +43,63 @@ public class PDFConversion {
         return baseFolderPath;
     }
     
-    public static void generateNormalizedObject(String pdfPath, String fileName, String location){
+    private static String newDirectoryForNormalizedObject(int year, int month, int day){
+        String yearStr = String.valueOf(year);
+        String monthStr = String.format("%02d", month);
+        String dayStr = String.format("%02d", day);
+        
+        String baseFolderPath = "NormalizedEntityParser/" + yearStr + "/" + monthStr + "/" + dayStr + "/NormalizedObjects/";
+        
+        File folder = new File(baseFolderPath);
+        if (!folder.exists()) {
+            boolean directoryCreated = folder.mkdirs();
+            if (directoryCreated) {
+                System.out.println("Created folder: " + baseFolderPath);
+            }
+            else{
+                System.out.println("Failed to create folder: " + baseFolderPath);
+            }
+        }
+        else{
+            System.out.println("Folder already exists: " + baseFolderPath);
+        }
+        
+        return baseFolderPath;
+    }
+    
+    public static void generateCombinedObject(){
         CurrentTime newTime = new CurrentTime();
         String currentTime = newTime.getCurrentTime();
+        int year = newTime.getCurrentYear();
+        int month = newTime.getCurrentMonth();
+        int day = newTime.getCurrentDay();
+        
+        String monthStr = String.format("%02d", month);
+        String dayStr = String.format("%02d", day);
+        
+        
+        String folderPath = newDirectoryForCombinedObject(year, month, day);
+        
+        String outputTextPath = "NormalizedEntityParser/"
+                + year + "/"
+                + monthStr + "/"
+                + dayStr + "/"
+                + "CombinedObjects/"
+                + "CombinedObject(" + currentTime + ").txt";
+        
+        String combinedTextPath = newDirectoryForCombinedObject(year, month, day);
+        
+        try{
+            FileWriter writer = new FileWriter(outputTextPath);
+            writer.write(combinedNormalizedObject.toString());
+        }
+        catch (IOException e){
+            System.err.println("Error Making Combined Normalized Objects: " + e.getMessage());
+        }
+    }
+    
+    public static void generateNormalizedObject(String pdfPath, String fileName, String location){
+        CurrentTime newTime = new CurrentTime();
         int year = newTime.getCurrentYear();
         int month = newTime.getCurrentMonth();
         int day = newTime.getCurrentDay();
@@ -74,7 +129,39 @@ public class PDFConversion {
         }
     }
     
-    public static void deleteFilesInFolder(String folderPath){
+    public static void emptyCombinedNormalizedObjectContents(){
+        combinedNormalizedObject.setLength(0);
+    }
+    
+    public static void deleteFilesInFolder(){
+        CurrentTime newTime = new CurrentTime();
+        int year = newTime.getCurrentYear();
+        int month = newTime.getCurrentMonth();
+        int day = newTime.getCurrentDay();
+        
+        String monthStr = String.format("%02d", month);
+        String dayStr = String.format("%02d", day);
+        
+        
+        String folderPath = newDirectoryForNormalizedObject(year, month, day);
+        
+        String normalizedTextPath = "NormalizedEntityParser/"
+                + year + "/"
+                + monthStr + "/"
+                + dayStr + "/"
+                + "NormalizedObjects/";
+        
+        String combinedTextPath = "NormalizedEntityParser/"
+                + year + "/"
+                + monthStr + "/"
+                + dayStr + "/"
+                + "CombinedObjects/";
+         
+        deleteFilesInFolderWrapper(normalizedTextPath);
+        deleteFilesInFolderWrapper(combinedTextPath);
+    }
+    
+    private static void deleteFilesInFolderWrapper(String folderPath){
         try {
             Files.walk(Paths.get(folderPath))
                     .sorted(Comparator.reverseOrder())
@@ -146,6 +233,8 @@ public class PDFConversion {
                 } else {
                     writer.write(record.trim());
                     writer.newLine();
+                    combinedNormalizedObject.append(record.trim());
+                    combinedNormalizedObject.append("\n");
                 }
             }
         } catch (IOException e) {
