@@ -78,10 +78,6 @@ public class PDFConversion {
         int month = newTime.getCurrentMonth();
         int day = newTime.getCurrentDay();
         
-        String monthStr = String.format("%02d", month);
-        String dayStr = String.format("%02d", day);
-        
-        
         String folderPath = newDirectoryForCombinedObject(year, month, day);
         
         String outputTextPath = "NormalizedEntityParser/"
@@ -214,9 +210,15 @@ public class PDFConversion {
      * @param locationType The location type extracted from the document
      * @return A list of formatted lines with student information
      */
-    private static List<String> processRosterText(String text, String locationType) {
+    private static List<String> processRosterText(String text, String locationType){
+        deleteRemovedObjectFile();
+        
+        CurrentTime newTime = new CurrentTime();
+        String currentTime = newTime.getCurrentTime();
+        String safeTime = currentTime.replace(":", "-");
+        
         List<String> formattedLines = new ArrayList<>();
-        Path removedLinesPath = Path.of("Media/removedLines.txt");
+        Path removedLinesPath = Path.of("NormalizedEntityParser/RemovedObjects(" + safeTime +").txt");
         
         try (BufferedWriter writer = Files.newBufferedWriter(removedLinesPath)) {
             List<String> completeRecords = buildCompleteRecords(text.split("\\r?\\n"), writer);
