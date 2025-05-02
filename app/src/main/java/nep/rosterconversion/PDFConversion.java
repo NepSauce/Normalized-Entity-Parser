@@ -258,7 +258,7 @@ public class PDFConversion {
                 }
             }
         } catch (IOException e) {
-            System.err.println("Error writing to removedLines.txt: " + e.getMessage());
+            System.err.println("Error writing to RemovedObject.txt: " + e.getMessage());
         }
         
         return formattedLines;

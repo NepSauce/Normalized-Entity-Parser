@@ -2,7 +2,7 @@ package nep.entityclass;
 
 @SuppressWarnings("unused")
 public class RosterEntityDetails{
-    private String fileName;
+    private final String fileName;
     private String inputDirectory;
     private final String LOCATION;
     private final int DAY;

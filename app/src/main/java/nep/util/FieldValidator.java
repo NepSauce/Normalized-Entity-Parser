@@ -96,8 +96,6 @@ public class FieldValidator{
         else{
             this.errorMessage = null;
         }
-    
-        System.out.println(this.errorMessage);
     }
     
     public String getErrorMessage(){
