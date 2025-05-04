@@ -1,4 +1,4 @@
-package nep.swing.panels.tabpanels;
+package nep.swing.panels.rostertabpanels;
 
 import java.awt.Color;
 import java.awt.Dimension;

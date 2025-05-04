@@ -1,13 +1,9 @@
-package nep.swing.panels.tabpanels;
+package nep.swing.panels.rostertabpanels;
 
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
 import java.util.LinkedList;
 
 import javax.swing.*;
@@ -20,7 +16,6 @@ import nep.swing.panels.ExamAddedPanel;
 import nep.swing.panels.ExamLocationPanel;
 import nep.swing.panels.RosterAddedPanel;
 import nep.swing.panels.removedobjectpanels.RemovedObjectPanel;
-import nep.util.DisplayUIError;
 import nep.util.RosterObjectSplitter;
 
 @SuppressWarnings("FieldMayBeFinal")

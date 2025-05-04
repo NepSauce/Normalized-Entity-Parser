@@ -1,7 +1,7 @@
 package nep.swing.panels;
 
 import nep.entityclass.RosterEntityDetails;
-import nep.swing.panels.tabpanels.SelectionButtonPalette;
+import nep.swing.panels.rostertabpanels.SelectionButtonPalette;
 
 import java.awt.Color;
 import java.util.ArrayList;
