@@ -34,7 +34,7 @@ Course Code: CANA 2002                            Duration:
                                                   Password:
                                                   Notes:
  1 - 2021 MCCAIN - 8:30 AM                        
- 2 - 2104 MCCAIN - 3:30 PM                        
+ 1 - 2104 MCCAIN - 3:30 PM                        
 
 Course Code: CHEM 1022                            Duration:
  1 - 2170 MCCAIN - 8:30 AM                        Permitted Materials:
@@ -64,13 +64,12 @@ Course Code: CHEM 3601                            Duration:
  1 - 2104 MCCAIN - 3:30 PM                        
 
 Course Code: COMM 4201                            Duration:
- 3 - 2130 MCCAIN - 8:30 AM                        Permitted Materials:
+ 1 - 3080 ROWE - 8:30 AM                          Permitted Materials:
                                                   Exam Source:
                                                   Medium:
                                                   PU/DEL:
                                                   Password:
                                                   Notes:
- 1 - 3080 ROWE - 8:30 AM                          
 
 Course Code: COMM 4201 01                         Duration:
  1 - 2017 MCCAIN - 8:30 AM                        Permitted Materials:
@@ -79,6 +78,7 @@ Course Code: COMM 4201 01                         Duration:
                                                   PU/DEL:
                                                   Password:
                                                   Notes:
+ 3 - 2130 MCCAIN - 8:30 AM                        
 
 Course Code: CSCI 3120                            Duration:
  4 - 1170 MCCAIN - 8:30 AM                        Permitted Materials:
@@ -87,7 +87,6 @@ Course Code: CSCI 3120                            Duration:
                                                   PU/DEL:
                                                   Password:
                                                   Notes:
- 1 - 3080 ROWE - 8:30 AM                          
 
 Course Code: CSCI 3137                            Duration:
  1 - 2016 MCCAIN - 3:30 PM                        Permitted Materials:
@@ -137,21 +136,14 @@ Course Code: EMSP 3250                            Duration:
                                                   Password:
                                                   Notes:
 
-Course Code: ENGL 3503                            Duration:
+Course Code: ENGL/THEA 3503                       Duration:
  2 - 2021 MCCAIN - 3:30 PM                        Permitted Materials:
                                                   Exam Source:
                                                   Medium:
                                                   PU/DEL:
                                                   Password:
                                                   Notes:
-
-Course Code: ENGL/THEA 3503                       Duration:
- 2 - 2104 MCCAIN - 3:30 PM                        Permitted Materials:
-                                                  Exam Source:
-                                                  Medium:
-                                                  PU/DEL:
-                                                  Password:
-                                                  Notes:
+ 2 - 2104 MCCAIN - 3:30 PM                        
 
 Course Code: HIST 3050                            Duration:
  1 - 2016 MCCAIN - 8:30 AM                        Permitted Materials:
@@ -162,16 +154,8 @@ Course Code: HIST 3050                            Duration:
                                                   Notes:
  2 - 3080 ROWE - 8:30 AM                          
 
-Course Code: HIST 3050 01                         Duration:
- 1 - 3080 ROWE - 8:30 AM                          Permitted Materials:
-                                                  Exam Source:
-                                                  Medium:
-                                                  PU/DEL:
-                                                  Password:
-                                                  Notes:
-
 Course Code: HSTC 3350                            Duration:
- 2 - 2104 MCCAIN - 3:30 PM                        Permitted Materials:
+ 1 - 2104 MCCAIN - 3:30 PM                        Permitted Materials:
                                                   Exam Source:
                                                   Medium:
                                                   PU/DEL:
@@ -186,7 +170,7 @@ Course Code: INTD 2002                            Duration:
                                                   Password:
                                                   Notes:
 
-Course Code: LAWS 1125                            Duration:
+Course Code: LAWS 1125 01                         Duration:
  1 - 309 WELDON W (10+1) - 9:30 AM                Permitted Materials:
                                                   Exam Source:
                                                   Medium:
@@ -195,7 +179,7 @@ Course Code: LAWS 1125                            Duration:
                                                   Notes:
 
 Course Code: LAWS 2099                            Duration:
- 2 - 308 WELDON W (10) - 9:30 AM                  Permitted Materials:
+ 1 - 308 WELDON W (10) - 9:30 AM                  Permitted Materials:
                                                   Exam Source:
                                                   Medium:
                                                   PU/DEL:
@@ -203,7 +187,7 @@ Course Code: LAWS 2099                            Duration:
                                                   Notes:
 
 Course Code: LAWS 2099 03                         Duration:
- 6 - 308 WELDON W (10) - 9:30 AM                  Permitted Materials:
+ 7 - 308 WELDON W (10) - 9:30 AM                  Permitted Materials:
                                                   Exam Source:
                                                   Medium:
                                                   PU/DEL:
@@ -211,7 +195,7 @@ Course Code: LAWS 2099 03                         Duration:
                                                   Notes:
  5 - 309 WELDON W (10+1) - 9:30 AM                
 
-Course Code: LAWS 2213                            Duration:
+Course Code: LAWS 2213 01                         Duration:
  1 - 309 WELDON W (10+1) - 9:30 AM                Permitted Materials:
                                                   Exam Source:
                                                   Medium:
@@ -219,8 +203,8 @@ Course Code: LAWS 2213                            Duration:
                                                   Password:
                                                   Notes:
 
-Course Code: LAWS 2214                            Duration:
- 2 - 309 WELDON W (10+1) - 9:30 AM                Permitted Materials:
+Course Code: LAWS 2214 01                         Duration:
+ 1 - 309 WELDON W (10+1) - 9:30 AM                Permitted Materials:
                                                   Exam Source:
                                                   Medium:
                                                   PU/DEL:
@@ -234,7 +218,7 @@ Course Code: MATH 1000                            Duration:
                                                   PU/DEL:
                                                   Password:
                                                   Notes:
- 6 - 2130 MCCAIN - 8:30 AM                        
+ 5 - 2130 MCCAIN - 8:30 AM                        
  2 - 2170 MCCAIN - 8:30 AM                        
 
 Course Code: MATH 1215                            Duration:
@@ -317,13 +301,12 @@ Course Code: OCEA 5230                            Duration:
                                                   Notes:
 
 Course Code: PHAR 1062                            Duration:
- 7 - 301A DUNN - 12:00 PM                         Permitted Materials:
+ 8 - 301A DUNN - 12:00 PM                         Permitted Materials:
                                                   Exam Source:
                                                   Medium:
                                                   PU/DEL:
                                                   Password:
                                                   Notes:
- 1 - 301A DUNN WP - 12:00 PM                      
 
 Course Code: PHAR 3052                            Duration:
  4 - 1170 MCCAIN - 8:30 AM                        Permitted Materials:
@@ -351,14 +334,6 @@ Course Code: POLI 3581                            Duration:
                                                   Password:
                                                   Notes:
  1 - 2021 MCCAIN - 3:30 PM                        
-
-Course Code: PSYO 2140                            Duration:
- 1 - 2016 MCCAIN - 3:30 PM                        Permitted Materials:
-                                                  Exam Source:
-                                                  Medium:
-                                                  PU/DEL:
-                                                  Password:
-                                                  Notes:
 
 Course Code: RADT 1020                            Duration:
  4 - 3080 ROWE - 8:30 AM                          Permitted Materials:

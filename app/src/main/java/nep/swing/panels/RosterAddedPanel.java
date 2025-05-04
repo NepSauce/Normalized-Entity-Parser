@@ -118,6 +118,13 @@ public class RosterAddedPanel{
     public boolean getCheckFileExists(){
         return checkFileExists;
     }
+    
+    public String getRosterFileName() throws NullPointerException{
+        if (selectedFile == null){
+            return "";
+        }
+        return selectedFile.getName();
+    }
 
     public void setRosterLabel(String newLabel){
         if (newLabel.length() > 20) {

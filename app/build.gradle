@@ -38,7 +38,7 @@ java {
 
 application {
     // Define the main class for the application.
-    mainClass = 'normalized.entity.parser.App'
+    mainClass = 'nep.MainEntity'
 }
 
 tasks.named('test') {

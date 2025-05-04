@@ -1,38 +1,199 @@
 package nep.rosterconversion;
 
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.ArrayList;
-import java.util.List;
+import java.nio.file.Paths;
+import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import nep.util.CurrentTime;
+import nep.util.DisplayUIPopup;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.text.PDFTextStripper;
 
 public class PDFConversion {
-
-    public static void main(String[] args) {
-        String pdfPath = "Media/rosterALTLOC.pdf";
-        String outputTextPath = "Media/output.txt";
-
-        try {
+    static StringBuilder combinedNormalizedObject = new StringBuilder();
+    
+    private static String newDirectoryForRemovedObject(){
+        String baseFolderPath = "NormalizedEntityParser/RemovedObjects";
+        
+        File folder = new File(baseFolderPath);
+        if (!folder.exists()) {
+            boolean directoryCreated = folder.mkdirs();
+            if (directoryCreated) {
+                System.out.println("Created folder: " + baseFolderPath);
+            }
+            else{
+                System.out.println("Failed to create folder: " + baseFolderPath);
+            }
+        }
+        else{
+            System.out.println("Folder already exists: " + baseFolderPath);
+        }
+        
+        return baseFolderPath;
+    }
+    
+    private static String newDirectoryForCombinedObject(){
+        String baseFolderPath = "NormalizedEntityParser/CombinedObjects";
+        
+        File folder = new File(baseFolderPath);
+        if (!folder.exists()) {
+            boolean directoryCreated = folder.mkdirs();
+            if (directoryCreated) {
+                System.out.println("Created folder: " + baseFolderPath);
+            }
+            else{
+                System.out.println("Failed to create folder: " + baseFolderPath);
+            }
+        }
+        else{
+            System.out.println("Folder already exists: " + baseFolderPath);
+        }
+        
+        return baseFolderPath;
+    }
+    
+    
+    private static String newDirectoryForNormalizedObject(int year, int month, int day){
+        String yearStr = String.valueOf(year);
+        String monthStr = String.format("%02d", month);
+        String dayStr = String.format("%02d", day);
+        
+        String baseFolderPath = "NormalizedEntityParser/" + yearStr + "/" + monthStr + "/" + dayStr + "/NormalizedObjects/";
+        
+        File folder = new File(baseFolderPath);
+        if (!folder.exists()) {
+            boolean directoryCreated = folder.mkdirs();
+            if (directoryCreated) {
+                System.out.println("Created folder: " + baseFolderPath);
+            }
+            else{
+                System.out.println("Failed to create folder: " + baseFolderPath);
+            }
+        }
+        else{
+            System.out.println("Folder already exists: " + baseFolderPath);
+        }
+        
+        return baseFolderPath;
+    }
+    
+    public static void generateCombinedObject(){
+        CurrentTime newTime = new CurrentTime();
+        String currentTime = newTime.getCurrentTime();
+        String safeTime = currentTime.replace(":", "-");
+        int year = newTime.getCurrentYear();
+        int month = newTime.getCurrentMonth();
+        int day = newTime.getCurrentDay();
+        
+        String outputTextPath = "NormalizedEntityParser/"
+                + "CombinedObjects/"
+                + "CombinedObject(" + safeTime + ").txt";
+        
+        String combinedTextPath = newDirectoryForCombinedObject();
+        
+        try (FileWriter writer = new FileWriter(outputTextPath)) {
+            writer.write(combinedNormalizedObject.toString());
+        }
+        catch (IOException e){
+            System.err.println("Error Making Combined Normalized Objects: " + e.getMessage());
+        }
+    }
+    
+    public static void generateNormalizedObject(String pdfPath, String fileName, String location){
+        CurrentTime newTime = new CurrentTime();
+        String currentTime = newTime.getCurrentTime();
+        String safeTime = currentTime.replace(":", "-");
+        int year = newTime.getCurrentYear();
+        int month = newTime.getCurrentMonth();
+        int day = newTime.getCurrentDay();
+        
+        String monthStr = String.format("%02d", month);
+        String dayStr = String.format("%02d", day);
+        
+        
+        String folderPath = newDirectoryForNormalizedObject(year, month, day);
+        
+        String outputTextPath = "NormalizedEntityParser/"
+                + year + "/"
+                + monthStr + "/"
+                + dayStr + "/"
+                + "NormalizedObjects/"
+                + "NormalizedObject-"+ fileName + "(" + safeTime + ").txt";
+        
+        try{
             String pdfText = convertPdfToString(pdfPath);
-            List<String> formattedLines = processRosterText(pdfText);
+            String locationType = extractLocationType(pdfText);
+   
+            List<String> formattedLines = processRosterText(pdfText, locationType);
             Files.write(Path.of(outputTextPath), formattedLines);
-        } catch (IOException e) {
+        }
+        catch (IOException e){
             System.err.println("Error processing the PDF: " + e.getMessage());
         }
     }
-
+    
+    public static void emptyCombinedNormalizedObjectContents(){
+        combinedNormalizedObject.setLength(0);
+    }
+    
+    public static void deleteRemovedObjectFile(){
+        String outputTextPath = "NormalizedEntityParser/"
+                + "RemovedObjects/";
+        
+        try {
+            Files.walk(Paths.get(outputTextPath))
+                    .sorted(Comparator.reverseOrder())
+                    .map(Path::toFile)
+                    .forEach(File::delete);
+            System.out.println("Old removed object files deleted successfully.");
+        }
+        catch (IOException e) {
+            System.err.println("Error cleaning up old removed object files: " + e.getMessage());
+        }
+    }
+    
+    public static void deleteCombinedObjectFile(){
+        String outputTextPath = "NormalizedEntityParser/"
+                + "CombinedObjects/";
+        
+        try {
+            Files.walk(Paths.get(outputTextPath))
+                    .sorted(Comparator.reverseOrder())
+                    .map(Path::toFile)
+                    .forEach(File::delete);
+            System.out.println("Old combined object files deleted successfully.");
+        }
+        catch (IOException e) {
+            System.err.println("Error cleaning up old combined object files: " + e.getMessage());
+        }
+    }
+    
+    public static void deleteFilesInFolder(String folderPath){
+        try {
+            Files.walk(Paths.get(folderPath))
+                    .sorted(Comparator.reverseOrder())
+                    .map(Path::toFile)
+                    .forEach(File::delete);
+            System.out.println("Old files deleted successfully.");
+        }
+        catch (IOException e) {
+            System.err.println("Error cleaning up old files: " + e.getMessage());
+        }
+    }
+ 
     /**
-     * Converts a PDF file to a string containing its text content.
+     * Converts a PDF file into a plain text string.
      *
-     * @param pdfPath The path to the PDF file
-     * @return The extracted text content as a string
-     * @throws IOException If there's an error reading the PDF file
+     * @param pdfPath Path to the PDF file
+     * @return Extracted text from the PDF
+     * @throws IOException If reading the file fails
      */
     private static String convertPdfToString(String pdfPath) throws IOException {
         try (PDDocument document = PDDocument.load(new File(pdfPath))) {
@@ -43,96 +204,149 @@ public class PDFConversion {
             return textStripper.getText(document);
         }
     }
-
+    
     /**
-     * Processes the roster text and formats it into structured records.
+     * Extracts the location type from the PDF text.
      *
-     * @param text The raw text extracted from the PDF
-     * @return A list of formatted record strings
+     * @param text The full PDF content as text
+     * @return Extracted location type or "UNKNOWN" if not found
      */
-    private static List<String> processRosterText(String text) {
+    private static String extractLocationType(String text) {
+        Matcher matcher = Pattern.compile("Location: EXAM-SCHED(?:ULING)?-([A-Z0-9]+)").matcher(text);
+        return matcher.find() ? matcher.group(1) : "UNKNOWN";
+    }
+    
+    /**
+     * Processes the full roster text and extracts relevant student information in a structured format.
+     *
+     * @param text The full PDF content as text
+     * @param locationType The location type extracted from the document
+     * @return A list of formatted lines with student information
+     */
+    private static List<String> processRosterText(String text, String locationType){
+        deleteRemovedObjectFile();
+        
+        CurrentTime newTime = new CurrentTime();
+        String currentTime = newTime.getCurrentTime();
+        String safeTime = currentTime.replace(":", "-");
+        
+        newDirectoryForRemovedObject();
+        
         List<String> formattedLines = new ArrayList<>();
-        List<String> completeRecords = buildCompleteRecords(text.split("\\r?\\n"));
-
-        for (String record : completeRecords) {
-            String studentId = extractStudentId(record);
-            String studentName = extractStudentName(record, studentId);
-            String time = extractTime(record);
-            String courseCode = extractCourseCode(record);
-            String location = extractLocation(record);
-
-            if (studentId != null && studentName != null && time != null && courseCode != null) {
-                formattedLines.add(String.format("[%s | %s | %s | %s | %s]", 
-                    studentId, studentName, courseCode, location, time));
+        Path removedLinesPath = Path.of("NormalizedEntityParser/RemovedObjects/RemovedObject(" + safeTime +").txt");
+        
+        int removedCount = 0;
+        
+        try (BufferedWriter writer = Files.newBufferedWriter(removedLinesPath)) {
+            List<String> completeRecords = buildCompleteRecords(text.split("\\r?\\n"), writer);
+            
+            for (String record : completeRecords) {
+                String studentId = extractStudentId(record);
+                String studentName = extractStudentName(record, studentId);
+                String time = extractTime(record);
+                String courseCode = extractCourseCode(record);
+                String location = determineLocation(record, locationType);
+                
+                if (studentId != null && studentName != null && time != null && courseCode != null && location != null) {
+                    String format = String.format("[%s | %s | %s | %s | %s]",
+                            studentId, studentName, courseCode, location, time);
+                    formattedLines.add(format);
+                    combinedNormalizedObject.append(format).append("\n");
+                } else {
+                    String removedFormat = String.format("[DalID: %s | Name: %s | Code: %s | Location: %s | Time: %s]",
+                            studentId, studentName, courseCode, location, time);
+                    writer.write(removedFormat);
+                    writer.newLine();
+                    removedCount++;
+                }
             }
+            
+            if (removedCount > 0) {
+                new DisplayUIPopup("Removed Entries Saved",
+                        removedCount + " Removed Line" + (removedCount == 1 ? " Was" : "s Were") + " Saved to RemovedObject.txt.", 1001)
+                        .showInfoPopup();
+            } else {
+                new DisplayUIPopup("No Removed Entries",
+                        "No Entries Were Removed. CombinedObject.txt Was Successfully Created.", 1002)
+                        .showInfoPopup();
+            }
+            
+        } catch (IOException e) {
+            System.err.println("Error writing to RemovedObject.txt: " + e.getMessage());
         }
-
+        
         return formattedLines;
     }
-
+    
     /**
-     * Builds complete records by joining lines that belong together.
+     * Builds complete student records from raw PDF lines.
      *
-     * @param lines The individual lines from the PDF text
-     * @return A list of complete records as strings
+     * @param lines Array of text lines from the PDF
+     * @param removedWriter Writer to log removed/invalid lines
+     * @return A list of complete student records
+     * @throws IOException If writing to the removed lines file fails
      */
-    private static List<String> buildCompleteRecords(String[] lines) {
+    private static List<String> buildCompleteRecords(String[] lines, BufferedWriter removedWriter) throws IOException {
         List<String> completeRecords = new ArrayList<>();
         StringBuilder currentRecord = new StringBuilder();
-
+        
         for (String line : lines) {
             if (shouldSkipLine(line)) {
                 continue;
             }
-
+            
             if (line.matches(".*B\\d{8}.*")) {
                 if (currentRecord.length() > 0) {
                     completeRecords.add(currentRecord.toString());
                     currentRecord = new StringBuilder();
                 }
+            } else if (line.matches(".*B0.*")) {
+                removedWriter.write(line.trim());
+                removedWriter.newLine();
             }
+            
             currentRecord.append(line).append(" ");
         }
-
+        
         if (currentRecord.length() > 0) {
             completeRecords.add(currentRecord.toString());
         }
-
+        
         return completeRecords;
     }
-
+    
     /**
-     * Determines if a line should be skipped during processing.
+     * Determines whether a line should be skipped from processing.
      *
-     * @param line The line to check
-     * @return true if the line should be skipped, false otherwise
+     * @param line The line to evaluate
+     * @return True if the line should be skipped; otherwise, false
      */
     private static boolean shouldSkipLine(String line) {
-        return line.contains("Phone NumberStudent ID") || 
-               line.contains("All Appointments") || 
-               line.contains("Printed:") || 
-               line.contains("Location:") || 
-               line.contains("Sorted by") || 
-               line.contains("Do Not Call") ||
-               line.trim().isEmpty();
+        return line.contains("Phone NumberStudent ID") ||
+                line.contains("All Appointments") ||
+                line.contains("Printed:") ||
+                line.contains("Location:") ||
+                line.contains("Sorted by") ||
+                line.contains("Do Not Call") ||
+                line.trim().isEmpty();
     }
-
+    
     /**
      * Extracts the student ID from a record.
      *
-     * @param record The complete record string
-     * @return The student ID or null if not found
+     * @param record The record to extract from
+     * @return The student ID if found; otherwise, null
      */
     private static String extractStudentId(String record) {
         Matcher idMatcher = Pattern.compile("B\\d{8}").matcher(record);
         return idMatcher.find() ? idMatcher.group() : null;
     }
-
+    
     /**
-     * Extracts and cleans the student name from a record.
+     * Extracts the student name from a record.
      *
-     * @param record The complete record string
-     * @param studentId The student ID to help locate the name
+     * @param record The full record text
+     * @param studentId The extracted student ID
      * @return The cleaned student name
      */
     private static String extractStudentName(String record, String studentId) {
@@ -140,77 +354,143 @@ public class PDFConversion {
         String namePart = record.substring(0, idPosition).trim();
         return namePart.replaceAll("[^a-zA-Z, ]", "").trim();
     }
-
+    
     /**
-     * Extracts the time from a record.
+     * Extracts the appointment time from a record.
      *
-     * @param record The complete record string
-     * @return The time string or null if not found
+     * @param record The record to extract from
+     * @return The time string if found; otherwise, null
      */
     private static String extractTime(String record) {
         Matcher timeMatcher = Pattern.compile("\\d{1,2}:\\d{2}\\s[AP]M").matcher(record);
         return timeMatcher.find() ? timeMatcher.group() : null;
     }
-
+    
     /**
      * Extracts the course code from a record.
      *
-     * @param record The complete record string
-     * @return The course code or null if not found
+     * @param record The record to extract from
+     * @return The course code if found; otherwise, null
      */
     private static String extractCourseCode(String record) {
-        Matcher courseMatcher = Pattern.compile("(?<=^|\\s|\\n)([A-Za-z]{3,4}(?:/[A-Za-z]{3,4})?[- ]\\d{4}(?:-\\d{2})?)")
-                                      .matcher(record);
-
+        Matcher courseMatcher = Pattern.compile(
+                "([A-Za-z]{2,6}/)?([A-Za-z]{2,6})[\\s-](\\d{4,5}(?:[\\s.-]\\d{1,2})?)"
+        ).matcher(record);
+        
         List<String> potentialCodes = new ArrayList<>();
         while (courseMatcher.find()) {
-            String potentialCode = courseMatcher.group().toUpperCase();
-            if (!potentialCode.startsWith("COMP")) {
-                potentialCodes.add(potentialCode);
+            String fullDept = courseMatcher.group(1) != null ? courseMatcher.group(1) : "";
+            String mainDept = courseMatcher.group(2);
+            String rawCode = courseMatcher.group(3).replaceAll("[\\s.-]", " ").trim();
+            
+            String[] parts = rawCode.split(" ");
+            String courseNumber = parts[0];
+            String section = (parts.length > 1) ? parts[1] : null;
+            
+            if (section != null && section.matches("0[1-9]")) {
+                rawCode = courseNumber + " " + section;
+            } else {
+                rawCode = courseNumber;
+            }
+            
+            String potentialCode = (fullDept + mainDept + " " + rawCode).toUpperCase();
+            potentialCode = potentialCode.replaceAll("[\\s.-]", " ");
+            if (!potentialCode.matches(".*(COMP|ROWE|MONA|DUNN|WELDON|MCCAIN|MCAIN|LOCATION|DALHOUSIE).*")) {
+                potentialCodes.add(potentialCode.trim());
             }
         }
-
-        return potentialCodes.isEmpty() ? null : potentialCodes.get(0).replace('-', ' ');
+        
+        if (!potentialCodes.isEmpty()) {
+            return potentialCodes.get(0);
+        }
+        
+        Matcher deptMatcher = Pattern.compile(
+                "\\s-\\s([A-Z]{2,6})\\s\\d{4,5}|" +
+                        "\\s-\\s([A-Z]{2,6})$"
+        ).matcher(record);
+        
+        if (deptMatcher.find()) {
+            String dept = deptMatcher.group(1) != null ? deptMatcher.group(1) : deptMatcher.group(2);
+            if (dept != null && !dept.isEmpty() &&
+                    !dept.matches("(COMP|ROWE|MONA|DUNN|WELDON|MCCAIN|MCAIN|LOCATION|DALHOUSIE)")) {
+                return dept;
+            }
+        }
+        
+        return null;
     }
-
+    
     /**
-     * Extracts and cleans the location from a record.
+     * Determines the appropriate location string based on the location type.
      *
-     * @param record The complete record string
-     * @return The cleaned location or "[location]" if not found
+     * @param record The record containing location details
+     * @param locationType The extracted location type
+     * @return The determined location name
      */
-    private static String extractLocation(String record) {
+    private static String determineLocation(String record, String locationType) {
+        if (locationType.equals("ALTLOC")) {
+            return extractAltLocLocation(record);
+        } else {
+            return locationType;
+        }
+    }
+    
+    /**
+     * Extracts the location from a record in case of ALTLOC location type.
+     *
+     * @param record The record to extract location from
+     * @return Cleaned location string, or placeholder if not found
+     */
+    private static String extractAltLocLocation(String record) {
         Pattern locationPattern = Pattern.compile("\\d{1,2}:\\d{2}\\s[AP]M\\s\\d{3}\\s([^-]+?)(?:\\s-|\\s\\d{2}\\s|$)");
         Matcher locationMatcher = locationPattern.matcher(record);
-
+        
         if (locationMatcher.find()) {
             String location = locationMatcher.group(1).trim();
             return cleanLocation(location);
         }
-
+        
         Pattern altPattern = Pattern.compile("\\d{1,2}:\\d{2}\\s[AP]M\\s\\d{3}\\s([A-Z].+?)(?:\\s\\(\\d+\\+?\\d*\\)|\\s-|$)");
         Matcher altMatcher = altPattern.matcher(record);
-
+        
         if (altMatcher.find()) {
             String location = altMatcher.group(1).trim();
             return cleanLocation(location);
         }
-
-        return "[location]";
+        
+        return null;
     }
-
+    
     /**
-     * Cleans and normalizes a location string.
+     * Cleans up the extracted location string by removing unnecessary characters.
      *
      * @param location The raw location string
-     * @return The cleaned location string
+     * @return The cleaned location
      */
     private static String cleanLocation(String location) {
-        String cleaned = location.replaceAll("\\s\\d+$", "")
-                               .replaceAll("[.-]", "")
-                               .replaceAll("COMP\\s*", "")
-                               .trim();
+        String retValue = location.replaceAll("\\s\\d+$", "")
+                .replaceAll("[.-]", "")
+                .replaceAll("COMP\\s*", "")
+                .replaceAll("(?i)\\s*(BRIGHTSPACE|WP|READER|SCRIBE|brightspace|wp|reader|scribe|,)\\s*", "")
+                .trim();
         
-        return (cleaned.startsWith("ER") || cleaned.startsWith("G2")) ? "[location]" : cleaned;
+        String[] parts = retValue.split("\\s+");
+        int len = parts.length;
+        
+        for (int i = 1; i <= len / 2; i++) {
+            boolean isDuplicate = true;
+            for (int j = 0; j < i; j++) {
+                if (!parts[j].equals(parts[len - i + j])) {
+                    isDuplicate = false;
+                    break;
+                }
+            }
+            if (isDuplicate) {
+                retValue = String.join(" ", Arrays.copyOfRange(parts, 0, len - i));
+                break;
+            }
+        }
+        
+        return retValue;
     }
 }

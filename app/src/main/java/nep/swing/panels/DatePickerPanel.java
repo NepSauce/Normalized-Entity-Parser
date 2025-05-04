@@ -105,12 +105,25 @@ public class DatePickerPanel {
     }
 
     private int getDaysInMonth(String month) {
-        return switch (month) {
-            case "January", "March", "May", "July", "August", "October", "December" -> 31;
-            case "April", "June", "September", "November" -> 30;
-            case "February" -> isLeapYear() ? 29 : 28;
-            default -> 0;
-        };
+        switch (month) {
+            case "January":
+            case "March":
+            case "May":
+            case "July":
+            case "August":
+            case "October":
+            case "December":
+                return 31;
+            case "April":
+            case "June":
+            case "September":
+            case "November":
+                return 30;
+            case "February":
+                return isLeapYear() ? 29 : 28;
+            default:
+                return 0;
+        }
     }
 
     private boolean isLeapYear() {

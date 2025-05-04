@@ -2,20 +2,15 @@ package nep.entityclass;
 
 @SuppressWarnings("unused")
 public class RosterEntityDetails{
+    private final String fileName;
     private String inputDirectory;
     private final String LOCATION;
     private final int DAY;
     private final String MONTH;
     private final int YEAR;
-
-    public RosterEntityDetails(String location, int day, String month, int year){
-        this.LOCATION = location;
-        this.DAY = day;
-        this.MONTH = month;
-        this.YEAR = year;
-    }
-
-    public RosterEntityDetails(String directory, String location, int day, String month, int year){
+    
+    public RosterEntityDetails(String fileName, String directory, String location, int day, String month, int year){
+        this.fileName = fileName;
         this.inputDirectory = directory;
         this.LOCATION = location;
         this.DAY = day;
@@ -41,6 +36,10 @@ public class RosterEntityDetails{
 
     public String getDirectory(){
         return inputDirectory;
+    }
+    
+    public String getFileName(){
+        return fileName;
     }
 
     public void setDirectory(String newDirectory){

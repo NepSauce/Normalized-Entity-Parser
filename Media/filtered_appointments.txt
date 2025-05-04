@@ -55,15 +55,14 @@ Time: 8:30 AM, Course Code: MUSC 2000
 Time: 8:30 AM, Course Code: EMSP 3250
 Time: 8:30 AM, Course Code: MATH 1000
 Time: 8:30 AM, Course Code: MATH 1000
-Time: 8:30 AM, Course Code: COMM 4201
+Time: 8:30 AM, Course Code: COMM 4201 01
 Time: 8:30 AM, Course Code: MATH 1000
 Time: 8:30 AM, Course Code: MATH 1000
 Time: 8:30 AM, Course Code: MATH 3120
 Time: 8:30 AM, Course Code: PHAR 3052
 Time: 8:30 AM, Course Code: MATH 1000
-Time: 8:30 AM, Course Code: MATH 1000
-Time: 8:30 AM, Course Code: COMM 4201
-Time: 8:30 AM, Course Code: COMM 4201
+Time: 8:30 AM, Course Code: COMM 4201 01
+Time: 8:30 AM, Course Code: COMM 4201 01
 Time: 8:30 AM, Course Code: MATH 1000
 Time: 8:30 AM, Course Code: BIOL/MARI 3301
 Time: 8:30 AM, Course Code: BIOL/MARI 3301
@@ -76,7 +75,6 @@ Time: 8:30 AM, Course Code: BIOL/MARI 3301
 Time: 8:30 AM, Course Code: BIOL/MARI 3301
 Time: 8:30 AM, Course Code: BIOL/MARI 3301
 Time: 8:30 AM, Course Code: COMM 4201
-Time: 8:30 AM, Course Code: CSCI 3120
 Time: 8:30 AM, Course Code: RADT 1020
 Time: 8:30 AM, Course Code: RADT 1020
 Time: 8:30 AM, Course Code: DUMT 2040
@@ -84,29 +82,27 @@ Time: 8:30 AM, Course Code: DUMT 2040
 Time: 8:30 AM, Course Code: MGMT 2304
 Time: 8:30 AM, Course Code: RADT 1020
 Time: 8:30 AM, Course Code: RADT 1020
-Time: 8:30 AM, Course Code: HIST 3050 01
 Time: 8:30 AM, Course Code: MGMT 2304
 Time: 8:30 AM, Course Code: BIOL/MARI 3301
 Time: 8:30 AM, Course Code: BIOL/MARI 3301
 Time: 8:30 AM, Course Code: HIST 3050
 Time: 8:30 AM, Course Code: HIST 3050
 Time: 8:30 AM, Course Code: MUSC 2000
+Time: 9:30 AM, Course Code: LAWS 2099 03
+Time: 9:30 AM, Course Code: LAWS 2099 03
 Time: 9:30 AM, Course Code: LAWS 2099
 Time: 9:30 AM, Course Code: LAWS 2099 03
-Time: 9:30 AM, Course Code: LAWS 2099
 Time: 9:30 AM, Course Code: LAWS 2099 03
 Time: 9:30 AM, Course Code: LAWS 2099 03
 Time: 9:30 AM, Course Code: LAWS 2099 03
 Time: 9:30 AM, Course Code: LAWS 2099 03
-Time: 9:30 AM, Course Code: LAWS 2099 03
-Time: 9:30 AM, Course Code: LAWS 1125
-Time: 9:30 AM, Course Code: LAWS 2214
-Time: 9:30 AM, Course Code: LAWS 2214
+Time: 9:30 AM, Course Code: LAWS 1125 01
+Time: 9:30 AM, Course Code: LAWS 2214 01
 Time: 9:30 AM, Course Code: LAWS 2099 03
 Time: 9:30 AM, Course Code: LAWS 2099 03
 Time: 9:30 AM, Course Code: LAWS 2099 03
 Time: 9:30 AM, Course Code: LAWS 2099 03
-Time: 9:30 AM, Course Code: LAWS 2213
+Time: 9:30 AM, Course Code: LAWS 2213 01
 Time: 9:30 AM, Course Code: LAWS 2099 03
 Time: 12:00 PM, Course Code: NESC/PSYO 2140
 Time: 12:00 PM, Course Code: NESC/PSYO 2140
@@ -120,12 +116,12 @@ Time: 12:00 PM, Course Code: NESC/PSYO 2140
 Time: 12:00 PM, Course Code: NESC/PSYO 2140
 Time: 12:00 PM, Course Code: NESC/PSYO 2140
 Time: 12:00 PM, Course Code: NESC/PSYO 2140
-Time: 12:00 PM, Course Code: PSYO/NESC 2140
-Time: 12:00 PM, Course Code: PSYO/NESC 2140
-Time: 12:00 PM, Course Code: PSYO/NESC 2140
-Time: 12:00 PM, Course Code: PSYO/NESC 2140
-Time: 12:00 PM, Course Code: PSYO/NESC 2140
-Time: 12:00 PM, Course Code: PSYO/NESC 2140
+Time: 12:00 PM, Course Code: NESC/PSYO 2140
+Time: 12:00 PM, Course Code: NESC/PSYO 2140
+Time: 12:00 PM, Course Code: NESC/PSYO 2140
+Time: 12:00 PM, Course Code: NESC/PSYO 2140
+Time: 12:00 PM, Course Code: NESC/PSYO 2140
+Time: 12:00 PM, Course Code: NESC/PSYO 2140
 Time: 12:00 PM, Course Code: PHAR 1062
 Time: 12:00 PM, Course Code: PHAR 1062
 Time: 12:00 PM, Course Code: PHAR 1062
@@ -163,7 +159,6 @@ Time: 3:30 PM, Course Code: OCEA 5230
 Time: 3:30 PM, Course Code: PHYC 2510
 Time: 3:30 PM, Course Code: BIOL 3601
 Time: 3:30 PM, Course Code: MATH 1215
-Time: 3:30 PM, Course Code: PSYO 2140
 Time: 3:30 PM, Course Code: MATH 1215
 Time: 3:30 PM, Course Code: CSCI 5193
 Time: 3:30 PM, Course Code: CANA 2002
@@ -171,11 +166,11 @@ Time: 3:30 PM, Course Code: CANA 2002
 Time: 3:30 PM, Course Code: MATH 1215
 Time: 3:30 PM, Course Code: CSCI 3137
 Time: 3:30 PM, Course Code: CSCI 4169
-Time: 3:30 PM, Course Code: ENGL 3503
+Time: 3:30 PM, Course Code: ENGL/THEA 3503
 Time: 3:30 PM, Course Code: CHEM 3601
 Time: 3:30 PM, Course Code: POLI 3581
 Time: 3:30 PM, Course Code: BIOL 3601
-Time: 3:30 PM, Course Code: ENGL 3503
+Time: 3:30 PM, Course Code: ENGL/THEA 3503
 Time: 3:30 PM, Course Code: BIOL 3601
 Time: 3:30 PM, Course Code: BIOL 3601
 Time: 3:30 PM, Course Code: BIOL 3601
@@ -184,7 +179,6 @@ Time: 3:30 PM, Course Code: CHEM 3601
 Time: 3:30 PM, Course Code: CSCI 4169
 Time: 3:30 PM, Course Code: CHEM 3601
 Time: 3:30 PM, Course Code: ASSC 1801
-Time: 3:30 PM, Course Code: CANA 2002
 Time: 3:30 PM, Course Code: BIOL 3601
 Time: 3:30 PM, Course Code: CHEM 3601
 Time: 3:30 PM, Course Code: ASSC 1801
@@ -194,7 +188,6 @@ Time: 3:30 PM, Course Code: BIOL 3601
 Time: 3:30 PM, Course Code: RADT 2020
 Time: 3:30 PM, Course Code: BIOL 3601
 Time: 3:30 PM, Course Code: BIOL 3601
-Time: 3:30 PM, Course Code: HSTC 3350
 Time: 3:30 PM, Course Code: ENGL/THEA 3503
 Time: 3:30 PM, Course Code: ENGL/THEA 3503
 Time: 3:30 PM, Course Code: MATH 1215

@@ -1,7 +1,11 @@
 package nep.swing.panels;
 
+import nep.entityclass.RosterEntityDetails;
+import nep.swing.panels.rostertabpanels.SelectionButtonPalette;
+
 import java.awt.Color;
 import java.util.ArrayList;
+import java.util.LinkedList;
 
 import javax.swing.BorderFactory;
 import javax.swing.JLabel;
@@ -18,6 +22,8 @@ public class ExamAddedPanel {
     private int selectedPanelHeight;
     private int currentXPosition = 25;
     private ArrayList<String> addedRosterArray;
+    private ArrayList<JPanel> rosterPanels = new ArrayList<>();
+    private LinkedList<RosterEntityDetails> rosterObjectEntityList = SelectionButtonPalette.getRosterEntityList();
 
     @SuppressWarnings("Convert2Lambda")
     public ExamAddedPanel(){
@@ -62,21 +68,43 @@ public class ExamAddedPanel {
      */
     public void addRosterToPanel(String rosterDetails){
         JPanel newPanel = new JPanel();
-        newPanel.setBounds(5, currentXPosition, selectedPanelWidth - 15, 25); 
-        newPanel.setBackground(new Color(238,238,238,255)); 
-
+        newPanel.setBounds(5, currentXPosition, selectedPanelWidth - 15, 25);
+        newPanel.setBackground(new Color(238,238,238,255));
+        
         JLabel detailString = new JLabel(rosterDetails);
         detailString.setBounds(0, 0, 0, 20);
-
+        
         newPanel.add(detailString);
         examListPanel.add(newPanel);
-
-        currentXPosition += 30; 
-        selectedPanel.revalidate(); 
-        selectedPanel.repaint(); 
-    }
-
-    public void clearAllRostersFromPanel(){
         
+        rosterPanels.add(newPanel);
+        
+        currentXPosition += 30;
+        selectedPanel.revalidate();
+        selectedPanel.repaint();
+    }
+    
+    
+    public void clearAllRostersFromPanel(){
+        for (JPanel panel : rosterPanels){
+            examListPanel.remove(panel);
+        }
+        rosterPanels.clear();
+        rosterObjectEntityList.clear();
+        currentXPosition = 25;
+        selectedPanel.revalidate();
+        selectedPanel.repaint();
+    }
+    
+    public void undoLastRoster(){
+        if (!rosterPanels.isEmpty()) {
+            JPanel lastPanel = rosterPanels.removeLast();
+            examListPanel.remove(lastPanel);
+            rosterObjectEntityList.removeLast();
+            
+            currentXPosition -= 30;
+            selectedPanel.revalidate();
+            selectedPanel.repaint();
+        }
     }
 }
