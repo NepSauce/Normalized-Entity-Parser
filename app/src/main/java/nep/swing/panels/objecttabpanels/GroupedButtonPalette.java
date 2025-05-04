@@ -15,7 +15,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class GroupedButtonPalette {
-    private JPanel panel;
+    private final JPanel panel;
     
     public GroupedButtonPalette() {
         panel = new JPanel();
@@ -66,8 +66,7 @@ public class GroupedButtonPalette {
                     "Error", JOptionPane.ERROR_MESSAGE);
             return null;
         }
-        
-        // Sort files by creation date (newest first)
+
         Arrays.sort(files, (f1, f2) -> {
             try {
                 BasicFileAttributes attr1 = Files.readAttributes(f1.toPath(), BasicFileAttributes.class);
@@ -97,8 +96,7 @@ public class GroupedButtonPalette {
             JPanel editorPanel = new JPanel();
             editorPanel.setLayout(new BorderLayout());
             editorPanel.add(scrollPane, BorderLayout.CENTER);
-            
-            // Save button
+
             JButton saveButton = new JButton("Save");
             saveButton.setEnabled(false);
             
@@ -125,8 +123,7 @@ public class GroupedButtonPalette {
                             "Error", JOptionPane.ERROR_MESSAGE);
                 }
             });
-            
-            // Print button
+
             JButton printButton = new JButton("Print");
             printButton.addActionListener((ActionEvent printEvent) -> {
                 printTextContent(textArea.getText(), dataFile.getName());
@@ -153,8 +150,7 @@ public class GroupedButtonPalette {
     private void printTextContent(String text, String jobName) {
         PrinterJob job = PrinterJob.getPrinterJob();
         job.setJobName(jobName);
-        
-        // Create a Printable for our text
+
         Printable printable = (graphics, pageFormat, pageIndex) -> {
             if (pageIndex > 0) {
                 return Printable.NO_SUCH_PAGE;
@@ -162,19 +158,17 @@ public class GroupedButtonPalette {
             
             Graphics2D g2d = (Graphics2D) graphics;
             g2d.translate(pageFormat.getImageableX(), pageFormat.getImageableY());
-            
-            // Set font and color
+
             g2d.setFont(new Font("Monospaced", Font.PLAIN, 10));
             g2d.setColor(Color.BLACK);
-            
-            // Split text into lines and print them
+
             String[] lines = text.split("\n");
             int y = 15;
             for (String line : lines) {
                 g2d.drawString(line, 10, y);
                 y += 15;
                 if (y > pageFormat.getImageableHeight() - 15) {
-                    break; // Don't go beyond page height
+                    break;
                 }
             }
             
@@ -182,8 +176,7 @@ public class GroupedButtonPalette {
         };
         
         job.setPrintable(printable);
-        
-        // Show print dialog
+
         if (job.printDialog()) {
             try {
                 job.print();
