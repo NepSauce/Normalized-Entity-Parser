@@ -59,8 +59,8 @@ public class GroupedButtonPalette {
     private File getMostRecentGroupedFile() {
         File folder = new File("NormalizedEntityParser/GroupedObjects/");
         File[] files = folder.listFiles((dir, name) ->
-                name.matches("GroupedObject\\(\\d+-\\d+-\\d+\\)\\(\\d+-\\d+-\\d+\\)\\.txt"));
-        
+                name.matches("GroupedObject\\(\\d{4}-\\d{1,2}-\\d{1,2}\\)\\(\\d{1,2}-\\d{1,2}-\\d{1,2}\\)\\.txt"));
+                
         if (files == null || files.length == 0) {
             JOptionPane.showMessageDialog(null, "No grouped files found in the folder!",
                     "Error", JOptionPane.ERROR_MESSAGE);
