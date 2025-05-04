@@ -3,67 +3,78 @@ package nep.util;
 import javax.swing.*;
 import java.awt.*;
 
-@SuppressWarnings("unused")
 public class DisplayUIError {
-    private final String errorMessage;
-    private int length;
-    private int errorType;
+    private final String message;
+    private final int errorCode;
+    private ErrorLevel level = ErrorLevel.NORMAL;
     
-    
-    public DisplayUIError(String errorMessage, int errorType){
-        this.errorMessage = errorMessage;
-        this.errorType = errorType;
-        this.length = 5000;
-        int errorHeight = 120;
-        int errorWidth = 200;
+    public enum ErrorLevel {
+        NORMAL, CRITICAL
     }
     
-    public void displayNormalError(){
-        JFrame normalError = new JFrame();
-        normalError.setSize(600, 75);
-        normalError.setTitle("Error Code: " + errorType + " - Non Vital Error Occurred");
-        normalError.getContentPane().setBackground(new Color(238,238,238,255));
-        normalError.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+    public DisplayUIError(String message, int errorCode) {
+        this.message = message;
+        this.errorCode = errorCode;
+    }
+    
+    public void displayNormalError() {
+        this.level = ErrorLevel.NORMAL;
+        showDialog();
+    }
+    
+    public void displayCriticalError() {
+        this.level = ErrorLevel.CRITICAL;
+        showDialog();
+    }
+    
+    private void showDialog() {
+        // Create the main frame
+        JFrame frame = new JFrame();
+        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        frame.setUndecorated(false);  // Use default border and title bar
+        frame.setResizable(false);  // Prevent resizing the frame
+        
+        // Set the title to include error code and severity
+        String title = "Error Code: " + errorCode + " - " +
+                (level == ErrorLevel.CRITICAL ? "Critical Error" : "Warning");
+        frame.setTitle(title);
+        
+        // Set frame icon (optional, this is optional based on your preference)
         ImageIcon logo = new ImageIcon("Media/logo.png");
-        normalError.setIconImage(logo.getImage());
+        frame.setIconImage(logo.getImage());
         
-        JLabel interiorTextLabel = new JLabel();
-        interiorTextLabel.setBounds(10, 10, 10, 0);
-        interiorTextLabel.setBackground(Color.WHITE);
-        interiorTextLabel.setOpaque(true);
-        interiorTextLabel.setText(errorMessage + " (Error Type: " + errorType + ")");
-        interiorTextLabel.setFont(new java.awt.Font("Arial", java.awt.Font.BOLD, 16));
-        interiorTextLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        // Set the content panel
+        JPanel contentPanel = new JPanel();
+        contentPanel.setLayout(new BorderLayout());
+        contentPanel.setBorder(BorderFactory.createLineBorder(
+                level == ErrorLevel.CRITICAL ? Color.RED : new Color(180, 180, 180), 2
+        ));
+        contentPanel.setBackground(level == ErrorLevel.CRITICAL ? new Color(255, 235, 235) : new Color(245, 245, 245));
         
-        normalError.add(interiorTextLabel);
-        normalError.setLocationRelativeTo(null);
-        normalError.setVisible(true);
+        // Main Content area with error message
+        JPanel messagePanel = new JPanel();
+        messagePanel.setLayout(new BorderLayout());
+        messagePanel.setBackground(contentPanel.getBackground());
         
-        new Timer(length, e -> normalError.dispose()).start();
-    }
-    
-    public void displayCriticalError(){
-        JFrame criticalError = new JFrame();
-        criticalError.setTitle("Critical Error Occurred");
-        criticalError.setSize(475, 75);
-        criticalError.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        // Display error message with error code and description
+        JLabel messageLabel = new JLabel("<html><div style='text-align: center;'>" +
+                "<b>" + message + "</b><br><i>Error Code: " + errorCode + "</i></div></html>");
+        messageLabel.setFont(new Font("Segoe UI", Font.BOLD, 15));  // Increased font size
+        messageLabel.setForeground(Color.DARK_GRAY);
+        messageLabel.setHorizontalAlignment(SwingConstants.CENTER);
         
-        JLabel interiorTextLabel = new JLabel();
-        interiorTextLabel.setBackground(Color.RED);
-        interiorTextLabel.setOpaque(true);
-        interiorTextLabel.setBounds(10, 10, 580, 80);
-        interiorTextLabel.setText(errorMessage);
-        interiorTextLabel.setFont(new java.awt.Font("Arial", java.awt.Font.BOLD, 16));
-        interiorTextLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        messagePanel.add(messageLabel, BorderLayout.CENTER);
         
-        criticalError.add(interiorTextLabel);
-        criticalError.setLocationRelativeTo(null);
-        criticalError.setVisible(true);
+        // Add the content panel to the frame
+        contentPanel.add(messagePanel, BorderLayout.CENTER);
         
-        new Timer(length, e -> criticalError.dispose()).start();
-    }
-    
-    public void setErrorLength(int newLength){
-        this.length = newLength;
+        // Set frame size and location
+        frame.setContentPane(contentPanel);
+        
+        // Set the frame's width slightly wider than the label text, and adjust height
+        frame.setSize(new Dimension(messageLabel.getPreferredSize().width + 60, 100));  // Reduced height
+        
+        frame.setLocationRelativeTo(null);  // Center the frame on screen
+        frame.setVisible(true);
     }
 }

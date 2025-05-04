@@ -2,8 +2,6 @@ package nep.swing.panels;
 
 import javax.swing.JTabbedPane;
 
-import nep.swing.panels.devmodepanel.AddElementsPanel;
-
 public class DevTab {
     JTabbedPane devPane;
 

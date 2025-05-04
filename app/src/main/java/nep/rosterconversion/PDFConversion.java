@@ -251,7 +251,7 @@ public class PDFConversion {
                     combinedNormalizedObject.append(format);
                     combinedNormalizedObject.append("\n");
                 } else {
-                    String removedFormat = String.format("[DalID: %s |Name: %s |Code: %s |Location: %s |Time: %s]",
+                    String removedFormat = String.format("[DalID: %s | Name: %s | Code: %s | Location: %s | Time: %s]",
                             studentId, studentName, courseCode, location, time);
                     writer.write(removedFormat);
                     writer.newLine();

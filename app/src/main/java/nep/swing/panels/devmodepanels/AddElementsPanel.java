@@ -1,4 +1,4 @@
-package nep.swing.panels.devmodepanel;
+package nep.swing.panels.devmodepanels;
 
 public class AddElementsPanel {
     

@@ -1,2 +1,0 @@
-[DalID: B00813528 |Name: FERNANDES, NICOLAAS |Code: null |Location: 308 WELDON W (10) |Time: 9:30 AM]
-[DalID: B00893879 |Name: GAUVIN, ALEXIS |Code: ERTH 3205 |Location: null |Time: 5:30 PM]
