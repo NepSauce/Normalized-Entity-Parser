@@ -17,8 +17,7 @@ public class ObjectTab {
         JPanel combinedPanel = new CombinedButtonPalette().getPanel();
         JPanel removedPanel = new RemovedButtonPalette().getPanel();
         JPanel groupedPanel = new GroupedButtonPalette().getPanel();
-        
-        // Add tooltips to buttons (show full text on hover)
+   
         addTooltips(combinedPanel);
         addTooltips(removedPanel);
         addTooltips(groupedPanel);
@@ -32,13 +31,12 @@ public class ObjectTab {
         return objectPane;
     }
     
-    // Method to set tooltips for buttons to display full text on hover
     private void addTooltips(Container container) {
         for (Component c : container.getComponents()) {
             if (c instanceof JButton btn) {
-                btn.setToolTipText(btn.getText()); // Tooltip will show the button's text
+                btn.setToolTipText(btn.getText());
             } else if (c instanceof Container) {
-                addTooltips((Container) c); // Recurse for nested panels
+                addTooltips((Container) c);
             }
         }
     }

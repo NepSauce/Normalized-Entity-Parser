@@ -22,10 +22,10 @@ public class RemovedButtonPalette {
         JButton delete = new JButton("Delete");
         
         delete.addActionListener((ActionEvent e) -> {
-            int result = JOptionPane.showConfirmDialog(null, "Are you sure you want to delete from Removed?",
+            int result = JOptionPane.showConfirmDialog(null, "Are you sure you want to delete the Removed Object File?",
                     "Confirm Deletion", JOptionPane.YES_NO_OPTION);
             if (result == JOptionPane.YES_OPTION) {
-                System.out.println("Deleted from Removed");
+                // To-Do: Delete File
             }
         });
         

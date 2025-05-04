@@ -25,10 +25,10 @@ public class GroupedButtonPalette {
         JButton delete = new JButton("Delete");
         
         delete.addActionListener((ActionEvent e) -> {
-            int result = JOptionPane.showConfirmDialog(null, "Are you sure you want to delete from Grouped?",
+            int result = JOptionPane.showConfirmDialog(null, "Are you sure you want to delete the Grouped Object File?",
                     "Confirm Deletion", JOptionPane.YES_NO_OPTION);
             if (result == JOptionPane.YES_OPTION) {
-                System.out.println("Deleted from Grouped");
+                // To-Do: Delete File
             }
         });
         
