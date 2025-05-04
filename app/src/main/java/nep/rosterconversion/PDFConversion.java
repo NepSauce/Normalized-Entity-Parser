@@ -12,6 +12,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import nep.util.CurrentTime;
+import nep.util.DisplayUIPopup;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.text.PDFTextStripper;
 
@@ -142,7 +143,7 @@ public class PDFConversion {
         combinedNormalizedObject.setLength(0);
     }
     
-    private static void deleteRemovedObjectFile(){
+    public static void deleteRemovedObjectFile(){
         String outputTextPath = "NormalizedEntityParser/"
                 + "RemovedObjects/";
         
@@ -234,6 +235,8 @@ public class PDFConversion {
         List<String> formattedLines = new ArrayList<>();
         Path removedLinesPath = Path.of("NormalizedEntityParser/RemovedObjects/RemovedObject(" + safeTime +").txt");
         
+        int removedCount = 0;
+        
         try (BufferedWriter writer = Files.newBufferedWriter(removedLinesPath)) {
             List<String> completeRecords = buildCompleteRecords(text.split("\\r?\\n"), writer);
             
@@ -248,15 +251,26 @@ public class PDFConversion {
                     String format = String.format("[%s | %s | %s | %s | %s]",
                             studentId, studentName, courseCode, location, time);
                     formattedLines.add(format);
-                    combinedNormalizedObject.append(format);
-                    combinedNormalizedObject.append("\n");
+                    combinedNormalizedObject.append(format).append("\n");
                 } else {
                     String removedFormat = String.format("[DalID: %s | Name: %s | Code: %s | Location: %s | Time: %s]",
                             studentId, studentName, courseCode, location, time);
                     writer.write(removedFormat);
                     writer.newLine();
+                    removedCount++;
                 }
             }
+            
+            if (removedCount > 0) {
+                new DisplayUIPopup("Removed Entries Saved",
+                        removedCount + " Removed Line" + (removedCount == 1 ? " Was" : "s Were") + " Saved to RemovedObject.txt.", 1001)
+                        .showInfoPopup();
+            } else {
+                new DisplayUIPopup("No Removed Entries",
+                        "No Entries Were Removed. CombinedObject.txt Was Successfully Created.", 1002)
+                        .showInfoPopup();
+            }
+            
         } catch (IOException e) {
             System.err.println("Error writing to RemovedObject.txt: " + e.getMessage());
         }

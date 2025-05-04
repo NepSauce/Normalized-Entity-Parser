@@ -6,15 +6,17 @@ import java.awt.*;
 public class DisplayUIPopup {
     private final String message;
     private final String title;
+    private final int popupCode;
     private PopupType type = PopupType.INFO;
     
     public enum PopupType {
         INFO, CONFIRM
     }
     
-    public DisplayUIPopup(String title, String message) {
+    public DisplayUIPopup(String title, String message, int popupCode) {
         this.title = title;
         this.message = message;
+        this.popupCode = popupCode;
     }
     
     public void showInfoPopup() {
@@ -28,23 +30,72 @@ public class DisplayUIPopup {
     }
     
     private boolean showDialog() {
+        JFrame frame = new JFrame();
+        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        frame.setUndecorated(false);
+        frame.setResizable(false);
+        frame.setTitle(title);
+        
         ImageIcon logo = new ImageIcon("Media/logo.png");
+        frame.setIconImage(logo.getImage());
         
-        JLabel label = new JLabel("<html><div style='text-align: center;'>" + message + "</div></html>");
-        label.setFont(new Font("Segoe UI", Font.PLAIN, 14));
-        label.setBorder(BorderFactory.createEmptyBorder(10, 20, 10, 20));
+        JPanel contentPanel = new JPanel();
+        contentPanel.setLayout(new BorderLayout());
+        contentPanel.setBorder(BorderFactory.createLineBorder(
+                type == PopupType.CONFIRM ? new Color(70, 130, 180) : new Color(150, 150, 150), 2
+        ));
+        contentPanel.setBackground(type == PopupType.CONFIRM ? new Color(235, 245, 255) : new Color(245, 245, 245));
         
-        UIManager.put("OptionPane.messageFont", new Font("Segoe UI", Font.PLAIN, 14));
-        UIManager.put("OptionPane.buttonFont", new Font("Segoe UI", Font.PLAIN, 13));
+        JPanel messagePanel = new JPanel();
+        messagePanel.setLayout(new BorderLayout());
+        messagePanel.setBackground(contentPanel.getBackground());
         
-        if (type == PopupType.INFO) {
-            JOptionPane.showMessageDialog(null, label, title, JOptionPane.INFORMATION_MESSAGE, logo);
-            return false;
+        JLabel messageLabel = new JLabel("<html><div style='text-align: center;'>" +
+                "<b>" + message + "</b><br><i>Popup Code: " + popupCode + "</i></div></html>");
+        messageLabel.setFont(new Font("Segoe UI", Font.BOLD, 15));
+        messageLabel.setForeground(Color.DARK_GRAY);
+        messageLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        
+        messagePanel.add(messageLabel, BorderLayout.CENTER);
+        contentPanel.add(messagePanel, BorderLayout.CENTER);
+        
+        boolean[] confirmed = {false};
+        if (type == PopupType.CONFIRM) {
+            JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+            JButton yesButton = new JButton("Yes");
+            JButton noButton = new JButton("No");
+            
+            yesButton.setFont(new Font("Segoe UI", Font.PLAIN, 13));
+            noButton.setFont(new Font("Segoe UI", Font.PLAIN, 13));
+            
+            yesButton.addActionListener(e -> {
+                confirmed[0] = true;
+                frame.dispose();
+            });
+            
+            noButton.addActionListener(e -> {
+                confirmed[0] = false;
+                frame.dispose();
+            });
+            
+            buttonPanel.add(yesButton);
+            buttonPanel.add(noButton);
+            contentPanel.add(buttonPanel, BorderLayout.SOUTH);
         }
-        else {
-            int result = JOptionPane.showConfirmDialog(null, label, title,
-                    JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, logo);
-            return result == JOptionPane.YES_OPTION;
+        
+        frame.setContentPane(contentPanel);
+        frame.setSize(new Dimension(messageLabel.getPreferredSize().width + 60, 100));
+        frame.setLocationRelativeTo(null);
+        frame.setVisible(true);
+        
+        if (type == PopupType.CONFIRM) {
+            while (frame.isVisible()) {
+                try {
+                    Thread.sleep(50);
+                } catch (InterruptedException ignored) {}
+            }
         }
+        
+        return confirmed[0];
     }
 }
