@@ -1,5 +1,7 @@
 package nep.swing.panels.objecttabpanels;
 
+import nep.rosterconversion.PDFCleaner;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -23,6 +25,12 @@ public class GroupedButtonPalette {
         JButton modify = new JButton("Modify");
         JButton print = new JButton("Print");
         JButton delete = new JButton("Delete");
+        
+        
+        generate.addActionListener((ActionEvent e) -> {
+            PDFCleaner.generateGroupedAppointments();
+        });
+        
         
         delete.addActionListener((ActionEvent e) -> {
             int result = JOptionPane.showConfirmDialog(null, "Are you sure you want to delete the Grouped Object File?",

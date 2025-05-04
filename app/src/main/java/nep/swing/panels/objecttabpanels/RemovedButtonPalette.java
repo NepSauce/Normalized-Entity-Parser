@@ -51,7 +51,7 @@ public class RemovedButtonPalette {
                 SwingUtilities.invokeLater(() -> {
                     JFrame frame = new JFrame("Removed Objects Viewer");
                     frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-                    frame.setSize(650, 475);
+                    frame.setSize(640, 475);
                     frame.setLocationRelativeTo(null);
                     frame.setContentPane(new nep.swing.panels.removedobjectpanels.RemovedObjectPanel());
                     frame.setVisible(true);

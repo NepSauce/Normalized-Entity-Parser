@@ -25,7 +25,7 @@ public class RemovedObjectPanel extends JPanel {
         JPanel containerPanel = new JPanel();
         containerPanel.setLayout(null);
         containerPanel.setBackground(Color.WHITE);
-        containerPanel.setBounds(10, 10, 610, 400);
+        containerPanel.setBounds(10, 10, 600, 400);
         containerPanel.setBorder(BorderFactory.createBevelBorder(BevelBorder.LOWERED));
         
         // Inner scrollable panel with titled border
@@ -126,14 +126,12 @@ public class RemovedObjectPanel extends JPanel {
             manager.modifyObjectKeyValue("Time", timeField.getText());
             
             String updatedLine = manager.getObject();
-            updateLineInFile(lineIndex, updatedLine);
             
+            // Validate and restore the entry only if valid
             boolean restored = RemovedObjectValidator.validateAndRestore(updatedLine, dataFile.toPath(), lineIndex);
             if (restored) {
-                new DisplayUIError("Entry validated and restored.", 0).displayNormalError();
+                refreshPanel();
             }
-            
-            refreshPanel();
         }
     }
     

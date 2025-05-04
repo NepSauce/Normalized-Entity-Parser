@@ -1,8 +1,13 @@
 package nep.rosterconversion;
 
 import nep.util.CurrentTime;
+import nep.util.DisplayUIError;
+import nep.util.DisplayUIPopup;
 
 import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.*;
 
 /**
@@ -10,16 +15,6 @@ import java.util.*;
  * and generates filtered and grouped output files.
  */
 public class PDFCleaner {
-    private static final String[] METADATA_FIELDS = {
-            "Duration:",
-            "Permitted Materials:",
-            "Exam Source:",
-            "Medium:",
-            "PU/DEL:",
-            "Password:",
-            "Notes:"
-    };
-    
     private static final int COURSE_CODE_WIDTH = 50;
     private static final Map<String, String> crossListedCourses = new HashMap<>();
     
@@ -30,12 +25,8 @@ public class PDFCleaner {
         filterAppointments(inputFilePath, outputFilePath, groupedFilePath);
     }
     
-    public static String newDirectoryForGroupedObject(int year, int month, int day){
-        String yearStr = String.valueOf(year);
-        String monthStr = String.format("%02d", month);
-        String dayStr = String.format("%02d", day);
-        
-        String baseFolderPath = "NormalizedEntityParser/" + yearStr + "/" + monthStr + "/" + dayStr + "/GroupedObjects/";
+    public static String newDirectoryForGroupedObject(){
+        String baseFolderPath = "NormalizedEntityParser/GroupedObjects/";
         
         File folder = new File(baseFolderPath);
         if (!folder.exists()) {
@@ -54,23 +45,74 @@ public class PDFCleaner {
         return baseFolderPath;
     }
     
-    public static void generateGroupedAppointments(String pdfPath, String fileName, String location){
-        CurrentTime newTime = new CurrentTime();
-        String currentTime = newTime.getCurrentTime();
-        int year = newTime.getCurrentYear();
-        int month = newTime.getCurrentMonth();
-        int day = newTime.getCurrentDay();
+    public static String newDirectoryForFilteredObject(){
+        String baseFolderPath = "NormalizedEntityParser/FilteredObjects/";
         
-        String monthStr = String.format("%02d", month);
-        String dayStr = String.format("%02d", day);
-        String folderPath = newDirectoryForGroupedObject(year, month, day);
+        File folder = new File(baseFolderPath);
+        if (!folder.exists()) {
+            boolean directoryCreated = folder.mkdirs();
+            if (directoryCreated) {
+                System.out.println("Created folder: " + baseFolderPath);
+            }
+            else{
+                System.out.println("Failed to create folder: " + baseFolderPath);
+            }
+        }
+        else{
+            System.out.println("Folder already exists: " + baseFolderPath);
+        }
         
-        String outputTextPath = "NormalizedEntityParser/"
-                + year + "/"
-                + monthStr + "/"
-                + dayStr + "/"
-                + "GroupedObjects/"
-                + "GroupedObject(" + fileName + ").txt";
+        return baseFolderPath;
+    }
+    
+    public static void generateGroupedAppointments() {
+        try {
+            CurrentTime newTime = new CurrentTime();
+            String currentTime = newTime.getCurrentTime();
+            String safeTime = currentTime.replace(":", "-");
+            int year = newTime.getCurrentYear();
+            int month = newTime.getCurrentMonth();
+            int day = newTime.getCurrentDay();
+            
+            // Create directories for grouped and filtered objects if they don't exist
+            newDirectoryForGroupedObject();
+            newDirectoryForFilteredObject();
+            
+            // Use the generated folder path for output
+            String folderPath = newDirectoryForGroupedObject();
+            String filteredPath = newDirectoryForFilteredObject();
+            
+            // Make sure the folder path exists
+            Path path = Paths.get(folderPath);
+            Files.createDirectories(path);  // This will create the directory if it doesn't exist
+            
+            // Set safe output file paths
+            String inputTextDir = "NormalizedEntityParser/CombinedObjects/";
+            String outputTextPath = filteredPath + "/FilteredObject(" + year + "-" + month + "-" + day + ")(" + safeTime + ").txt";
+            String groupedFilePath = folderPath + "/GroupedObject(" + year + "-" + month + "-" + day + ")(" + safeTime + ").txt";
+            
+            // Get the only file in CombinedObjects directory
+            File dir = new File(inputTextDir);
+            File[] files = dir.listFiles((d, name) -> name.endsWith(".txt"));
+            
+            if (files == null || files.length == 0) {
+                new DisplayUIError("No CombinedObject.txt File Found.", 104).displayNormalError();
+                return;
+            }
+            
+            File inputFile = files[0]; // the only file
+            
+            // Run filtering and grouping
+            filterAppointments(inputFile.getAbsolutePath(), outputTextPath, groupedFilePath);
+            
+            // Show success popup
+            new DisplayUIPopup("Success Making Grouped Appointments", "Grouped Appointments Generated!", 0).showInfoPopup();
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+            // Show error popup
+            new DisplayUIPopup("Error", "Failed to generate grouped appointments.", 104).showInfoPopup();
+        }
     }
     
     /**
@@ -269,7 +311,7 @@ public class PDFCleaner {
     private static void writeCourseHeader(String courseCode, BufferedWriter groupedWriter)
             throws IOException {
         String courseLine = String.format("Course Code: %s", courseCode);
-        groupedWriter.write(String.format("%-50s%s%n", courseLine, METADATA_FIELDS[0]));
+        groupedWriter.write(courseLine + "\n");
     }
     
     /**
@@ -282,12 +324,8 @@ public class PDFCleaner {
     private static void writeLocationEntries(
             Map<String, Map<String, Integer>> locationMap,
             BufferedWriter groupedWriter) throws IOException {
-        boolean firstLocation = true;
-        
         for (Map.Entry<String, Map<String, Integer>> locationEntry : locationMap.entrySet()) {
-            writeTimeEntries(locationEntry.getKey(), locationEntry.getValue(),
-                    groupedWriter, firstLocation);
-            firstLocation = false;
+            writeTimeEntries(locationEntry.getKey(), locationEntry.getValue(), groupedWriter);
         }
     }
     
@@ -297,40 +335,15 @@ public class PDFCleaner {
      * @param location Location name.
      * @param timeMap Map of times to student counts.
      * @param groupedWriter Writer to output to.
-     * @param firstLocation Flag indicating if this is the first location.
      * @throws IOException if writing fails.
      */
     private static void writeTimeEntries(String location,
-                                         Map<String, Integer> timeMap, BufferedWriter groupedWriter,
-                                         boolean firstLocation) throws IOException {
-        boolean firstTimeEntry = true;
-        
+                                         Map<String, Integer> timeMap, BufferedWriter groupedWriter)
+            throws IOException {
         for (Map.Entry<String, Integer> timeEntry : timeMap.entrySet()) {
             String timeLine = String.format(" %d - %s - %s",
                     timeEntry.getValue(), location, timeEntry.getKey());
-            groupedWriter.write(String.format("%-50s", timeLine));
-            
-            if (firstTimeEntry && firstLocation) {
-                writeMetadataFields(groupedWriter);
-                firstTimeEntry = false;
-            } else {
-                groupedWriter.write("\n");
-            }
-        }
-    }
-    
-    /**
-     * Writes additional metadata fields for grouped output.
-     *
-     * @param groupedWriter Writer for output.
-     * @throws IOException if writing fails.
-     */
-    private static void writeMetadataFields(BufferedWriter groupedWriter) throws IOException {
-        for (int i = 1; i < METADATA_FIELDS.length; i++) {
-            groupedWriter.write(METADATA_FIELDS[i] + "\n");
-            if (i < METADATA_FIELDS.length - 1) {
-                groupedWriter.write(String.format("%-50s", ""));
-            }
+            groupedWriter.write(timeLine + "\n");
         }
     }
 }
