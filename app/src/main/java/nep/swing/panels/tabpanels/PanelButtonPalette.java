@@ -56,31 +56,6 @@ public class PanelButtonPalette {
         undoLastRosterFromPanelButton = new JButton("Undo");
         
         submitAllRostersButton.addActionListener((ActionEvent e) -> {
-            String folderPath = "NormalizedEntityParser/RemovedObjects/";
-            File folder = new File(folderPath);
-            File[] files = folder.listFiles((dir, name) -> name.endsWith(".txt"));
-            
-            if (files != null && files.length > 0) {
-                File file = files[0];
-                
-                if (file.exists() && file.length() > 0) {
-                    openRemovedObjectWindow();
-                } else {
-                    try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
-                        String line = reader.readLine();
-                        if (line == null || line.trim().isEmpty()) {
-                            new DisplayUIError("No Removed Objects Generated", 201).displayNormalError();
-                        } else {
-                            openRemovedObjectWindow();
-                        }
-                    } catch (IOException ex) {
-                        new DisplayUIError("Error Reading File: " + ex.getMessage(), 202).displayCriticalError();
-                    }
-                }
-            } else {
-                new DisplayUIError("No Valid .txt Files Found in The RemovedObjects Folder.", 203).displayNormalError();
-            }
-            
             RosterObjectSplitter newSplitter = new RosterObjectSplitter(rosterEntityDetails, rosterEntityDetails.size());
             LinkedList<String> directoryList = newSplitter.getRosterDirectory();
             LinkedList<String> fileNameList = newSplitter.getRosterFileName();
