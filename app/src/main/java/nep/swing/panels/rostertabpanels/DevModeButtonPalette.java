@@ -1,8 +1,12 @@
 package nep.swing.panels.rostertabpanels;
 
+import nep.swing.panels.devmodepanels.TerminalFrame;
+
 import javax.swing.*;
 import javax.swing.border.BevelBorder;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 /**
  * The DevModeButtonPalette class is a Swing panel that provides a user interface with buttons for
@@ -30,6 +34,20 @@ public class DevModeButtonPalette{
         JButton bashButton = new JButton("NEPTer");
         JButton helpButton = new JButton("Docs");
         
+        debugButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                openDebugFrame();
+            }
+        });
+        
+        bashButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(java.awt.event.ActionEvent e) {
+                openTerminal();
+            }
+        });
+        
         buttonContainer.add(debugButton);
         buttonContainer.add(bashButton);
         buttonContainer.add(helpButton);
@@ -44,5 +62,20 @@ public class DevModeButtonPalette{
      */
     public JPanel getDevModePanel(){
         return devModePanel;
+    }
+    
+    /**
+     * Opens the TerminalFrame when the NEPTer button is clicked.
+     */
+    private void openTerminal() {
+        new TerminalFrame();  // Open the terminal window
+    }
+    
+    /**
+     * Opens a new frame when the "RootNEP" button is pressed.
+     */
+    private void openDebugFrame() {
+        nep.swing.panels.rostertabpanels.DebugFrame debugFrame = new nep.swing.panels.rostertabpanels.DebugFrame();
+        debugFrame.setVisible(true);
     }
 }
