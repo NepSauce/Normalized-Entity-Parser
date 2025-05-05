@@ -14,9 +14,9 @@ public class ObjectTab {
         objectPane = new JTabbedPane();
         objectPane.setBounds(300, 240, 250, 80);
         
-        JPanel combinedPanel = new CombinedButtonPalette().getPanel();
-        JPanel removedPanel = new RemovedButtonPalette().getPanel();
-        JPanel groupedPanel = new GroupedButtonPalette().getPanel();
+        JPanel combinedPanel = new CombinedButtonPalette().getCombinedButtonPanel();
+        JPanel removedPanel = new RemovedButtonPalette().getRemovedButtonPanel();
+        JPanel groupedPanel = new GroupedButtonPalette().getGroupedButtonPanel();
    
         addTooltips(combinedPanel);
         addTooltips(removedPanel);

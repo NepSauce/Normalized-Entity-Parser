@@ -7,28 +7,37 @@ import java.io.*;
 import java.nio.file.*;
 import java.util.List;
 
+/**
+ * This class provides a button palette with actions to open and delete files
+ * within the CombinedObjects directory. It is part of the Object tab UI panel
+ * in the Normalized Entity Parser Swing application.
+ */
 public class CombinedButtonPalette {
-    private JPanel panel;
+    private JPanel combinedButtonPanel;
     
-    public CombinedButtonPalette() {
-        panel = new JPanel();
-        panel.setLayout(null);
-        panel.setBackground(Color.WHITE);
-        panel.setBorder(BorderFactory.createBevelBorder(1));
-        panel.setPreferredSize(new Dimension(100, 60));
+    /**
+     * Constructs the CombinedButtonPalette and initializes the buttons
+     * for opening and deleting files in the CombinedObjects directory.
+     */
+    public CombinedButtonPalette(){
+        combinedButtonPanel = new JPanel();
+        combinedButtonPanel.setLayout(null);
+        combinedButtonPanel.setBackground(Color.WHITE);
+        combinedButtonPanel.setBorder(BorderFactory.createBevelBorder(1));
+        combinedButtonPanel.setPreferredSize(new Dimension(100, 60));
         
         JPanel buttonContainer = new JPanel(new GridLayout(1, 2, 10, 0));
         buttonContainer.setBounds(10, 10, 225, 35);
         buttonContainer.setBackground(Color.WHITE);
         
-        JButton modify = new JButton("Open File");
-        JButton delete = new JButton("Delete");
+        JButton openFile = new JButton("Open File");
+        JButton deleteFile = new JButton("Delete");
         
-        modify.addActionListener((ActionEvent e) -> {
+        openFile.addActionListener((ActionEvent e) -> {
             openFileEditor();
         });
         
-        delete.addActionListener((ActionEvent e) -> {
+        deleteFile.addActionListener((ActionEvent e) -> {
             int result = JOptionPane.showConfirmDialog(null, "Are you sure you want to delete from Combined?",
                     "Confirm Deletion", JOptionPane.YES_NO_OPTION);
             if (result == JOptionPane.YES_OPTION) {
@@ -36,34 +45,45 @@ public class CombinedButtonPalette {
             }
         });
         
-        buttonContainer.add(modify);
-        buttonContainer.add(delete);
-        panel.add(buttonContainer);
+        buttonContainer.add(openFile);
+        buttonContainer.add(deleteFile);
+        combinedButtonPanel.add(buttonContainer);
     }
     
-    public JPanel getPanel() {
-        return panel;
+    /**
+     * Returns the JPanel containing the button palette.
+     *
+     * @return The JPanel with Open File and Delete buttons.
+     */
+    public JPanel getCombinedButtonPanel(){
+        return combinedButtonPanel;
     }
     
-    private void openFileEditor() {
+    /**
+     * Opens the first .txt file found in the CombinedObjects directory
+     * in an editable text area within a new JFrame window.
+     * Allows users to view and save modifications to the file.
+     * If no .txt file is found, an error dialog is displayed.
+     */
+    private void openFileEditor(){
         File folder = new File("NormalizedEntityParser/CombinedObjects/");
         File[] files = folder.listFiles((dir, name) -> name.endsWith(".txt"));
         
-        if (files == null || files.length == 0) {
+        if (files == null || files.length == 0){
             JOptionPane.showMessageDialog(null, "No .txt file found in the folder!", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
         
         File dataFile = files[0];
         
-        try {
+        try{
             List<String> lines = Files.readAllLines(dataFile.toPath());
             JTextArea textArea = new JTextArea();
             textArea.setEditable(true);
             textArea.setText(String.join("\n", lines));
             textArea.setWrapStyleWord(true);
             textArea.setLineWrap(true);
-            textArea.setMargin(new Insets(0, 10, 0, 10)); // Padding inside the text area
+            textArea.setMargin(new Insets(0, 10, 0, 10));
             
             JScrollPane scrollPane = new JScrollPane(textArea);
             scrollPane.setPreferredSize(new Dimension(600, 400));
@@ -71,34 +91,34 @@ public class CombinedButtonPalette {
             JPanel editorPanel = new JPanel();
             editorPanel.setLayout(new BorderLayout());
             editorPanel.add(scrollPane, BorderLayout.CENTER);
-            
-            // Save button only appears if text is modified
+
             JButton saveButton = new JButton("Save");
-            saveButton.setEnabled(false); // Initially disabled
+            saveButton.setEnabled(false);
             
-            textArea.getDocument().addDocumentListener(new javax.swing.event.DocumentListener() {
+            textArea.getDocument().addDocumentListener(new javax.swing.event.DocumentListener(){
                 @Override
-                public void insertUpdate(javax.swing.event.DocumentEvent e) {
-                    saveButton.setEnabled(true); // Enable save button when text is modified
+                public void insertUpdate(javax.swing.event.DocumentEvent e){
+                    saveButton.setEnabled(true);
                 }
                 
                 @Override
-                public void removeUpdate(javax.swing.event.DocumentEvent e) {
-                    saveButton.setEnabled(true); // Enable save button when text is modified
+                public void removeUpdate(javax.swing.event.DocumentEvent e){
+                    saveButton.setEnabled(true);
                 }
                 
                 @Override
-                public void changedUpdate(javax.swing.event.DocumentEvent e) {
-                    saveButton.setEnabled(true); // Enable save button when text is modified
+                public void changedUpdate(javax.swing.event.DocumentEvent e){
+                    saveButton.setEnabled(true);
                 }
             });
             
             saveButton.addActionListener((ActionEvent saveEvent) -> {
-                try {
+                try{
                     Files.write(dataFile.toPath(), textArea.getText().getBytes());
                     JOptionPane.showMessageDialog(null, "File saved successfully!", "Success", JOptionPane.INFORMATION_MESSAGE);
                     saveButton.setEnabled(false); // Disable save after saving
-                } catch (IOException ex) {
+                }
+                catch (IOException ex){
                     JOptionPane.showMessageDialog(null, "Failed to save the file: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
                 }
             });
@@ -114,7 +134,8 @@ public class CombinedButtonPalette {
             editorFrame.setLocationRelativeTo(null);
             editorFrame.setVisible(true);
             
-        } catch (IOException e) {
+        }
+        catch (IOException e){
             JOptionPane.showMessageDialog(null, "Error reading file: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
