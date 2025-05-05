@@ -4,11 +4,18 @@ import javax.swing.*;
 import javax.swing.border.BevelBorder;
 import java.awt.*;
 
-public class DevModeButtonPalette {
-    
+/**
+ * The DevModeButtonPalette class is a Swing panel that provides a user interface with buttons for
+ * logging, bash commands, and accessing documentation. It is designed for development mode purposes.
+ */
+public class DevModeButtonPalette{
     private JPanel devModePanel;
     
-    public DevModeButtonPalette() {
+    /**
+     * Constructs the DevModeButtonPalette, initializes the UI components, and sets up the buttons for logging,
+     * bash commands, and documentation access.
+     */
+    public DevModeButtonPalette(){
         devModePanel = new JPanel();
         devModePanel.setLayout(null);
         devModePanel.setBackground(Color.WHITE);
@@ -30,7 +37,12 @@ public class DevModeButtonPalette {
         devModePanel.add(buttonContainer);
     }
     
-    public JPanel getDevModePanel() {
+    /**
+     * Returns the main panel containing the development mode buttons.
+     *
+     * @return the JPanel containing the development mode buttons.
+     */
+    public JPanel getDevModePanel(){
         return devModePanel;
     }
 }

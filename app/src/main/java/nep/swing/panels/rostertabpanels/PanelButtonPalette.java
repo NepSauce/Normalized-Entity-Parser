@@ -18,18 +18,26 @@ import nep.swing.panels.RosterAddedPanel;
 import nep.swing.panels.removedobjectpanels.RemovedObjectPanel;
 import nep.util.RosterObjectSplitter;
 
+/**
+ * The PanelButtonPalette class creates a panel with buttons for interacting with rosters.
+ * It allows submitting, clearing, and undoing roster actions.
+ */
 @SuppressWarnings("FieldMayBeFinal")
-public class PanelButtonPalette {
-    
-    private JButton submitAllRostersButton;
-    private JButton clearAllRostersFromPanelButton;
-    private JButton undoLastRosterFromPanelButton;
+public class PanelButtonPalette{
     private JPanel panelButtonPanel;
-    private JPanel buttonContainerPanel;
     private static LinkedList<RosterEntityDetails> rosterEntityDetails = new LinkedList<>();
     
+    /**
+     * Constructs the PanelButtonPalette, initializes the UI components, and sets up the buttons for submitting, clearing,
+     * and undoing roster actions.
+     *
+     * @param examLocationPanel the panel responsible for managing exam locations.
+     * @param examAddedPanel the panel that handles the addition of exams to the roster.
+     * @param datePickerPanel the panel for selecting dates.
+     * @param rosterAddedPanel the panel that manages the added rosters.
+     */
     public PanelButtonPalette(ExamLocationPanel examLocationPanel, ExamAddedPanel examAddedPanel,
-                              DatePickerPanel datePickerPanel, RosterAddedPanel rosterAddedPanel) {
+                              DatePickerPanel datePickerPanel, RosterAddedPanel rosterAddedPanel){
         
         rosterEntityDetails = SelectionButtonPalette.getRosterEntityList();
         
@@ -39,16 +47,16 @@ public class PanelButtonPalette {
         panelButtonPanel.setBorder(BorderFactory.createBevelBorder(BevelBorder.LOWERED));
         panelButtonPanel.setPreferredSize(new Dimension(100, 60));
         
-        buttonContainerPanel = new JPanel();
+        JPanel buttonContainerPanel = new JPanel();
         buttonContainerPanel.setLayout(new GridLayout(1, 3, 10, 0));
         buttonContainerPanel.setBackground(Color.WHITE);
         buttonContainerPanel.setBounds(10, 10 , 225, 35);
         
         panelButtonPanel.add(buttonContainerPanel);
         
-        submitAllRostersButton = new JButton("Submit");
-        clearAllRostersFromPanelButton = new JButton("Clear");
-        undoLastRosterFromPanelButton = new JButton("Undo");
+        JButton submitAllRostersButton = new JButton("Submit");
+        JButton clearAllRostersFromPanelButton = new JButton("Clear");
+        JButton undoLastRosterFromPanelButton = new JButton("Undo");
         
         submitAllRostersButton.addActionListener((ActionEvent e) -> {
             RosterObjectSplitter newSplitter = new RosterObjectSplitter(rosterEntityDetails, rosterEntityDetails.size());
@@ -56,14 +64,13 @@ public class PanelButtonPalette {
             LinkedList<String> fileNameList = newSplitter.getRosterFileName();
             LinkedList<String> locationList = newSplitter.getRosterLocation();
             
-            if (!directoryList.isEmpty()) {
+            if (!directoryList.isEmpty()){
                 PDFConversion.deleteCombinedObjectFile();
                 PDFConversion.emptyCombinedNormalizedObjectContents();
                 
-                for (int i = 0; i < rosterEntityDetails.size(); i++) {
+                for (int i = 0; i < rosterEntityDetails.size(); i++){
                     PDFConversion.generateNormalizedObject(directoryList.get(i), fileNameList.get(i), locationList.get(i));
                 }
-                
                 PDFConversion.generateCombinedObject();
             }
         });
@@ -82,7 +89,10 @@ public class PanelButtonPalette {
         buttonContainerPanel.add(undoLastRosterFromPanelButton);
     }
     
-    private void openRemovedObjectWindow() {
+    /**
+     * Opens the RemovedObjectPanel in a new JFrame to manage and display removed objects.
+     */
+    private void openRemovedObjectWindow(){
         RemovedObjectPanel removedObjectPanel = new RemovedObjectPanel();
         JFrame frame = new JFrame("Removed Objects");
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -92,7 +102,12 @@ public class PanelButtonPalette {
         frame.setVisible(true);
     }
     
-    public JPanel getPanelButtonPanel() {
+    /**
+     * Returns the main panel containing the buttons for managing rosters.
+     *
+     * @return the JPanel containing the roster management buttons.
+     */
+    public JPanel getPanelButtonPanel(){
         return panelButtonPanel;
     }
 }
