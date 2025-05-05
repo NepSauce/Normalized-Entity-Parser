@@ -26,11 +26,11 @@ public class DevModeButtonPalette{
         buttonContainer.setBackground(Color.WHITE);
         buttonContainer.setBounds(10, 10, 225, 35);
         
-        JButton logButton = new JButton("NLog");
-        JButton bashButton = new JButton("SNep");
+        JButton debugButton = new JButton("RootNEP");
+        JButton bashButton = new JButton("NEPTer");
         JButton helpButton = new JButton("Docs");
         
-        buttonContainer.add(logButton);
+        buttonContainer.add(debugButton);
         buttonContainer.add(bashButton);
         buttonContainer.add(helpButton);
         
