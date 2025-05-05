@@ -35,7 +35,7 @@ public class TerminalFrame extends JFrame {
         // Input panel at bottom
         inputPanel = new JPanel(new BorderLayout());
         inputPanel.setBackground(Color.BLACK);
-        inputPanel.setPreferredSize(new Dimension(600, 30));
+        inputPanel.setPreferredSize(new Dimension(700, 30));
         
         JLabel promptLabel = new JLabel(prompt);
         promptLabel.setFont(new Font("Monospaced", Font.BOLD, 14));
@@ -64,6 +64,8 @@ public class TerminalFrame extends JFrame {
         add(inputPanel, BorderLayout.SOUTH);
         
         setVisible(true);
+        
+        appendStartupMessage();
     }
     
     // Append prompt (bold) + command (plain) to terminalPane
@@ -86,6 +88,25 @@ public class TerminalFrame extends JFrame {
         }
     }
     
+    private void appendStartupMessage() {
+        StyledDocument doc = terminalPane.getStyledDocument();
+        
+        Style header = terminalPane.addStyle("Header", null);
+        StyleConstants.setForeground(header, new Color(255, 191, 0));
+        StyleConstants.setFontSize(header, 13);
+        StyleConstants.setFontFamily(header, "Monospaced");
+        
+        try {
+            doc.insertString(doc.getLength(), "Normalized Entity Parser [BuildVer-1.0.Alpha]\n", header);
+            doc.insertString(doc.getLength(), "Authors: Zawad Atif & Nafisah Nubah.\n\n", header);
+            doc.insertString(doc.getLength(), "DevMode Enables Access to Developer Tools For Opening, Modifying, " +
+                    "and Managing Internal NEP Files and Features.\n", header);
+            
+        } catch (BadLocationException e) {
+            e.printStackTrace();
+        }
+    }
+    
     private void executeCommand(String command) {
         StyledDocument doc = terminalPane.getStyledDocument();
         
@@ -96,7 +117,7 @@ public class TerminalFrame extends JFrame {
             } else if (command.equalsIgnoreCase("clear")) {
                 terminalPane.setText("");
             } else {
-                doc.insertString(doc.getLength(), "Error: Command Not Recognized: Enter '@nep help' For a List of Commands." + command + "\n", null);
+                doc.insertString(doc.getLength(), "Error: Command Not Recognized: Enter '@nep help' For a List of Commands." + "\n", null);
             }
         } catch (BadLocationException e) {
             e.printStackTrace();
