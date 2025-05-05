@@ -19,7 +19,7 @@ import java.io.IOException;
  * It includes logic to validate file presence and contents before allowing edits,
  * and confirms deletion to prevent accidental file loss.
  */
-public class RemovedButtonPalette {
+public class RemovedButtonPalette{
     private JPanel removedButtonPanel;
     
     /**
