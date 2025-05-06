@@ -1,4 +1,6 @@
-package nep.swing.panels.rostertabpanels;
+package nep.swing.panels.devmodepanels;
+
+import nep.swing.panels.ExamLocationPanel;
 
 import javax.swing.*;
 import java.awt.*;
@@ -14,7 +16,7 @@ public class DebugFrame extends JFrame {
      */
     public DebugFrame() {
         setTitle("RootNEP Debug");
-        setSize(600, 385);
+        setSize(600, 375);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setResizable(false);
@@ -23,6 +25,9 @@ public class DebugFrame extends JFrame {
 
         ImageIcon logo = new ImageIcon("Media/logo.png");
         setIconImage(logo.getImage());
+        
+        ExamLocationPanel examLocationPanel = new ExamLocationPanel();
+        add(examLocationPanel.getExamLocationPanel());
 
         setLayout(new BorderLayout());
     }

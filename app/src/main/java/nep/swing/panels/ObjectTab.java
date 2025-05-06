@@ -12,7 +12,7 @@ public class ObjectTab {
     public ObjectTab(ExamLocationPanel examLocationPanel, ExamAddedPanel examAddedPanel,
                      DatePickerPanel datePickerPanel, RosterAddedPanel rosterAddedPanel) {
         objectPane = new JTabbedPane();
-        objectPane.setBounds(300, 240, 250, 80);
+        objectPane.setBounds(300, 230, 250, 80);
         
         JPanel combinedPanel = new CombinedButtonPalette().getCombinedButtonPanel();
         JPanel removedPanel = new RemovedButtonPalette().getRemovedButtonPanel();

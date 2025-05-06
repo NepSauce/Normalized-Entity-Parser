@@ -7,7 +7,6 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
 public class TerminalFrame extends JFrame {
-    
     private JTextPane terminalPane;
     private JTextField inputField;
     private JPanel inputPanel;

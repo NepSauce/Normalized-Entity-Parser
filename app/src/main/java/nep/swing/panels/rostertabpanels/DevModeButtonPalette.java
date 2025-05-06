@@ -75,7 +75,7 @@ public class DevModeButtonPalette{
      * Opens a new frame when the "RootNEP" button is pressed.
      */
     private void openDebugFrame() {
-        nep.swing.panels.rostertabpanels.DebugFrame debugFrame = new nep.swing.panels.rostertabpanels.DebugFrame();
+        nep.swing.panels.devmodepanels.DebugFrame debugFrame = new nep.swing.panels.devmodepanels.DebugFrame();
         debugFrame.setVisible(true);
     }
 }
