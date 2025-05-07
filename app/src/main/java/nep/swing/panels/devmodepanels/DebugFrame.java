@@ -1,6 +1,7 @@
 package nep.swing.panels.devmodepanels;
 
-import nep.swing.panels.ExamLocationPanel;
+import nep.swing.panels.devmodepanels.devmodeduplicates.ExamLocationPanelDev;
+import nep.swing.panels.devmodepanels.devmodeduplicates.RosterAddedPanelDev;
 
 import javax.swing.*;
 import java.awt.*;
@@ -26,8 +27,11 @@ public class DebugFrame extends JFrame {
         ImageIcon logo = new ImageIcon("Media/logo.png");
         setIconImage(logo.getImage());
         
-        ExamLocationPanel examLocationPanel = new ExamLocationPanel();
+        ExamLocationPanelDev examLocationPanel = new ExamLocationPanelDev();
         add(examLocationPanel.getExamLocationPanel());
+        
+        RosterAddedPanelDev rosterAddedPanel = new RosterAddedPanelDev();
+        add(rosterAddedPanel.getRosterBrowsingPanel());
 
         setLayout(new BorderLayout());
     }

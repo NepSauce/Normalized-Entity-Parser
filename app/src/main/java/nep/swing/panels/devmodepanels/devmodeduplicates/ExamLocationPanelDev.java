@@ -32,19 +32,10 @@ public class ExamLocationPanelDev {
         examPanel = new JPanel();
         examPanel.setLayout(null);
         examPanel.setBackground(Color.WHITE);
-        examPanel.setBounds(25, 35, examPanelWidth , examPanelHeight - 105);
+        examPanel.setBounds(25, 25, examPanelWidth , examPanelHeight - 105);
         examPanel.setBorder(BorderFactory.createBevelBorder(BevelBorder.LOWERED));
         
-        JPanel locationPanel = new JPanel();
-        locationPanel.setLayout(null);
-        locationPanel.setBounds(5, 5, examPanelWidth - 10, examPanelHeight - 10);
-        locationPanel.setBackground(Color.WHITE);
-        
-        Border lineBorder = BorderFactory.createLineBorder(new Color(76, 74, 72, 255), 0);
-        
-        TitledBorder titledBorder = new TitledBorder(lineBorder, "Exam Location");
-        titledBorder.setTitleFont(new java.awt.Font("Arial", java.awt.Font.BOLD, 14));
-        locationPanel.setBorder(titledBorder);
+        JPanel locationPanel = getjPanel();
         
         locationDropdown = new JComboBox<>();
         locationDropdown.setBounds(5, 25, examPanelWidth - 20, 30);
@@ -55,6 +46,20 @@ public class ExamLocationPanelDev {
         
         examPanel.add(locationPanel);
         locationPanel.add(locationDropdown);
+    }
+    
+    private JPanel getjPanel() {
+        JPanel locationPanel = new JPanel();
+        locationPanel.setLayout(null);
+        locationPanel.setBounds(5, 5, examPanelWidth - 10, examPanelHeight - 10);
+        locationPanel.setBackground(Color.WHITE);
+        
+        Border lineBorder = BorderFactory.createLineBorder(new Color(76, 74, 72, 255), 0);
+        
+        TitledBorder titledBorder = new TitledBorder(lineBorder, "Exam Location");
+        titledBorder.setTitleFont(new java.awt.Font("Arial", java.awt.Font.BOLD, 14));
+        locationPanel.setBorder(titledBorder);
+        return locationPanel;
     }
     
     /**

@@ -1,4 +1,4 @@
-package nep.swing.panels;
+package nep.swing.panels.devmodepanels.devmodeduplicates;
 
 import java.awt.Color;
 import java.awt.event.ActionEvent;
@@ -14,7 +14,7 @@ import javax.swing.border.BevelBorder;
 import javax.swing.border.Border;
 import javax.swing.border.TitledBorder;
 
-public class RosterAddedPanel{
+public class RosterAddedPanelDev {
     private boolean checkFileExists;
     private File selectedFile;
     private JLabel rosterPDFLabel;
@@ -23,37 +23,37 @@ public class RosterAddedPanel{
     private int browsingPanelHeight;
     private int browsingPanelWidth;
     private String fileAbsolutePath;
-
-    public RosterAddedPanel(){
+    
+    public RosterAddedPanelDev(){
         this.checkFileExists = false;
         this.fileAbsolutePath = null;
-
+        
         browsingPanelHeight = 50;
         browsingPanelWidth = 250;
-
+        
         rosterBrowsingPanel = new JPanel();
         rosterBrowsingPanel.setLayout(null);
         rosterBrowsingPanel.setBackground(Color.WHITE);
-        rosterBrowsingPanel.setBounds(25, 165, browsingPanelWidth, browsingPanelHeight);
+        rosterBrowsingPanel.setBounds(25, 95, browsingPanelWidth, browsingPanelHeight);
         rosterBrowsingPanel.setBorder(BorderFactory.createBevelBorder(BevelBorder.LOWERED));
-
+        
         rosterButtonPanel = new JPanel();
         rosterButtonPanel.setLayout(null);
         rosterButtonPanel.setBounds(5, 5, browsingPanelWidth - 20, browsingPanelHeight - 10);
         rosterButtonPanel.setBackground(Color.WHITE);
-
+        
         Border lineBorder = BorderFactory.createLineBorder(new Color(80, 80, 80), 0);
         
         TitledBorder titledBorder = new TitledBorder(lineBorder, "Select Roster PDF");
         titledBorder.setTitleFont(new java.awt.Font("Arial", java.awt.Font.BOLD, 14));
         rosterButtonPanel.setBorder(titledBorder);
-
+        
         rosterPDFLabel = new JLabel();
         rosterPDFLabel.setLayout(null);
         rosterPDFLabel.setBounds(10, 5, browsingPanelWidth - 20, browsingPanelHeight - 10);
         rosterPDFLabel.setBackground(Color.BLACK);
-
-
+        
+        
         rosterBrowsingPanel.add(rosterButtonPanel);
         
         JButton addRosterPDFButton = new JButton("+");
@@ -72,19 +72,19 @@ public class RosterAddedPanel{
                 clearRosterInfo();
             }
         });
-
+        
         rosterButtonPanel.add(addRosterPDFButton);
         rosterButtonPanel.add(rosterPDFLabel);
     }
-
+    
     public void displayRosterInfo(){
-
+    
     }
-
+    
     public void clearRosterInfo(){
-        
+    
     }
-
+    
     public void openFileExplorerAndValidate(){
         JFileChooser fileChooser = new JFileChooser();
         fileChooser.setFileFilter(new javax.swing.filechooser.FileNameExtensionFilter("PDF Files", "pdf"));
@@ -95,24 +95,24 @@ public class RosterAddedPanel{
             fileAbsolutePath = selectedFile.getAbsolutePath();
             checkFileExists = true;
             setRosterLabel(selectedFile.getName());
-        } 
+        }
         else{
             checkFileExists = false;
         }
     }
-
+    
     public JPanel getRosterBrowsingPanel(){
         return rosterBrowsingPanel;
     }
-
+    
     public JPanel getRosterButtonPanel(){
         return rosterButtonPanel;
     }
-
+    
     public String getAbsoluteFilePath(){
         return fileAbsolutePath;
     }
-
+    
     public boolean getCheckFileExists(){
         return checkFileExists;
     }
@@ -123,7 +123,7 @@ public class RosterAddedPanel{
         }
         return selectedFile.getName();
     }
-
+    
     public void setRosterLabel(String newLabel){
         if (newLabel.length() > 20) {
             rosterPDFLabel.setText(newLabel.substring(0, 15) + "...pdf");
@@ -132,5 +132,5 @@ public class RosterAddedPanel{
             rosterPDFLabel.setText(newLabel);
         }
     }
-
+    
 }
