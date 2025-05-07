@@ -17,6 +17,8 @@ import javax.swing.border.TitledBorder;
 public class RosterAddedPanel{
     private boolean checkFileExists;
     private File selectedFile;
+    private JButton addRosterPDFButton;
+    private JButton removeRosterPDFButton;
     private JLabel rosterPDFLabel;
     private JPanel rosterBrowsingPanel;
     private JPanel rosterButtonPanel;
@@ -55,8 +57,8 @@ public class RosterAddedPanel{
 
 
         rosterBrowsingPanel.add(rosterButtonPanel);
-        
-        JButton addRosterPDFButton = new JButton("+");
+
+        addRosterPDFButton = new JButton("+");
         addRosterPDFButton.setBounds(200, 5, 30, 30);
         addRosterPDFButton.addActionListener(new ActionListener(){
             @Override
@@ -64,8 +66,8 @@ public class RosterAddedPanel{
                 openFileExplorerAndValidate();
             }
         });
-        
-        JButton removeRosterPDFButton = new JButton();
+
+        removeRosterPDFButton = new JButton();
         removeRosterPDFButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e){

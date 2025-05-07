@@ -1,5 +1,6 @@
 package nep.swing.panels.devmodepanels;
 
+import nep.swing.panels.devmodepanels.devmodeduplicates.ExamAddedPanelDev;
 import nep.swing.panels.devmodepanels.devmodeduplicates.ExamLocationPanelDev;
 import nep.swing.panels.devmodepanels.devmodeduplicates.RosterAddedPanelDev;
 
@@ -17,7 +18,7 @@ public class DebugFrame extends JFrame {
      */
     public DebugFrame() {
         setTitle("RootNEP Debug");
-        setSize(600, 375);
+        setSize(800, 450);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setResizable(false);
@@ -32,7 +33,11 @@ public class DebugFrame extends JFrame {
         
         RosterAddedPanelDev rosterAddedPanel = new RosterAddedPanelDev();
         add(rosterAddedPanel.getRosterBrowsingPanel());
+        
+        ExamAddedPanelDev examAddedPanel = new ExamAddedPanelDev();
+        add(examAddedPanel.getExamAddedPanel());
 
+        
         setLayout(new BorderLayout());
     }
 }
