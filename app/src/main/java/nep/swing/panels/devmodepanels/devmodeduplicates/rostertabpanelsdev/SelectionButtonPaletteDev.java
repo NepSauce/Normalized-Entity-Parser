@@ -5,6 +5,9 @@ import nep.swing.panels.DatePickerPanel;
 import nep.swing.panels.ExamAddedPanel;
 import nep.swing.panels.ExamLocationPanel;
 import nep.swing.panels.RosterAddedPanel;
+import nep.swing.panels.devmodepanels.devmodeduplicates.ExamAddedPanelDev;
+import nep.swing.panels.devmodepanels.devmodeduplicates.ExamLocationPanelDev;
+import nep.swing.panels.devmodepanels.devmodeduplicates.RosterAddedPanelDev;
 import nep.util.DisplayUIError;
 import nep.util.FieldValidator;
 
@@ -34,8 +37,8 @@ public class SelectionButtonPaletteDev {
      * @param rosterAddedPanel the panel that manages the added rosters.
      */
     @SuppressWarnings("Convert2Lambda")
-    public SelectionButtonPaletteDev(ExamLocationPanel examLocationPanel, ExamAddedPanel examAddedPanel,
-                                     DatePickerPanel datePickerPanel, RosterAddedPanel rosterAddedPanel){
+    public SelectionButtonPaletteDev(ExamLocationPanelDev examLocationPanel, ExamAddedPanelDev examAddedPanel,
+                                     DatePickerPanel datePickerPanel, RosterAddedPanelDev rosterAddedPanel){
         
         rosterObjectEntityList.clear();
         

@@ -6,6 +6,9 @@ import nep.swing.panels.DatePickerPanel;
 import nep.swing.panels.ExamAddedPanel;
 import nep.swing.panels.ExamLocationPanel;
 import nep.swing.panels.RosterAddedPanel;
+import nep.swing.panels.devmodepanels.devmodeduplicates.ExamAddedPanelDev;
+import nep.swing.panels.devmodepanels.devmodeduplicates.ExamLocationPanelDev;
+import nep.swing.panels.devmodepanels.devmodeduplicates.RosterAddedPanelDev;
 import nep.swing.panels.removedobjectpanels.RemovedObjectPanel;
 import nep.util.RosterObjectSplitter;
 
@@ -33,8 +36,8 @@ public class PanelButtonPaletteDev {
      * @param datePickerPanel the panel for selecting dates.
      * @param rosterAddedPanel the panel that manages the added rosters.
      */
-    public PanelButtonPaletteDev(ExamLocationPanel examLocationPanel, ExamAddedPanel examAddedPanel,
-                                 DatePickerPanel datePickerPanel, RosterAddedPanel rosterAddedPanel){
+    public PanelButtonPaletteDev(ExamLocationPanelDev examLocationPanel, ExamAddedPanelDev examAddedPanel,
+                                 DatePickerPanel datePickerPanel, RosterAddedPanelDev rosterAddedPanel){
         
         rosterEntityDetails = SelectionButtonPaletteDev.getRosterEntityList();
         
