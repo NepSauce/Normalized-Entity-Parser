@@ -33,12 +33,11 @@ public class SelectionButtonPaletteDev {
      *
      * @param examLocationPanel the panel responsible for managing exam locations.
      * @param examAddedPanel the panel that handles the addition of exams to the roster.
-     * @param datePickerPanel the panel for selecting dates.
      * @param rosterAddedPanel the panel that manages the added rosters.
      */
     @SuppressWarnings("Convert2Lambda")
     public SelectionButtonPaletteDev(ExamLocationPanelDev examLocationPanel, ExamAddedPanelDev examAddedPanel,
-                                     DatePickerPanel datePickerPanel, RosterAddedPanelDev rosterAddedPanel){
+                                     RosterAddedPanelDev rosterAddedPanel){
         
         rosterObjectEntityList.clear();
         
@@ -68,9 +67,9 @@ public class SelectionButtonPaletteDev {
                 String fileName = rosterAddedPanel.getRosterFileName();
                 String fileAbsolutePath = rosterAddedPanel.getAbsoluteFilePath();
                 String location = examLocationPanel.getExamLocation();
-                int day = datePickerPanel.getDayInt();
-                String month = datePickerPanel.getMonthString();
-                int year = datePickerPanel.getYearInt();
+                int day = 1;
+                String month = "January";
+                int year = 2000;
         
                 FieldValidator newValidator = new FieldValidator(fileAbsolutePath, location, day, month, year);
                 newValidator.generateErrorMessage(); 
@@ -83,6 +82,7 @@ public class SelectionButtonPaletteDev {
                     examAddedPanel.addRosterToPanel(rosterDetails);
                     for (int i = 0; i < rosterObjectEntityList.size(); i++){
                         System.out.println(rosterObjectEntityList.get(i).getLocation());
+                        // Debug Logging
                     }
                 } 
                 else{
@@ -91,14 +91,7 @@ public class SelectionButtonPaletteDev {
                 }
             }
         });
-
-        resetDateButton.addActionListener(new ActionListener(){
-            @Override
-            public void actionPerformed(ActionEvent e){
-                datePickerPanel.resetDate();
-            }
-        });
-
+        
         selectionButtonBorderPanel.add(addExamLocationButton);
         selectionButtonBorderPanel.add(resetDateButton);
     }

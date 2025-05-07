@@ -1,8 +1,11 @@
 package nep.swing.panels.devmodepanels;
 
+import nep.swing.panels.DatePickerPanel;
+import nep.swing.panels.SettingsTab;
 import nep.swing.panels.devmodepanels.devmodeduplicates.ExamAddedPanelDev;
 import nep.swing.panels.devmodepanels.devmodeduplicates.ExamLocationPanelDev;
 import nep.swing.panels.devmodepanels.devmodeduplicates.RosterAddedPanelDev;
+import nep.swing.panels.devmodepanels.devmodeduplicates.SettingsTabDev;
 
 import javax.swing.*;
 import java.awt.*;
@@ -36,7 +39,10 @@ public class DebugFrame extends JFrame {
         
         ExamAddedPanelDev examAddedPanel = new ExamAddedPanelDev();
         add(examAddedPanel.getExamAddedPanel());
-
+        
+        SettingsTabDev settingsTab = new SettingsTabDev(examLocationPanel, examAddedPanel,
+                rosterAddedPanel);
+        add(settingsTab.getSettingsTab());
         
         setLayout(new BorderLayout());
     }

@@ -33,11 +33,10 @@ public class PanelButtonPaletteDev {
      *
      * @param examLocationPanel the panel responsible for managing exam locations.
      * @param examAddedPanel the panel that handles the addition of exams to the roster.
-     * @param datePickerPanel the panel for selecting dates.
      * @param rosterAddedPanel the panel that manages the added rosters.
      */
     public PanelButtonPaletteDev(ExamLocationPanelDev examLocationPanel, ExamAddedPanelDev examAddedPanel,
-                                 DatePickerPanel datePickerPanel, RosterAddedPanelDev rosterAddedPanel){
+                                 RosterAddedPanelDev rosterAddedPanel){
         
         rosterEntityDetails = SelectionButtonPaletteDev.getRosterEntityList();
         
