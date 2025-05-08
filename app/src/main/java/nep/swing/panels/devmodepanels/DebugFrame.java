@@ -2,10 +2,7 @@ package nep.swing.panels.devmodepanels;
 
 import nep.swing.panels.DatePickerPanel;
 import nep.swing.panels.SettingsTab;
-import nep.swing.panels.devmodepanels.devmodeduplicates.ExamAddedPanelDev;
-import nep.swing.panels.devmodepanels.devmodeduplicates.ExamLocationPanelDev;
-import nep.swing.panels.devmodepanels.devmodeduplicates.RosterAddedPanelDev;
-import nep.swing.panels.devmodepanels.devmodeduplicates.SettingsTabDev;
+import nep.swing.panels.devmodepanels.devmodeduplicates.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -21,7 +18,7 @@ public class DebugFrame extends JFrame {
      */
     public DebugFrame() {
         setTitle("RootNEP Debug");
-        setSize(800, 450);
+        setSize(800, 550);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setResizable(false);
@@ -43,6 +40,10 @@ public class DebugFrame extends JFrame {
         SettingsTabDev settingsTab = new SettingsTabDev(examLocationPanel, examAddedPanel,
                 rosterAddedPanel);
         add(settingsTab.getSettingsTab());
+        
+        ObjectTabDev objectTab = new ObjectTabDev(examLocationPanel, examAddedPanel,
+                rosterAddedPanel);
+        add(objectTab.getObjectTab());
         
         setLayout(new BorderLayout());
     }
