@@ -34,7 +34,7 @@ public class RosterAddedPanelDev {
         rosterBrowsingPanel = new JPanel();
         rosterBrowsingPanel.setLayout(null);
         rosterBrowsingPanel.setBackground(Color.WHITE);
-        rosterBrowsingPanel.setBounds(25, 95, browsingPanelWidth, browsingPanelHeight);
+        rosterBrowsingPanel.setBounds(25, 225, browsingPanelWidth, browsingPanelHeight);
         rosterBrowsingPanel.setBorder(BorderFactory.createBevelBorder(BevelBorder.LOWERED));
         
         rosterButtonPanel = new JPanel();

@@ -7,9 +7,7 @@ import java.awt.Color;
 import java.util.ArrayList;
 import java.util.LinkedList;
 
-import javax.swing.BorderFactory;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
+import javax.swing.*;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.Border;
 import javax.swing.border.TitledBorder;
@@ -33,21 +31,31 @@ public class ExamAddedPanelDev {
         selectedPanel = new JPanel();
         selectedPanel.setLayout(null);
         selectedPanel.setBackground(Color.WHITE);
-        selectedPanel.setBounds(25, 155, selectedPanelWidth, selectedPanelHeight);
+        selectedPanel.setBounds(25, 25, selectedPanelWidth, selectedPanelHeight);
         selectedPanel.setBorder(BorderFactory.createBevelBorder(BevelBorder.LOWERED));
         
         examListPanel = new JPanel();
         examListPanel.setLayout(null);
-        examListPanel.setBounds(5, 5, selectedPanelWidth - 10, selectedPanelHeight);
         examListPanel.setBackground(Color.WHITE);
+        examListPanel.setPreferredSize(new java.awt.Dimension(selectedPanelWidth - 25, selectedPanelHeight));
         
-        Border lineBorder = BorderFactory.createLineBorder(new Color(80, 80, 80), 0);
-        
-        TitledBorder titledBorder = new TitledBorder(lineBorder, "Selected Exams");
-        titledBorder.setTitleFont(new java.awt.Font("Arial", java.awt.Font.BOLD, 16));
+        TitledBorder titledBorder = BorderFactory.createTitledBorder(
+                BorderFactory.createEmptyBorder(),
+                "Added Rosters",
+                TitledBorder.DEFAULT_JUSTIFICATION,
+                TitledBorder.DEFAULT_POSITION,
+                new java.awt.Font("Arial", java.awt.Font.BOLD, 16)
+        );
         examListPanel.setBorder(titledBorder);
         
-        selectedPanel.add(examListPanel);
+        JScrollPane scrollPane = new JScrollPane(examListPanel);
+        scrollPane.setBounds(5, 5, selectedPanelWidth - 10, selectedPanelHeight - 7);
+        scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
+        scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+        scrollPane.getVerticalScrollBar().setUnitIncrement(16);
+        
+        selectedPanel.add(scrollPane);
+        
     }
     
     public JPanel getExamAddedPanel(){
@@ -57,31 +65,34 @@ public class ExamAddedPanelDev {
     public JPanel getExamListPanel(){
         return examListPanel;
     }
-    
-    public void getRosterInformation(){
-    
-    }
-    
+
     /**
      *
      * @param rosterDetails
      */
     public void addRosterToPanel(String rosterDetails){
         JPanel newPanel = new JPanel();
-        newPanel.setBounds(5, currentXPosition, selectedPanelWidth - 15, 25);
-        newPanel.setBackground(new Color(238,238,238,255));
+        newPanel.setBounds(5, currentXPosition, selectedPanelWidth - 40, 25);
+        newPanel.setBackground(new Color(238, 238, 238, 255));
         
         JLabel detailString = new JLabel(rosterDetails);
-        detailString.setBounds(0, 0, 0, 20);
-        
         newPanel.add(detailString);
         examListPanel.add(newPanel);
         
         rosterPanels.add(newPanel);
         
         currentXPosition += 30;
-        selectedPanel.revalidate();
-        selectedPanel.repaint();
+        examListPanel.setPreferredSize(new java.awt.Dimension(selectedPanelWidth - 25, currentXPosition + 30));
+        
+        // Force layout updates for both examListPanel and its scroll parent
+        examListPanel.revalidate();
+        examListPanel.repaint();
+        
+        JScrollPane scrollPane = (JScrollPane) SwingUtilities.getAncestorOfClass(JScrollPane.class, examListPanel);
+        if (scrollPane != null) {
+            scrollPane.revalidate();
+            scrollPane.repaint();
+        }
     }
     
     

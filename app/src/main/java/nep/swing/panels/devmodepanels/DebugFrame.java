@@ -17,7 +17,7 @@ public class DebugFrame extends JFrame {
      */
     public DebugFrame() {
         setTitle("RootNEP Debug");
-        setSize(800, 475);
+        setSize(800, 460);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setResizable(false);
@@ -38,6 +38,9 @@ public class DebugFrame extends JFrame {
         
         EncompassingTabDev encompassingTab = new EncompassingTabDev(examLocationPanel, examAddedPanel, rosterAddedPanel);
         add(encompassingTab.getEncompassingTab());
+        
+        CumulativeInfoPanelDev cumulativeInfoPanel = new CumulativeInfoPanelDev();
+        add(cumulativeInfoPanel.getCumulativeInfoPanel());
         
         setLayout(new BorderLayout());
     }

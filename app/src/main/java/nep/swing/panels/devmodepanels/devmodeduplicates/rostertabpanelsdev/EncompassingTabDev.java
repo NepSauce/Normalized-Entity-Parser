@@ -10,7 +10,7 @@ public class EncompassingTabDev {
     public EncompassingTabDev(ExamLocationPanelDev examLocationPanel, ExamAddedPanelDev examAddedPanel,
                           RosterAddedPanelDev rosterAddedPanel){
         tabbedPane = new JTabbedPane();
-        tabbedPane.setBounds(25, 300, 250, 108);
+        tabbedPane.setBounds(25, 290, 250, 108);
         
         SettingsTabDev settingsTab = new SettingsTabDev(examLocationPanel, examAddedPanel, rosterAddedPanel);
         tabbedPane.add("Exam", settingsTab.getSettingsTab());
