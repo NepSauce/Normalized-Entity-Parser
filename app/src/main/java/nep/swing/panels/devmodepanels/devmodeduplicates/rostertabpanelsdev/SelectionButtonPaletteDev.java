@@ -78,7 +78,7 @@ public class SelectionButtonPaletteDev {
         
                 if (errorMessage == null){
                     saveRosterObject(fileName, fileAbsolutePath, location, day, month, year);
-                    String rosterDetails = location + " " + day + "-" + month + "-" + year;
+                    String rosterDetails = location + "-" + fileName;
                     examAddedPanel.addRosterToPanel(rosterDetails);
                     for (int i = 0; i < rosterObjectEntityList.size(); i++){
                         System.out.println(rosterObjectEntityList.get(i).getLocation());
