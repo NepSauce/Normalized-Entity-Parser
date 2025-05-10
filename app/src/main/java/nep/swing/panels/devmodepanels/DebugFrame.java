@@ -2,6 +2,7 @@ package nep.swing.panels.devmodepanels;
 
 import nep.swing.panels.devmodepanels.devmodeduplicates.*;
 import nep.swing.panels.devmodepanels.devmodeduplicates.rostertabpanelsdev.EncompassingTabDev;
+import org.apache.commons.logging.Log;
 
 import javax.swing.*;
 import java.awt.*;
@@ -17,7 +18,7 @@ public class DebugFrame extends JFrame {
      */
     public DebugFrame() {
         setTitle("RootNEP Debug");
-        setSize(800, 460);
+        setSize(568, 460);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setResizable(false);
