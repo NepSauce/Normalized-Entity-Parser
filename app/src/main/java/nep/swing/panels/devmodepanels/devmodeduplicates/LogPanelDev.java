@@ -12,7 +12,7 @@ public class LogPanelDev {
     private JPanel mainPanel;
     private JTextArea logArea;
     
-    public LogPanelDev(File logFile) {
+    public LogPanelDev() {
         mainPanel = new JPanel();
         mainPanel.setLayout(null);
         mainPanel.setBackground(Color.WHITE);
@@ -37,8 +37,18 @@ public class LogPanelDev {
         scrollPane.setBounds(10, 25, 480, 260);
         
         mainPanel.add(scrollPane);
-        loadLogFile(logFile);
+        
+        // Always load the only file from "logs/" directory
+        File logDir = new File("logs/");
+        File[] files = logDir.listFiles((dir, name) -> name.endsWith(".txt"));
+        
+        if (files != null && files.length == 1) {
+            loadLogFile(files[0]);
+        } else {
+            logArea.setText("Log file not found or multiple files exist in the 'logs/' folder.");
+        }
     }
+    
     
     private void loadLogFile(File logFile) {
         try (BufferedReader reader = new BufferedReader(new FileReader(logFile))) {
