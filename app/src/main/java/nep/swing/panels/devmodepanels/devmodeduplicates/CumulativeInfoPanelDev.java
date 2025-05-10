@@ -15,17 +15,17 @@ public class CumulativeInfoPanelDev {
     private int panelHeight;
     private int labelYOffset = 15;
     
-    private JLabel totalRostersLabel;
-    private JLabel entriesFoundLabel;
+    private JLabel rostersAddedLabel;
     private JLabel coursesFoundLabel;
-    private JLabel entriesCombinedLabel;
-    private JLabel entriesRemovedLabel;
+    private JLabel combinedEntriesLabel;
+    private JLabel groupedEntriesLabel;
+    private JLabel removedEntriesLabel;
     
-    private int totalRostersCount = 0;
-    private int entriesFoundCount = 0;
+    private int rostersAddedCount = 0;
     private int coursesFoundCount = 0;
-    private int entriesCombinedCount = 0;
-    private int entriesRemovedCount = 0;
+    private int combinedEntriesCount = 0;
+    private int groupedEntriesCount = 0;
+    private int removedEntriesCount = 0;
     
     public CumulativeInfoPanelDev(ExamLocationPanelDev examLocationPanel, ExamAddedPanelDev examAddedPanel,
                                   RosterAddedPanelDev rosterAddedPanel){
@@ -48,23 +48,23 @@ public class CumulativeInfoPanelDev {
         titledBorder.setTitleFont(new Font("Arial", Font.BOLD, 16));
         infoListPanel.setBorder(titledBorder);
         
-        totalRostersLabel = new JLabel("Total Rosters:   0");
-        entriesFoundLabel = new JLabel("Entries Found:   0");
+        rostersAddedLabel = new JLabel("Rosters Added:   0");
         coursesFoundLabel = new JLabel("Courses Found:   0");
-        entriesCombinedLabel = new JLabel("Entries Combined:   0");
-        entriesRemovedLabel = new JLabel("Entries Removed:   0");
+        combinedEntriesLabel = new JLabel("Combined Entries:   0");
+        groupedEntriesLabel = new JLabel("Grouped Entries:   0");
+        removedEntriesLabel = new JLabel("Removed Entries:   0");
         
-        totalRostersLabel.setBounds(7, 25, 200, 20);
-        entriesFoundLabel.setBounds(7, 42, 200, 20);
-        coursesFoundLabel.setBounds(7, 59, 200, 20);
-        entriesCombinedLabel.setBounds(7, 76, 200, 20);
-        entriesRemovedLabel.setBounds(7, 93, 200, 20);
+        rostersAddedLabel.setBounds(7, 25, 200, 20);
+        coursesFoundLabel.setBounds(7, 42, 200, 20);
+        combinedEntriesLabel.setBounds(7, 59, 200, 20);
+        groupedEntriesLabel.setBounds(7, 76, 200, 20);
+        removedEntriesLabel.setBounds(7, 93, 200, 20);
         
-        infoListPanel.add(totalRostersLabel);
-        infoListPanel.add(entriesFoundLabel);
+        infoListPanel.add(rostersAddedLabel);
         infoListPanel.add(coursesFoundLabel);
-        infoListPanel.add(entriesCombinedLabel);
-        infoListPanel.add(entriesRemovedLabel);
+        infoListPanel.add(combinedEntriesLabel);
+        infoListPanel.add(groupedEntriesLabel);
+        infoListPanel.add(removedEntriesLabel);
         
         cumulativePanel.add(infoListPanel);
     }
@@ -74,20 +74,15 @@ public class CumulativeInfoPanelDev {
     }
     
     private void updateLabels() {
-        totalRostersLabel.setText("Total Rosters:   " + totalRostersCount);
-        entriesFoundLabel.setText("Entries Found:   " + entriesFoundCount);
+        rostersAddedLabel.setText("Rosters Added:   " + rostersAddedCount);
         coursesFoundLabel.setText("Courses Found:   " + coursesFoundCount);
-        entriesCombinedLabel.setText("Entries Combined:   " + entriesCombinedCount);
-        entriesRemovedLabel.setText("Entries Removed:   " + entriesRemovedCount);
+        combinedEntriesLabel.setText("Combined Entries:   " + combinedEntriesCount);
+        groupedEntriesLabel.setText("Grouped Entries:   " + groupedEntriesCount);
+        removedEntriesLabel.setText("Removed Entries:   " + removedEntriesCount);
     }
     
-    public void setTotalRosters(int value) {
-        totalRostersCount = value;
-        updateLabels();
-    }
-    
-    public void setEntriesFound(int value) {
-        entriesFoundCount = value;
+    public void setRostersAdded(int value) {
+        rostersAddedCount = value;
         updateLabels();
     }
     
@@ -96,23 +91,23 @@ public class CumulativeInfoPanelDev {
         updateLabels();
     }
     
-    public void setEntriesCombined(int value) {
-        entriesCombinedCount = value;
+    public void setCombinedEntries(int value) {
+        combinedEntriesCount = value;
         updateLabels();
     }
     
-    public void setEntriesRemoved(int value) {
-        entriesRemovedCount = value;
+    public void setGroupedEntries(int value) {
+        groupedEntriesCount = value;
         updateLabels();
     }
     
-    public void incrementTotalRosters(int amount) {
-        totalRostersCount += amount;
+    public void setRemovedEntries(int value) {
+        removedEntriesCount = value;
         updateLabels();
     }
     
-    public void incrementEntriesFound(int amount) {
-        entriesFoundCount += amount;
+    public void incrementRostersAdded(int amount) {
+        rostersAddedCount += amount;
         updateLabels();
     }
     
@@ -121,13 +116,18 @@ public class CumulativeInfoPanelDev {
         updateLabels();
     }
     
-    public void incrementEntriesCombined(int amount) {
-        entriesCombinedCount += amount;
+    public void incrementCombinedEntries(int amount) {
+        combinedEntriesCount += amount;
         updateLabels();
     }
     
-    public void incrementEntriesRemoved(int amount) {
-        entriesRemovedCount += amount;
+    public void incrementGroupedEntries(int amount) {
+        groupedEntriesCount += amount;
+        updateLabels();
+    }
+    
+    public void incrementRemovedEntries(int amount) {
+        removedEntriesCount += amount;
         updateLabels();
     }
 }
