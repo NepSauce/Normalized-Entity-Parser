@@ -20,8 +20,7 @@ public class TerminalFrame extends JFrame {
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setResizable(false);
         setLayout(new BorderLayout());
-        
-        // Terminal output area using JTextPane for rich text (e.g., bold)
+
         terminalPane = new JTextPane();
         terminalPane.setEditable(false);
         terminalPane.setBackground(Color.BLACK);

@@ -61,10 +61,6 @@ public class ExamAddedPanelDev {
     public JPanel getExamAddedPanel(){
         return selectedPanel;
     }
-    
-    public JPanel getExamListPanel(){
-        return examListPanel;
-    }
 
     /**
      *

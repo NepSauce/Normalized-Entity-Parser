@@ -39,8 +39,11 @@ public class DebugFrame extends JFrame {
         EncompassingTabDev encompassingTab = new EncompassingTabDev(examLocationPanel, examAddedPanel, rosterAddedPanel);
         add(encompassingTab.getEncompassingTab());
         
-        CumulativeInfoPanelDev cumulativeInfoPanel = new CumulativeInfoPanelDev();
+        CumulativeInfoPanelDev cumulativeInfoPanel = new CumulativeInfoPanelDev(examLocationPanel, examAddedPanel, rosterAddedPanel);
         add(cumulativeInfoPanel.getCumulativeInfoPanel());
+        
+        RosterInfoPanelDev rosterInfoPanel = new RosterInfoPanelDev(examLocationPanel, examAddedPanel, rosterAddedPanel);
+        add(rosterInfoPanel.getRosterInfoPanel());
         
         setLayout(new BorderLayout());
     }
