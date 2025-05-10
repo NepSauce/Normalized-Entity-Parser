@@ -15,7 +15,7 @@ public class TerminalFrame extends JFrame {
     
     public TerminalFrame() {
         setTitle("NEPTer - Terminal");
-        setSize(750, 400);
+        setSize(700, 400);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setResizable(false);
