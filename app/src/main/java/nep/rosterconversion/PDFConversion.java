@@ -288,7 +288,14 @@ public class PDFConversion {
                 String studentName = extractStudentName(record, studentId);
                 String time = extractTime(record);
                 String courseCode = extractCourseCode(record);
-                String location = determineLocation(record, locationType);
+                String location;
+                
+                if (courseCode == null){
+                    location = null;
+                }
+                else{
+                    location = determineLocation(record, locationType);
+                }
                 
                 if (studentId != null && studentName != null && time != null && courseCode != null && location != null) {
                     String format = String.format("[%s | %s | %s | %s | %s]",
@@ -452,8 +459,7 @@ public class PDFConversion {
                 potentialCodes.add(potentialCode.trim());
             }
         }
-        
-        // Return null if there are 2 or more potential codes
+
         if (potentialCodes.size() >= 2) {
             return null;
         }
