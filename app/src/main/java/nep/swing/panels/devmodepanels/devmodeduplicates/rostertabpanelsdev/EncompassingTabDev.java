@@ -8,11 +8,11 @@ public class EncompassingTabDev {
     JTabbedPane tabbedPane;
     
     public EncompassingTabDev(ExamLocationPanelDev examLocationPanel, ExamAddedPanelDev examAddedPanel,
-                          RosterAddedPanelDev rosterAddedPanel){
+                          RosterAddedPanelDev rosterAddedPanel, CumulativeInfoPanelDev cumulativeInfoPanel){
         tabbedPane = new JTabbedPane();
         tabbedPane.setBounds(25, 290, 250, 108);
         
-        SettingsTabDev settingsTab = new SettingsTabDev(examLocationPanel, examAddedPanel, rosterAddedPanel);
+        SettingsTabDev settingsTab = new SettingsTabDev(examLocationPanel, examAddedPanel, rosterAddedPanel, cumulativeInfoPanel);
         tabbedPane.add("Exam", settingsTab.getSettingsTab());
         
         ObjectTabDev objectTab = new ObjectTabDev(examLocationPanel, examAddedPanel, rosterAddedPanel);

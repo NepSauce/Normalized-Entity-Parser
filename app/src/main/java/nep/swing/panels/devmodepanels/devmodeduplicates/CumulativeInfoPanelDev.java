@@ -28,7 +28,7 @@ public class CumulativeInfoPanelDev {
     private int removedEntriesCount = 0;
     
     public CumulativeInfoPanelDev(ExamLocationPanelDev examLocationPanel, ExamAddedPanelDev examAddedPanel,
-                                  RosterAddedPanelDev rosterAddedPanel){
+                                  RosterAddedPanelDev rosterAddedPanel) {
         panelWidth = 225;
         panelHeight = 125;
         
@@ -48,11 +48,11 @@ public class CumulativeInfoPanelDev {
         titledBorder.setTitleFont(new Font("Arial", Font.BOLD, 16));
         infoListPanel.setBorder(titledBorder);
         
-        rostersAddedLabel = new JLabel("Rosters Added:   0");
-        coursesFoundLabel = new JLabel("Courses Found:   0");
-        combinedEntriesLabel = new JLabel("Combined Entries:   0");
-        groupedEntriesLabel = new JLabel("Grouped Entries:   0");
-        removedEntriesLabel = new JLabel("Removed Entries:   0");
+        rostersAddedLabel = new JLabel();
+        coursesFoundLabel = new JLabel();
+        combinedEntriesLabel = new JLabel();
+        groupedEntriesLabel = new JLabel();
+        removedEntriesLabel = new JLabel();
         
         rostersAddedLabel.setBounds(7, 25, 200, 20);
         coursesFoundLabel.setBounds(7, 42, 200, 20);
@@ -67,67 +67,75 @@ public class CumulativeInfoPanelDev {
         infoListPanel.add(removedEntriesLabel);
         
         cumulativePanel.add(infoListPanel);
+        
+        updateLabels(); // Ensure labels show values on init
     }
     
     public JPanel getCumulativeInfoPanel() {
         return cumulativePanel;
     }
     
-    private void updateLabels() {
+    public void refresh() {
+        updateLabels();
+        cumulativePanel.revalidate();
+        cumulativePanel.repaint();
+    }
+    
+    public void setRostersAdded(int value) {
+        rostersAddedCount = value;
+        refresh();
+    }
+    
+    public void setCoursesFound(int value) {
+        coursesFoundCount = value;
+        refresh();
+    }
+    
+    public void setCombinedEntries(int value) {
+        combinedEntriesCount = value;
+        refresh();
+    }
+    
+    public void setGroupedEntries(int value) {
+        groupedEntriesCount = value;
+        refresh();
+    }
+    
+    public void setRemovedEntries(int value) {
+        removedEntriesCount = value;
+        refresh();
+    }
+    
+    public void incrementRostersAdded(int amount) {
+        rostersAddedCount += amount;
+        refresh();
+    }
+    
+    public void incrementCoursesFound(int amount) {
+        coursesFoundCount += amount;
+        refresh();
+    }
+    
+    public void incrementCombinedEntries(int amount) {
+        combinedEntriesCount += amount;
+        refresh();
+    }
+    
+    public void incrementGroupedEntries(int amount) {
+        groupedEntriesCount += amount;
+        refresh();
+    }
+    
+    public void incrementRemovedEntries(int amount) {
+        removedEntriesCount += amount;
+        refresh();
+    }
+    
+    public void updateLabels() {
         rostersAddedLabel.setText("Rosters Added:   " + rostersAddedCount);
         coursesFoundLabel.setText("Courses Found:   " + coursesFoundCount);
         combinedEntriesLabel.setText("Combined Entries:   " + combinedEntriesCount);
         groupedEntriesLabel.setText("Grouped Entries:   " + groupedEntriesCount);
         removedEntriesLabel.setText("Removed Entries:   " + removedEntriesCount);
-    }
-    
-    public void setRostersAdded(int value) {
-        rostersAddedCount = value;
-        updateLabels();
-    }
-    
-    public void setCoursesFound(int value) {
-        coursesFoundCount = value;
-        updateLabels();
-    }
-    
-    public void setCombinedEntries(int value) {
-        combinedEntriesCount = value;
-        updateLabels();
-    }
-    
-    public void setGroupedEntries(int value) {
-        groupedEntriesCount = value;
-        updateLabels();
-    }
-    
-    public void setRemovedEntries(int value) {
-        removedEntriesCount = value;
-        updateLabels();
-    }
-    
-    public void incrementRostersAdded(int amount) {
-        rostersAddedCount += amount;
-        updateLabels();
-    }
-    
-    public void incrementCoursesFound(int amount) {
-        coursesFoundCount += amount;
-        updateLabels();
-    }
-    
-    public void incrementCombinedEntries(int amount) {
-        combinedEntriesCount += amount;
-        updateLabels();
-    }
-    
-    public void incrementGroupedEntries(int amount) {
-        groupedEntriesCount += amount;
-        updateLabels();
-    }
-    
-    public void incrementRemovedEntries(int amount) {
-        removedEntriesCount += amount;
-        updateLabels();
     }
 }

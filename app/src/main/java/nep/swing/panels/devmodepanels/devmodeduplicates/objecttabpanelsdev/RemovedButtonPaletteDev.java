@@ -53,7 +53,7 @@ public class RemovedButtonPaletteDev {
                 }
                 
                 File targetFile = files[0];
-                int lineCount = FileManager.countLinesInFile(targetFile.getAbsolutePath());
+                int lineCount = FileManager.countValidLinesInFile(targetFile.getAbsolutePath());
                 
                 if (lineCount == 0){
                     new DisplayUIPopup("Empty File", "RemovedObject.txt is Empty.", 1004).showInfoPopup();

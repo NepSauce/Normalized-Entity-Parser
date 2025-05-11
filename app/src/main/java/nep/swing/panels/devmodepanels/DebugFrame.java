@@ -21,6 +21,7 @@ public class DebugFrame extends JFrame {
         setSize(568, 460);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        setLayout(null);
         setResizable(false);
         
         getContentPane().setBackground(new Color(238, 238, 238, 255)); // Set background color
@@ -37,15 +38,13 @@ public class DebugFrame extends JFrame {
         ExamAddedPanelDev examAddedPanel = new ExamAddedPanelDev();
         add(examAddedPanel.getExamAddedPanel());
         
-        EncompassingTabDev encompassingTab = new EncompassingTabDev(examLocationPanel, examAddedPanel, rosterAddedPanel);
-        add(encompassingTab.getEncompassingTab());
-        
         CumulativeInfoPanelDev cumulativeInfoPanel = new CumulativeInfoPanelDev(examLocationPanel, examAddedPanel, rosterAddedPanel);
         add(cumulativeInfoPanel.getCumulativeInfoPanel());
         
+        EncompassingTabDev encompassingTab = new EncompassingTabDev(examLocationPanel, examAddedPanel, rosterAddedPanel, cumulativeInfoPanel);
+        add(encompassingTab.getEncompassingTab());
+        
         RosterInfoPanelDev rosterInfoPanel = new RosterInfoPanelDev(examLocationPanel, examAddedPanel, rosterAddedPanel);
         add(rosterInfoPanel.getRosterInfoPanel());
-        
-        setLayout(new BorderLayout());
     }
 }

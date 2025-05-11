@@ -10,7 +10,7 @@ public class SettingsTabDev {
     JTabbedPane tabbedPane;
     
     public SettingsTabDev(ExamLocationPanelDev examLocationPanel, ExamAddedPanelDev examAddedPanel,
-                          RosterAddedPanelDev rosterAddedPanel){
+                          RosterAddedPanelDev rosterAddedPanel, CumulativeInfoPanelDev cumulativeInfoPanel){
         tabbedPane = new JTabbedPane();
         tabbedPane.setBounds(25, 300, 250, 80);
 
@@ -20,7 +20,7 @@ public class SettingsTabDev {
         addTooltips(commandButtonPanel.getSelectionButtonPanel());
 
         PanelButtonPaletteDev panelButtonPalette = new PanelButtonPaletteDev(examLocationPanel,
-                examAddedPanel, rosterAddedPanel);
+                examAddedPanel, rosterAddedPanel, cumulativeInfoPanel);
         tabbedPane.addTab("Panel", panelButtonPalette.getPanelButtonPanel());
         addTooltips(panelButtonPalette.getPanelButtonPanel());
     }

@@ -6,10 +6,12 @@ import nep.swing.panels.DatePickerPanel;
 import nep.swing.panels.ExamAddedPanel;
 import nep.swing.panels.ExamLocationPanel;
 import nep.swing.panels.RosterAddedPanel;
+import nep.swing.panels.devmodepanels.devmodeduplicates.CumulativeInfoPanelDev;
 import nep.swing.panels.devmodepanels.devmodeduplicates.ExamAddedPanelDev;
 import nep.swing.panels.devmodepanels.devmodeduplicates.ExamLocationPanelDev;
 import nep.swing.panels.devmodepanels.devmodeduplicates.RosterAddedPanelDev;
 import nep.swing.panels.removedobjectpanels.RemovedObjectPanel;
+import nep.util.FileManager;
 import nep.util.RosterObjectSplitter;
 
 import javax.swing.*;
@@ -36,7 +38,7 @@ public class PanelButtonPaletteDev {
      * @param rosterAddedPanel the panel that manages the added rosters.
      */
     public PanelButtonPaletteDev(ExamLocationPanelDev examLocationPanel, ExamAddedPanelDev examAddedPanel,
-                                 RosterAddedPanelDev rosterAddedPanel){
+                                 RosterAddedPanelDev rosterAddedPanel, CumulativeInfoPanelDev cumulativeInfoPanel){
         
         rosterEntityDetails = SelectionButtonPaletteDev.getRosterEntityList();
         
@@ -62,6 +64,16 @@ public class PanelButtonPaletteDev {
             LinkedList<String> directoryList = newSplitter.getRosterDirectory();
             LinkedList<String> fileNameList = newSplitter.getRosterFileName();
             LinkedList<String> locationList = newSplitter.getRosterLocation();
+            
+            int rosterCount = directoryList.size();
+            int combinedEntries = FileManager.countLinesInFirstTxtFile("NormalizedEntityParser/CombinedObjects/");
+            
+            cumulativeInfoPanel.setRostersAdded(rosterCount);
+            cumulativeInfoPanel.setCombinedEntries(combinedEntries);
+            
+            cumulativeInfoPanel.getCumulativeInfoPanel().revalidate();
+            cumulativeInfoPanel.getCumulativeInfoPanel().repaint();
+            
             
             if (!directoryList.isEmpty()){
                 PDFConversion.deleteCombinedObjectFile();

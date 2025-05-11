@@ -7,7 +7,7 @@ import java.util.*;
 public class FileManager {
     
     // Count lines in a single file
-    public static int countLinesInFile(String filePath) throws IOException {
+    public static int countValidLinesInFile(String filePath) throws IOException {
         File file = new File(filePath);
         if (!file.isFile()) {
             throw new IllegalArgumentException("Provided path is not a file: " + filePath);
@@ -20,6 +20,36 @@ public class FileManager {
             }
         }
         return lines;
+    }
+    
+    public static int countLinesInFirstTxtFile(String directoryPath) {
+        File dir = new File(directoryPath);
+        
+        if (!dir.exists() || !dir.isDirectory()) {
+            System.out.println("Directory not found: " + directoryPath);
+            return -1;
+        }
+        
+        File[] txtFiles = dir.listFiles((d, name) -> name.toLowerCase().endsWith(".txt"));
+        
+        if (txtFiles == null || txtFiles.length == 0) {
+            System.out.println("No .txt files found in directory.");
+            return -1;
+        }
+        
+        File file = txtFiles[0]; // take the first .txt file found
+        int lineCount = 0;
+        
+        try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
+            while (reader.readLine() != null) {
+                lineCount++;
+            }
+        } catch (IOException e) {
+            System.out.println("Error reading file: " + e.getMessage());
+            return -1;
+        }
+        
+        return lineCount;
     }
     
     // Count lines in all files within a directory (recursively)
@@ -37,7 +67,7 @@ public class FileManager {
             if (file.isDirectory()) {
                 totalLines += countLinesInDirectory(file.getAbsolutePath());
             } else if (file.isFile()) {
-                totalLines += countLinesInFile(file.getAbsolutePath());
+                totalLines += countValidLinesInFile(file.getAbsolutePath());
             }
         }
         return totalLines;
