@@ -13,14 +13,13 @@ public class GroupedObjectParser{
             int totalCourses = courseSums.size();
             int totalStudents = courseSums.values().stream().mapToInt(Integer::intValue).sum();
 
-            printCourseSums(courseSums, totalCourses, totalStudents);
         }
         else{
             System.out.println("No file found in the specified directory.");
         }
     }
 
-    private static File getMostRecentFile(String directoryPath){
+    public static File getMostRecentFile(String directoryPath){
         File directory = new File(directoryPath);
         File[] files = directory.listFiles((dir, name) -> name.endsWith(".txt"));
         
@@ -32,44 +31,34 @@ public class GroupedObjectParser{
         
         return files[0];
     }
-
-    private static Map<String, Integer> parseFile(File file){
+    
+    public static Map<String, Integer> parseFile(File file) {
         Map<String, Integer> courseSums = new HashMap<>();
         
-        try (BufferedReader br = new BufferedReader(new FileReader(file))){
+        try (BufferedReader br = new BufferedReader(new FileReader(file))) {
             String line;
             
-            while ((line = br.readLine()) != null){
+            while ((line = br.readLine()) != null) {
+                // Split by " - "
                 String[] parts = line.split(" - ");
                 
-                if (parts.length == 3){
-                    String courseCode = parts[0].trim();
-                    
-                    try{
-                        int number = Integer.parseInt(parts[1].trim());
+                if (parts.length >= 3) {
+                    try {
+                        int number = Integer.parseInt(parts[0].trim());
+                        String courseCode = parts[2].trim();
                         courseSums.put(courseCode, courseSums.getOrDefault(courseCode, 0) + number);
                     }
                     catch (NumberFormatException e){
-                        System.err.println("Skipping invalid line: " + line);
+                        throw new RuntimeException(e);
                     }
+                    
                 }
             }
-        }
-        catch (IOException e){
+        } catch (IOException e) {
             e.printStackTrace();
         }
         
         return courseSums;
     }
-
-    private static void printCourseSums(Map<String, Integer> courseSums, int totalCourses, int totalStudents){
-        System.out.println("Course Code Totals:");
-        
-        for (Map.Entry<String, Integer> entry : courseSums.entrySet()){
-            System.out.println("Course Code: " + entry.getKey() + " Total: " + entry.getValue());
-        }
-
-        System.out.println("\nTotal Courses: " + totalCourses);
-        System.out.println("Total Students: " + totalStudents);
-    }
+    
 }

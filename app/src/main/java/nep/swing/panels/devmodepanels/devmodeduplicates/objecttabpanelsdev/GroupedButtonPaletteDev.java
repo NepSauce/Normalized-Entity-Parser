@@ -1,6 +1,12 @@
 package nep.swing.panels.devmodepanels.devmodeduplicates.objecttabpanelsdev;
 
 import nep.rosterconversion.PDFCleaner;
+import nep.swing.panels.devmodepanels.devmodeduplicates.CumulativeInfoPanelDev;
+import nep.swing.panels.devmodepanels.devmodeduplicates.ExamAddedPanelDev;
+import nep.swing.panels.devmodepanels.devmodeduplicates.ExamLocationPanelDev;
+import nep.swing.panels.devmodepanels.devmodeduplicates.RosterAddedPanelDev;
+import nep.util.FileManager;
+import nep.util.GroupedObjectParser;
 
 import javax.swing.*;
 import java.awt.*;
@@ -14,6 +20,7 @@ import java.nio.file.Files;
 import java.nio.file.attribute.BasicFileAttributes;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
 /**
  * The GroupedButtonPalette class provides a UI panel with buttons
@@ -22,12 +29,16 @@ import java.util.List;
  */
 public class GroupedButtonPaletteDev {
     private final JPanel groupedButtonPanel;
+    private CumulativeInfoPanelDev cumulativeInfoPanel;
     
     /**
      * Constructs a GroupedButtonPalette and initializes buttons for
      * creating and opening grouped appointment files.
      */
-    public GroupedButtonPaletteDev(){
+    public GroupedButtonPaletteDev(ExamLocationPanelDev examLocationPanel, ExamAddedPanelDev examAddedPanel,
+                                   RosterAddedPanelDev rosterAddedPanel, CumulativeInfoPanelDev cumulativeInfoPanel){
+        this.cumulativeInfoPanel = cumulativeInfoPanel;
+        
         groupedButtonPanel = new JPanel();
         groupedButtonPanel.setLayout(null);
         groupedButtonPanel.setBackground(Color.WHITE);
@@ -43,6 +54,15 @@ public class GroupedButtonPaletteDev {
         
         generate.addActionListener((ActionEvent e) -> {
             PDFCleaner.generateGroupedAppointments();
+            
+            updateCumulativeList();
+            
+            Timer timer = new Timer(2000, ex -> {
+                updateCumulativeList();
+            });
+            
+            timer.start();
+            
         });
         
         open.addActionListener((ActionEvent e) -> {
@@ -53,6 +73,27 @@ public class GroupedButtonPaletteDev {
         buttonContainer.add(open);
         
         groupedButtonPanel.add(buttonContainer);
+    }
+    
+    public void updateCumulativeList(){
+        int totalCourses = 0;
+        int totalStudents = 0;
+        File mostRecentFile = GroupedObjectParser.getMostRecentFile("NormalizedEntityParser/GroupedObjects/");
+        
+        if (mostRecentFile != null){
+            Map<String, Integer> courseSums = GroupedObjectParser.parseFile(mostRecentFile);
+            totalCourses = courseSums.size();
+            totalStudents = courseSums.values().stream().mapToInt(Integer::intValue).sum();
+        }
+        else{
+            System.out.println("No file found in the specified directory.");
+        }
+        
+        cumulativeInfoPanel.setGroupedEntries(totalStudents);
+        cumulativeInfoPanel.setCoursesFound(totalCourses);
+        
+        cumulativeInfoPanel.getCumulativeInfoPanel().revalidate();
+        cumulativeInfoPanel.getCumulativeInfoPanel().repaint();
     }
     
     /**

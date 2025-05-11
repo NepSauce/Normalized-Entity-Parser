@@ -15,7 +15,7 @@ public class EncompassingTabDev {
         SettingsTabDev settingsTab = new SettingsTabDev(examLocationPanel, examAddedPanel, rosterAddedPanel, cumulativeInfoPanel);
         tabbedPane.add("Exam", settingsTab.getSettingsTab());
         
-        ObjectTabDev objectTab = new ObjectTabDev(examLocationPanel, examAddedPanel, rosterAddedPanel);
+        ObjectTabDev objectTab = new ObjectTabDev(examLocationPanel, examAddedPanel, rosterAddedPanel, cumulativeInfoPanel);
         tabbedPane.add("Files", objectTab.getObjectTab());
         
     }

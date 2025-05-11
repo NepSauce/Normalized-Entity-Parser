@@ -12,13 +12,16 @@ import nep.swing.panels.devmodepanels.devmodeduplicates.ExamLocationPanelDev;
 import nep.swing.panels.devmodepanels.devmodeduplicates.RosterAddedPanelDev;
 import nep.swing.panels.removedobjectpanels.RemovedObjectPanel;
 import nep.util.FileManager;
+import nep.util.GroupedObjectParser;
 import nep.util.RosterObjectSplitter;
 
 import javax.swing.*;
 import javax.swing.border.BevelBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.io.File;
 import java.util.LinkedList;
+import java.util.Map;
 
 /**
  * The PanelButtonPalette class creates a panel with buttons for interacting with rosters.
@@ -70,10 +73,10 @@ public class PanelButtonPaletteDev {
             LinkedList<String> fileNameList = newSplitter.getRosterFileName();
             LinkedList<String> locationList = newSplitter.getRosterLocation();
          
-            updateCumulativeList(directoryList, fileNameList, locationList);
+            updateCumulativeList(directoryList);
   
             Timer timer = new Timer(2000, ex -> {
-                updateCumulativeList(directoryList, fileNameList, locationList);
+                updateCumulativeList(directoryList);
             });
 
             timer.start();
@@ -103,7 +106,7 @@ public class PanelButtonPaletteDev {
         buttonContainerPanel.add(undoLastRosterFromPanelButton);
     }
     
-    private void updateCumulativeList(LinkedList<String> directoryList, LinkedList<String> fileNameList, LinkedList<String> locationList){
+    private void updateCumulativeList(LinkedList<String> directoryList){
         final int rosterCount = directoryList.size();
         int combinedEntries = FileManager.countLinesInFirstTxtFile("NormalizedEntityParser/CombinedObjects/");
         int removedEntries = FileManager.countLinesInFirstTxtFile("NormalizedEntityParser/RemovedObjects/");
@@ -111,9 +114,6 @@ public class PanelButtonPaletteDev {
         cumulativeInfoPanel.setRostersAdded(rosterCount);
         cumulativeInfoPanel.setCombinedEntries(combinedEntries);
         cumulativeInfoPanel.setRemovedEntries(removedEntries);
-        
-        cumulativeInfoPanel.getCumulativeInfoPanel().revalidate();
-        cumulativeInfoPanel.getCumulativeInfoPanel().repaint();
     }
     
     /**
