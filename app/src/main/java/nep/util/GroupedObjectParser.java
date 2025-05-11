@@ -2,63 +2,80 @@ package nep.util;
 
 import java.io.*;
 import java.util.*;
+import java.util.regex.*;
 
-public class GroupedObjectParser{
-    public static void main(String[] args){
-        String directoryPath = "path/to/your/directory";
-        File mostRecentFile = getMostRecentFile(directoryPath);
+public class GroupedObjectParser {
+    public static void main(String[] args) throws IOException {
+        String directoryPath = "NormalizedEntityParser/GroupedObjects/"; // change this
+        File latestFile = getMostRecentFile(directoryPath);
         
-        if (mostRecentFile != null){
-            Map<String, Integer> courseSums = parseFile(mostRecentFile);
-            int totalCourses = courseSums.size();
-            int totalStudents = courseSums.values().stream().mapToInt(Integer::intValue).sum();
-
+        if (latestFile == null) {
+            System.out.println("No files found.");
+            return;
         }
-        else{
-            System.out.println("No file found in the specified directory.");
-        }
-    }
-
-    public static File getMostRecentFile(String directoryPath){
-        File directory = new File(directoryPath);
-        File[] files = directory.listFiles((dir, name) -> name.endsWith(".txt"));
         
-        if (files == null || files.length == 0){
-            return null;
-        }
-
-        Arrays.sort(files, (file1, file2) -> Long.compare(file2.lastModified(), file1.lastModified()));
+        ParseResult result = parseFile(latestFile);
         
-        return files[0];
+        // You now have the values stored in variables
+        int totalSum = result.totalSum;
+        int courseCount = result.uniqueCourses;
+        
+        // Optional: display results
+        System.out.println("Total numeric sum: " + totalSum);
+        System.out.println("Total unique courses: " + courseCount);
     }
     
-    public static Map<String, Integer> parseFile(File file) {
-        Map<String, Integer> courseSums = new HashMap<>();
+    public static File getMostRecentFile(String dirPath) {
+        File dir = new File(dirPath);
+        File[] files = dir.listFiles((d, name) -> name.endsWith(".txt"));
         
-        try (BufferedReader br = new BufferedReader(new FileReader(file))) {
-            String line;
-            
-            while ((line = br.readLine()) != null) {
-                // Split by " - "
-                String[] parts = line.split(" - ");
-                
-                if (parts.length >= 3) {
-                    try {
-                        int number = Integer.parseInt(parts[0].trim());
-                        String courseCode = parts[2].trim();
-                        courseSums.put(courseCode, courseSums.getOrDefault(courseCode, 0) + number);
-                    }
-                    catch (NumberFormatException e){
-                        throw new RuntimeException(e);
-                    }
-                    
+        if (files == null || files.length == 0) return null;
+        
+        File latest = files[0];
+        for (File file : files) {
+            if (file.lastModified() > latest.lastModified()) {
+                latest = file;
+            }
+        }
+        return latest;
+    }
+    
+    public static ParseResult parseFile(File file) throws IOException {
+        BufferedReader reader = new BufferedReader(new FileReader(file));
+        String line;
+        int totalNumber = 0;
+        Set<String> uniqueCourses = new HashSet<>();
+        Pattern numberPattern = Pattern.compile("^(\\d+)\\s*-");
+        
+        String currentCourse = null;
+        
+        while ((line = reader.readLine()) != null) {
+            line = line.trim();
+            if (line.startsWith("Course Code:")) {
+                currentCourse = line.substring("Course Code:".length()).trim();
+                uniqueCourses.add(currentCourse);
+            } else if (currentCourse != null && numberPattern.matcher(line).find()) {
+                Matcher matcher = numberPattern.matcher(line);
+                if (matcher.find()) {
+                    int number = Integer.parseInt(matcher.group(1));
+                    totalNumber += number;
                 }
             }
-        } catch (IOException e) {
-            e.printStackTrace();
         }
         
-        return courseSums;
+        reader.close();
+        return new ParseResult(totalNumber, uniqueCourses.size());
     }
     
+    
+    // Helper class to return multiple values from parseFile
+    public static class ParseResult {
+        public int totalSum;
+        public int uniqueCourses;
+        
+        ParseResult(int totalSum, int uniqueCourses) {
+            this.totalSum = totalSum;
+            this.uniqueCourses = uniqueCourses;
+        }
+    }
 }

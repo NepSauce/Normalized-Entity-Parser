@@ -55,10 +55,20 @@ public class GroupedButtonPaletteDev {
         generate.addActionListener((ActionEvent e) -> {
             PDFCleaner.generateGroupedAppointments();
             
-            updateCumulativeList();
+            try {
+                updateCumulativeList();
+            }
+            catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
             
             Timer timer = new Timer(2000, ex -> {
-                updateCumulativeList();
+                try {
+                    updateCumulativeList();
+                }
+                catch (IOException exc) {
+                    throw new RuntimeException(exc);
+                }
             });
             
             timer.start();
@@ -75,22 +85,29 @@ public class GroupedButtonPaletteDev {
         groupedButtonPanel.add(buttonContainer);
     }
     
-    public void updateCumulativeList(){
-        int totalCourses = 0;
-        int totalStudents = 0;
-        File mostRecentFile = GroupedObjectParser.getMostRecentFile("NormalizedEntityParser/GroupedObjects/");
+    public void updateCumulativeList() throws IOException {
+        String directoryPath = "NormalizedEntityParser/GroupedObjects/"; // change this
+        File latestFile = GroupedObjectParser.getMostRecentFile(directoryPath);
         
-        if (mostRecentFile != null){
-            Map<String, Integer> courseSums = GroupedObjectParser.parseFile(mostRecentFile);
-            totalCourses = courseSums.size();
-            totalStudents = courseSums.values().stream().mapToInt(Integer::intValue).sum();
-        }
-        else{
-            System.out.println("No file found in the specified directory.");
+        if (latestFile == null) {
+            System.out.println("No files found.");
+            return;
         }
         
-        cumulativeInfoPanel.setGroupedEntries(totalStudents);
-        cumulativeInfoPanel.setCoursesFound(totalCourses);
+        GroupedObjectParser.ParseResult result = GroupedObjectParser.parseFile(latestFile);
+        
+        // You now have the values stored in variables
+        int totalSum = result.totalSum;
+        int courseCount = result.uniqueCourses;
+        
+        // Optional: display results
+        System.out.println("Total numeric sum: " + totalSum);
+        System.out.println("Total unique courses: " + courseCount);
+        
+       
+        
+        cumulativeInfoPanel.setGroupedEntries(totalSum);
+        cumulativeInfoPanel.setCoursesFound(courseCount);
         
         cumulativeInfoPanel.getCumulativeInfoPanel().revalidate();
         cumulativeInfoPanel.getCumulativeInfoPanel().repaint();
