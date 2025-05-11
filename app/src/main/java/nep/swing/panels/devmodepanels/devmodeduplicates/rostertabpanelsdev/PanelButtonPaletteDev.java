@@ -27,6 +27,7 @@ import java.util.LinkedList;
 @SuppressWarnings("FieldMayBeFinal")
 public class PanelButtonPaletteDev {
     private JPanel panelButtonPanel;
+    private CumulativeInfoPanelDev cumulativeInfoPanel;
     private static LinkedList<RosterEntityDetails> rosterEntityDetails = new LinkedList<>();
     
     /**
@@ -39,6 +40,8 @@ public class PanelButtonPaletteDev {
      */
     public PanelButtonPaletteDev(ExamLocationPanelDev examLocationPanel, ExamAddedPanelDev examAddedPanel,
                                  RosterAddedPanelDev rosterAddedPanel, CumulativeInfoPanelDev cumulativeInfoPanel){
+        
+        this.cumulativeInfoPanel = cumulativeInfoPanel;
         
         rosterEntityDetails = SelectionButtonPaletteDev.getRosterEntityList();
         
@@ -59,21 +62,21 @@ public class PanelButtonPaletteDev {
         JButton clearAllRostersFromPanelButton = new JButton("Clear");
         JButton undoLastRosterFromPanelButton = new JButton("Undo");
         
+        
+        
         submitAllRostersButton.addActionListener((ActionEvent e) -> {
             RosterObjectSplitter newSplitter = new RosterObjectSplitter(rosterEntityDetails, rosterEntityDetails.size());
             LinkedList<String> directoryList = newSplitter.getRosterDirectory();
             LinkedList<String> fileNameList = newSplitter.getRosterFileName();
             LinkedList<String> locationList = newSplitter.getRosterLocation();
-            
-            int rosterCount = directoryList.size();
-            int combinedEntries = FileManager.countLinesInFirstTxtFile("NormalizedEntityParser/CombinedObjects/");
-            
-            cumulativeInfoPanel.setRostersAdded(rosterCount);
-            cumulativeInfoPanel.setCombinedEntries(combinedEntries);
-            
-            cumulativeInfoPanel.getCumulativeInfoPanel().revalidate();
-            cumulativeInfoPanel.getCumulativeInfoPanel().repaint();
-            
+         
+            updateCumulativeList(directoryList, fileNameList, locationList);
+  
+            Timer timer = new Timer(2000, ex -> {
+                updateCumulativeList(directoryList, fileNameList, locationList);
+            });
+
+            timer.start();
             
             if (!directoryList.isEmpty()){
                 PDFConversion.deleteCombinedObjectFile();
@@ -98,6 +101,19 @@ public class PanelButtonPaletteDev {
         buttonContainerPanel.add(submitAllRostersButton);
         buttonContainerPanel.add(clearAllRostersFromPanelButton);
         buttonContainerPanel.add(undoLastRosterFromPanelButton);
+    }
+    
+    private void updateCumulativeList(LinkedList<String> directoryList, LinkedList<String> fileNameList, LinkedList<String> locationList){
+        final int rosterCount = directoryList.size();
+        int combinedEntries = FileManager.countLinesInFirstTxtFile("NormalizedEntityParser/CombinedObjects/");
+        int removedEntries = FileManager.countLinesInFirstTxtFile("NormalizedEntityParser/RemovedObjects/");
+        
+        cumulativeInfoPanel.setRostersAdded(rosterCount);
+        cumulativeInfoPanel.setCombinedEntries(combinedEntries);
+        cumulativeInfoPanel.setRemovedEntries(removedEntries);
+        
+        cumulativeInfoPanel.getCumulativeInfoPanel().revalidate();
+        cumulativeInfoPanel.getCumulativeInfoPanel().repaint();
     }
     
     /**
