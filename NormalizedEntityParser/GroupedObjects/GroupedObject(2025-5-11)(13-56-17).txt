@@ -1,0 +1,156 @@
+Course Code: ASSC 1801
+ 3 - 2104 MCCAIN - 3:30 PM
+ 3 - 2170 MCCAIN - 3:30 PM
+
+Course Code: BIOL 3601
+ 1 - 2016 MCCAIN - 3:30 PM
+ 4 - 2021 MCCAIN - 3:30 PM
+ 4 - 2104 MCCAIN - 3:30 PM
+
+Course Code: BIOL/MARI 3301
+ 8 - 2170 MCCAIN - 8:30 AM
+ 2 - 3080 ROWE - 8:30 AM
+
+Course Code: CANA 2002
+ 2 - 2016 MCCAIN - 3:30 PM
+ 1 - 2021 MCCAIN - 8:30 AM
+ 2 - 2104 MCCAIN - 3:30 PM
+
+Course Code: CHEM 1022
+ 1 - 2170 MCCAIN - 8:30 AM
+
+Course Code: CHEM 2402
+ 11 - 2016 MCCAIN - 8:30 AM
+ 12 - 2017 MCCAIN - 8:30 AM
+ 8 - 2021 MCCAIN - 8:30 AM
+
+Course Code: CHEM 3601
+ 4 - 2021 MCCAIN - 3:30 PM
+ 1 - 2104 MCCAIN - 3:30 PM
+
+Course Code: COMM 4201
+ 1 - 3080 ROWE - 8:30 AM
+
+Course Code: COMM 4201 01
+ 1 - 2017 MCCAIN - 8:30 AM
+ 3 - 2130 MCCAIN - 8:30 AM
+
+Course Code: CSCI 3120
+ 4 - 1170 MCCAIN - 8:30 AM
+ 1 - 3080 ROWE - 8:30 AM
+
+Course Code: CSCI 3137
+ 1 - 2016 MCCAIN - 3:30 PM
+
+Course Code: CSCI 4169
+ 2 - 2021 MCCAIN - 3:30 PM
+
+Course Code: CSCI 5193
+ 1 - 2016 MCCAIN - 3:30 PM
+
+Course Code: DUMT 2040
+ 2 - 3080 ROWE - 8:30 AM
+
+Course Code: ECON 3426
+ 1 - 2170 MCCAIN - 3:30 PM
+
+Course Code: EMSP 3250
+ 1 - 2130 MCCAIN - 8:30 AM
+
+Course Code: ENGL/THEA 3503
+ 2 - 2021 MCCAIN - 3:30 PM
+ 2 - 2104 MCCAIN - 3:30 PM
+
+Course Code: HIST 3050
+ 1 - 2016 MCCAIN - 8:30 AM
+ 2 - 3080 ROWE - 8:30 AM
+
+Course Code: HIST 3050 01
+ 1 - 3080 ROWE - 8:30 AM
+
+Course Code: HSTC 3350
+ 2 - 2104 MCCAIN - 3:30 PM
+
+Course Code: INTD 2002
+ 5 - 1170 MCCAIN - 8:30 AM
+
+Course Code: LAWS 1125 01
+ 1 - 309 WELDON W (10+1) - 9:30 AM
+
+Course Code: LAWS 2099
+ 1 - 308 WELDON W (10) - 9:30 AM
+
+Course Code: LAWS 2099 03
+ 7 - 308 WELDON W (10) - 9:30 AM
+ 5 - 309 WELDON W (10+1) - 9:30 AM
+
+Course Code: LAWS 2213 01
+ 1 - 309 WELDON W (10+1) - 9:30 AM
+
+Course Code: LAWS 2214
+ 1 - 309 WELDON W (10+1) - 9:30 AM
+
+Course Code: LAWS 2214 01
+ 1 - 309 WELDON W (10+1) - 9:30 AM
+
+Course Code: MATH 1000
+ 2 - 2016 MCCAIN - 8:30 AM
+ 6 - 2130 MCCAIN - 8:30 AM
+ 2 - 2170 MCCAIN - 8:30 AM
+
+Course Code: MATH 1215
+ 10 - 1170 MCCAIN - 3:30 PM
+ 3 - 2016 MCCAIN - 3:30 PM
+ 2 - 2104 MCCAIN - 3:30 PM
+ 6 - 2170 MCCAIN - 3:30 PM
+
+Course Code: MATH 3120
+ 1 - 2130 MCCAIN - 8:30 AM
+
+Course Code: MGMT 2304
+ 2 - 3080 ROWE - 8:30 AM
+
+Course Code: MUSC 1222
+ 2 - 3080 ROWE - 1:00 PM
+
+Course Code: MUSC 2000
+ 5 - 2021 MCCAIN - 8:30 AM
+ 1 - 3080 ROWE - 8:30 AM
+
+Course Code: NESC/PSYO 2140
+ 1 - 2016 MCCAIN - 3:30 PM
+ 12 - 2116 MCCAIN - 12:00 PM
+ 6 - 2118 MCCAIN - 12:00 PM
+ 2 - 301A DUNN - 12:00 PM
+
+Course Code: OCCU 5006
+ 7 - 1130 MCCAIN - 1:00 PM
+ 2 - 3080 ROWE - 1:00 PM
+
+Course Code: OCEA 4230
+ 1 - 2170 MCCAIN - 3:30 PM
+
+Course Code: OCEA 5230
+ 1 - 2016 MCCAIN - 3:30 PM
+
+Course Code: PHAR 1062
+ 8 - 301A DUNN - 12:00 PM
+
+Course Code: PHAR 3052
+ 4 - 1170 MCCAIN - 8:30 AM
+ 1 - 2130 MCCAIN - 8:30 AM
+
+Course Code: PHYC 2510
+ 1 - 1170 MCCAIN - 3:30 PM
+ 1 - 2016 MCCAIN - 3:30 PM
+
+Course Code: POLI 3581
+ 1 - 1170 MCCAIN - 3:30 PM
+ 1 - 2021 MCCAIN - 3:30 PM
+
+Course Code: RADT 1020
+ 4 - 3080 ROWE - 8:30 AM
+
+Course Code: RADT 2020
+ 1 - 2104 MCCAIN - 3:30 PM
+

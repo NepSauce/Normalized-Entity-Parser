@@ -67,18 +67,19 @@ public class PanelButtonPaletteDev {
         JButton undoLastRosterFromPanelButton = new JButton("Undo");
         undoLastRosterFromPanelButton.setEnabled(false);
         
-        
-        
         submitAllRostersButton.addActionListener((ActionEvent e) -> {
             RosterObjectSplitter newSplitter = new RosterObjectSplitter(rosterEntityDetails, rosterEntityDetails.size());
             LinkedList<String> directoryList = newSplitter.getRosterDirectory();
             LinkedList<String> fileNameList = newSplitter.getRosterFileName();
             LinkedList<String> locationList = newSplitter.getRosterLocation();
+            
+            final int rosterCount = directoryList.size();
+            cumulativeInfoPanel.setRostersAdded(rosterCount);
          
-            updateCumulativeList(directoryList);
+            updateCumulativeList();
   
             Timer timer = new Timer(2000, ex -> {
-                updateCumulativeList(directoryList);
+                updateCumulativeList();
             });
 
             timer.start();
@@ -108,12 +109,10 @@ public class PanelButtonPaletteDev {
         buttonContainerPanel.add(undoLastRosterFromPanelButton);
     }
     
-    private void updateCumulativeList(LinkedList<String> directoryList){
-        final int rosterCount = directoryList.size();
+    private void updateCumulativeList(){
         int combinedEntries = FileManager.countLinesInFirstTxtFile("NormalizedEntityParser/CombinedObjects/");
         int removedEntries = FileManager.countLinesInFirstTxtFile("NormalizedEntityParser/RemovedObjects/");
-        
-        cumulativeInfoPanel.setRostersAdded(rosterCount);
+
         cumulativeInfoPanel.setCombinedEntries(combinedEntries);
         cumulativeInfoPanel.setRemovedEntries(removedEntries);
     }
