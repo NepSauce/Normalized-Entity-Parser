@@ -419,38 +419,46 @@ public class PDFConversion {
      * @param record The record to extract from
      * @return The course code if found; otherwise, null
      */
-    private static String extractCourseCode(String record){
+    private static String extractCourseCode(String record) {
         Matcher courseMatcher = Pattern.compile(
                 "([A-Za-z]{2,6}/)?([A-Za-z]{2,6})[\\s-](\\d{4,5}(?:[\\s.-]\\d{1,2})?)"
         ).matcher(record);
         
         List<String> potentialCodes = new ArrayList<>();
         
-        while (courseMatcher.find()){
+        while (courseMatcher.find()) {
             String fullDept = courseMatcher.group(1) != null ? courseMatcher.group(1) : "";
             String mainDept = courseMatcher.group(2);
             String rawCode = courseMatcher.group(3).replaceAll("[\\s.-]", " ").trim();
             
             String[] parts = rawCode.split(" ");
             String courseNumber = parts[0];
+            
+            if (courseNumber.length() != 4){
+                return null;
+            }
             String section = (parts.length > 1) ? parts[1] : null;
             
-            if (section != null && section.matches("0[1-9]")){
+            if (section != null && section.matches("0[1-9]")) {
                 rawCode = courseNumber + " " + section;
-            }
-            else{
+            } else {
                 rawCode = courseNumber;
             }
             
             String potentialCode = (fullDept + mainDept + " " + rawCode).toUpperCase();
             potentialCode = potentialCode.replaceAll("[\\s.-]", " ");
             
-            if (!potentialCode.matches(".*(COMP|ROWE|MONA|DUNN|WELDON|MCCAIN|MCAIN|LOCATION|DALHOUSIE).*")){
+            if (!potentialCode.matches(".*(COMP|ROWE|MONA|DUNN|WELDON|MCCAIN|MCAIN|LOCATION|DALHOUSIE).*")) {
                 potentialCodes.add(potentialCode.trim());
             }
         }
         
-        if (!potentialCodes.isEmpty()){
+        // Return null if there are 2 or more potential codes
+        if (potentialCodes.size() >= 2) {
+            return null;
+        }
+        
+        if (!potentialCodes.isEmpty()) {
             return potentialCodes.get(0);
         }
         
@@ -459,7 +467,7 @@ public class PDFConversion {
                         "\\s-\\s([A-Z]{2,6})$"
         ).matcher(record);
         
-        if (deptMatcher.find()){
+        if (deptMatcher.find()) {
             String dept = deptMatcher.group(1) != null ? deptMatcher.group(1) : deptMatcher.group(2);
             
             if (dept != null && !dept.isEmpty() &&
@@ -470,7 +478,6 @@ public class PDFConversion {
         
         return null;
     }
-    
     /**
      * Determines the appropriate location string based on the location type.
      *

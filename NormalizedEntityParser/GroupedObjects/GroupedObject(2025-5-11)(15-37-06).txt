@@ -1,0 +1,37 @@
+Course Code: CHEM 1012
+ 17 - LORD DALHOUSIE - 8:30 AM
+
+Course Code: COMM 2504
+ 5 - 2104 MCCAIN - 3:30 PM
+
+Course Code: CSCI 2141
+ 2 - 2104 MCCAIN - 3:30 PM
+
+Course Code: EMSP 2320
+ 1 - 2104 MCCAIN - 3:30 PM
+
+Course Code: ENVS 3100
+ 6 - 2104 MCCAIN - 3:30 PM
+
+Course Code: HIST 3227
+ 1 - LORD DALHOUSIE - 8:30 AM
+
+Course Code: LAWS 10125 02
+ 1 - LORD DALHOUSIE - 8:30 AM
+
+Course Code: LAWS 2008 03
+ 8 - 308 WELDON W (10) - 9:30 AM
+ 8 - 309 WELDON W (10+1) - 9:30 AM
+
+Course Code: MATH 1290
+ 7 - 301A DUNN - 12:00 PM
+
+Course Code: PHAR 1011
+ 10 - 301A DUNN - 12:00 PM
+
+Course Code: PSYO 2220
+ 2 - 301A DUNN - 12:00 PM
+
+Course Code: PSYO 3227
+ 1 - 301A DUNN - 12:00 PM
+
