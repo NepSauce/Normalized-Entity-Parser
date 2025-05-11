@@ -111,6 +111,7 @@ public class GroupedButtonPaletteDev {
         
         cumulativeInfoPanel.getCumulativeInfoPanel().revalidate();
         cumulativeInfoPanel.getCumulativeInfoPanel().repaint();
+        cumulativeInfoPanel.refresh();
     }
     
     /**

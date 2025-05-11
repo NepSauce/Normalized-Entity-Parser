@@ -83,52 +83,42 @@ public class CumulativeInfoPanelDev {
     
     public void setRostersAdded(int value) {
         rostersAddedCount = value;
-        refresh();
     }
     
     public void setCoursesFound(int value) {
         coursesFoundCount = value;
-        refresh();
     }
     
     public void setCombinedEntries(int value) {
         combinedEntriesCount = value;
-        refresh();
     }
     
     public void setGroupedEntries(int value) {
         groupedEntriesCount = value;
-        refresh();
     }
     
     public void setRemovedEntries(int value) {
         removedEntriesCount = value;
-        refresh();
     }
     
     public void incrementRostersAdded(int amount) {
         rostersAddedCount += amount;
-        refresh();
     }
     
     public void incrementCoursesFound(int amount) {
         coursesFoundCount += amount;
-        refresh();
     }
     
     public void incrementCombinedEntries(int amount) {
         combinedEntriesCount += amount;
-        refresh();
     }
     
     public void incrementGroupedEntries(int amount) {
         groupedEntriesCount += amount;
-        refresh();
     }
     
     public void incrementRemovedEntries(int amount) {
         removedEntriesCount += amount;
-        refresh();
     }
     
     public void updateLabels() {

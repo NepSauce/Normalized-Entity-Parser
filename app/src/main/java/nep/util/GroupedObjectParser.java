@@ -4,43 +4,42 @@ import java.io.*;
 import java.util.*;
 import java.util.regex.*;
 
-public class GroupedObjectParser {
-    public static void main(String[] args) throws IOException {
-        String directoryPath = "NormalizedEntityParser/GroupedObjects/"; // change this
+public class GroupedObjectParser{
+    public static void main(String[] args) throws IOException{
+        String directoryPath = "NormalizedEntityParser/GroupedObjects/";
         File latestFile = getMostRecentFile(directoryPath);
         
-        if (latestFile == null) {
+        if (latestFile == null){
             System.out.println("No files found.");
             return;
         }
         
         ParseResult result = parseFile(latestFile);
-        
-        // You now have the values stored in variables
         int totalSum = result.totalSum;
         int courseCount = result.uniqueCourses;
         
-        // Optional: display results
         System.out.println("Total numeric sum: " + totalSum);
         System.out.println("Total unique courses: " + courseCount);
     }
     
-    public static File getMostRecentFile(String dirPath) {
+    public static File getMostRecentFile(String dirPath){
         File dir = new File(dirPath);
         File[] files = dir.listFiles((d, name) -> name.endsWith(".txt"));
         
         if (files == null || files.length == 0) return null;
         
         File latest = files[0];
-        for (File file : files) {
+        
+        for (File file : files){
             if (file.lastModified() > latest.lastModified()) {
                 latest = file;
             }
         }
+        
         return latest;
     }
     
-    public static ParseResult parseFile(File file) throws IOException {
+    public static ParseResult parseFile(File file) throws IOException{
         BufferedReader reader = new BufferedReader(new FileReader(file));
         String line;
         int totalNumber = 0;
@@ -49,13 +48,16 @@ public class GroupedObjectParser {
         
         String currentCourse = null;
         
-        while ((line = reader.readLine()) != null) {
+        while ((line = reader.readLine()) != null){
             line = line.trim();
-            if (line.startsWith("Course Code:")) {
+            
+            if (line.startsWith("Course Code:")){
                 currentCourse = line.substring("Course Code:".length()).trim();
                 uniqueCourses.add(currentCourse);
-            } else if (currentCourse != null && numberPattern.matcher(line).find()) {
+            }
+            else if (currentCourse != null && numberPattern.matcher(line).find()){
                 Matcher matcher = numberPattern.matcher(line);
+                
                 if (matcher.find()) {
                     int number = Integer.parseInt(matcher.group(1));
                     totalNumber += number;
@@ -67,13 +69,11 @@ public class GroupedObjectParser {
         return new ParseResult(totalNumber, uniqueCourses.size());
     }
     
-    
-    // Helper class to return multiple values from parseFile
-    public static class ParseResult {
+    public static class ParseResult{
         public int totalSum;
         public int uniqueCourses;
         
-        ParseResult(int totalSum, int uniqueCourses) {
+        ParseResult(int totalSum, int uniqueCourses){
             this.totalSum = totalSum;
             this.uniqueCourses = uniqueCourses;
         }
