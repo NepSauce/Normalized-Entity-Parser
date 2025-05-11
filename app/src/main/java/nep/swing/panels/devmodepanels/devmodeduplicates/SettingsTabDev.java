@@ -1,5 +1,6 @@
 package nep.swing.panels.devmodepanels.devmodeduplicates;
 
+import nep.swing.panels.devmodepanels.devmodeduplicates.rostertabpanelsdev.DevModeButtonPaletteDev;
 import nep.swing.panels.devmodepanels.devmodeduplicates.rostertabpanelsdev.PanelButtonPaletteDev;
 import nep.swing.panels.devmodepanels.devmodeduplicates.rostertabpanelsdev.SelectionButtonPaletteDev;
 
@@ -23,6 +24,10 @@ public class SettingsTabDev {
                 examAddedPanel, rosterAddedPanel, cumulativeInfoPanel);
         tabbedPane.addTab("Panel", panelButtonPalette.getPanelButtonPanel());
         addTooltips(panelButtonPalette.getPanelButtonPanel());
+        
+        DevModeButtonPaletteDev devModeButtonPalette = new DevModeButtonPaletteDev();
+        tabbedPane.add("DevMode", devModeButtonPalette.getDevModePanel());
+        addTooltips(devModeButtonPalette.getDevModePanel());
     }
     
     public JTabbedPane getSettingsTab(){

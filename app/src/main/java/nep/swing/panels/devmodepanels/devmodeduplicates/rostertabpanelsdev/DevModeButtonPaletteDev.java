@@ -1,4 +1,4 @@
-package nep.swing.panels.rostertabpanels;
+package nep.swing.panels.devmodepanels.devmodeduplicates.rostertabpanelsdev;
 
 import nep.swing.panels.devmodepanels.TerminalFrame;
 
@@ -12,14 +12,14 @@ import java.awt.event.ActionListener;
  * The DevModeButtonPalette class is a Swing panel that provides a user interface with buttons for
  * logging, bash commands, and accessing documentation. It is designed for development mode purposes.
  */
-public class DevModeButtonPalette{
+public class DevModeButtonPaletteDev{
     private JPanel devModePanel;
     
     /**
      * Constructs the DevModeButtonPalette, initializes the UI components, and sets up the buttons for logging,
      * bash commands, and documentation access.
      */
-    public DevModeButtonPalette(){
+    public DevModeButtonPaletteDev(){
         devModePanel = new JPanel();
         devModePanel.setLayout(null);
         devModePanel.setBackground(Color.WHITE);
@@ -31,6 +31,7 @@ public class DevModeButtonPalette{
         buttonContainer.setBounds(10, 10, 225, 35);
         
         JButton debugButton = new JButton("RootNEP");
+        debugButton.setEnabled(false);
         JButton bashButton = new JButton("NEPTer");
         JButton helpButton = new JButton("Docs");
         
@@ -43,7 +44,7 @@ public class DevModeButtonPalette{
         
         bashButton.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(java.awt.event.ActionEvent e) {
+            public void actionPerformed(ActionEvent e) {
                 openTerminal();
             }
         });

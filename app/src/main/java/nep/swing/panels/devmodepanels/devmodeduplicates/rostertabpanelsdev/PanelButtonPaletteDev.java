@@ -63,7 +63,9 @@ public class PanelButtonPaletteDev {
         
         JButton submitAllRostersButton = new JButton("Submit");
         JButton clearAllRostersFromPanelButton = new JButton("Clear");
+        clearAllRostersFromPanelButton.setEnabled(false);
         JButton undoLastRosterFromPanelButton = new JButton("Undo");
+        undoLastRosterFromPanelButton.setEnabled(false);
         
         
         
