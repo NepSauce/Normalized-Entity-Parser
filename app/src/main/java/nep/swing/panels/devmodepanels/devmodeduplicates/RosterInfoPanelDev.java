@@ -34,7 +34,7 @@ public class RosterInfoPanelDev {
         
         TitledBorder titledBorder = BorderFactory.createTitledBorder(
                 BorderFactory.createEmptyBorder(),
-                "Roster Info",
+                "Roster Info (WIP)",
                 TitledBorder.DEFAULT_JUSTIFICATION,
                 TitledBorder.DEFAULT_POSITION,
                 new Font("Arial", Font.BOLD, 16)
