@@ -30,9 +30,9 @@ public class DevModeButtonPaletteDev{
         buttonContainer.setBackground(Color.WHITE);
         buttonContainer.setBounds(10, 10, 225, 35);
         
-        JButton debugButton = new JButton("RootNEP");
+        JButton debugButton = new JButton("Trace");
         debugButton.setEnabled(false);
-        JButton bashButton = new JButton("NEPTer");
+        JButton bashButton = new JButton("Node");
         JButton helpButton = new JButton("Docs");
         
         debugButton.addActionListener(new ActionListener() {

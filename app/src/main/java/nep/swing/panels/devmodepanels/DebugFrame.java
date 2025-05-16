@@ -16,7 +16,7 @@ public class DebugFrame extends JFrame {
      * Constructs the DebugFrame and initializes its UI components.
      */
     public DebugFrame(){
-        setTitle("RootNEP Debug");
+        setTitle("NEP - Fault Trace");
         setSize(568, 460);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);

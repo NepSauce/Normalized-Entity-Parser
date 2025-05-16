@@ -2,6 +2,7 @@ package nep.swing.panels.devmodepanels.devmodeduplicates;
 
 import javax.swing.*;
 import javax.swing.border.BevelBorder;
+import javax.swing.border.Border;
 import javax.swing.border.TitledBorder;
 import java.awt.*;
 import java.time.LocalTime;
@@ -32,13 +33,16 @@ public class LoggingPanelDev{
         logListPanel.setBackground(Color.WHITE);
         
         TitledBorder titledBorder = BorderFactory.createTitledBorder(
-                BorderFactory.createEmptyBorder(),
+                BorderFactory.createLineBorder(Color.WHITE),
                 "System Log",
                 TitledBorder.DEFAULT_JUSTIFICATION,
                 TitledBorder.DEFAULT_POSITION,
                 new Font("Arial", Font.BOLD, 16)
         );
-        logListPanel.setBorder(titledBorder);
+
+        Border padding = BorderFactory.createEmptyBorder(8, 0, 5, 5);
+        logListPanel.setBorder(BorderFactory.createCompoundBorder(titledBorder, padding));
+        
         
         JScrollPane scrollPane = new JScrollPane(logListPanel);
         scrollPane.setBounds(5, 5, panelWidth - 10, panelHeight - 10);
@@ -61,8 +65,8 @@ public class LoggingPanelDev{
         
         JLabel logLabel = new JLabel(fullMessage);
         logLabel.setFont(new Font("Consolas", Font.BOLD, 12));
-        logLabel.setAlignmentX(Component.LEFT_ALIGNMENT); // Prevent stretching
-        logLabel.setPreferredSize(new Dimension(1000, 20)); // Allow horizontal scroll if needed
+        logLabel.setAlignmentX(Component.LEFT_ALIGNMENT);
+        logLabel.setPreferredSize(new Dimension(1000, 20));
         
         logListPanel.add(logLabel);
         logEntries.add(logLabel);

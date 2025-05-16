@@ -11,10 +11,10 @@ public class TerminalFrame extends JFrame {
     private JTextField inputField;
     private JPanel inputPanel;
     
-    private final String prompt = "nep@NormalizedEntityParser[Build-1.0.0-Alpha] | (Mode-SysAcc) <> ";
+    private final String prompt = "nep@NormalizedEntityParser[Build-1.0.0-Alpha] | (Mode-SysAcc) >> ";
     
     public TerminalFrame(){
-        setTitle("NEPTer - Terminal");
+        setTitle("NEP - BlackLight Node");
         setSize(700, 400);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -108,16 +108,34 @@ public class TerminalFrame extends JFrame {
     private void executeCommand(String command){
         StyledDocument doc = terminalPane.getStyledDocument();
         
-        try{
-            if (command.equalsIgnoreCase("exit")){
-                doc.insertString(doc.getLength(), "Exiting terminal...\n", null);
+        Style response = terminalPane.addStyle("Response", null);
+        StyleConstants.setForeground(response, new Color(255, 191, 0));
+        StyleConstants.setFontFamily(response, "Monospaced");
+        StyleConstants.setFontSize(response, 13);
+        
+        try {
+            if (command.equalsIgnoreCase("@nep exit")){
+                doc.insertString(doc.getLength(), "Exiting terminal...\n", response);
                 dispose();
             }
-            else if (command.equalsIgnoreCase("clear")){
+            else if (command.equalsIgnoreCase("@nep clear")){
                 terminalPane.setText("");
             }
+            else if (command.equalsIgnoreCase("@nep help")){
+                doc.insertString(doc.getLength(),
+                        ">> Dev-Terminal Note: This interface is currently under active development.\n", response);
+                doc.insertString(doc.getLength(),
+                        ">> Available Commands:\n", response);
+                doc.insertString(doc.getLength(),
+                        "   - @nep help   : Displays this message.\n", response);
+                doc.insertString(doc.getLength(),
+                        "   - @nep clear       : Clears the terminal.\n", response);
+                doc.insertString(doc.getLength(),
+                        "   - @nep exit        : Closes the terminal.\n", response);
+            }
             else{
-                doc.insertString(doc.getLength(), "Error: Command Not Recognized: Enter '@nep help' For a List of Commands." + "\n", null);
+                doc.insertString(doc.getLength(),
+                        "Error: Command Not Recognized: Enter '@nep help' For a List of Commands.\n", response);
             }
         }
         catch (BadLocationException e){
