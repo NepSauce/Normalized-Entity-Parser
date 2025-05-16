@@ -14,7 +14,6 @@ public class LoggingPanelDev {
     private JPanel logListPanel;
     private int panelWidth;
     private int panelHeight;
-    private int currentYPosition = 25;
     private ArrayList<JLabel> logEntries;
     
     public LoggingPanelDev() {
@@ -29,9 +28,8 @@ public class LoggingPanelDev {
         mainPanel.setBorder(BorderFactory.createBevelBorder(BevelBorder.LOWERED));
         
         logListPanel = new JPanel();
-        logListPanel.setLayout(null);
+        logListPanel.setLayout(new BoxLayout(logListPanel, BoxLayout.Y_AXIS));
         logListPanel.setBackground(Color.WHITE);
-        logListPanel.setPreferredSize(new Dimension(panelWidth - 30, panelHeight));
         
         TitledBorder titledBorder = BorderFactory.createTitledBorder(
                 BorderFactory.createEmptyBorder(),
@@ -45,7 +43,7 @@ public class LoggingPanelDev {
         JScrollPane scrollPane = new JScrollPane(logListPanel);
         scrollPane.setBounds(5, 5, panelWidth - 10, panelHeight - 10);
         scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
-        scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+        scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         scrollPane.getVerticalScrollBar().setUnitIncrement(16);
         
         mainPanel.add(scrollPane);
@@ -58,31 +56,25 @@ public class LoggingPanelDev {
     }
     
     public void log(String message) {
-        // Get current time in HH:mm:ss format
         String timeStamp = LocalTime.now().format(DateTimeFormatter.ofPattern("HH:mm:ss"));
-        
-        // Combine time with message
         String fullMessage = "[" + timeStamp + "] " + message;
         
         JLabel logLabel = new JLabel(fullMessage);
         logLabel.setFont(new Font("Consolas", Font.BOLD, 12));
-        logLabel.setBounds(5, currentYPosition, panelWidth - 50, 20);
+        logLabel.setAlignmentX(Component.LEFT_ALIGNMENT); // Prevent stretching
+        logLabel.setPreferredSize(new Dimension(1000, 20)); // Allow horizontal scroll if needed
+        
         logListPanel.add(logLabel);
         logEntries.add(logLabel);
         
-        currentYPosition += 25;
-        logListPanel.setPreferredSize(new Dimension(panelWidth - 30, currentYPosition + 30));
         logListPanel.revalidate();
         logListPanel.repaint();
     }
     
     public void clearLog() {
-        for (JLabel logLabel : logEntries) {
-            logListPanel.remove(logLabel);
-        }
+        logListPanel.removeAll();
         logEntries.clear();
-        currentYPosition = 25;
-        logListPanel.setPreferredSize(new Dimension(panelWidth - 30, panelHeight));
+        log("NEP Build-1.0.0-Alpha");
         logListPanel.revalidate();
         logListPanel.repaint();
     }
@@ -91,7 +83,6 @@ public class LoggingPanelDev {
         if (!logEntries.isEmpty()) {
             JLabel last = logEntries.remove(logEntries.size() - 1);
             logListPanel.remove(last);
-            currentYPosition -= 25;
             logListPanel.revalidate();
             logListPanel.repaint();
         }
