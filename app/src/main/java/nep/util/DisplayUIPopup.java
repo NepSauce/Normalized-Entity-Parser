@@ -3,33 +3,33 @@ package nep.util;
 import javax.swing.*;
 import java.awt.*;
 
-public class DisplayUIPopup {
+public class DisplayUIPopup{
     private final String message;
     private final String title;
     private final int popupCode;
     private PopupType type = PopupType.INFO;
     
-    public enum PopupType {
+    public enum PopupType{
         INFO, CONFIRM
     }
     
-    public DisplayUIPopup(String title, String message, int popupCode) {
+    public DisplayUIPopup(String title, String message, int popupCode){
         this.title = title;
         this.message = message;
         this.popupCode = popupCode;
     }
     
-    public void showInfoPopup() {
+    public void showInfoPopup(){
         this.type = PopupType.INFO;
         showDialog();
     }
     
-    public boolean showConfirmationPopup() {
+    public boolean showConfirmationPopup(){
         this.type = PopupType.CONFIRM;
         return showDialog();
     }
     
-    private boolean showDialog() {
+    private boolean showDialog(){
         JFrame frame = new JFrame();
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         frame.setUndecorated(false);
@@ -60,7 +60,8 @@ public class DisplayUIPopup {
         contentPanel.add(messagePanel, BorderLayout.CENTER);
         
         boolean[] confirmed = {false};
-        if (type == PopupType.CONFIRM) {
+        
+        if (type == PopupType.CONFIRM){
             JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
             JButton yesButton = new JButton("Yes");
             JButton noButton = new JButton("No");
@@ -88,11 +89,14 @@ public class DisplayUIPopup {
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
         
-        if (type == PopupType.CONFIRM) {
-            while (frame.isVisible()) {
+        if (type == PopupType.CONFIRM){
+            while (frame.isVisible()){
                 try {
                     Thread.sleep(50);
-                } catch (InterruptedException ignored) {}
+                }
+                catch (InterruptedException ignored){
+                
+                }
             }
         }
         

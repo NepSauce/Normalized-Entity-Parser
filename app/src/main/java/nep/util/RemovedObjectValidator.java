@@ -4,7 +4,7 @@ import java.io.*;
 import java.nio.file.*;
 import java.util.regex.*;
 
-public class RemovedObjectValidator {
+public class RemovedObjectValidator{
     
     private static final Pattern ID_PATTERN = Pattern.compile("B\\d{8}");
     private static final Pattern TIME_PATTERN = Pattern.compile("\\d{1,2}:\\d{2}\\s[AP]M");
@@ -12,22 +12,23 @@ public class RemovedObjectValidator {
     private static final Pattern NAME_PATTERN = Pattern.compile("[A-Z ,']{3,}");
     private static final Pattern LOCATION_PATTERN = Pattern.compile("[A-Z0-9 ()]{3,}");
     
-    public static boolean validateAndRestore(String rawData, Path removedFilePath, int lineIndex) {
-        if (rawData == null || !isValid(rawData)) {
+    public static boolean validateAndRestore(String rawData, Path removedFilePath, int lineIndex){
+        if (rawData == null || !isValid(rawData)){
             new DisplayUIPopup("Validation Failed", "Invalid record or missing fields.", 104).showInfoPopup();
             return false;
         }
         
-        try {
+        try{
             Path combinedDir = Paths.get("NormalizedEntityParser/CombinedObjects");
             Files.createDirectories(combinedDir);
             
             Path latestFile = Files.list(combinedDir)
                     .filter(Files::isRegularFile)
                     .max((f1, f2) -> {
-                        try {
+                        try{
                             return Files.getLastModifiedTime(f1).compareTo(Files.getLastModifiedTime(f2));
-                        } catch (IOException e) {
+                        }
+                        catch (IOException e){
                             return 0;
                         }
                     })
@@ -36,12 +37,15 @@ public class RemovedObjectValidator {
                             Path newFile = combinedDir.resolve("combined_" + System.currentTimeMillis() + ".txt");
                             Files.createFile(newFile);
                             return newFile;
-                        } catch (IOException e) {
+                        }
+                        catch (IOException e){
                             return null;
                         }
                     });
             
-            if (latestFile == null) return false;
+            if (latestFile == null){
+                return false;
+            }
             
             String cleanedData = cleanRawData(rawData);
             Files.write(latestFile, (cleanedData + System.lineSeparator()).getBytes(), StandardOpenOption.APPEND);
@@ -50,14 +54,17 @@ public class RemovedObjectValidator {
             
             new DisplayUIPopup("Success", "Entry has been successfully validated and restored.", 0).showInfoPopup();
             return true;
-        } catch (IOException e) {
+        }
+        catch (IOException e){
             e.printStackTrace();
             return false;
         }
     }
     
-    private static boolean isValid(String data) {
-        if (data == null) return false;
+    private static boolean isValid(String data){
+        if (data == null){
+            return false;
+        }
         
         String id = extractField("DalID", data);
         String name = extractField("Name", data);
@@ -72,21 +79,21 @@ public class RemovedObjectValidator {
                 && isNonNullUpperValid(time, TIME_PATTERN);
     }
     
-    private static boolean isNonNullUpperValid(String input, Pattern pattern) {
+    private static boolean isNonNullUpperValid(String input, Pattern pattern){
         return input != null && input.equals(input.toUpperCase()) && pattern.matcher(input).matches();
     }
     
-    private static String extractField(String key, String record) {
+    private static String extractField(String key, String record){
         Matcher matcher = Pattern.compile(key + ":\\s*([^|\\]]+)").matcher(record);
         return matcher.find() ? matcher.group(1).trim() : null;
     }
     
-    private static String extractTime(String record) {
+    private static String extractTime(String record){
         Matcher matcher = TIME_PATTERN.matcher(record);
         return matcher.find() ? matcher.group(0).trim() : null;
     }
     
-    private static String cleanRawData(String rawData) {
+    private static String cleanRawData(String rawData){
         return rawData.replaceAll("(?i)(DalID:|Name:|Code:|Location:|Time:)\\s*", "").trim();
     }
     

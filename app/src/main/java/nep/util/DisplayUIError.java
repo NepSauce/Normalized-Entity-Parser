@@ -3,31 +3,31 @@ package nep.util;
 import javax.swing.*;
 import java.awt.*;
 
-public class DisplayUIError {
+public class DisplayUIError{
     private final String message;
     private final int errorCode;
     private ErrorLevel level = ErrorLevel.NORMAL;
     
-    public enum ErrorLevel {
+    public enum ErrorLevel{
         NORMAL, CRITICAL
     }
     
-    public DisplayUIError(String message, int errorCode) {
+    public DisplayUIError(String message, int errorCode){
         this.message = message;
         this.errorCode = errorCode;
     }
     
-    public void displayNormalError() {
+    public void displayNormalError(){
         this.level = ErrorLevel.NORMAL;
         showDialog();
     }
     
-    public void displayCriticalError() {
+    public void displayCriticalError(){
         this.level = ErrorLevel.CRITICAL;
         showDialog();
     }
     
-    private void showDialog() {
+    private void showDialog(){
         JFrame frame = new JFrame();
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         frame.setUndecorated(false);
@@ -45,7 +45,8 @@ public class DisplayUIError {
         contentPanel.setBorder(BorderFactory.createLineBorder(
                 level == ErrorLevel.CRITICAL ? Color.RED : new Color(180, 180, 180), 2
         ));
-        contentPanel.setBackground(level == ErrorLevel.CRITICAL ? new Color(255, 235, 235) : new Color(245, 245, 245));
+        contentPanel.setBackground(level == ErrorLevel.CRITICAL ?
+                new Color(255, 235, 235) : new Color(245, 245, 245));
 
         JPanel messagePanel = new JPanel();
         messagePanel.setLayout(new BorderLayout());

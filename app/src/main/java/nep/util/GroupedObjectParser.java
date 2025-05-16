@@ -5,7 +5,7 @@ import java.util.*;
 import java.util.regex.*;
 
 public class GroupedObjectParser{
-    public static void main(String[] args) throws IOException{
+    public static void main(String[] args) throws IOException {
         String directoryPath = "NormalizedEntityParser/GroupedObjects/";
         File latestFile = getMostRecentFile(directoryPath);
         
@@ -26,12 +26,14 @@ public class GroupedObjectParser{
         File dir = new File(dirPath);
         File[] files = dir.listFiles((d, name) -> name.endsWith(".txt"));
         
-        if (files == null || files.length == 0) return null;
+        if (files == null || files.length == 0){
+            return null;
+        }
         
         File latest = files[0];
         
         for (File file : files){
-            if (file.lastModified() > latest.lastModified()) {
+            if (file.lastModified() > latest.lastModified()){
                 latest = file;
             }
         }
@@ -39,7 +41,7 @@ public class GroupedObjectParser{
         return latest;
     }
     
-    public static ParseResult parseFile(File file) throws IOException{
+    public static ParseResult parseFile(File file) throws IOException {
         BufferedReader reader = new BufferedReader(new FileReader(file));
         String line;
         int totalNumber = 0;
@@ -58,7 +60,7 @@ public class GroupedObjectParser{
             else if (currentCourse != null && numberPattern.matcher(line).find()){
                 Matcher matcher = numberPattern.matcher(line);
                 
-                if (matcher.find()) {
+                if (matcher.find()){
                     int number = Integer.parseInt(matcher.group(1));
                     totalNumber += number;
                 }

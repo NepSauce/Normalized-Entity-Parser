@@ -129,7 +129,7 @@ public class RemovedObjectPanel extends JPanel{
         JTextField locationField = new JTextField(getValue(rawData, "Location"));
         JTextField timeField = new JTextField(getValue(rawData, "Time"));
         
-        JPanel panel = new JPanel(new GridLayout(0, 2, 10, 10));
+        JPanel panel = new JPanel(new GridLayout(0, 2, 7, 10));
         panel.add(new JLabel("DalID:")); panel.add(dalIdField);
         panel.add(new JLabel("Name:")); panel.add(nameField);
         panel.add(new JLabel("Code:")); panel.add(codeField);

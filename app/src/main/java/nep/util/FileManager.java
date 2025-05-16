@@ -4,126 +4,76 @@ import java.io.*;
 import java.nio.file.*;
 import java.util.*;
 
-public class FileManager {
-    
-    // Count lines in a single file
+public class FileManager{
     public static int countValidLinesInFile(String filePath) throws IOException {
         File file = new File(filePath);
-        if (!file.isFile()) {
+        
+        if (!file.isFile()){
             throw new IllegalArgumentException("Provided path is not a file: " + filePath);
         }
-        
         int lines = 0;
-        try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
-            while (reader.readLine() != null) {
+        
+        try (BufferedReader reader = new BufferedReader(new FileReader(file))){
+            while (reader.readLine() != null){
                 lines++;
             }
         }
         return lines;
     }
     
-    public static int countLinesInFirstTxtFile(String directoryPath) {
+    public static int countLinesInFirstTxtFile(String directoryPath){
         File dir = new File(directoryPath);
         
-        if (!dir.exists() || !dir.isDirectory()) {
+        if (!dir.exists() || !dir.isDirectory()){
             System.out.println("Directory not found: " + directoryPath);
             return -1;
         }
         
         File[] txtFiles = dir.listFiles((d, name) -> name.toLowerCase().endsWith(".txt"));
         
-        if (txtFiles == null || txtFiles.length == 0) {
+        if (txtFiles == null || txtFiles.length == 0){
             System.out.println("No .txt files found in directory.");
             return -1;
         }
         
-        File file = txtFiles[0]; // take the first .txt file found
+        File file = txtFiles[0];
         int lineCount = 0;
         
-        try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
-            while (reader.readLine() != null) {
+        try (BufferedReader reader = new BufferedReader(new FileReader(file))){
+            while (reader.readLine() != null){
                 lineCount++;
             }
-        } catch (IOException e) {
+        }
+        catch (IOException e){
             System.out.println("Error reading file: " + e.getMessage());
             return -1;
         }
         
         return lineCount;
     }
-    
-    // Count lines in all files within a directory (recursively)
-    public static int countLinesInDirectory(String directoryPath) throws IOException {
+
+    public static int countLinesInDirectory(String directoryPath) throws IOException{
         File dir = new File(directoryPath);
-        if (!dir.isDirectory()) {
+        
+        if (!dir.isDirectory()){
             throw new IllegalArgumentException("Provided path is not a directory: " + directoryPath);
         }
         
         int totalLines = 0;
         File[] files = dir.listFiles();
-        if (files == null) return 0;
         
-        for (File file : files) {
-            if (file.isDirectory()) {
+        if (files == null){
+            return 0;
+        }
+        
+        for (File file : files){
+            if (file.isDirectory()){
                 totalLines += countLinesInDirectory(file.getAbsolutePath());
-            } else if (file.isFile()) {
+            }
+            else if (file.isFile()){
                 totalLines += countValidLinesInFile(file.getAbsolutePath());
             }
         }
         return totalLines;
-    }
-    
-    // Replace a specific line in a file within a folder
-    public static void replaceLineInFileFromFolder(String folderPath, int lineNumber, String newContent) throws IOException {
-        File folder = new File(folderPath);
-        File[] files = folder.listFiles();
-        if (files == null || files.length == 0) throw new IOException("No files in folder: " + folderPath);
-        
-        File file = files[0]; // Only one file per folder
-        List<String> lines = Files.readAllLines(file.toPath());
-        
-        if (lineNumber < 1 || lineNumber > lines.size()) {
-            throw new IllegalArgumentException("Invalid line number: " + lineNumber);
-        }
-        
-        lines.set(lineNumber - 1, newContent);
-        Files.write(file.toPath(), lines);
-    }
-    
-    // Remove a specific line in a file within a folder
-    public static void removeLineInFileFromFolder(String folderPath, int lineNumber) throws IOException {
-        File folder = new File(folderPath);
-        File[] files = folder.listFiles();
-        if (files == null || files.length == 0) throw new IOException("No files in folder: " + folderPath);
-        
-        File file = files[0];
-        List<String> lines = Files.readAllLines(file.toPath());
-        
-        if (lineNumber < 1 || lineNumber > lines.size()) {
-            throw new IllegalArgumentException("Invalid line number: " + lineNumber);
-        }
-        
-        lines.remove(lineNumber - 1);
-        Files.write(file.toPath(), lines);
-    }
-    
-    // Append a line to every file in a folder (one file per folder)
-    public static void appendLineToAllFilesInFolder(String parentFolderPath, String lineToAppend) throws IOException {
-        File parent = new File(parentFolderPath);
-        if (!parent.isDirectory()) throw new IllegalArgumentException("Not a valid directory: " + parentFolderPath);
-        
-        File[] folders = parent.listFiles(File::isDirectory);
-        if (folders == null) return;
-        
-        for (File folder : folders) {
-            File[] files = folder.listFiles();
-            if (files != null && files.length > 0) {
-                File file = files[0]; // Only one file per folder
-                try (BufferedWriter writer = new BufferedWriter(new FileWriter(file, true))) {
-                    writer.newLine();
-                    writer.write(lineToAppend);
-                }
-            }
-        }
     }
 }
