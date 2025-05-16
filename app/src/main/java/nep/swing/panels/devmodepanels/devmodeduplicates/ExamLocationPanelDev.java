@@ -11,7 +11,7 @@ import javax.swing.border.Border;
 import javax.swing.border.TitledBorder;
 
 @SuppressWarnings("FieldMayBeFinal")
-public class ExamLocationPanelDev {
+public class ExamLocationPanelDev{
     private JPanel examPanel;
     private JComboBox<String> locationDropdown;
     private int examPanelWidth, examPanelHeight;
@@ -48,7 +48,7 @@ public class ExamLocationPanelDev {
         locationPanel.add(locationDropdown);
     }
     
-    private JPanel getjPanel() {
+    private JPanel getjPanel(){
         JPanel locationPanel = new JPanel();
         locationPanel.setLayout(null);
         locationPanel.setBounds(5, 5, examPanelWidth - 10, examPanelHeight - 10);

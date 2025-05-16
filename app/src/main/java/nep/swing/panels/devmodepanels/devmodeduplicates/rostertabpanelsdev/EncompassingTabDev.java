@@ -4,7 +4,7 @@ import nep.swing.panels.devmodepanels.devmodeduplicates.*;
 
 import javax.swing.*;
 
-public class EncompassingTabDev {
+public class EncompassingTabDev{
     JTabbedPane tabbedPane;
     
     public EncompassingTabDev(ExamLocationPanelDev examLocationPanel, ExamAddedPanelDev examAddedPanel,

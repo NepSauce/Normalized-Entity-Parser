@@ -13,7 +13,7 @@ import java.util.List;
  * within the CombinedObjects directory. It is part of the Object tab UI panel
  * in the Normalized Entity Parser Swing application.
  */
-public class CombinedButtonPaletteDev {
+public class CombinedButtonPaletteDev{
     private JPanel combinedButtonPanel;
     
     /**
@@ -41,7 +41,7 @@ public class CombinedButtonPaletteDev {
         deleteFile.addActionListener((ActionEvent e) -> {
             int result = JOptionPane.showConfirmDialog(null, "Are you sure you want to delete from Combined?",
                     "Confirm Deletion", JOptionPane.YES_NO_OPTION);
-            if (result == JOptionPane.YES_OPTION) {
+            if (result == JOptionPane.YES_OPTION){
                 System.out.println("Deleted from Combined");
             }
         });

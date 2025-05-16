@@ -27,7 +27,7 @@ import java.util.Map;
  * to generate grouped appointment files and open the most recently
  * generated grouped file. It includes file editing and printing capabilities.
  */
-public class GroupedButtonPaletteDev {
+public class GroupedButtonPaletteDev{
     private final JPanel groupedButtonPanel;
     private CumulativeInfoPanelDev cumulativeInfoPanel;
     
@@ -55,18 +55,18 @@ public class GroupedButtonPaletteDev {
         generate.addActionListener((ActionEvent e) -> {
             PDFCleaner.generateGroupedAppointments();
             
-            try {
+            try{
                 updateCumulativeList();
             }
-            catch (IOException ex) {
+            catch (IOException ex){
                 throw new RuntimeException(ex);
             }
             
             Timer timer = new Timer(2000, ex -> {
-                try {
+                try{
                     updateCumulativeList();
                 }
-                catch (IOException exc) {
+                catch (IOException exc){
                     throw new RuntimeException(exc);
                 }
             });
@@ -89,18 +89,16 @@ public class GroupedButtonPaletteDev {
         String directoryPath = "NormalizedEntityParser/GroupedObjects/"; // change this
         File latestFile = GroupedObjectParser.getMostRecentFile(directoryPath);
         
-        if (latestFile == null) {
+        if (latestFile == null){
             System.out.println("No files found.");
             return;
         }
         
         GroupedObjectParser.ParseResult result = GroupedObjectParser.parseFile(latestFile);
-        
-        // You now have the values stored in variables
+
         int totalSum = result.totalSum;
         int courseCount = result.uniqueCourses;
-        
-        // Optional: display results
+
         System.out.println("Total numeric sum: " + totalSum);
         System.out.println("Total unique courses: " + courseCount);
         

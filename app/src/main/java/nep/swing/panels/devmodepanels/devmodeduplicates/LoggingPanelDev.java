@@ -9,14 +9,14 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 @SuppressWarnings("FieldMayBeFinal")
-public class LoggingPanelDev {
+public class LoggingPanelDev{
     private JPanel mainPanel;
     private JPanel logListPanel;
     private int panelWidth;
     private int panelHeight;
     private ArrayList<JLabel> logEntries;
     
-    public LoggingPanelDev() {
+    public LoggingPanelDev(){
         panelWidth = 225;
         panelHeight = 245;
         logEntries = new ArrayList<>();
@@ -51,11 +51,11 @@ public class LoggingPanelDev {
         log("NEP Build-1.0.0-Alpha");
     }
     
-    public JPanel getLoggingPanel() {
+    public JPanel getLoggingPanel(){
         return mainPanel;
     }
     
-    public void log(String message) {
+    public void log(String message){
         String timeStamp = LocalTime.now().format(DateTimeFormatter.ofPattern("HH:mm:ss"));
         String fullMessage = "[" + timeStamp + "] " + message;
         
@@ -71,7 +71,7 @@ public class LoggingPanelDev {
         logListPanel.repaint();
     }
     
-    public void clearLog() {
+    public void clearLog(){
         logListPanel.removeAll();
         logEntries.clear();
         log("NEP Build-1.0.0-Alpha");
@@ -79,7 +79,7 @@ public class LoggingPanelDev {
         logListPanel.repaint();
     }
     
-    public void undoLastLog() {
+    public void undoLastLog(){
         if (!logEntries.isEmpty()) {
             JLabel last = logEntries.remove(logEntries.size() - 1);
             logListPanel.remove(last);

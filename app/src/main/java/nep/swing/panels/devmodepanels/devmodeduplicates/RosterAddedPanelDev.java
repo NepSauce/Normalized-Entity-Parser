@@ -14,7 +14,7 @@ import javax.swing.border.BevelBorder;
 import javax.swing.border.Border;
 import javax.swing.border.TitledBorder;
 
-public class RosterAddedPanelDev {
+public class RosterAddedPanelDev{
     private boolean checkFileExists;
     private File selectedFile;
     private JLabel rosterPDFLabel;
@@ -117,7 +117,7 @@ public class RosterAddedPanelDev {
         return checkFileExists;
     }
     
-    public String getRosterFileName() throws NullPointerException{
+    public String getRosterFileName() throws NullPointerException {
         if (selectedFile == null){
             return "";
         }

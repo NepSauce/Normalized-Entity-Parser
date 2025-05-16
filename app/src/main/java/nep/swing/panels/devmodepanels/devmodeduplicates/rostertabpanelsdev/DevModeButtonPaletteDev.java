@@ -68,14 +68,14 @@ public class DevModeButtonPaletteDev{
     /**
      * Opens the TerminalFrame when the NEPTer button is clicked.
      */
-    private void openTerminal() {
+    private void openTerminal(){
         new TerminalFrame();  // Open the terminal window
     }
     
     /**
      * Opens a new frame when the "RootNEP" button is pressed.
      */
-    private void openDebugFrame() {
+    private void openDebugFrame(){
         nep.swing.panels.devmodepanels.DebugFrame debugFrame = new nep.swing.panels.devmodepanels.DebugFrame();
         debugFrame.setVisible(true);
     }

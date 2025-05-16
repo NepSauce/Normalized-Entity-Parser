@@ -7,7 +7,7 @@ import nep.swing.panels.devmodepanels.devmodeduplicates.rostertabpanelsdev.Selec
 import javax.swing.*;
 import java.awt.*;
 
-public class SettingsTabDev {
+public class SettingsTabDev{
     JTabbedPane tabbedPane;
     
     public SettingsTabDev(ExamLocationPanelDev examLocationPanel, ExamAddedPanelDev examAddedPanel,
@@ -34,12 +34,13 @@ public class SettingsTabDev {
         return tabbedPane;
     }
 
-    private void addTooltips(Component container) {
-        if (container instanceof JPanel) {
-            for (Component c : ((JPanel) container).getComponents()) {
-                if (c instanceof JButton btn) {
+    private void addTooltips(Component container){
+        if (container instanceof JPanel){
+            for (Component c : ((JPanel) container).getComponents()){
+                if (c instanceof JButton btn){
                     btn.setToolTipText(btn.getText());
-                } else if (c instanceof Container) {
+                }
+                else if (c instanceof Container){
                     addTooltips((Container) c);
                 }
             }

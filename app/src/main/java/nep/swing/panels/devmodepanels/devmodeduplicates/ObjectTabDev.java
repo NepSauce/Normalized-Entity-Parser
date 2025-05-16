@@ -6,13 +6,12 @@ import java.awt.*;
 import nep.swing.panels.devmodepanels.devmodeduplicates.objecttabpanelsdev.GroupedButtonPaletteDev;
 import nep.swing.panels.objecttabpanels.CombinedButtonPalette;
 import nep.swing.panels.objecttabpanels.RemovedButtonPalette;
-import nep.swing.panels.objecttabpanels.GroupedButtonPalette;
 
-public class ObjectTabDev {
+public class ObjectTabDev{
     private JTabbedPane objectPane;
     
     public ObjectTabDev(ExamLocationPanelDev examLocationPanel, ExamAddedPanelDev examAddedPanel,
-                     RosterAddedPanelDev rosterAddedPanel, CumulativeInfoPanelDev cumulativeInfoPanel) {
+                     RosterAddedPanelDev rosterAddedPanel, CumulativeInfoPanelDev cumulativeInfoPanel){
         objectPane = new JTabbedPane();
         objectPane.setBounds(25, 400, 250, 80);
         
@@ -31,15 +30,16 @@ public class ObjectTabDev {
         objectPane.addTab("Grouped", groupedPanel.getGroupedButtonPanel());
     }
     
-    public JTabbedPane getObjectTab() {
+    public JTabbedPane getObjectTab(){
         return objectPane;
     }
     
-    private void addTooltips(Container container) {
-        for (Component c : container.getComponents()) {
-            if (c instanceof JButton btn) {
+    private void addTooltips(Container container){
+        for (Component c : container.getComponents()){
+            if (c instanceof JButton btn){
                 btn.setToolTipText(btn.getText());
-            } else if (c instanceof Container) {
+            }
+            else if (c instanceof Container){
                 addTooltips((Container) c);
             }
         }

@@ -23,7 +23,7 @@ import java.util.LinkedList;
  * It handles the validation and saving of roster details.
  */
 @SuppressWarnings({"FieldMayBeFinal", "unused"})
-public class SelectionButtonPaletteDev {
+public class SelectionButtonPaletteDev{
     private JPanel selectionButtonPanel;
     private static LinkedList<RosterEntityDetails> rosterObjectEntityList = new LinkedList<>();
     

@@ -28,7 +28,7 @@ import java.util.Map;
  * It allows submitting, clearing, and undoing roster actions.
  */
 @SuppressWarnings("FieldMayBeFinal")
-public class PanelButtonPaletteDev {
+public class PanelButtonPaletteDev{
     private JPanel panelButtonPanel;
     private CumulativeInfoPanelDev cumulativeInfoPanel;
     private static LinkedList<RosterEntityDetails> rosterEntityDetails = new LinkedList<>();

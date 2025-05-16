@@ -13,7 +13,7 @@ public class TerminalFrame extends JFrame {
     
     private final String prompt = "nep@NormalizedEntityParser[Build-1.0.0-Alpha] | (Mode-SysAcc) <> ";
     
-    public TerminalFrame() {
+    public TerminalFrame(){
         setTitle("NEPTer - Terminal");
         setSize(700, 400);
         setLocationRelativeTo(null);
@@ -29,8 +29,7 @@ public class TerminalFrame extends JFrame {
         
         JScrollPane scrollPane = new JScrollPane(terminalPane);
         add(scrollPane, BorderLayout.CENTER);
-        
-        // Input panel at bottom
+
         inputPanel = new JPanel(new BorderLayout());
         inputPanel.setBackground(Color.BLACK);
         inputPanel.setPreferredSize(new Dimension(700, 30));
@@ -46,10 +45,10 @@ public class TerminalFrame extends JFrame {
         inputField.setForeground(Color.WHITE);
         inputField.setCaretColor(Color.WHITE);
         
-        inputField.addKeyListener(new KeyAdapter() {
+        inputField.addKeyListener(new KeyAdapter(){
             @Override
-            public void keyPressed(KeyEvent e) {
-                if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+            public void keyPressed(KeyEvent e){
+                if (e.getKeyCode() == KeyEvent.VK_ENTER){
                     String command = inputField.getText();
                     inputField.setText("");
                     appendStyledCommand(prompt, command);
@@ -65,9 +64,8 @@ public class TerminalFrame extends JFrame {
         
         appendStartupMessage();
     }
-    
-    // Append prompt (bold) + command (plain) to terminalPane
-    private void appendStyledCommand(String prompt, String command) {
+
+    private void appendStyledCommand(String prompt, String command){
         StyledDocument doc = terminalPane.getStyledDocument();
         
         Style bold = terminalPane.addStyle("Bold", null);
@@ -78,15 +76,16 @@ public class TerminalFrame extends JFrame {
         StyleConstants.setBold(normal, false);
         StyleConstants.setForeground(normal, Color.WHITE);
         
-        try {
+        try{
             doc.insertString(doc.getLength(), "\n" + prompt, bold);
             doc.insertString(doc.getLength(), command + "\n", normal);
-        } catch (BadLocationException e) {
+        }
+        catch (BadLocationException e){
             e.printStackTrace();
         }
     }
     
-    private void appendStartupMessage() {
+    private void appendStartupMessage(){
         StyledDocument doc = terminalPane.getStyledDocument();
         
         Style header = terminalPane.addStyle("Header", null);
@@ -94,30 +93,34 @@ public class TerminalFrame extends JFrame {
         StyleConstants.setFontSize(header, 13);
         StyleConstants.setFontFamily(header, "Monospaced");
         
-        try {
+        try{
             doc.insertString(doc.getLength(), "Normalized Entity Parser [Build-1.0.0-Alpha]\n", header);
             doc.insertString(doc.getLength(), "Authors: Zawad Atif & Nafisah Nubah.\n\n", header);
             doc.insertString(doc.getLength(), "DevMode Enables Access to Developer Tools For Opening, Modifying, " +
                     "and Managing Internal NEP Files and Features.\n", header);
             
-        } catch (BadLocationException e) {
+        }
+        catch (BadLocationException e){
             e.printStackTrace();
         }
     }
     
-    private void executeCommand(String command) {
+    private void executeCommand(String command){
         StyledDocument doc = terminalPane.getStyledDocument();
         
-        try {
-            if (command.equalsIgnoreCase("exit")) {
+        try{
+            if (command.equalsIgnoreCase("exit")){
                 doc.insertString(doc.getLength(), "Exiting terminal...\n", null);
                 dispose();
-            } else if (command.equalsIgnoreCase("clear")) {
+            }
+            else if (command.equalsIgnoreCase("clear")){
                 terminalPane.setText("");
-            } else {
+            }
+            else{
                 doc.insertString(doc.getLength(), "Error: Command Not Recognized: Enter '@nep help' For a List of Commands." + "\n", null);
             }
-        } catch (BadLocationException e) {
+        }
+        catch (BadLocationException e){
             e.printStackTrace();
         }
     }

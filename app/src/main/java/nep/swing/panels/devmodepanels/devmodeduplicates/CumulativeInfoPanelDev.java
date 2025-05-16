@@ -7,7 +7,7 @@ import javax.swing.border.TitledBorder;
 import java.awt.*;
 
 @SuppressWarnings("FieldMayBeFinal")
-public class CumulativeInfoPanelDev {
+public class CumulativeInfoPanelDev{
     private JPanel cumulativePanel;
     private JPanel infoListPanel;
     
@@ -28,7 +28,7 @@ public class CumulativeInfoPanelDev {
     private int removedEntriesCount = 0;
     
     public CumulativeInfoPanelDev(ExamLocationPanelDev examLocationPanel, ExamAddedPanelDev examAddedPanel,
-                                  RosterAddedPanelDev rosterAddedPanel, LoggingPanelDev loggingPanel) {
+                                  RosterAddedPanelDev rosterAddedPanel, LoggingPanelDev loggingPanel){
         panelWidth = 225;
         panelHeight = 125;
         
@@ -68,60 +68,60 @@ public class CumulativeInfoPanelDev {
         
         cumulativePanel.add(infoListPanel);
         
-        updateLabels(); // Ensure labels show values on init
+        updateLabels();
     }
     
-    public JPanel getCumulativeInfoPanel() {
+    public JPanel getCumulativeInfoPanel(){
         return cumulativePanel;
     }
     
-    public void refresh() {
+    public void refresh(){
         updateLabels();
         cumulativePanel.revalidate();
         cumulativePanel.repaint();
     }
     
-    public void setRostersAdded(int value) {
+    public void setRostersAdded(int value){
         rostersAddedCount = value;
     }
     
-    public void setCoursesFound(int value) {
+    public void setCoursesFound(int value){
         coursesFoundCount = value;
     }
     
-    public void setCombinedEntries(int value) {
+    public void setCombinedEntries(int value){
         combinedEntriesCount = value;
     }
     
-    public void setGroupedEntries(int value) {
+    public void setGroupedEntries(int value){
         groupedEntriesCount = value;
     }
     
-    public void setRemovedEntries(int value) {
+    public void setRemovedEntries(int value){
         removedEntriesCount = value;
     }
     
-    public void incrementRostersAdded(int amount) {
+    public void incrementRostersAdded(int amount){
         rostersAddedCount += amount;
     }
     
-    public void incrementCoursesFound(int amount) {
+    public void incrementCoursesFound(int amount){
         coursesFoundCount += amount;
     }
     
-    public void incrementCombinedEntries(int amount) {
+    public void incrementCombinedEntries(int amount){
         combinedEntriesCount += amount;
     }
     
-    public void incrementGroupedEntries(int amount) {
+    public void incrementGroupedEntries(int amount){
         groupedEntriesCount += amount;
     }
     
-    public void incrementRemovedEntries(int amount) {
+    public void incrementRemovedEntries(int amount){
         removedEntriesCount += amount;
     }
     
-    public void updateLabels() {
+    public void updateLabels(){
         rostersAddedLabel.setText("Rosters Added:   " + rostersAddedCount);
         coursesFoundLabel.setText("Courses Found:   " + coursesFoundCount);
         combinedEntriesLabel.setText("Combined Entries:   " + combinedEntriesCount);

@@ -15,7 +15,7 @@ import javax.swing.border.Border;
 import javax.swing.border.TitledBorder;
 
 @SuppressWarnings("FieldMayBeFinal")
-public class ExamAddedPanelDev {
+public class ExamAddedPanelDev{
     private JPanel selectedPanel;
     private JPanel examListPanel;
     private int selectedPanelWidth;

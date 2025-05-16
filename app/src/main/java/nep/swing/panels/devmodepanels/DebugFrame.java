@@ -2,7 +2,6 @@ package nep.swing.panels.devmodepanels;
 
 import nep.swing.panels.devmodepanels.devmodeduplicates.*;
 import nep.swing.panels.devmodepanels.devmodeduplicates.rostertabpanelsdev.EncompassingTabDev;
-import org.apache.commons.logging.Log;
 
 import javax.swing.*;
 import java.awt.*;
@@ -16,7 +15,7 @@ public class DebugFrame extends JFrame {
     /**
      * Constructs the DebugFrame and initializes its UI components.
      */
-    public DebugFrame() {
+    public DebugFrame(){
         setTitle("RootNEP Debug");
         setSize(568, 460);
         setLocationRelativeTo(null);
@@ -24,7 +23,7 @@ public class DebugFrame extends JFrame {
         setLayout(null);
         setResizable(false);
         
-        getContentPane().setBackground(new Color(238, 238, 238, 255)); // Set background color
+        getContentPane().setBackground(new Color(238, 238, 238, 255));
 
         ImageIcon logo = new ImageIcon("Media/logo.png");
         setIconImage(logo.getImage());
@@ -41,10 +40,12 @@ public class DebugFrame extends JFrame {
         ExamAddedPanelDev examAddedPanel = new ExamAddedPanelDev(loggingPanel);
         add(examAddedPanel.getExamAddedPanel());
         
-        CumulativeInfoPanelDev cumulativeInfoPanel = new CumulativeInfoPanelDev(examLocationPanel, examAddedPanel, rosterAddedPanel, loggingPanel);
+        CumulativeInfoPanelDev cumulativeInfoPanel = new CumulativeInfoPanelDev(examLocationPanel, examAddedPanel,
+                rosterAddedPanel, loggingPanel);
         add(cumulativeInfoPanel.getCumulativeInfoPanel());
         
-        EncompassingTabDev encompassingTab = new EncompassingTabDev(examLocationPanel, examAddedPanel, rosterAddedPanel, cumulativeInfoPanel, loggingPanel);
+        EncompassingTabDev encompassingTab = new EncompassingTabDev(examLocationPanel, examAddedPanel, rosterAddedPanel,
+                cumulativeInfoPanel, loggingPanel);
         add(encompassingTab.getEncompassingTab());
 
     }
