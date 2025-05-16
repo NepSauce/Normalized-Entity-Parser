@@ -1,0 +1,40 @@
+
+
+Version:	3.50
+CmdLine:	C:\Users\zawad\git\Personal Projects\Normalized Entity Parser\Normalized-Entity-Parser\out\artifacts\Normalized_Entity_Parser_jar\Normalized_Entity_Parser.exe --l4j-debug
+JNI:		No
+WOW64:		Yes
+Working dir:	C:\Users\zawad\git\Personal Projects\Normalized Entity Parser\Normalized-Entity-Parser\out\artifacts\Normalized_Entity_Parser_jar\.
+Requires JDK:	No
+Requires 64-Bit: No
+Java min ver:	
+Java max ver:	
+Substitute:	JAVA_HOME = C:\Users\zawad\AppData\Local\Programs\Eclipse Adoptium\jdk-21.0.6.7-hotspot
+Substitute:	PATH = C:\msys64\mingw64\bin;C:\Users\zawad\AppData\Local\Programs\Eclipse Adoptium\jdk-21.0.6.7-hotspot\bin;C:\Users\zawad\AppData\Local\Microsoft\WindowsApps;C:\Users\zawad\AppData\Local\Programs\Microsoft VS Code\bin;C:\Windows\System32\WindowsPowerShell\v1.0;D:\Git\bin;C:\Users\zawad\Downloads\winlibs-x86_64-posix-seh-gcc-14.2.0-llvm-19.1.7-mingw-w64ucrt-12.0.0-r3\mingw64\bin;C:\Program Files\MySQL\MySQL Shell 8.0\bin\;C:\Program Files (x86)\Jar2Exe Wizard\;C:\Users\zawad\AppData\Local\Programs\Eclipse Adoptium\jdk-21.0.6.7-hotspot\bin
+JRE paths:	C:\Users\zawad\AppData\Local\Programs\Eclipse Adoptium\jdk-21.0.6.7-hotspot;C:\msys64\mingw64\bin;C:\Users\zawad\AppData\Local\Programs\Eclipse Adoptium\jdk-21.0.6.7-hotspot\bin;C:\Users\zawad\AppData\Local\Microsoft\WindowsApps;C:\Users\zawad\AppData\Local\Programs\Microsoft VS Code\bin;C:\Windows\System32\WindowsPowerShell\v1.0;D:\Git\bin;C:\Users\zawad\Downloads\winlibs-x86_64-posix-seh-gcc-14.2.0-llvm-19.1.7-mingw-w64ucrt-12.0.0-r3\mingw64\bin;C:\Program Files\MySQL\MySQL Shell 8.0\bin\;C:\Program Files (x86)\Jar2Exe Wizard\;C:\Users\zawad\AppData\Local\Programs\Eclipse Adoptium\jdk-21.0.6.7-hotspot\bin
+Check launcher:	C:\Users\zawad\AppData\Local\Programs\Eclipse Adoptium\jdk-21.0.6.7-hotspot\bin\javaw.exe (OK)
+Version string: 1.021.000_006 / 64-Bit (OK)
+Launcher:	C:\Users\zawad\AppData\Local\Programs\Eclipse Adoptium\jdk-21.0.6.7-hotspot\bin\javaw.exe
+Launcher args:	-jar "C:\Users\zawad\git\Personal Projects\Normalized Entity Parser\Normalized-Entity-Parser\out\artifacts\Normalized_Entity_Parser_jar\Normalized_Entity_Parser.exe"
+Args length:	165/32768 chars
+Exit code:	0
+
+
+Version:	3.50
+CmdLine:	C:\Users\zawad\git\Personal Projects\Normalized Entity Parser\Normalized-Entity-Parser\out\artifacts\Normalized_Entity_Parser_jar\Normalized_Entity_Parser.exe --l4j-debug
+JNI:		No
+WOW64:		Yes
+Working dir:	C:\Users\zawad\git\Personal Projects\Normalized Entity Parser\Normalized-Entity-Parser\out\artifacts\Normalized_Entity_Parser_jar\.
+Requires JDK:	No
+Requires 64-Bit: No
+Java min ver:	
+Java max ver:	
+Substitute:	JAVA_HOME = C:\Users\zawad\AppData\Local\Programs\Eclipse Adoptium\jdk-21.0.6.7-hotspot
+Substitute:	PATH = C:\msys64\mingw64\bin;C:\Users\zawad\AppData\Local\Programs\Eclipse Adoptium\jdk-21.0.6.7-hotspot\bin;C:\Users\zawad\AppData\Local\Microsoft\WindowsApps;C:\Users\zawad\AppData\Local\Programs\Microsoft VS Code\bin;C:\Windows\System32\WindowsPowerShell\v1.0;D:\Git\bin;C:\Users\zawad\Downloads\winlibs-x86_64-posix-seh-gcc-14.2.0-llvm-19.1.7-mingw-w64ucrt-12.0.0-r3\mingw64\bin;C:\Program Files\MySQL\MySQL Shell 8.0\bin\;C:\Program Files (x86)\Jar2Exe Wizard\;C:\Users\zawad\AppData\Local\Programs\Eclipse Adoptium\jdk-21.0.6.7-hotspot\bin
+JRE paths:	C:\Users\zawad\AppData\Local\Programs\Eclipse Adoptium\jdk-21.0.6.7-hotspot;C:\msys64\mingw64\bin;C:\Users\zawad\AppData\Local\Programs\Eclipse Adoptium\jdk-21.0.6.7-hotspot\bin;C:\Users\zawad\AppData\Local\Microsoft\WindowsApps;C:\Users\zawad\AppData\Local\Programs\Microsoft VS Code\bin;C:\Windows\System32\WindowsPowerShell\v1.0;D:\Git\bin;C:\Users\zawad\Downloads\winlibs-x86_64-posix-seh-gcc-14.2.0-llvm-19.1.7-mingw-w64ucrt-12.0.0-r3\mingw64\bin;C:\Program Files\MySQL\MySQL Shell 8.0\bin\;C:\Program Files (x86)\Jar2Exe Wizard\;C:\Users\zawad\AppData\Local\Programs\Eclipse Adoptium\jdk-21.0.6.7-hotspot\bin
+Check launcher:	C:\Users\zawad\AppData\Local\Programs\Eclipse Adoptium\jdk-21.0.6.7-hotspot\bin\javaw.exe (OK)
+Version string: 1.021.000_006 / 64-Bit (OK)
+Launcher:	C:\Users\zawad\AppData\Local\Programs\Eclipse Adoptium\jdk-21.0.6.7-hotspot\bin\javaw.exe
+Launcher args:	-jar "C:\Users\zawad\git\Personal Projects\Normalized Entity Parser\Normalized-Entity-Parser\out\artifacts\Normalized_Entity_Parser_jar\Normalized_Entity_Parser.exe"
+Args length:	165/32768 chars
+Exit code:	0

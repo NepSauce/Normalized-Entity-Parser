@@ -29,22 +29,23 @@ public class DebugFrame extends JFrame {
         ImageIcon logo = new ImageIcon("Media/logo.png");
         setIconImage(logo.getImage());
         
-        ExamLocationPanelDev examLocationPanel = new ExamLocationPanelDev();
+        LoggingPanelDev loggingPanel = new LoggingPanelDev();
+        add(loggingPanel.getLoggingPanel());
+        
+        ExamLocationPanelDev examLocationPanel = new ExamLocationPanelDev(loggingPanel);
         add(examLocationPanel.getExamLocationPanel());
         
-        RosterAddedPanelDev rosterAddedPanel = new RosterAddedPanelDev();
+        RosterAddedPanelDev rosterAddedPanel = new RosterAddedPanelDev(loggingPanel);
         add(rosterAddedPanel.getRosterBrowsingPanel());
         
-        ExamAddedPanelDev examAddedPanel = new ExamAddedPanelDev();
+        ExamAddedPanelDev examAddedPanel = new ExamAddedPanelDev(loggingPanel);
         add(examAddedPanel.getExamAddedPanel());
         
-        CumulativeInfoPanelDev cumulativeInfoPanel = new CumulativeInfoPanelDev(examLocationPanel, examAddedPanel, rosterAddedPanel);
+        CumulativeInfoPanelDev cumulativeInfoPanel = new CumulativeInfoPanelDev(examLocationPanel, examAddedPanel, rosterAddedPanel, loggingPanel);
         add(cumulativeInfoPanel.getCumulativeInfoPanel());
         
-        EncompassingTabDev encompassingTab = new EncompassingTabDev(examLocationPanel, examAddedPanel, rosterAddedPanel, cumulativeInfoPanel);
+        EncompassingTabDev encompassingTab = new EncompassingTabDev(examLocationPanel, examAddedPanel, rosterAddedPanel, cumulativeInfoPanel, loggingPanel);
         add(encompassingTab.getEncompassingTab());
-        
-        RosterInfoPanelDev rosterInfoPanel = new RosterInfoPanelDev(examLocationPanel, examAddedPanel, rosterAddedPanel);
-        add(rosterInfoPanel.getRosterInfoPanel());
+
     }
 }

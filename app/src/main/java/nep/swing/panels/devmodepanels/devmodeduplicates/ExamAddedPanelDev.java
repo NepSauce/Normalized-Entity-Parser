@@ -26,7 +26,7 @@ public class ExamAddedPanelDev {
     private LinkedList<RosterEntityDetails> rosterObjectEntityList = SelectionButtonPalette.getRosterEntityList();
     
     @SuppressWarnings("Convert2Lambda")
-    public ExamAddedPanelDev(){
+    public ExamAddedPanelDev(LoggingPanelDev loggingPanel){
         selectedPanelHeight = 60;
         selectedPanelWidth = 250;
         

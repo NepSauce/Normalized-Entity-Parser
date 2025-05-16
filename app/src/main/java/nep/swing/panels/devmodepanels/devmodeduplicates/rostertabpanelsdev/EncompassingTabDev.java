@@ -8,7 +8,7 @@ public class EncompassingTabDev {
     JTabbedPane tabbedPane;
     
     public EncompassingTabDev(ExamLocationPanelDev examLocationPanel, ExamAddedPanelDev examAddedPanel,
-                          RosterAddedPanelDev rosterAddedPanel, CumulativeInfoPanelDev cumulativeInfoPanel){
+                          RosterAddedPanelDev rosterAddedPanel, CumulativeInfoPanelDev cumulativeInfoPanel, LoggingPanelDev loggingPanel){
         tabbedPane = new JTabbedPane();
         tabbedPane.setBounds(25, 290, 250, 108);
         

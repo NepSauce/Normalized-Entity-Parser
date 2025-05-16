@@ -17,7 +17,7 @@ public class ExamLocationPanelDev {
     private int examPanelWidth, examPanelHeight;
     private ArrayList<String> locationArray;
     
-    public ExamLocationPanelDev(){
+    public ExamLocationPanelDev(LoggingPanelDev loggingPanel){
         examPanelHeight = 175;
         examPanelWidth = 250;
         locationArray = new ArrayList<>();

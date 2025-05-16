@@ -24,7 +24,7 @@ public class RosterAddedPanelDev {
     private int browsingPanelWidth;
     private String fileAbsolutePath;
     
-    public RosterAddedPanelDev(){
+    public RosterAddedPanelDev(LoggingPanelDev loggingPanel){
         this.checkFileExists = false;
         this.fileAbsolutePath = null;
         

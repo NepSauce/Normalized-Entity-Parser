@@ -11,7 +11,7 @@ public class TerminalFrame extends JFrame {
     private JTextField inputField;
     private JPanel inputPanel;
     
-    private final String prompt = "nep@NormalizedEntityParser[BuildVer-1.0.Alpha] | (Mode-SysAcc) <> ";
+    private final String prompt = "nep@NormalizedEntityParser[Build-1.0.0-Alpha] | (Mode-SysAcc) <> ";
     
     public TerminalFrame() {
         setTitle("NEPTer - Terminal");
@@ -95,7 +95,7 @@ public class TerminalFrame extends JFrame {
         StyleConstants.setFontFamily(header, "Monospaced");
         
         try {
-            doc.insertString(doc.getLength(), "Normalized Entity Parser [BuildVer-1.0.Alpha]\n", header);
+            doc.insertString(doc.getLength(), "Normalized Entity Parser [Build-1.0.0-Alpha]\n", header);
             doc.insertString(doc.getLength(), "Authors: Zawad Atif & Nafisah Nubah.\n\n", header);
             doc.insertString(doc.getLength(), "DevMode Enables Access to Developer Tools For Opening, Modifying, " +
                     "and Managing Internal NEP Files and Features.\n", header);

@@ -28,7 +28,7 @@ public class CumulativeInfoPanelDev {
     private int removedEntriesCount = 0;
     
     public CumulativeInfoPanelDev(ExamLocationPanelDev examLocationPanel, ExamAddedPanelDev examAddedPanel,
-                                  RosterAddedPanelDev rosterAddedPanel) {
+                                  RosterAddedPanelDev rosterAddedPanel, LoggingPanelDev loggingPanel) {
         panelWidth = 225;
         panelHeight = 125;
         
