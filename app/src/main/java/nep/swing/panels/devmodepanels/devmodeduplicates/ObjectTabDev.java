@@ -3,7 +3,9 @@ package nep.swing.panels.devmodepanels.devmodeduplicates;
 import javax.swing.*;
 import java.awt.*;
 
+import nep.swing.panels.devmodepanels.devmodeduplicates.objecttabpanelsdev.CombinedButtonPaletteDev;
 import nep.swing.panels.devmodepanels.devmodeduplicates.objecttabpanelsdev.GroupedButtonPaletteDev;
+import nep.swing.panels.devmodepanels.devmodeduplicates.objecttabpanelsdev.RemovedButtonPaletteDev;
 import nep.swing.panels.objecttabpanels.CombinedButtonPalette;
 import nep.swing.panels.objecttabpanels.RemovedButtonPalette;
 
@@ -11,14 +13,14 @@ public class ObjectTabDev{
     private JTabbedPane objectPane;
     
     public ObjectTabDev(ExamLocationPanelDev examLocationPanel, ExamAddedPanelDev examAddedPanel,
-                     RosterAddedPanelDev rosterAddedPanel, CumulativeInfoPanelDev cumulativeInfoPanel){
+                     RosterAddedPanelDev rosterAddedPanel, CumulativeInfoPanelDev cumulativeInfoPanel, LoggingPanelDev loggingPanel){
         objectPane = new JTabbedPane();
         objectPane.setBounds(25, 400, 250, 80);
         
-        JPanel combinedPanel = new CombinedButtonPalette().getCombinedButtonPanel();
-        JPanel removedPanel = new RemovedButtonPalette().getRemovedButtonPanel();
+        JPanel combinedPanel = new CombinedButtonPaletteDev().getCombinedButtonPanel();
+        JPanel removedPanel = new RemovedButtonPaletteDev().getRemovedButtonPanel();
         GroupedButtonPaletteDev groupedPanel = new GroupedButtonPaletteDev(examLocationPanel, examAddedPanel,
-                                                                           rosterAddedPanel, cumulativeInfoPanel);
+                                                                           rosterAddedPanel, cumulativeInfoPanel, loggingPanel);
         objectPane.add(groupedPanel.getGroupedButtonPanel());
         
         addTooltips(combinedPanel);

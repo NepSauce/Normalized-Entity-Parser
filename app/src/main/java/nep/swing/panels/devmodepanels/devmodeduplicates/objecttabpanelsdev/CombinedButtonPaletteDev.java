@@ -1,5 +1,9 @@
 package nep.swing.panels.devmodepanels.devmodeduplicates.objecttabpanelsdev;
 
+import nep.swing.panels.devmodepanels.devmodeduplicates.LoggingPanelDev;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -14,6 +18,7 @@ import java.util.List;
  * in the Normalized Entity Parser Swing application.
  */
 public class CombinedButtonPaletteDev{
+    private static final Log log = LogFactory.getLog(CombinedButtonPaletteDev.class);
     private JPanel combinedButtonPanel;
     
     /**
@@ -71,6 +76,8 @@ public class CombinedButtonPaletteDev{
         File[] files = folder.listFiles((dir, name) -> name.endsWith(".txt"));
         
         if (files == null || files.length == 0){
+            LoggingPanelDev loggingPanel = new LoggingPanelDev();
+            loggingPanel.log("No .txt file found in the folder.");
             JOptionPane.showMessageDialog(null, "No .txt file found in the folder!", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }

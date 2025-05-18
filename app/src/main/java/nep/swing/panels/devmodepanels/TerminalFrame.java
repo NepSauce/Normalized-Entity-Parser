@@ -129,9 +129,9 @@ public class TerminalFrame extends JFrame {
                 doc.insertString(doc.getLength(),
                         "   - @nep help   : Displays this message.\n", response);
                 doc.insertString(doc.getLength(),
-                        "   - @nep clear       : Clears the terminal.\n", response);
+                        "   - @nep clear  : Clears the terminal.\n", response);
                 doc.insertString(doc.getLength(),
-                        "   - @nep exit        : Closes the terminal.\n", response);
+                        "   - @nep exit   : Closes the terminal.\n", response);
             }
             else{
                 doc.insertString(doc.getLength(),

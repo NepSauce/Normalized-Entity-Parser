@@ -1,11 +1,7 @@
 package nep.swing.panels.devmodepanels.devmodeduplicates.objecttabpanelsdev;
 
 import nep.rosterconversion.PDFCleaner;
-import nep.swing.panels.devmodepanels.devmodeduplicates.CumulativeInfoPanelDev;
-import nep.swing.panels.devmodepanels.devmodeduplicates.ExamAddedPanelDev;
-import nep.swing.panels.devmodepanels.devmodeduplicates.ExamLocationPanelDev;
-import nep.swing.panels.devmodepanels.devmodeduplicates.RosterAddedPanelDev;
-import nep.util.FileManager;
+import nep.swing.panels.devmodepanels.devmodeduplicates.*;
 import nep.util.GroupedObjectParser;
 
 import javax.swing.*;
@@ -20,7 +16,6 @@ import java.nio.file.Files;
 import java.nio.file.attribute.BasicFileAttributes;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Map;
 
 /**
  * The GroupedButtonPalette class provides a UI panel with buttons
@@ -30,14 +25,16 @@ import java.util.Map;
 public class GroupedButtonPaletteDev{
     private final JPanel groupedButtonPanel;
     private CumulativeInfoPanelDev cumulativeInfoPanel;
+    private LoggingPanelDev loggingPanel;
     
     /**
      * Constructs a GroupedButtonPalette and initializes buttons for
      * creating and opening grouped appointment files.
      */
     public GroupedButtonPaletteDev(ExamLocationPanelDev examLocationPanel, ExamAddedPanelDev examAddedPanel,
-                                   RosterAddedPanelDev rosterAddedPanel, CumulativeInfoPanelDev cumulativeInfoPanel){
+                                   RosterAddedPanelDev rosterAddedPanel, CumulativeInfoPanelDev cumulativeInfoPanel, LoggingPanelDev loggingPanel){
         this.cumulativeInfoPanel = cumulativeInfoPanel;
+        this.loggingPanel = loggingPanel;
         
         groupedButtonPanel = new JPanel();
         groupedButtonPanel.setLayout(null);
@@ -90,7 +87,8 @@ public class GroupedButtonPaletteDev{
         File latestFile = GroupedObjectParser.getMostRecentFile(directoryPath);
         
         if (latestFile == null){
-            System.out.println("No files found.");
+            loggingPanel.log("No Grouped Object files found");
+            System.out.println("No Grouped Object files found.");
             return;
         }
         
@@ -145,7 +143,7 @@ public class GroupedButtonPaletteDev{
                 name.matches("GroupedObject\\(\\d{4}-\\d{1,2}-\\d{1,2}\\)\\(\\d{1,2}-\\d{1,2}-\\d{1,2}\\)\\.txt"));
                 
         if (files == null || files.length == 0){
-            JOptionPane.showMessageDialog(null, "No grouped files found in the folder!",
+            JOptionPane.showMessageDialog(null, "No Grouped Object files found in the folder!",
                     "Error", JOptionPane.ERROR_MESSAGE);
             return null;
         }
