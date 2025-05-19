@@ -26,8 +26,6 @@ public class ExamLocationPanel {
         locationArray.add("Mark A Hill");
         locationArray.add("G28");
         locationArray.add("Alternate Location");
-        locationArray.add("Sexton");
-        locationArray.add("Laws");
 
         examPanel = new JPanel();
         examPanel.setLayout(null);

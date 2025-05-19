@@ -23,5 +23,4 @@ public class EncompassingTabDev{
     public JTabbedPane getEncompassingTab(){
         return tabbedPane;
     }
-    
 }
