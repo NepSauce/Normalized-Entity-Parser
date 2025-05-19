@@ -130,11 +130,11 @@ public class RemovedObjectPanel extends JPanel{
         JTextField timeField = new JTextField(getValue(rawData, "Time"));
         
         JPanel panel = new JPanel(new GridLayout(0, 2, 7, 10));
-        panel.add(new JLabel("DalID:")); panel.add(dalIdField);
-        panel.add(new JLabel("Name:")); panel.add(nameField);
-        panel.add(new JLabel("Code:")); panel.add(codeField);
-        panel.add(new JLabel("Location:")); panel.add(locationField);
-        panel.add(new JLabel("Time:")); panel.add(timeField);
+        panel.add(new JLabel("DalID (e.g. B00947033):")); panel.add(dalIdField);
+        panel.add(new JLabel("Name (e.g. Doe, John):")); panel.add(nameField);
+        panel.add(new JLabel("Code (e.g. CSCI 2110 01):")); panel.add(codeField);
+        panel.add(new JLabel("Location (e.g. 3080 ROWE):")); panel.add(locationField);
+        panel.add(new JLabel("Time (e.g. 6:00 PM):")); panel.add(timeField);
         
         int result = JOptionPane.showConfirmDialog(this, panel, "Edit Entry", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
         

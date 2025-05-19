@@ -13,7 +13,7 @@ public class EncompassingTabDev{
         tabbedPane.setBounds(25, 290, 250, 108);
         
         SettingsTabDev settingsTab = new SettingsTabDev(examLocationPanel, examAddedPanel, rosterAddedPanel, cumulativeInfoPanel);
-        tabbedPane.add("Exam", settingsTab.getSettingsTab());
+        tabbedPane.add("Settings", settingsTab.getSettingsTab());
         
         ObjectTabDev objectTab = new ObjectTabDev(examLocationPanel, examAddedPanel, rosterAddedPanel, cumulativeInfoPanel, loggingPanel);
         tabbedPane.add("Files", objectTab.getObjectTab());
