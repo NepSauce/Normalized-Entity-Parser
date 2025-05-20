@@ -33,7 +33,7 @@ public class DatePickerPanel {
         datePickerPanel = new JPanel();
         datePickerPanel.setLayout(null);
         datePickerPanel.setBackground(Color.WHITE);
-        datePickerPanel.setBounds(25, 105, datePanelWidth, datePanelHeight - 105);
+        datePickerPanel.setBounds(25, 95, datePanelWidth, datePanelHeight - 105);
         datePickerPanel.setBorder(BorderFactory.createBevelBorder(BevelBorder.LOWERED));
 
         Border bevelBorder = BorderFactory.createBevelBorder(BevelBorder.LOWERED);

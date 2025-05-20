@@ -1,0 +1,51 @@
+Course Code: BIOC 3700
+ 1 - MAH - 8:30 AM
+
+Course Code: BIOL 2003
+ 3 - MAH - 8:30 AM
+
+Course Code: BUSI 6015
+ 1 - MAH - 8:30 AM
+
+Course Code: CIVL 4515
+ 1 - MAH - 8:30 AM
+
+Course Code: COMM 1503
+ 1 - MAH - 12:00 PM
+
+Course Code: COMM 2202
+ 3 - MAH - 3:30 PM
+
+Course Code: COMM 2202 03
+ 2 - MAH - 3:30 PM
+
+Course Code: COMM 3409
+ 1 - MAH - 8:30 AM
+
+Course Code: HIST 3226
+ 2 - MAH - 8:30 AM
+
+Course Code: KINE 2320
+ 3 - MAH - 3:30 PM
+
+Course Code: MATH 1000
+ 2 - MAH - 8:30 AM
+
+Course Code: NESC/PSYO 3970
+ 2 - MAH - 8:30 AM
+
+Course Code: OCCU 5012
+ 2 - MAH - 1:00 PM
+
+Course Code: POLI 2210
+ 1 - MAH - 6:30 PM
+
+Course Code: PSYO 2000
+ 2 - MAH - 3:30 PM
+
+Course Code: SOSA 3033
+ 2 - MAH - 1:30 PM
+
+Course Code: VISC 5340
+ 1 - MAH - 12:30 PM
+

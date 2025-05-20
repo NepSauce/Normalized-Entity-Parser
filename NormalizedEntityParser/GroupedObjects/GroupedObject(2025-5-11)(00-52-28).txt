@@ -1,0 +1,228 @@
+Course Code: BIOC 2300
+ 1 - 2021 MCCAIN - 3:30 PM
+
+Course Code: BIOC 3700
+ 1 - MAH - 8:30 AM
+
+Course Code: BIOC 4702
+ 1 - 2176 MCCAIN - 12:00 PM
+
+Course Code: BIOL 2003
+ 3 - MAH - 8:30 AM
+
+Course Code: BIOL 3301
+ 1 - G28 - 8:30 AM
+
+Course Code: BUSI 6015
+ 1 - MAH - 8:30 AM
+
+Course Code: CHEM 1011
+ 1 - 2118 MCCAIN - 8:30 AM
+
+Course Code: CHEM 1012
+ 15 - 1102 MCCAIN - 8:30 AM
+ 15 - 1130 MCCAIN - 8:30 AM
+ 11 - 1170 MCCAIN - 8:30 AM
+ 11 - 2021 MCCAIN - 8:30 AM
+ 13 - 2118 MCCAIN - 8:30 AM
+ 1 - 2130 MCCAIN - 8:30 AM
+ 1 - 2162 MCCAIN - 8:30 AM
+ 10 - 3080 ROWE - 8:30 AM
+ 17 - LORD DALHOUSIE - 8:30 AM
+
+Course Code: CHEM 1022
+ 1 - 2021 MCCAIN - 8:30 AM
+
+Course Code: CIVL 4515
+ 1 - MAH - 8:30 AM
+
+Course Code: CMSD 5020
+ 4 - 2162 MCCAIN - 3:30 PM
+ 1 - 2184 MCCAIN - 3:30 PM
+
+Course Code: COMM 1101 01
+ 3 - 2018 MCAIN - 5:30 PM
+
+Course Code: COMM 1503
+ 1 - MAH - 12:00 PM
+
+Course Code: COMM 2202
+ 3 - MAH - 3:30 PM
+
+Course Code: COMM 2202 03
+ 2 - MAH - 3:30 PM
+
+Course Code: COMM 2504
+ 1 - 2021 MCCAIN - 3:30 PM
+ 5 - 2104 MCCAIN - 3:30 PM
+ 6 - 2162 MCCAIN - 3:30 PM
+
+Course Code: COMM 3409
+ 1 - G28 - 8:30 AM
+ 1 - MAH - 8:30 AM
+
+Course Code: CSCI 2134
+ 8 - 2184 MCCAIN - 8:30 AM
+
+Course Code: CSCI 2141
+ 11 - 2021 MCCAIN - 3:30 PM
+ 2 - 2104 MCCAIN - 3:30 PM
+
+Course Code: CSCI 2690
+ 1 - G28 - 3:30 PM
+
+Course Code: DEHY 2805
+ 1 - G28 - 9:00 AM
+
+Course Code: DENT 3002
+ 2 - G28 - 10:00 AM
+
+Course Code: ECON 1102 01
+ 1 - G28 - 8:30 AM
+
+Course Code: ECON 2211
+ 1 - 3080 ROWE - 8:30 AM
+
+Course Code: EMSP 2320
+ 1 - 2104 MCCAIN - 3:30 PM
+
+Course Code: ENGL 2235
+ 1 - G28 - 8:30 AM
+
+Course Code: ENGL 3061
+ 2 - 2184 MCCAIN - 3:30 PM
+
+Course Code: ENVS 3100
+ 6 - 2104 MCCAIN - 3:30 PM
+
+Course Code: ERTH 2002
+ 1 - 2116 MCCAIN - 12:00 PM
+
+Course Code: ERTH 3205
+ 1 - 2018 MCAIN - 5:30 PM
+
+Course Code: ERTH 3401
+ 1 - 3080 ROWE - 8:30 AM
+
+Course Code: ERTH 4110
+ 1 - 2116 MCCAIN - 12:00 PM
+
+Course Code: GWST/HIST 2900
+ 1 - G28 - 3:30 PM
+
+Course Code: HIST 3226
+ 2 - MAH - 8:30 AM
+
+Course Code: HIST 3227
+ 1 - LORD DALHOUSIE - 8:30 AM
+
+Course Code: KINE 2320
+ 3 - MAH - 3:30 PM
+
+Course Code: KINE 2465
+ 2 - G28 - 3:30 PM
+
+Course Code: KINE 3482
+ 1 - 2022 MCCAIN - 3:30 PM
+ 3 - 2162 MCCAIN - 3:30 PM
+
+Course Code: LAWS 10125 02
+ 1 - LORD DALHOUSIE - 8:30 AM
+
+Course Code: LAWS 2002 02
+ 1 - G28 - 9:30 AM
+
+Course Code: LAWS 2002 03
+ 1 - G28 - 9:30 AM
+
+Course Code: LAWS 2008 03
+ 8 - 308 WELDON W (10) - 9:30 AM
+ 8 - 309 WELDON W (10+1) - 9:30 AM
+
+Course Code: MARI 3063
+ 1 - G28 - 3:30 PM
+
+Course Code: MATH 1000
+ 2 - MAH - 8:30 AM
+
+Course Code: MATH 1280
+ 1 - G28 - 3:30 PM
+
+Course Code: MATH 1290
+ 13 - 2017 MCCAIN - 12:00 PM
+ 13 - 2116 MCCAIN - 12:00 PM
+ 7 - 2176 MCCAIN - 12:00 PM
+ 7 - 301A DUNN - 12:00 PM
+
+Course Code: MATH 2300
+ 1 - G28 - 8:30 AM
+
+Course Code: MEDI 2311
+ 2 - G28 - 1:00 PM
+
+Course Code: MICI 2400
+ 2 - 2021 MCCAIN - 8:30 AM
+
+Course Code: MICI 4115
+ 2 - 2130 MCCAIN - 3:30 PM
+
+Course Code: NESC/PSYO 3227
+ 1 - 2017 MCCAIN - 12:00 PM
+ 1 - 2170 MCCAIN - 12:00 PM
+ 7 - 2176 MCCAIN - 12:00 PM
+ 1 - 301A DUNN - 12:00 PM
+
+Course Code: NESC/PSYO 3970
+ 2 - MAH - 8:30 AM
+
+Course Code: OCCU 5012
+ 2 - MAH - 1:00 PM
+
+Course Code: OCCU 5015
+ 7 - 2016 MCCAIN - 9:00 AM
+
+Course Code: PHAR 1011
+ 10 - 301A DUNN - 12:00 PM
+
+Course Code: PHAR 2064
+ 2 - 1170 MCCAIN - 8:30 AM
+
+Course Code: PHIL 2260
+ 2 - 2184 MCCAIN - 3:30 PM
+
+Course Code: PHIL 2810
+ 1 - 2022 MCCAIN - 3:30 PM
+ 12 - 2130 MCCAIN - 3:30 PM
+ 2 - 2162 MCCAIN - 3:30 PM
+ 1 - 2184 MCCAIN - 3:30 PM
+
+Course Code: PHYC 3210
+ 1 - 2184 MCCAIN - 3:30 PM
+
+Course Code: POLI 1065
+ 1 - 2021 MCCAIN - 3:30 PM
+ 4 - 2022 MCCAIN - 3:30 PM
+ 4 - 2184 MCCAIN - 3:30 PM
+
+Course Code: POLI 2210
+ 1 - MAH - 6:30 PM
+
+Course Code: POLI 3208
+ 2 - 3080 ROWE - 8:30 AM
+
+Course Code: PSYO 2000
+ 2 - MAH - 3:30 PM
+
+Course Code: PSYO 2220
+ 2 - 301A DUNN - 12:00 PM
+ 14 - 3207 MONA - 12:00 PM
+
+Course Code: SOSA 3033
+ 2 - MAH - 1:30 PM
+
+Course Code: STAT 1060
+ 1 - G28 - 1:00 PM
+
+Course Code: VISC 5340
+ 1 - MAH - 12:30 PM
+

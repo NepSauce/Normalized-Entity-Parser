@@ -20,48 +20,23 @@ public class FieldValidator{
     }
 
     private boolean validatePDFSelection(){
-        if (fileAbsolutePath == null){
-            return true;
-        }
-        else{
-            return false;
-        }
+        return fileAbsolutePath == null;
     }
 
     private boolean validateLocationSelection(){
-        if (location == null){
-            return true;
-        }
-        else{
-            return false;
-        }
+        return location == null;
     }
 
     private boolean validateDaySelection(){
-        if (day == 0){
-            return true;
-        }
-        else{
-            return false;
-        }
+        return day == 0;
     }
 
     private boolean validateMonthSelection(){
-        if (month == null){
-            return true;
-        }
-        else{
-            return false;
-        }
+        return month == null;
     }
 
     private boolean validateYearSelection(){
-        if (year == 0){
-            return true;
-        }
-        else{
-            return false;
-        }
+        return year == 0;
     }
 
 

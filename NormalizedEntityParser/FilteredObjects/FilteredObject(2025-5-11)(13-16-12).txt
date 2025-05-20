@@ -1,0 +1,49 @@
+Time: 8:30 AM, Course Code: CIVL 4515
+Time: 8:30 AM, Course Code: MATH 1000
+Time: 8:30 AM, Course Code: HIST 3226
+Time: 8:30 AM, Course Code: NESC/PSYO 3970
+Time: 8:30 AM, Course Code: NESC/PSYO 3970
+Time: 8:30 AM, Course Code: COMM 3409
+Time: 8:30 AM, Course Code: BIOC 3700
+Time: 8:30 AM, Course Code: MATH 1000
+Time: 8:30 AM, Course Code: BUSI 6015
+Time: 8:30 AM, Course Code: BIOL 2003
+Time: 8:30 AM, Course Code: HIST 3226
+Time: 8:30 AM, Course Code: BIOL 2003
+Time: 8:30 AM, Course Code: BIOL 2003
+Time: 12:00 PM, Course Code: COMM 1503
+Time: 12:30 PM, Course Code: VISC 5340
+Time: 1:00 PM, Course Code: OCCU 5012
+Time: 1:00 PM, Course Code: OCCU 5012
+Time: 1:30 PM, Course Code: SOSA 3033
+Time: 1:30 PM, Course Code: SOSA 3033
+Time: 3:30 PM, Course Code: KINE 2320
+Time: 3:30 PM, Course Code: COMM 2202 03
+Time: 3:30 PM, Course Code: PSYO 2000
+Time: 3:30 PM, Course Code: COMM 2202 03
+Time: 3:30 PM, Course Code: COMM 2202
+Time: 3:30 PM, Course Code: KINE 2320
+Time: 3:30 PM, Course Code: PSYO 2000
+Time: 3:30 PM, Course Code: COMM 2202
+Time: 3:30 PM, Course Code: KINE 2320
+Time: 3:30 PM, Course Code: COMM 2202
+Time: 6:30 PM, Course Code: POLI 2210
+Time: 8:30 AM, Course Code: ECON 1102 01
+Time: 8:30 AM, Course Code: MATH 2300
+Time: 8:30 AM, Course Code: BIOL 3301
+Time: 8:30 AM, Course Code: ENGL 2235
+Time: 8:30 AM, Course Code: COMM 3409
+Time: 9:00 AM, Course Code: DEHY 2805
+Time: 9:30 AM, Course Code: LAWS 2002 02
+Time: 9:30 AM, Course Code: LAWS 2002 03
+Time: 1:00 PM, Course Code: MEDI 2311
+Time: 1:00 PM, Course Code: MEDI 2311
+Time: 3:30 PM, Course Code: GWST/HIST 2900
+Time: 3:30 PM, Course Code: KINE 2465
+Time: 3:30 PM, Course Code: MARI 3063
+Time: 3:30 PM, Course Code: KINE 2465
+Time: 3:30 PM, Course Code: CSCI 2690
+Time: 10:00 AM, Course Code: DENT 3002
+Time: 10:00 AM, Course Code: DENT 3002
+Time: 1:00 PM, Course Code: STAT 1060
+Time: 3:30 PM, Course Code: MATH 1280

@@ -12,23 +12,28 @@ import java.io.*;
 import java.nio.file.*;
 import java.util.List;
 
-public class RemovedObjectPanel extends JPanel {
-    
+/**
+ * The RemovedObjectPanel class is a Swing panel that displays and allows the editing of removed object entries.
+ * It loads the data from a .txt file containing the removed objects, displays them as clickable buttons,
+ * and enables users to modify or restore the entries.
+ */
+public class RemovedObjectPanel extends JPanel{
     private File dataFile;
     private JPanel contentPanel;
     
-    public RemovedObjectPanel() {
-        setLayout(null); // Using absolute layout like your ExamAddedPanel
+    /**
+     * Constructs the RemovedObjectPanel, initializes the UI components, and loads the data file containing the removed objects.
+     */
+    public RemovedObjectPanel(){
+        setLayout(null);
         setBackground(new Color(238, 238, 238));
         
-        // Outer panel mimicking selectedPanel from ExamAddedPanel
         JPanel containerPanel = new JPanel();
         containerPanel.setLayout(null);
         containerPanel.setBackground(Color.WHITE);
         containerPanel.setBounds(10, 10, 600, 400);
         containerPanel.setBorder(BorderFactory.createBevelBorder(BevelBorder.LOWERED));
-        
-        // Inner scrollable panel with titled border
+
         contentPanel = new JPanel();
         contentPanel.setLayout(null);
         contentPanel.setBackground(Color.WHITE);
@@ -49,28 +54,35 @@ public class RemovedObjectPanel extends JPanel {
         loadDataFile();
     }
     
-    private void loadDataFile() {
+    /**
+     * Loads the data from the file containing removed object entries. It checks for the existence of the file and
+     * populates the panel with buttons corresponding to each entry.
+     * Each button allows editing of the corresponding object.
+     */
+    private void loadDataFile(){
         File folder = new File("NormalizedEntityParser/RemovedObjects/");
         File[] files = folder.listFiles((dir, name) -> name.endsWith(".txt"));
         
-        if (files == null || files.length == 0) {
+        if (files == null || files.length == 0){
             new DisplayUIError("No .txt file found in the folder!", 101).displayNormalError();
             return;
         }
-        else if (files.length > 1) {
+        else if (files.length > 1){
             new DisplayUIError("Multiple files found. Using: " + files[0].getName(), 102).displayNormalError();
             dataFile = files[0];
-        } else {
+        }
+        else{
             dataFile = files[0];
         }
         
-        if (dataFile != null) {
-            try {
+        if (dataFile != null){
+            try{
                 List<String> lines = Files.readAllLines(dataFile.toPath());
-                int yOffset = 30; // Reduced gap from title to first entry
+                int yOffset = 30;
                 
                 for (int i = 0, count = 1; i < lines.size(); i++) {
                     String line = lines.get(i).trim();
+                    
                     if (!line.isEmpty()) {
                         int lineIndex = i;
                         String numberedLine = count + ". " + line;
@@ -91,7 +103,8 @@ public class RemovedObjectPanel extends JPanel {
                         count++;
                     }
                 }
-            } catch (IOException ex) {
+            }
+            catch (IOException ex){
                 new DisplayUIError("Error reading file: " + ex.getMessage(), 103).displayCriticalError();
             }
         }
@@ -100,7 +113,14 @@ public class RemovedObjectPanel extends JPanel {
         repaint();
     }
     
-    private void openEditDialog(int lineIndex, String rawData) {
+    /**
+     * Opens a dialog that allows the user to edit the details of a specific removed object entry.
+     * The modified entry is validated and restored in the original file.
+     *
+     * @param lineIndex the index of the line to be edited in the data file.
+     * @param rawData the raw data of the entry to be edited.
+     */
+    private void openEditDialog(int lineIndex, String rawData){
         ObjectManager manager = new ObjectManager(rawData);
         
         JTextField dalIdField = new JTextField(getValue(rawData, "DalID"));
@@ -109,16 +129,16 @@ public class RemovedObjectPanel extends JPanel {
         JTextField locationField = new JTextField(getValue(rawData, "Location"));
         JTextField timeField = new JTextField(getValue(rawData, "Time"));
         
-        JPanel panel = new JPanel(new GridLayout(0, 2, 10, 10));
-        panel.add(new JLabel("DalID:")); panel.add(dalIdField);
-        panel.add(new JLabel("Name:")); panel.add(nameField);
-        panel.add(new JLabel("Code:")); panel.add(codeField);
-        panel.add(new JLabel("Location:")); panel.add(locationField);
-        panel.add(new JLabel("Time:")); panel.add(timeField);
+        JPanel panel = new JPanel(new GridLayout(0, 2, 7, 10));
+        panel.add(new JLabel("DalID (e.g. B00947033):")); panel.add(dalIdField);
+        panel.add(new JLabel("Name (e.g. Doe, John):")); panel.add(nameField);
+        panel.add(new JLabel("Code (e.g. CSCI 2110 01):")); panel.add(codeField);
+        panel.add(new JLabel("Location (e.g. 3080 ROWE):")); panel.add(locationField);
+        panel.add(new JLabel("Time (e.g. 6:00 PM):")); panel.add(timeField);
         
         int result = JOptionPane.showConfirmDialog(this, panel, "Edit Entry", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
         
-        if (result == JOptionPane.OK_OPTION) {
+        if (result == JOptionPane.OK_OPTION){
             manager.modifyObjectKeyValue("DalID", dalIdField.getText());
             manager.modifyObjectKeyValue("Name", nameField.getText());
             manager.modifyObjectKeyValue("Code", codeField.getText());
@@ -126,16 +146,22 @@ public class RemovedObjectPanel extends JPanel {
             manager.modifyObjectKeyValue("Time", timeField.getText());
             
             String updatedLine = manager.getObject();
-            
-            // Validate and restore the entry only if valid
             boolean restored = RemovedObjectValidator.validateAndRestore(updatedLine, dataFile.toPath(), lineIndex);
-            if (restored) {
+            
+            if (restored){
                 refreshPanel();
             }
         }
     }
     
-    private String getValue(String data, String key) {
+    /**
+     * Extracts the value associated with a given key from the raw data of a removed object.
+     *
+     * @param data the raw data string representing the removed object.
+     * @param key the key whose associated value is to be extracted.
+     * @return the value associated with the key, or an empty string if not found.
+     */
+    private String getValue(String data, String key){
         String pattern = key + ": ";
         int start = data.indexOf(pattern);
         if (start == -1) return "";
@@ -146,17 +172,27 @@ public class RemovedObjectPanel extends JPanel {
         return data.substring(valueStart, valueEnd).trim();
     }
     
-    private void updateLineInFile(int lineIndex, String newContent) {
-        try {
+    /**
+     * Updates a specific line in the data file with the new content provided.
+     *
+     * @param lineIndex the index of the line to be updated.
+     * @param newContent the new content to write to the file.
+     */
+    private void updateLineInFile(int lineIndex, String newContent){
+        try{
             List<String> lines = Files.readAllLines(dataFile.toPath());
             lines.set(lineIndex, newContent);
             Files.write(dataFile.toPath(), lines);
-        } catch (IOException e) {
+        }
+        catch (IOException e) {
             new DisplayUIError("Failed to update file: " + e.getMessage(), 104).displayCriticalError();
         }
     }
     
-    private void refreshPanel() {
+    /**
+     * Refreshes the panel by removing all current entries and reloading the data from the file.
+     */
+    private void refreshPanel(){
         contentPanel.removeAll();
         loadDataFile();
         revalidate();

@@ -26,13 +26,11 @@ public class ExamLocationPanel {
         locationArray.add("Mark A Hill");
         locationArray.add("G28");
         locationArray.add("Alternate Location");
-        locationArray.add("Sexton");
-        locationArray.add("Laws");
 
         examPanel = new JPanel();
         examPanel.setLayout(null);
         examPanel.setBackground(Color.WHITE);
-        examPanel.setBounds(25, 35, examPanelWidth , examPanelHeight - 105);
+        examPanel.setBounds(25, 25, examPanelWidth , examPanelHeight - 105);
         examPanel.setBorder(BorderFactory.createBevelBorder(BevelBorder.LOWERED));
 
         JPanel locationPanel = new JPanel();

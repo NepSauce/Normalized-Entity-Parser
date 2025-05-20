@@ -1,0 +1,69 @@
+Time: 8:30 AM, Course Code: CHEM 1012
+Time: 8:30 AM, Course Code: CHEM 1012
+Time: 8:30 AM, Course Code: CHEM 1012
+Time: 8:30 AM, Course Code: CHEM 1012
+Time: 8:30 AM, Course Code: CHEM 1012
+Time: 8:30 AM, Course Code: CHEM 1012
+Time: 8:30 AM, Course Code: CHEM 1012
+Time: 8:30 AM, Course Code: CHEM 1012
+Time: 8:30 AM, Course Code: LAWS 10125 02
+Time: 8:30 AM, Course Code: CHEM 1012
+Time: 8:30 AM, Course Code: CHEM 1012
+Time: 8:30 AM, Course Code: CHEM 1012
+Time: 8:30 AM, Course Code: HIST 3227
+Time: 8:30 AM, Course Code: CHEM 1012
+Time: 8:30 AM, Course Code: CHEM 1012
+Time: 8:30 AM, Course Code: CHEM 1012
+Time: 8:30 AM, Course Code: CHEM 1012
+Time: 8:30 AM, Course Code: CHEM 1012
+Time: 8:30 AM, Course Code: CHEM 1012
+Time: 9:30 AM, Course Code: LAWS 2008 03
+Time: 9:30 AM, Course Code: LAWS 2008 03
+Time: 9:30 AM, Course Code: LAWS 2008 03
+Time: 9:30 AM, Course Code: LAWS 2008 03
+Time: 9:30 AM, Course Code: LAWS 2008 03
+Time: 9:30 AM, Course Code: LAWS 2008 03
+Time: 9:30 AM, Course Code: LAWS 2008 03
+Time: 9:30 AM, Course Code: LAWS 2008 03
+Time: 9:30 AM, Course Code: LAWS 2008 03
+Time: 9:30 AM, Course Code: LAWS 2008 03
+Time: 9:30 AM, Course Code: LAWS 2008 03
+Time: 9:30 AM, Course Code: LAWS 2008 03
+Time: 9:30 AM, Course Code: LAWS 2008 03
+Time: 9:30 AM, Course Code: LAWS 2008 03
+Time: 9:30 AM, Course Code: LAWS 2008 03
+Time: 9:30 AM, Course Code: LAWS 2008 03
+Time: 12:00 PM, Course Code: PHAR 1011
+Time: 12:00 PM, Course Code: PHAR 1011
+Time: 12:00 PM, Course Code: PHAR 1011
+Time: 12:00 PM, Course Code: PHAR 1011
+Time: 12:00 PM, Course Code: PHAR 1011
+Time: 12:00 PM, Course Code: MATH 1290
+Time: 12:00 PM, Course Code: PSYO 3227
+Time: 12:00 PM, Course Code: MATH 1290
+Time: 12:00 PM, Course Code: PHAR 1011
+Time: 12:00 PM, Course Code: PHAR 1011
+Time: 12:00 PM, Course Code: PHAR 1011
+Time: 12:00 PM, Course Code: PHAR 1011
+Time: 12:00 PM, Course Code: MATH 1290
+Time: 12:00 PM, Course Code: MATH 1290
+Time: 12:00 PM, Course Code: MATH 1290
+Time: 12:00 PM, Course Code: MATH 1290
+Time: 12:00 PM, Course Code: PSYO 2220
+Time: 12:00 PM, Course Code: PSYO 2220
+Time: 12:00 PM, Course Code: MATH 1290
+Time: 12:00 PM, Course Code: PHAR 1011
+Time: 3:30 PM, Course Code: ENVS 3100
+Time: 3:30 PM, Course Code: ENVS 3100
+Time: 3:30 PM, Course Code: ENVS 3100
+Time: 3:30 PM, Course Code: EMSP 2320
+Time: 3:30 PM, Course Code: ENVS 3100
+Time: 3:30 PM, Course Code: COMM 2504
+Time: 3:30 PM, Course Code: CSCI 2141
+Time: 3:30 PM, Course Code: COMM 2504
+Time: 3:30 PM, Course Code: CSCI 2141
+Time: 3:30 PM, Course Code: COMM 2504
+Time: 3:30 PM, Course Code: COMM 2504
+Time: 3:30 PM, Course Code: COMM 2504
+Time: 3:30 PM, Course Code: ENVS 3100
+Time: 3:30 PM, Course Code: ENVS 3100

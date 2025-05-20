@@ -1,0 +1,97 @@
+Course Code: BIOC 3700
+ 1 - MAH - 8:30 AM
+
+Course Code: BIOL 2003
+ 3 - MAH - 8:30 AM
+
+Course Code: BIOL 3301
+ 1 - G28 - 8:30 AM
+
+Course Code: BUSI 6015
+ 1 - MAH - 8:30 AM
+
+Course Code: CIVL 4515
+ 1 - MAH - 8:30 AM
+
+Course Code: COMM 1503
+ 1 - MAH - 12:00 PM
+
+Course Code: COMM 2202
+ 3 - MAH - 3:30 PM
+
+Course Code: COMM 2202 03
+ 2 - MAH - 3:30 PM
+
+Course Code: COMM 3409
+ 1 - G28 - 8:30 AM
+ 1 - MAH - 8:30 AM
+
+Course Code: CSCI 2690
+ 1 - G28 - 3:30 PM
+
+Course Code: DEHY 2805
+ 1 - G28 - 9:00 AM
+
+Course Code: DENT 3002
+ 2 - G28 - 10:00 AM
+
+Course Code: ECON 1102 01
+ 1 - G28 - 8:30 AM
+
+Course Code: ENGL 2235
+ 1 - G28 - 8:30 AM
+
+Course Code: GWST/HIST 2900
+ 1 - G28 - 3:30 PM
+
+Course Code: HIST 3226
+ 2 - MAH - 8:30 AM
+
+Course Code: KINE 2320
+ 3 - MAH - 3:30 PM
+
+Course Code: KINE 2465
+ 2 - G28 - 3:30 PM
+
+Course Code: LAWS 2002 02
+ 1 - G28 - 9:30 AM
+
+Course Code: LAWS 2002 03
+ 1 - G28 - 9:30 AM
+
+Course Code: MARI 3063
+ 1 - G28 - 3:30 PM
+
+Course Code: MATH 1000
+ 2 - MAH - 8:30 AM
+
+Course Code: MATH 1280
+ 1 - G28 - 3:30 PM
+
+Course Code: MATH 2300
+ 1 - G28 - 8:30 AM
+
+Course Code: MEDI 2311
+ 2 - G28 - 1:00 PM
+
+Course Code: NESC/PSYO 3970
+ 2 - MAH - 8:30 AM
+
+Course Code: OCCU 5012
+ 2 - MAH - 1:00 PM
+
+Course Code: POLI 2210
+ 1 - MAH - 6:30 PM
+
+Course Code: PSYO 2000
+ 2 - MAH - 3:30 PM
+
+Course Code: SOSA 3033
+ 2 - MAH - 1:30 PM
+
+Course Code: STAT 1060
+ 1 - G28 - 1:00 PM
+
+Course Code: VISC 5340
+ 1 - MAH - 12:30 PM
+

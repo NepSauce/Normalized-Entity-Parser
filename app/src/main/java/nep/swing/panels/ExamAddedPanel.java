@@ -33,7 +33,7 @@ public class ExamAddedPanel {
         selectedPanel = new JPanel();
         selectedPanel.setLayout(null);
         selectedPanel.setBackground(Color.WHITE);
-        selectedPanel.setBounds(300, 35, selectedPanelWidth, selectedPanelHeight + 65);
+        selectedPanel.setBounds(300, 25, selectedPanelWidth, selectedPanelHeight + 65);
         selectedPanel.setBorder(BorderFactory.createBevelBorder(BevelBorder.LOWERED));
 
         examListPanel = new JPanel();
