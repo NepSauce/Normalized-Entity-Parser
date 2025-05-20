@@ -2,36 +2,36 @@ package nep.util;
 
 import javax.swing.*;
 
-public class DisplayUIPopup {
+public class DisplayUIPopup{
     private final String message;
     private final String title;
     private final int popupCode;
     private PopupType type = PopupType.INFO;
     
-    public enum PopupType {
+    public enum PopupType{
         INFO, CONFIRM
     }
     
-    public DisplayUIPopup(String title, String message, int popupCode) {
+    public DisplayUIPopup(String title, String message, int popupCode){
         this.title = title;
         this.message = message;
         this.popupCode = popupCode;
     }
     
-    public void showInfoPopup() {
+    public void showInfoPopup(){
         this.type = PopupType.INFO;
         showDialog();
     }
     
-    public boolean showConfirmationPopup() {
+    public boolean showConfirmationPopup(){
         this.type = PopupType.CONFIRM;
         return showDialog();
     }
     
-    private boolean showDialog() {
-        String fullMessage = "<html><b>" + message + "</b><br><i>Popup Code: " + popupCode + "</i></html>";
+    private boolean showDialog(){
+        String fullMessage = "<html><b>" + message + "</b><br><i>Code: " + popupCode + "</i></html>";
         
-        if (type == PopupType.INFO) {
+        if (type == PopupType.INFO){
             JOptionPane.showMessageDialog(
                     null,
                     fullMessage,
@@ -39,7 +39,8 @@ public class DisplayUIPopup {
                     JOptionPane.INFORMATION_MESSAGE
             );
             return true;
-        } else {
+        }
+        else{
             int result = JOptionPane.showConfirmDialog(
                     null,
                     fullMessage,

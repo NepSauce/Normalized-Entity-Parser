@@ -27,7 +27,7 @@ public class DisplayUIError{
     }
     
     private void showDialog(){
-        String fullMessage = "<html><b>" + message + "</b><br><i>Error Code: " + errorCode + "</i></html>";
+        String fullMessage = "<html><b>" + message + "</b><br><i>Code: " + errorCode + "</i></html>";
         String title = (level == ErrorLevel.CRITICAL ? "Critical Error" : "Warning");
         
         int messageType = (level == ErrorLevel.CRITICAL)

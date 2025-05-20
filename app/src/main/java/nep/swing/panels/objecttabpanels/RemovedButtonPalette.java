@@ -48,7 +48,7 @@ public class RemovedButtonPalette{
                 File[] files = folder.listFiles((dir, name) -> name.endsWith(".txt"));
                 
                 if (files == null || files.length == 0){
-                    new DisplayUIPopup("Missing File", "No RemovedObject.txt Was Found.", 1003).showInfoPopup();
+                    new DisplayUIPopup("Missing File", "No RemovedObject.txt was found.", 502).showInfoPopup();
                     return;
                 }
                 
@@ -56,7 +56,7 @@ public class RemovedButtonPalette{
                 int lineCount = FileManager.countValidLinesInFile(targetFile.getAbsolutePath());
                 
                 if (lineCount == 0){
-                    new DisplayUIPopup("Empty File", "RemovedObject.txt is Empty.", 1004).showInfoPopup();
+                    new DisplayUIPopup("Empty File", "RemovedObject.txt is empty.", 402).showInfoPopup();
                     return;
                 }
 
@@ -71,12 +71,12 @@ public class RemovedButtonPalette{
                 
             }
             catch (IOException ex){
-                new DisplayUIError("Error Accessing File: " + ex.getMessage(), 601).displayCriticalError();
+                new DisplayUIError("Error accessing RemovedObject file: " + ex.getMessage(), 602).displayCriticalError();
             }
         });
         
         delete.addActionListener((ActionEvent e) -> {
-            int result = JOptionPane.showConfirmDialog(null, "Are You Sure You Wish To Delete RemovedObject.txt?",
+            int result = JOptionPane.showConfirmDialog(null, "Are you sure you want to delete RemovedObject.txt?",
                     "Confirm Deletion", JOptionPane.YES_NO_OPTION);
             
             if (result == JOptionPane.YES_OPTION){

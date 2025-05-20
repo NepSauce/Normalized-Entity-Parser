@@ -14,7 +14,7 @@ public class RemovedObjectValidator{
     
     public static boolean validateAndRestore(String rawData, Path removedFilePath, int lineIndex){
         if (rawData == null || !isValid(rawData)){
-            new DisplayUIPopup("Validation Failed", "Invalid record or missing fields.", 104).showInfoPopup();
+            new DisplayUIPopup("Validation Failed", "Invalid record or missing fields.", 303).showInfoPopup();
             return false;
         }
         
@@ -52,7 +52,7 @@ public class RemovedObjectValidator{
             
             removeLineFromFile(removedFilePath, lineIndex);
             
-            new DisplayUIPopup("Success", "Entry has been successfully validated and restored.", 0).showInfoPopup();
+            new DisplayUIPopup("Success", "Entry has been successfully validated and restored.", 101).showInfoPopup();
             return true;
         }
         catch (IOException e){

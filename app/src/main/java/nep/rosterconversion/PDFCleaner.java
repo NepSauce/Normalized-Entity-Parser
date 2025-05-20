@@ -99,19 +99,25 @@ public class PDFCleaner{
             File[] files = dir.listFiles((d, name) -> name.endsWith(".txt"));
             
             if (files == null || files.length == 0){
-                new DisplayUIError("No CombinedObject.txt File Found.", 104).displayNormalError();
+                new DisplayUIError("No CombinedObject.txt file was found.", 501).displayNormalError();
                 return;
             }
             
             File inputFile = files[0];
             filterAppointments(inputFile.getAbsolutePath(), outputTextPath, groupedFilePath);
             
-            new DisplayUIPopup("Success Making Grouped Appointments", "Grouped Appointments Generated!", 0).showInfoPopup();
+            JOptionPane.showMessageDialog(
+                    null,
+                    "Grouped Appointments Generated",
+                    "Success",
+                    JOptionPane.INFORMATION_MESSAGE
+            );
+            
             
         }
         catch (Exception e){
             e.printStackTrace();
-            new DisplayUIPopup("Error", "Failed to generate grouped appointments.", 104).showInfoPopup();
+            new DisplayUIPopup("Error", "Failed to generate grouped appointments.", 303).showInfoPopup();
         }
     }
     

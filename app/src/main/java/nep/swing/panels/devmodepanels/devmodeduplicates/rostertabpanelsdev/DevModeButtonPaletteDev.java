@@ -76,50 +76,51 @@ public class DevModeButtonPaletteDev{
     /**
      * Opens the guide.pdf file using the system's default PDF viewer.
      */
-    private void openGuidePdf() {
-        try (
-                InputStream inputStream = getClass().getClassLoader().getResourceAsStream("guide.pdf")
-        ) {
-            if (inputStream == null) {
-                JOptionPane.showMessageDialog(devModePanel,
-                        "The embedded PDF guide was not found in the application resources.",
-                        "File Not Found",
-                        JOptionPane.ERROR_MESSAGE);
-                return;
-            }
-            
-            // Create a temporary file
+    private void openGuidePdf(){
+        InputStream inputStream = getClass().getClassLoader().getResourceAsStream("guide.pdf");
+        
+        if (inputStream == null){
+            JOptionPane.showMessageDialog(devModePanel,
+                    "The embedded PDF guide was not found in the application resources.",
+                    "File Not Found",
+                    JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
+        try {
             File tempFile = File.createTempFile("guide", ".pdf");
             tempFile.deleteOnExit();
             
-            // Write the PDF contents to the temporary file
-            try (OutputStream outputStream = new FileOutputStream(tempFile)) {
-                byte[] buffer = new byte[4096];
-                int bytesRead;
-                while ((bytesRead = inputStream.read(buffer)) != -1) {
-                    outputStream.write(buffer, 0, bytesRead);
-                }
-            }
+            OutputStream outputStream = new FileOutputStream(tempFile);
+            byte[] buffer = new byte[4096];
+            int bytesRead;
             
-            // Open the temporary PDF file
-            if (Desktop.isDesktopSupported()) {
+            while ((bytesRead = inputStream.read(buffer)) != -1){
+                outputStream.write(buffer, 0, bytesRead);
+            }
+            outputStream.close();
+            inputStream.close();
+            
+            if (Desktop.isDesktopSupported()){
                 Desktop desktop = Desktop.getDesktop();
-                if (desktop.isSupported(Desktop.Action.OPEN)) {
+                if (desktop.isSupported(Desktop.Action.OPEN)){
                     desktop.open(tempFile);
-                } else {
+                }
+                else{
                     JOptionPane.showMessageDialog(devModePanel,
                             "Opening files is not supported on this system.",
                             "Unsupported Operation",
                             JOptionPane.ERROR_MESSAGE);
                 }
-            } else {
+            }
+            else{
                 JOptionPane.showMessageDialog(devModePanel,
                         "Desktop is not supported on this system.",
                         "Unsupported Platform",
                         JOptionPane.ERROR_MESSAGE);
             }
-            
-        } catch (Exception ex) {
+        }
+        catch (Exception ex){
             JOptionPane.showMessageDialog(devModePanel,
                     "An error occurred while opening the PDF:\n" + ex.getMessage(),
                     "Error",
@@ -127,8 +128,6 @@ public class DevModeButtonPaletteDev{
             ex.printStackTrace();
         }
     }
-    
-    
     
     /**
      * Opens the TerminalFrame when the NEPTer button is clicked.

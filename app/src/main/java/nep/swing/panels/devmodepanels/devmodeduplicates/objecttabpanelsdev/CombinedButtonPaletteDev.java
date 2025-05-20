@@ -124,7 +124,7 @@ public class CombinedButtonPaletteDev{
                 try{
                     Files.write(dataFile.toPath(), textArea.getText().getBytes());
                     JOptionPane.showMessageDialog(null, "File saved successfully!", "Success", JOptionPane.INFORMATION_MESSAGE);
-                    saveButton.setEnabled(false); // Disable save after saving
+                    saveButton.setEnabled(false);
                 }
                 catch (IOException ex){
                     JOptionPane.showMessageDialog(null, "Failed to save the file: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);

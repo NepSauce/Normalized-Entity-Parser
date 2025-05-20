@@ -317,12 +317,6 @@ public class PDFConversion {
                         removedCount + " Removed Line" + (removedCount == 1 ? " Was" : "s Were") + " Saved to RemovedObject.txt.", 1001)
                         .showInfoPopup();
             }
-            else{
-                new DisplayUIPopup("No Removed Entries",
-                        "No Entries Were Removed. CombinedObject.txt Was Successfully Created.", 1002)
-                        .showInfoPopup();
-            }
-            
         }
         catch (IOException e){
             System.err.println("Error writing to RemovedObject.txt: " + e.getMessage());
