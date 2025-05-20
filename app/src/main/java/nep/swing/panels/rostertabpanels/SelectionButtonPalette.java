@@ -88,7 +88,7 @@ public class SelectionButtonPalette{
                     }
                 } 
                 else{
-                    DisplayUIError newUIError = new DisplayUIError(errorMessage, 1);
+                    DisplayUIError newUIError = new DisplayUIError(errorMessage, 104);
                     newUIError.displayNormalError();
                 }
             }

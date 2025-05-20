@@ -7,6 +7,7 @@ import javax.swing.border.BevelBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.*;
 
 /**
  * The DevModeButtonPalette class is a Swing panel that provides a user interface with buttons for
@@ -35,17 +36,24 @@ public class DevModeButtonPaletteDev{
         JButton bashButton = new JButton("Node");
         JButton helpButton = new JButton("Docs");
         
-        debugButton.addActionListener(new ActionListener() {
+        debugButton.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e) {
                 openDebugFrame();
             }
         });
         
-        bashButton.addActionListener(new ActionListener() {
+        bashButton.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e){
+                openTerminal();
+            }
+        });
+        
+        helpButton.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e) {
-                openTerminal();
+                openGuidePdf();
             }
         });
         
@@ -64,6 +72,63 @@ public class DevModeButtonPaletteDev{
     public JPanel getDevModePanel(){
         return devModePanel;
     }
+    
+    /**
+     * Opens the guide.pdf file using the system's default PDF viewer.
+     */
+    private void openGuidePdf() {
+        try (
+                InputStream inputStream = getClass().getClassLoader().getResourceAsStream("guide.pdf")
+        ) {
+            if (inputStream == null) {
+                JOptionPane.showMessageDialog(devModePanel,
+                        "The embedded PDF guide was not found in the application resources.",
+                        "File Not Found",
+                        JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+            
+            // Create a temporary file
+            File tempFile = File.createTempFile("guide", ".pdf");
+            tempFile.deleteOnExit();
+            
+            // Write the PDF contents to the temporary file
+            try (OutputStream outputStream = new FileOutputStream(tempFile)) {
+                byte[] buffer = new byte[4096];
+                int bytesRead;
+                while ((bytesRead = inputStream.read(buffer)) != -1) {
+                    outputStream.write(buffer, 0, bytesRead);
+                }
+            }
+            
+            // Open the temporary PDF file
+            if (Desktop.isDesktopSupported()) {
+                Desktop desktop = Desktop.getDesktop();
+                if (desktop.isSupported(Desktop.Action.OPEN)) {
+                    desktop.open(tempFile);
+                } else {
+                    JOptionPane.showMessageDialog(devModePanel,
+                            "Opening files is not supported on this system.",
+                            "Unsupported Operation",
+                            JOptionPane.ERROR_MESSAGE);
+                }
+            } else {
+                JOptionPane.showMessageDialog(devModePanel,
+                        "Desktop is not supported on this system.",
+                        "Unsupported Platform",
+                        JOptionPane.ERROR_MESSAGE);
+            }
+            
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(devModePanel,
+                    "An error occurred while opening the PDF:\n" + ex.getMessage(),
+                    "Error",
+                    JOptionPane.ERROR_MESSAGE);
+            ex.printStackTrace();
+        }
+    }
+    
+    
     
     /**
      * Opens the TerminalFrame when the NEPTer button is clicked.
