@@ -5,7 +5,6 @@ import java.nio.file.*;
 import java.util.regex.*;
 
 public class RemovedObjectValidator{
-    
     private static final Pattern ID_PATTERN = Pattern.compile("B\\d{8}");
     private static final Pattern TIME_PATTERN = Pattern.compile("\\d{1,2}:\\d{2}\\s[AP]M");
     private static final Pattern CODE_PATTERN = Pattern.compile("([A-Z]{2,6}/)?([A-Z]{2,6})[\\s-]\\d{4,5}(?:[\\s.-]\\d{1,2})?");
