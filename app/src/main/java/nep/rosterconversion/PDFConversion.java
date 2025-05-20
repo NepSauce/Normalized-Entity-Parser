@@ -283,7 +283,7 @@ public class PDFConversion {
         try (BufferedWriter writer = Files.newBufferedWriter(removedLinesPath)){
             List<String> completeRecords = buildCompleteRecords(text.split("\\r?\\n"), writer);
             
-            for (String record : completeRecords) {
+            for (String record : completeRecords){
                 String studentId = extractStudentId(record);
                 String studentName = extractStudentName(record, studentId);
                 String time = extractTime(record);
@@ -316,6 +316,9 @@ public class PDFConversion {
                 new DisplayUIPopup("Removed Entries Saved",
                         removedCount + " Removed Line" + (removedCount == 1 ? " Was" : "s Were") + " Saved to RemovedObject.txt.", 1001)
                         .showInfoPopup();
+            }
+            else{
+                new DisplayUIPopup("Success", "CombinedObject file was successfully generated", 1002);
             }
         }
         catch (IOException e){

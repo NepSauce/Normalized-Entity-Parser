@@ -1,0 +1,34 @@
+Time: 8:30 AM, Course Code: CHEM 1011 01
+Time: 9:00 AM, Course Code: DENT 1510
+Time: 9:00 AM, Course Code: DENT 1510 01
+Time: 9:00 AM, Course Code: DENT 1510
+Time: 9:00 AM, Course Code: MEDI 2311
+Time: 9:00 AM, Course Code: DENT 1510
+Time: 9:30 AM, Course Code: NURS 3730 01
+Time: 9:30 AM, Course Code: NURS 3730 01
+Time: 9:30 AM, Course Code: NURS 3730 01
+Time: 11:00 AM, Course Code: CHEM 1021 01
+Time: 12:30 PM, Course Code: CHEM 1011 01
+Time: 12:30 PM, Course Code: CHEM 1011 01
+Time: 12:30 PM, Course Code: CHEM 1011 01
+Time: 12:30 PM, Course Code: CHEM 1011 01
+Time: 12:30 PM, Course Code: CHEM 1021 01
+Time: 1:30 PM, Course Code: NURS 3730 01
+Time: 1:30 PM, Course Code: NURS 3730 01
+Time: 1:30 PM, Course Code: NURS 3730 01
+Time: 1:30 PM, Course Code: NURS 3730 01
+Time: 1:30 PM, Course Code: NURS 3730 01
+Time: 1:30 PM, Course Code: NURS 3730 01
+Time: 1:30 PM, Course Code: NURS 3730 01
+Time: 1:30 PM, Course Code: NURS 3730
+Time: 1:30 PM, Course Code: NURS 3730 01
+Time: 4:30 PM, Course Code: COMM 2203 01
+Time: 6:00 PM, Course Code: COMM 2203 01
+Time: 6:00 PM, Course Code: MICI 2100
+Time: 1:30 PM, Course Code: NURS 3730 01
+Time: 1:30 PM, Course Code: NURS 3730 01
+Time: 1:30 PM, Course Code: NURS 3730 01
+Time: 1:30 PM, Course Code: NURS 3730 01
+Time: 1:30 PM, Course Code: NURS 3730 01
+Time: 12:30 PM, Course Code: CHEM 1021 01
+Time: 12:30 PM, Course Code: CHEM 1021 01

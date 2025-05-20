@@ -108,7 +108,7 @@ public class PDFCleaner{
             
             JOptionPane.showMessageDialog(
                     null,
-                    "Grouped Appointments Generated",
+                    "Grouped appointments generated.",
                     "Success",
                     JOptionPane.INFORMATION_MESSAGE
             );

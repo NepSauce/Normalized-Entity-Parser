@@ -1,0 +1,33 @@
+Course Code: CHEM 1011 01
+ 4 - MAH - 12:30 PM
+ 1 - MAH - 8:30 AM
+
+Course Code: CHEM 1021 01
+ 2 - G28 - 12:30 PM
+ 1 - MAH - 11:00 AM
+ 1 - MAH - 12:30 PM
+
+Course Code: COMM 2203 01
+ 1 - MAH - 4:30 PM
+ 1 - MAH - 6:00 PM
+
+Course Code: DENT 1510
+ 3 - MAH - 9:00 AM
+
+Course Code: DENT 1510 01
+ 1 - MAH - 9:00 AM
+
+Course Code: MEDI 2311
+ 1 - MAH - 9:00 AM
+
+Course Code: MICI 2100
+ 1 - MAH - 6:00 PM
+
+Course Code: NURS 3730
+ 1 - MAH - 1:30 PM
+
+Course Code: NURS 3730 01
+ 5 - G28 - 1:30 PM
+ 8 - MAH - 1:30 PM
+ 3 - MAH - 9:30 AM
+
