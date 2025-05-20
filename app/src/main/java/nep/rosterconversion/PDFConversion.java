@@ -318,7 +318,7 @@ public class PDFConversion {
                         .showInfoPopup();
             }
             else{
-                new DisplayUIPopup("Success", "CombinedObject file was successfully generated", 1002);
+                new DisplayUIPopup("Success", "CombinedObject file was successfully generated", 1002).showInfoPopup();
             }
         }
         catch (IOException e){

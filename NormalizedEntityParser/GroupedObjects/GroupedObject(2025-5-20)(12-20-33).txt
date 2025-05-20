@@ -1,0 +1,20 @@
+Course Code: COMM 2310
+ 2 - MAH - 11:30 AM
+ 1 - MAH - 2:30 PM
+ 1 - MAH - 4:00 PM
+
+Course Code: DENT 1117
+ 3 - MAH - 1:00 PM
+
+Course Code: DENT 1117 01
+ 1 - MAH - 1:00 PM
+
+Course Code: MICI 2100
+ 5 - MAH - 6:00 PM
+
+Course Code: MUSC 2024 01
+ 2 - MAH - 8:30 AM
+
+Course Code: PSYO 1031 01
+ 1 - MAH - 1:00 PM
+
