@@ -59,6 +59,8 @@ public class PanelButtonPalette{
         JButton undoLastRosterFromPanelButton = new JButton("Undo");
         
         submitAllRostersButton.addActionListener((ActionEvent e) -> {
+            PDFConversion.deleteRemovedObjectFile();
+            
             RosterObjectSplitter newSplitter = new RosterObjectSplitter(rosterEntityDetails, rosterEntityDetails.size());
             LinkedList<String> directoryList = newSplitter.getRosterDirectory();
             LinkedList<String> fileNameList = newSplitter.getRosterFileName();

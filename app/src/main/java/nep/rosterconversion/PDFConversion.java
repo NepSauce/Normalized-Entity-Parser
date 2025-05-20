@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -267,8 +268,6 @@ public class PDFConversion {
      * @return A list of formatted lines with student information
      */
     private static List<String> processRosterText(String text, String locationType){
-        deleteRemovedObjectFile();
-        
         CurrentTime newTime = new CurrentTime();
         String currentTime = newTime.getCurrentTime();
         String safeTime = currentTime.replace(":", "-");
@@ -276,11 +275,13 @@ public class PDFConversion {
         newDirectoryForRemovedObject();
         
         List<String> formattedLines = new ArrayList<>();
-        Path removedLinesPath = Path.of("NormalizedEntityParser/RemovedObjects/RemovedObject(" + safeTime +").txt");
+        Path removedLinesPath = Path.of("NormalizedEntityParser/RemovedObjects/RemovedObject().txt");
         
         int removedCount = 0;
         
-        try (BufferedWriter writer = Files.newBufferedWriter(removedLinesPath)){
+        try (BufferedWriter writer = Files.newBufferedWriter(removedLinesPath,
+                StandardOpenOption.CREATE,
+                StandardOpenOption.APPEND)){
             List<String> completeRecords = buildCompleteRecords(text.split("\\r?\\n"), writer);
             
             for (String record : completeRecords){
