@@ -155,7 +155,7 @@ If problems persist, email the roster PDF to `Zawad.Atif@dal.ca` with a brief de
 
 No software is perfect. While NEP handles most cases reliably, occasional hiccups may occur due to edge cases or unexpected input formats. Human oversight remains essential to ensure accuracy, particularly for logistics use.
 
-The application spans over 3,500 lines of code and handles numerous formatting styles and edge cases. While robust, the variability in inputs means human validation is still necessary for final outputs.
+The application spans over 5,100 lines of code and handles numerous formatting styles and edge cases. While robust, the variability in inputs means human validation is still necessary for final outputs.
 
 ---
 
