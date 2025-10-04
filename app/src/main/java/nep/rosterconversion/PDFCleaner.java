@@ -13,6 +13,7 @@ import java.nio.file.Paths;
 import java.util.*;
 
 import nep.swing.panels.devmodepanels.devmodeduplicates.LoggingPanelDev;
+import nep.util.ExamTimeSorter;
 
 /**
  * The PDFCleaner class processes exam roster data, normalizes cross-listed courses,
@@ -127,6 +128,50 @@ public class PDFCleaner{
             new DisplayUIPopup("Error", "Failed to generate grouped appointments.", 303).showInfoPopup();
         }
     }
+
+    public static void generateTimedGroupedAppointments(String inputText) {
+    try {
+        CurrentTime newTime = new CurrentTime();
+        String currentTime = newTime.getCurrentTime();
+        String safeTime = currentTime.replace(":", "-");
+        int year = newTime.getCurrentYear();
+        int month = newTime.getCurrentMonth();
+        int day = newTime.getCurrentDay();
+
+        // Original grouped output
+        String groupedPath = newDirectoryForGroupedObject();
+        String groupedFilePath = groupedPath + "/GroupedObject(" + year + "-" + month + "-" + day + ")(" + safeTime + ").txt";
+
+        // Write original grouped object (optional)
+        Files.write(Paths.get(groupedFilePath), inputText.getBytes());
+
+        // Categorize the text into Morning/Noon/Afternoon
+        String timedOutput = ExamTimeSorter.categorizeExams(inputText);
+
+        // New folder: TimedGroupedObjects
+        String timedFolderPath = "TimedGroupedObjects";
+        Files.createDirectories(Paths.get(timedFolderPath));
+
+        // File path for timed grouped output
+        String timedFilePath = timedFolderPath + "/TimedGroupedObject(" + year + "-" + month + "-" + day + ")(" + safeTime + ").txt";
+
+        // Write the timed grouped output
+        Files.write(Paths.get(timedFilePath), timedOutput.getBytes());
+
+        JOptionPane.showMessageDialog(
+                null,
+                "Timed grouped appointments generated in " + timedFolderPath,
+                "Success",
+                JOptionPane.INFORMATION_MESSAGE
+        );
+
+        LoggingPanelDev.logGlobal("TimedGrouped Appointment Created", true);
+
+    } catch (Exception e) {
+        e.printStackTrace();
+        new DisplayUIPopup("Error", "Failed to generate timed grouped appointments.", 303).showInfoPopup();
+    }
+}
     
     /**
      * Filters and groups the appointments based on input text file.

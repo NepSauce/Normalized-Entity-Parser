@@ -62,10 +62,6 @@ public class DebugFrame extends JFrame {
         add(encompassingTab.getEncompassingTab()); 
         
         
-        PDFConversion.deleteCombinedObjectFile();
-        LoggingPanelDev.logGlobal("- Combined Deleted", true);
-        PDFConversion.deleteRemovedObjectFile();
-        LoggingPanelDev.logGlobal("- Removed Deleted", true);
         LoggingPanelDev.logGlobal("NEP Awake and Ready", true);
         
     }

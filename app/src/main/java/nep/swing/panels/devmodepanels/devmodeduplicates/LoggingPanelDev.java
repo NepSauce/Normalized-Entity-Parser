@@ -43,8 +43,9 @@ public class LoggingPanelDev {
         mainPanel.add(scrollPane);
 
         // Initial log
-        log(" NEP Build-1.1.0-Beta", false);
-        log(" Maintained By:", false);
+        log(" ", false);
+        log("NEP Build-1.1.0-Beta", false);
+        log("Maintained By:", false);
         log("  • Zawad Atif", false);
         log("  • Nafisah Nubah", false);
         log("================================", false);
