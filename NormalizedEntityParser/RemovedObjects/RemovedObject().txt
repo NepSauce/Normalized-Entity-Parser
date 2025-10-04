@@ -1,6 +1,0 @@
-[DalID: B00813528 | Name: FERNANDES, NICOLAAS | Code: null | Location: null | Time: 8:30 AM]
-[DalID: B00813528 | Name: FERNANDES, NICOLAAS | Code: null | Location: null | Time: 9:30 AM]
-[DalID: B00893879 | Name: GAUVIN, ALEXIS | Code: ERTH 3205 | Location: null | Time: 5:30 PM]
-[DalID: B00813528 | Name: FERNANDES, NICOLAAS | Code: null | Location: null | Time: 8:30 AM]
-[DalID: B00813528 | Name: FERNANDES, NICOLAAS | Code: null | Location: null | Time: 9:30 AM]
-[DalID: B00893879 | Name: GAUVIN, ALEXIS | Code: ERTH 3205 | Location: null | Time: 5:30 PM]

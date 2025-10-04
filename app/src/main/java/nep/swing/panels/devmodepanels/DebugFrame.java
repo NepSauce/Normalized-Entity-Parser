@@ -17,7 +17,7 @@ public class DebugFrame extends JFrame {
      */
     public DebugFrame(){
         setTitle("NEP - Fault Trace");
-        setSize(568, 460);
+        setSize(593, 460);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLayout(null);

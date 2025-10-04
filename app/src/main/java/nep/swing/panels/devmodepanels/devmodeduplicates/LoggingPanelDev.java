@@ -18,7 +18,7 @@ public class LoggingPanelDev{
     private ArrayList<JLabel> logEntries;
     
     public LoggingPanelDev(){
-        panelWidth = 225;
+        panelWidth = 250;
         panelHeight = 245;
         logEntries = new ArrayList<>();
         
@@ -40,7 +40,7 @@ public class LoggingPanelDev{
                 new Font("Arial", Font.BOLD, 16)
         );
 
-        Border padding = BorderFactory.createEmptyBorder(8, 0, 5, 5);
+        Border padding = BorderFactory.createEmptyBorder(8, 0, 5, 0);
         logListPanel.setBorder(BorderFactory.createCompoundBorder(titledBorder, padding));
         
         
