@@ -50,47 +50,46 @@ public class GroupedButtonPaletteDev{
         JButton open = new JButton("Open");
         
         generate.addActionListener((ActionEvent e) -> {
-        // Create loading dialog
-        JDialog loadingDialog = new JDialog((Frame) null, "Processing...", true);
-        loadingDialog.setSize(300, 100);
-        loadingDialog.setLayout(new BorderLayout());
-        loadingDialog.setLocationRelativeTo(null);
+            JDialog loadingDialog = new JDialog((Frame) null, "Processing...", true);
+            loadingDialog.setSize(300, 100);
+            loadingDialog.setLayout(new BorderLayout());
+            loadingDialog.setLocationRelativeTo(null);
 
-        JLabel statusLabel = new JLabel("Initiated Grouping", SwingConstants.CENTER);
-        statusLabel.setFont(new Font("Arial", Font.BOLD, 14));
+            JLabel statusLabel = new JLabel("Initiated Grouping", SwingConstants.CENTER);
+            statusLabel.setFont(new Font("Arial", Font.BOLD, 14));
 
-        JProgressBar progressBar = new JProgressBar();
-        progressBar.setIndeterminate(true);
+            JProgressBar progressBar = new JProgressBar();
+            progressBar.setIndeterminate(true);
 
-        loadingDialog.add(statusLabel, BorderLayout.CENTER);
-        loadingDialog.add(progressBar, BorderLayout.SOUTH);
+            loadingDialog.add(statusLabel, BorderLayout.CENTER);
+            loadingDialog.add(progressBar, BorderLayout.SOUTH);
 
-        // Messages to cycle through
-        String[] messages = {
-                "Initiated Grouping",
-                "Initiated Grouping",
-                "Initiated Grouping",
-                "Initiated Grouping"
-        };
+            // Messages to cycle through
+            String[] messages = {
+                    "Initiated Grouping",
+                    "Initiated Grouping",
+                    "Initiated Grouping",
+                    "Initiated Grouping"
+            };
 
-        Timer messageTimer = new Timer(1500, null); // switch every 1.5 sec
-        final int[] index = {0};
+            Timer messageTimer = new Timer(1500, null); // switch every 1.5 sec
+            final int[] index = {0};
 
-        messageTimer.addActionListener(ev -> {
-            statusLabel.setText(messages[index[0]]);
-            index[0]++;
-            if (index[0] >= messages.length) {
-                messageTimer.stop();
-                loadingDialog.dispose();
+            messageTimer.addActionListener(ev -> {
+                statusLabel.setText(messages[index[0]]);
+                index[0]++;
+                if (index[0] >= messages.length) {
+                    messageTimer.stop();
+                    loadingDialog.dispose();
 
-                PDFCleaner.generateGroupedAppointments();
-                try {
-                    updateCumulativeList();
-                } catch (IOException ex) {
-                    throw new RuntimeException(ex);
+                    PDFCleaner.generateGroupedAppointments();
+                    try {
+                        updateCumulativeList();
+                    } catch (IOException ex) {
+                        throw new RuntimeException(ex);
+                    }
                 }
-            }
-        });
+            });
 
             messageTimer.setInitialDelay(0);
             messageTimer.start();
