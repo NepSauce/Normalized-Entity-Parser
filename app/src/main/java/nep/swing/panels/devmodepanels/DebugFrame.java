@@ -22,6 +22,7 @@ public class DebugFrame extends JFrame {
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLayout(null);
         setResizable(false);
+        setVisible(true);
         
         getContentPane().setBackground(new Color(238, 238, 238, 255));
 

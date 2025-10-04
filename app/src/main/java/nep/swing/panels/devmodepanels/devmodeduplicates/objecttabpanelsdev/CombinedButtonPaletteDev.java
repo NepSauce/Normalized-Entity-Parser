@@ -1,8 +1,6 @@
 package nep.swing.panels.devmodepanels.devmodeduplicates.objecttabpanelsdev;
 
 import nep.swing.panels.devmodepanels.devmodeduplicates.LoggingPanelDev;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 
 import javax.swing.*;
 import java.awt.*;
@@ -18,7 +16,6 @@ import java.util.List;
  * in the Normalized Entity Parser Swing application.
  */
 public class CombinedButtonPaletteDev{
-    private static final Log log = LogFactory.getLog(CombinedButtonPaletteDev.class);
     private JPanel combinedButtonPanel;
     
     /**
