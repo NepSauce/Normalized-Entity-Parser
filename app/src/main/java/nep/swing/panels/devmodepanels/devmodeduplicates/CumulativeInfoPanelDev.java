@@ -67,10 +67,9 @@ public class CumulativeInfoPanelDev {
         infoListPanel.add(groupedEntriesLabel);
         infoListPanel.add(removedEntriesLabel);
 
-        // === Add a "?" help button in the top-right corner ===
         JButton helpButton = new JButton("?");
-        helpButton.setMargin(new Insets(0, 0, 0, 0)); // remove padding
-        helpButton.setBounds(panelWidth - 60, 0, 20, 20); // adjust to fit inside border
+        helpButton.setMargin(new Insets(0, 0, 0, 0)); 
+        helpButton.setBounds(panelWidth - 60, 0, 20, 20); 
         helpButton.setToolTipText("Click for more information");
         helpButton.setFocusPainted(false);
 
@@ -89,9 +88,9 @@ public class CumulativeInfoPanelDev {
         )
     );
 
-    JButton refreshButton = new JButton("\u21BB"); // circular arrow symbol
+    JButton refreshButton = new JButton("\u21BB"); 
     refreshButton.setMargin(new Insets(0, 0, 0, 0));
-    refreshButton.setBounds(panelWidth - 35, 0, 20, 20); // place it next to "?"
+    refreshButton.setBounds(panelWidth - 35, 0, 20, 20); 
     refreshButton.setToolTipText("Refresh count");
     refreshButton.setFocusPainted(false);
 

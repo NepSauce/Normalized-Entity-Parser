@@ -5,11 +5,14 @@ import nep.util.DisplayUIError;
 import nep.util.DisplayUIPopup;
 
 import javax.swing.*;
+
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.*;
+
+import nep.swing.panels.devmodepanels.devmodeduplicates.LoggingPanelDev;
 
 /**
  * The PDFCleaner class processes exam roster data, normalizes cross-listed courses,
@@ -83,7 +86,9 @@ public class PDFCleaner{
             int day = newTime.getCurrentDay();
      
             newDirectoryForGroupedObject();
+            LoggingPanelDev.logGlobal("Grouped Directory Created", true);
             newDirectoryForFilteredObject();
+            LoggingPanelDev.logGlobal("Filtered Directory Created", true);
  
             String folderPath = newDirectoryForGroupedObject();
             String filteredPath = newDirectoryForFilteredObject();
@@ -112,6 +117,8 @@ public class PDFCleaner{
                     "Success",
                     JOptionPane.INFORMATION_MESSAGE
             );
+
+            LoggingPanelDev.logGlobal("Grouped Appointment Created", true);
             
             
         }

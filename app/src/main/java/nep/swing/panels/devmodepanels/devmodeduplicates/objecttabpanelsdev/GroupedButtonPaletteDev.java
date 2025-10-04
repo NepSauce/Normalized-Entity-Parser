@@ -52,7 +52,7 @@ public class GroupedButtonPaletteDev{
         generate.addActionListener((ActionEvent e) -> {
         // Create loading dialog
         JDialog loadingDialog = new JDialog((Frame) null, "Processing...", true);
-        loadingDialog.setSize(300, 120);
+        loadingDialog.setSize(300, 100);
         loadingDialog.setLayout(new BorderLayout());
         loadingDialog.setLocationRelativeTo(null);
 
@@ -68,9 +68,9 @@ public class GroupedButtonPaletteDev{
         // Messages to cycle through
         String[] messages = {
                 "Initiated Grouping",
-                "Grouping by Course Code",
-                "Sorting Time",
-                "Splitting By Period"
+                "Initiated Grouping",
+                "Initiated Grouping",
+                "Initiated Grouping"
         };
 
         Timer messageTimer = new Timer(1500, null); // switch every 1.5 sec
@@ -83,7 +83,6 @@ public class GroupedButtonPaletteDev{
                 messageTimer.stop();
                 loadingDialog.dispose();
 
-                // After loading screen, run actual generation
                 PDFCleaner.generateGroupedAppointments();
                 try {
                     updateCumulativeList();
@@ -93,13 +92,11 @@ public class GroupedButtonPaletteDev{
             }
         });
 
-    // Start cycle
-    messageTimer.setInitialDelay(0);
-    messageTimer.start();
+            messageTimer.setInitialDelay(0);
+            messageTimer.start();
 
-    // Show loading dialog (blocking until dispose)
-    loadingDialog.setVisible(true);
-    });
+            loadingDialog.setVisible(true);
+        });
 
         
         open.addActionListener((ActionEvent e) -> {

@@ -38,7 +38,7 @@ public class LoggingPanelDev {
         JScrollPane scrollPane = new JScrollPane(logListPanel);
         scrollPane.setBounds(5, 5, 240, 235);
         scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
-        scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER); // <-- disable horizontal scrolling
+        scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED); // <-- disable horizontal scrolling
         scrollPane.getVerticalScrollBar().setUnitIncrement(16);
         mainPanel.add(scrollPane);
 
@@ -47,7 +47,7 @@ public class LoggingPanelDev {
         log(" Maintained By:", false);
         log("  • Zawad Atif", false);
         log("  • Nafisah Nubah", false);
-        log("=====================================", false);
+        log("================================", false);
         log("Nep Booting", true);
     }
 
