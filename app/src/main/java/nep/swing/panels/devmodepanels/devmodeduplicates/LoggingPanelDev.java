@@ -52,23 +52,34 @@ public class LoggingPanelDev{
         
         mainPanel.add(scrollPane);
         
-        log("NEP Build-1.0.0-Alpha");
+        log(" NEP Build-1.1.0-Beta", false);
+        log(" \\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\", false);
+        log(" Maintained By:", false);
+        log("  • Zawad Atif", false);
+        log("  • Nafisah Nubah", false);
+        log("=====================================", false);
     }
     
     public JPanel getLoggingPanel(){
         return mainPanel;
     }
     
-    public void log(String message){
+    public void log(String message, boolean timeStampEnabled){
         String timeStamp = LocalTime.now().format(DateTimeFormatter.ofPattern("HH:mm:ss"));
         String fullMessage = "[" + timeStamp + "] " + message;
         
-        JLabel logLabel = new JLabel(fullMessage);
+        JLabel logLabel = new JLabel(message);
+        JLabel logLabelTime = new JLabel(fullMessage);
         logLabel.setFont(new Font("Consolas", Font.BOLD, 12));
         logLabel.setAlignmentX(Component.LEFT_ALIGNMENT);
         logLabel.setPreferredSize(new Dimension(1000, 20));
-        
-        logListPanel.add(logLabel);
+
+        if (timeStampEnabled){
+            logListPanel.add(logLabelTime);
+        }
+        else{
+            logListPanel.add(logLabel);
+        }
         logEntries.add(logLabel);
         
         logListPanel.revalidate();
@@ -78,7 +89,7 @@ public class LoggingPanelDev{
     public void clearLog(){
         logListPanel.removeAll();
         logEntries.clear();
-        log("NEP Build-1.0.0-Alpha");
+        log("NEP Build-1.0.0-Alpha", true);
         logListPanel.revalidate();
         logListPanel.repaint();
     }

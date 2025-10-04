@@ -117,7 +117,6 @@ public class GroupedButtonPaletteDev{
         File latestFile = GroupedObjectParser.getMostRecentFile(directoryPath);
         
         if (latestFile == null){
-            loggingPanel.log("No Grouped Object files found");
             System.out.println("No Grouped Object files found.");
             return;
         }
@@ -175,7 +174,6 @@ public class GroupedButtonPaletteDev{
         if (files == null || files.length == 0){
             JOptionPane.showMessageDialog(null, "No Grouped Object files found in the folder!",
                     "Error", JOptionPane.ERROR_MESSAGE);
-            loggingPanel.log("No Grouped Object files found in the folder!");
             return null;
         }
 
@@ -314,7 +312,6 @@ public class GroupedButtonPaletteDev{
             catch (PrinterException e){
                 JOptionPane.showMessageDialog(null, "Printing failed: " + e.getMessage(),
                         "Print Error", JOptionPane.ERROR_MESSAGE);
-                loggingPanel.log("Printing failed: " + e.getMessage());
             }
         }
     }

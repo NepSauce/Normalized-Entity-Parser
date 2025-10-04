@@ -74,7 +74,6 @@ public class CombinedButtonPaletteDev{
         
         if (files == null || files.length == 0){
             LoggingPanelDev loggingPanel = new LoggingPanelDev();
-            loggingPanel.log("No .txt file found in the folder.");
             JOptionPane.showMessageDialog(null, "No .txt file found in the folder!", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
