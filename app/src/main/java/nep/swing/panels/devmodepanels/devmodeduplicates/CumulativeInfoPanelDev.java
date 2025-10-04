@@ -70,7 +70,7 @@ public class CumulativeInfoPanelDev {
         // === Add a "?" help button in the top-right corner ===
         JButton helpButton = new JButton("?");
         helpButton.setMargin(new Insets(0, 0, 0, 0)); // remove padding
-        helpButton.setBounds(panelWidth - 45, 0, 20, 20); // adjust to fit inside border
+        helpButton.setBounds(panelWidth - 60, 0, 20, 20); // adjust to fit inside border
         helpButton.setToolTipText("Click for more information");
         helpButton.setFocusPainted(false);
 
@@ -87,10 +87,40 @@ public class CumulativeInfoPanelDev {
                 "Cumulative Info Help",
                 JOptionPane.INFORMATION_MESSAGE
         )
-);
+    );
 
+    JButton refreshButton = new JButton("\u21BB"); // circular arrow symbol
+    refreshButton.setMargin(new Insets(0, 0, 0, 0));
+    refreshButton.setBounds(panelWidth - 35, 0, 20, 20); // place it next to "?"
+    refreshButton.setToolTipText("Refresh count");
+    refreshButton.setFocusPainted(false);
 
+    refreshButton.addActionListener(e -> {
+        int confirm = JOptionPane.showConfirmDialog(
+                cumulativePanel,
+                "Do you want to refresh Cumulative Info?",
+                "Refresh Confirmation",
+                JOptionPane.YES_NO_OPTION,
+                JOptionPane.QUESTION_MESSAGE
+        );
+        if (confirm == JOptionPane.YES_OPTION) {
+            setRostersAdded(0);
+            setCoursesFound(0);
+            setCombinedEntries(0);
+            setGroupedEntries(0);
+            setRemovedEntries(0);
 
+            refresh();
+            JOptionPane.showMessageDialog(
+                    cumulativePanel,
+                    "Cumulative info refreshed!",
+                    "Refreshed",
+                    JOptionPane.INFORMATION_MESSAGE
+            );
+        }
+    });
+
+        infoListPanel.add(refreshButton);
         infoListPanel.add(helpButton);
 
         cumulativePanel.add(infoListPanel);

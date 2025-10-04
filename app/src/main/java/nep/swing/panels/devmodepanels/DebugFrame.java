@@ -4,7 +4,11 @@ import nep.swing.panels.devmodepanels.devmodeduplicates.*;
 import nep.swing.panels.devmodepanels.devmodeduplicates.rostertabpanelsdev.EncompassingTabDev;
 
 import javax.swing.*;
+
 import java.awt.*;
+
+import nep.rosterconversion.PDFCleaner;
+import nep.rosterconversion.PDFConversion;
 
 /**
  * The DebugFrame class represents the frame that opens when the "RootNEP" button is clicked.
@@ -55,7 +59,14 @@ public class DebugFrame extends JFrame {
         
         EncompassingTabDev encompassingTab = new EncompassingTabDev(examLocationPanel, examAddedPanel, rosterAddedPanel,
                 cumulativeInfoPanel, loggingPanel);
-        add(encompassingTab.getEncompassingTab());     
+        add(encompassingTab.getEncompassingTab()); 
+        
+        
+        PDFConversion.deleteCombinedObjectFile();
+        LoggingPanelDev.logGlobal("- Combined Deleted", true);
+        PDFConversion.deleteRemovedObjectFile();
+        LoggingPanelDev.logGlobal("- Removed Deleted", true);
+        LoggingPanelDev.logGlobal("NEP Awake and Ready", true);
         
     }
 }

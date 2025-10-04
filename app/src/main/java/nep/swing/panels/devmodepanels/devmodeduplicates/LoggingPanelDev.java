@@ -2,99 +2,91 @@ package nep.swing.panels.devmodepanels.devmodeduplicates;
 
 import javax.swing.*;
 import javax.swing.border.BevelBorder;
-import javax.swing.border.Border;
 import javax.swing.border.TitledBorder;
 import java.awt.*;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
-@SuppressWarnings("FieldMayBeFinal")
-public class LoggingPanelDev{
+public class LoggingPanelDev {
+
+    private static LoggingPanelDev instance; 
+
     private JPanel mainPanel;
     private JPanel logListPanel;
-    private int panelWidth;
-    private int panelHeight;
     private ArrayList<JLabel> logEntries;
-    
-    public LoggingPanelDev(){
-        panelWidth = 250;
-        panelHeight = 245;
+
+    public LoggingPanelDev() {
+        instance = this; 
+
         logEntries = new ArrayList<>();
-        
+
         mainPanel = new JPanel();
         mainPanel.setLayout(null);
         mainPanel.setBackground(Color.WHITE);
-        mainPanel.setBounds(300, 155, panelWidth, panelHeight);
+        mainPanel.setBounds(300, 155, 250, 245);
         mainPanel.setBorder(BorderFactory.createBevelBorder(BevelBorder.LOWERED));
-        
+
         logListPanel = new JPanel();
         logListPanel.setLayout(new BoxLayout(logListPanel, BoxLayout.Y_AXIS));
         logListPanel.setBackground(Color.WHITE);
-        
-        TitledBorder titledBorder = BorderFactory.createTitledBorder(
-                BorderFactory.createLineBorder(Color.WHITE),
-                "System Log",
-                TitledBorder.DEFAULT_JUSTIFICATION,
-                TitledBorder.DEFAULT_POSITION,
-                new Font("Arial", Font.BOLD, 16)
-        );
 
-        Border padding = BorderFactory.createEmptyBorder(8, 0, 5, 0);
-        logListPanel.setBorder(BorderFactory.createCompoundBorder(titledBorder, padding));
-        
-        
+        TitledBorder titledBorder = new TitledBorder(BorderFactory.createLineBorder(Color.WHITE), "System Log");
+        titledBorder.setTitleFont(new Font("Arial", Font.BOLD, 16));
+        logListPanel.setBorder(titledBorder);
+
         JScrollPane scrollPane = new JScrollPane(logListPanel);
-        scrollPane.setBounds(5, 5, panelWidth - 10, panelHeight - 10);
+        scrollPane.setBounds(5, 5, 240, 235);
         scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
-        scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER); // <-- disable horizontal scrolling
         scrollPane.getVerticalScrollBar().setUnitIncrement(16);
-        
         mainPanel.add(scrollPane);
-        
+
+        // Initial log
         log(" NEP Build-1.1.0-Beta", false);
-        log(" \\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\", false);
         log(" Maintained By:", false);
         log("  • Zawad Atif", false);
         log("  • Nafisah Nubah", false);
         log("=====================================", false);
+        log("Nep Booting", true);
     }
-    
-    public JPanel getLoggingPanel(){
+
+    public static void logGlobal(String message, boolean timeStampEnabled) {
+        if (instance != null) {
+            instance.log(message, timeStampEnabled);
+        }
+    }
+
+    public JPanel getLoggingPanel() {
         return mainPanel;
     }
-    
-    public void log(String message, boolean timeStampEnabled){
-        String timeStamp = LocalTime.now().format(DateTimeFormatter.ofPattern("HH:mm:ss"));
-        String fullMessage = "[" + timeStamp + "] " + message;
-        
-        JLabel logLabel = new JLabel(message);
-        JLabel logLabelTime = new JLabel(fullMessage);
+
+    public void log(String message, boolean timeStampEnabled) {
+        String fullMessage = timeStampEnabled
+                ? "[" + LocalTime.now().format(DateTimeFormatter.ofPattern("HH:mm:ss")) + "] " + message
+                : message;
+
+        JLabel logLabel = new JLabel(fullMessage);
         logLabel.setFont(new Font("Consolas", Font.BOLD, 12));
         logLabel.setAlignmentX(Component.LEFT_ALIGNMENT);
         logLabel.setPreferredSize(new Dimension(1000, 20));
 
-        if (timeStampEnabled){
-            logListPanel.add(logLabelTime);
-        }
-        else{
-            logListPanel.add(logLabel);
-        }
+        logListPanel.add(logLabel);
         logEntries.add(logLabel);
-        
+
         logListPanel.revalidate();
         logListPanel.repaint();
     }
-    
-    public void clearLog(){
+
+    public void clearLog() {
         logListPanel.removeAll();
         logEntries.clear();
-        log("NEP Build-1.0.0-Alpha", true);
+        log("NEP Build-1.1.0-Beta", true);
         logListPanel.revalidate();
         logListPanel.repaint();
     }
-    
-    public void undoLastLog(){
+
+    public void undoLastLog() {
         if (!logEntries.isEmpty()) {
             JLabel last = logEntries.remove(logEntries.size() - 1);
             logListPanel.remove(last);
