@@ -75,15 +75,20 @@ public class CumulativeInfoPanelDev {
         helpButton.setFocusPainted(false);
 
         helpButton.addActionListener(e ->
-            JOptionPane.showMessageDialog(cumulativePanel,
-                        "Rosters Added: Total count of rosters being processed.\n" +
-                        "Courses Found: Total count of Courses.\n" +
-                        "Combined Entries: Total count of merged entries.\n" +
-                        "Grouped Entries: Total count of finalized entries. (⚠ Must Match Combined Entries)\n" +
-                        "Removed Entries: Total count of removed entries.",
-                    "Cumulative Info Help",
-                    JOptionPane.INFORMATION_MESSAGE)
+        JOptionPane.showMessageDialog(
+                cumulativePanel,
+                "\n" +
+                "Rosters Added:   Total count of rosters being processed.\n" +
+                "Courses Found:   Total count of Courses.\n" +
+                "Combined Entries:   Total count of merged entries.\n" +
+                "Grouped Entries:   Total count of finalized entries.\n" +
+                "     ⚠ Must Match Combined Entries\n" +
+                "Removed Entries:   Total count of removed entries.",
+                "Cumulative Info Help",
+                JOptionPane.INFORMATION_MESSAGE
+        )
 );
+
 
 
         infoListPanel.add(helpButton);

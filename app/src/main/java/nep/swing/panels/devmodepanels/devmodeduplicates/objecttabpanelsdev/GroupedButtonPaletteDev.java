@@ -50,27 +50,57 @@ public class GroupedButtonPaletteDev{
         JButton open = new JButton("Open");
         
         generate.addActionListener((ActionEvent e) -> {
-            PDFCleaner.generateGroupedAppointments();
-            
-            try{
-                updateCumulativeList();
-            }
-            catch (IOException ex){
-                throw new RuntimeException(ex);
-            }
-            
-            Timer timer = new Timer(2000, ex -> {
-                try{
+        // Create loading dialog
+        JDialog loadingDialog = new JDialog((Frame) null, "Processing...", true);
+        loadingDialog.setSize(300, 120);
+        loadingDialog.setLayout(new BorderLayout());
+        loadingDialog.setLocationRelativeTo(null);
+
+        JLabel statusLabel = new JLabel("Initiated Grouping", SwingConstants.CENTER);
+        statusLabel.setFont(new Font("Arial", Font.BOLD, 14));
+
+        JProgressBar progressBar = new JProgressBar();
+        progressBar.setIndeterminate(true);
+
+        loadingDialog.add(statusLabel, BorderLayout.CENTER);
+        loadingDialog.add(progressBar, BorderLayout.SOUTH);
+
+        // Messages to cycle through
+        String[] messages = {
+                "Initiated Grouping",
+                "Grouping by Course Code",
+                "Sorting Time",
+                "Splitting By Period"
+        };
+
+        Timer messageTimer = new Timer(1500, null); // switch every 1.5 sec
+        final int[] index = {0};
+
+        messageTimer.addActionListener(ev -> {
+            statusLabel.setText(messages[index[0]]);
+            index[0]++;
+            if (index[0] >= messages.length) {
+                messageTimer.stop();
+                loadingDialog.dispose();
+
+                // After loading screen, run actual generation
+                PDFCleaner.generateGroupedAppointments();
+                try {
                     updateCumulativeList();
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
                 }
-                catch (IOException exc){
-                    throw new RuntimeException(exc);
-                }
-            });
-            
-            timer.start();
-            
+            }
         });
+
+    // Start cycle
+    messageTimer.setInitialDelay(0);
+    messageTimer.start();
+
+    // Show loading dialog (blocking until dispose)
+    loadingDialog.setVisible(true);
+    });
+
         
         open.addActionListener((ActionEvent e) -> {
             openMostRecentGroupedFile();
