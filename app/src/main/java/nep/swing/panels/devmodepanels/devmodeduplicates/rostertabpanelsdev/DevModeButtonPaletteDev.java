@@ -30,7 +30,7 @@ public class DevModeButtonPaletteDev{
         devModePanel.setBorder(BorderFactory.createBevelBorder(BevelBorder.LOWERED));
         devModePanel.setPreferredSize(new Dimension(100, 60));
         
-        JPanel buttonContainer = new JPanel(new GridLayout(1, 3, 10, 0));
+        JPanel buttonContainer = new JPanel(new GridLayout(1, 2, 10, 0));
         buttonContainer.setBackground(Color.WHITE);
         buttonContainer.setBounds(10, 10, 225, 35);
         
@@ -59,7 +59,6 @@ public class DevModeButtonPaletteDev{
             }
         });
         
-        buttonContainer.add(debugButton);
         buttonContainer.add(bashButton);
         buttonContainer.add(helpButton);
         

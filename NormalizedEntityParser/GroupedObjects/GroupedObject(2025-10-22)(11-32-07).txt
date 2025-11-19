@@ -1,0 +1,99 @@
+Course Code: ANAT 5217
+ 1 - G28 - 3:30 PM
+ 4 - MAH - 3:30 PM
+
+Course Code: ASSC 1400
+ 1 - MAH - 4:30 PM
+
+Course Code: BIOL 2003
+ 4 - MAH - 8:30 AM
+
+Course Code: BIOL 4071
+ 2 - G28 - 1:30 PM
+ 1 - MAH - 1:30 PM
+
+Course Code: CIVL 4250
+ 1 - MAH - 8:30 AM
+
+Course Code: CMSD 5150
+ 2 - MAH - 11:30 AM
+
+Course Code: COMM 3404 01
+ 1 - MAH - 11:30 AM
+
+Course Code: COMM 4125
+ 1 - MAH - 10:00 AM
+
+Course Code: COMM 4125 01
+ 2 - G28 - 8:30 AM
+
+Course Code: COMM 4125 02
+ 4 - G28 - 10:00 AM
+
+Course Code: CSCI 2141
+ 1 - MAH - 2:30 PM
+
+Course Code: DENT 2110
+ 1 - G28 - 1:00 PM
+ 1 - MAH - 1:00 PM
+
+Course Code: EMSP/GWST 3280
+ 3 - G28 - 10:00 AM
+ 1 - MAH - 10:00 AM
+
+Course Code: EPAH 5019
+ 2 - MAH - 9:30 AM
+
+Course Code: FILM 2311
+ 1 - G28 - 2:30 PM
+ 1 - MAH - 2:30 PM
+
+Course Code: HIST 2049
+ 2 - MAH - 4:00 PM
+
+Course Code: HPRO 2255
+ 1 - MAH - 4:00 PM
+
+Course Code: HSTC 1201
+ 2 - MAH - 2:30 PM
+
+Course Code: MARI 3761
+ 2 - G28 - 2:30 PM
+ 3 - MAH - 2:30 PM
+
+Course Code: MATH 1030
+ 2 - G28 - 1:30 PM
+ 5 - MAH - 1:30 PM
+
+Course Code: MATH 1280
+ 1 - G28 - 1:30 PM
+ 6 - MAH - 12:30 PM
+
+Course Code: MGMT 2801
+ 1 - MAH - 3:00 PM
+
+Course Code: NESC/PSYO 2150
+ 5 - MAH - 8:30 AM
+
+Course Code: NURS 2710
+ 1 - MAH - 9:30 AM
+
+Course Code: NURS 2730
+ 1 - MAH - 9:30 AM
+
+Course Code: OCEA 4120
+ 2 - MAH - 10:30 AM
+
+Course Code: PHIL 1500
+ 2 - G28 - 1:30 PM
+ 1 - MAH - 1:30 PM
+
+Course Code: RADT 3000
+ 1 - MAH - 1:00 PM
+
+Course Code: SCIE 2001
+ 2 - G28 - 2:30 PM
+
+Course Code: THEA 2011
+ 1 - MAH - 10:00 AM
+

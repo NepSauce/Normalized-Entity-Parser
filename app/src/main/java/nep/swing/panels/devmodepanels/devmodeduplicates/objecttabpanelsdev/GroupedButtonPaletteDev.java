@@ -1,11 +1,13 @@
 package nep.swing.panels.devmodepanels.devmodeduplicates.objecttabpanelsdev;
 
-import nep.rosterconversion.PDFCleaner;
-import nep.swing.panels.devmodepanels.devmodeduplicates.*;
-import nep.util.GroupedObjectParser;
-
-import javax.swing.*;
-import java.awt.*;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.Frame;
+import java.awt.Graphics2D;
+import java.awt.GridLayout;
+import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.print.Printable;
 import java.awt.print.PrinterException;
@@ -16,6 +18,27 @@ import java.nio.file.Files;
 import java.nio.file.attribute.BasicFileAttributes;
 import java.util.Arrays;
 import java.util.List;
+
+import javax.swing.BorderFactory;
+import javax.swing.JButton;
+import javax.swing.JDialog;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JProgressBar;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
+import javax.swing.SwingConstants;
+import javax.swing.Timer;
+
+import nep.rosterconversion.PDFCleaner;
+import nep.swing.panels.devmodepanels.devmodeduplicates.CumulativeInfoPanelDev;
+import nep.swing.panels.devmodepanels.devmodeduplicates.ExamAddedPanelDev;
+import nep.swing.panels.devmodepanels.devmodeduplicates.ExamLocationPanelDev;
+import nep.swing.panels.devmodepanels.devmodeduplicates.LoggingPanelDev;
+import nep.swing.panels.devmodepanels.devmodeduplicates.RosterAddedPanelDev;
+import nep.util.GroupedObjectParser;
 
 /**
  * The GroupedButtonPalette class provides a UI panel with buttons
@@ -246,7 +269,6 @@ public class GroupedButtonPaletteDev{
             
             JPanel buttonPanel = new JPanel();
             buttonPanel.add(saveButton);
-            buttonPanel.add(printButton);
             editorPanel.add(buttonPanel, BorderLayout.SOUTH);
             
             JFrame editorFrame = new JFrame("Edit File: " + dataFile.getName());
