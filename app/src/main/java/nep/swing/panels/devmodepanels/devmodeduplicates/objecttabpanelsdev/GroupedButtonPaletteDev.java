@@ -1,11 +1,13 @@
 package nep.swing.panels.devmodepanels.devmodeduplicates.objecttabpanelsdev;
 
-import nep.rosterconversion.PDFCleaner;
-import nep.swing.panels.devmodepanels.devmodeduplicates.*;
-import nep.util.GroupedObjectParser;
-
-import javax.swing.*;
-import java.awt.*;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.Frame;
+import java.awt.Graphics2D;
+import java.awt.GridLayout;
+import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.print.Printable;
 import java.awt.print.PrinterException;
@@ -16,6 +18,27 @@ import java.nio.file.Files;
 import java.nio.file.attribute.BasicFileAttributes;
 import java.util.Arrays;
 import java.util.List;
+
+import javax.swing.BorderFactory;
+import javax.swing.JButton;
+import javax.swing.JDialog;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JProgressBar;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
+import javax.swing.SwingConstants;
+import javax.swing.Timer;
+
+import nep.rosterconversion.PDFCleaner;
+import nep.swing.panels.devmodepanels.devmodeduplicates.CumulativeInfoPanelDev;
+import nep.swing.panels.devmodepanels.devmodeduplicates.ExamAddedPanelDev;
+import nep.swing.panels.devmodepanels.devmodeduplicates.ExamLocationPanelDev;
+import nep.swing.panels.devmodepanels.devmodeduplicates.LoggingPanelDev;
+import nep.swing.panels.devmodepanels.devmodeduplicates.RosterAddedPanelDev;
+import nep.util.GroupedObjectParser;
 
 /**
  * The GroupedButtonPalette class provides a UI panel with buttons
@@ -50,27 +73,53 @@ public class GroupedButtonPaletteDev{
         JButton open = new JButton("Open");
         
         generate.addActionListener((ActionEvent e) -> {
-            PDFCleaner.generateGroupedAppointments();
-            
-            try{
-                updateCumulativeList();
-            }
-            catch (IOException ex){
-                throw new RuntimeException(ex);
-            }
-            
-            Timer timer = new Timer(2000, ex -> {
-                try{
-                    updateCumulativeList();
-                }
-                catch (IOException exc){
-                    throw new RuntimeException(exc);
+            JDialog loadingDialog = new JDialog((Frame) null, "Processing...", true);
+            loadingDialog.setSize(300, 100);
+            loadingDialog.setLayout(new BorderLayout());
+            loadingDialog.setLocationRelativeTo(null);
+
+            JLabel statusLabel = new JLabel("Initiated Grouping", SwingConstants.CENTER);
+            statusLabel.setFont(new Font("Arial", Font.BOLD, 14));
+
+            JProgressBar progressBar = new JProgressBar();
+            progressBar.setIndeterminate(true);
+
+            loadingDialog.add(statusLabel, BorderLayout.CENTER);
+            loadingDialog.add(progressBar, BorderLayout.SOUTH);
+
+            // Messages to cycle through
+            String[] messages = {
+                    "Initiated Grouping",
+                    "Initiated Grouping",
+                    "Initiated Grouping",
+                    "Initiated Grouping"
+            };
+
+            Timer messageTimer = new Timer(1500, null); // switch every 1.5 sec
+            final int[] index = {0};
+
+            messageTimer.addActionListener(ev -> {
+                statusLabel.setText(messages[index[0]]);
+                index[0]++;
+                if (index[0] >= messages.length) {
+                    messageTimer.stop();
+                    loadingDialog.dispose();
+
+                    PDFCleaner.generateGroupedAppointments();
+                    try {
+                        updateCumulativeList();
+                    } catch (IOException ex) {
+                        throw new RuntimeException(ex);
+                    }
                 }
             });
-            
-            timer.start();
-            
+
+            messageTimer.setInitialDelay(0);
+            messageTimer.start();
+
+            loadingDialog.setVisible(true);
         });
+
         
         open.addActionListener((ActionEvent e) -> {
             openMostRecentGroupedFile();
@@ -87,7 +136,6 @@ public class GroupedButtonPaletteDev{
         File latestFile = GroupedObjectParser.getMostRecentFile(directoryPath);
         
         if (latestFile == null){
-            loggingPanel.log("No Grouped Object files found");
             System.out.println("No Grouped Object files found.");
             return;
         }
@@ -145,7 +193,6 @@ public class GroupedButtonPaletteDev{
         if (files == null || files.length == 0){
             JOptionPane.showMessageDialog(null, "No Grouped Object files found in the folder!",
                     "Error", JOptionPane.ERROR_MESSAGE);
-            loggingPanel.log("No Grouped Object files found in the folder!");
             return null;
         }
 
@@ -222,7 +269,6 @@ public class GroupedButtonPaletteDev{
             
             JPanel buttonPanel = new JPanel();
             buttonPanel.add(saveButton);
-            buttonPanel.add(printButton);
             editorPanel.add(buttonPanel, BorderLayout.SOUTH);
             
             JFrame editorFrame = new JFrame("Edit File: " + dataFile.getName());
@@ -284,7 +330,6 @@ public class GroupedButtonPaletteDev{
             catch (PrinterException e){
                 JOptionPane.showMessageDialog(null, "Printing failed: " + e.getMessage(),
                         "Print Error", JOptionPane.ERROR_MESSAGE);
-                loggingPanel.log("Printing failed: " + e.getMessage());
             }
         }
     }

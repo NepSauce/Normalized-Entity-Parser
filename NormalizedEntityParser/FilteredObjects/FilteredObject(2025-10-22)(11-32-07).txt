@@ -1,0 +1,76 @@
+Time: 8:30 AM, Course Code: CIVL 4250
+Time: 8:30 AM, Course Code: NESC/PSYO 2150
+Time: 8:30 AM, Course Code: BIOL 2003
+Time: 8:30 AM, Course Code: BIOL 2003
+Time: 8:30 AM, Course Code: NESC/PSYO 2150
+Time: 8:30 AM, Course Code: NESC/PSYO 2150
+Time: 8:30 AM, Course Code: NESC/PSYO 2150
+Time: 8:30 AM, Course Code: NESC/PSYO 2150
+Time: 8:30 AM, Course Code: BIOL 2003
+Time: 8:30 AM, Course Code: BIOL 2003
+Time: 9:30 AM, Course Code: NURS 2710
+Time: 9:30 AM, Course Code: EPAH 5019
+Time: 9:30 AM, Course Code: EPAH 5019
+Time: 9:30 AM, Course Code: NURS 2730
+Time: 10:00 AM, Course Code: THEA 2011
+Time: 10:00 AM, Course Code: EMSP/GWST 3280
+Time: 10:00 AM, Course Code: COMM 4125
+Time: 10:30 AM, Course Code: OCEA 4120
+Time: 10:30 AM, Course Code: OCEA 4120
+Time: 11:30 AM, Course Code: COMM 3404 01
+Time: 11:30 AM, Course Code: CMSD 5150
+Time: 11:30 AM, Course Code: CMSD 5150
+Time: 12:30 PM, Course Code: MATH 1280
+Time: 12:30 PM, Course Code: MATH 1280
+Time: 12:30 PM, Course Code: MATH 1280
+Time: 12:30 PM, Course Code: MATH 1280
+Time: 12:30 PM, Course Code: MATH 1280
+Time: 12:30 PM, Course Code: MATH 1280
+Time: 1:00 PM, Course Code: DENT 2110
+Time: 1:00 PM, Course Code: RADT 3000
+Time: 1:30 PM, Course Code: MATH 1030
+Time: 1:30 PM, Course Code: BIOL 4071
+Time: 1:30 PM, Course Code: PHIL 1500
+Time: 1:30 PM, Course Code: MATH 1030
+Time: 1:30 PM, Course Code: MATH 1030
+Time: 1:30 PM, Course Code: MATH 1030
+Time: 1:30 PM, Course Code: MATH 1030
+Time: 2:30 PM, Course Code: MARI 3761
+Time: 2:30 PM, Course Code: MARI 3761
+Time: 2:30 PM, Course Code: FILM 2311
+Time: 2:30 PM, Course Code: CSCI 2141
+Time: 2:30 PM, Course Code: MARI 3761
+Time: 2:30 PM, Course Code: HSTC 1201
+Time: 2:30 PM, Course Code: HSTC 1201
+Time: 3:00 PM, Course Code: MGMT 2801
+Time: 3:30 PM, Course Code: ANAT 5217
+Time: 3:30 PM, Course Code: ANAT 5217
+Time: 3:30 PM, Course Code: ANAT 5217
+Time: 3:30 PM, Course Code: ANAT 5217
+Time: 4:00 PM, Course Code: HIST 2049
+Time: 4:00 PM, Course Code: HIST 2049
+Time: 4:00 PM, Course Code: HPRO 2255
+Time: 4:30 PM, Course Code: ASSC 1400
+Time: 8:30 AM, Course Code: COMM 4125 01
+Time: 8:30 AM, Course Code: COMM 4125 01
+Time: 10:00 AM, Course Code: EMSP/GWST 3280
+Time: 10:00 AM, Course Code: EMSP/GWST 3280
+Time: 10:00 AM, Course Code: EMSP/GWST 3280
+Time: 1:30 PM, Course Code: MATH 1280
+Time: 1:30 PM, Course Code: PHIL 1500
+Time: 2:30 PM, Course Code: MARI 3761
+Time: 2:30 PM, Course Code: FILM 2311
+Time: 2:30 PM, Course Code: MARI 3761
+Time: 3:30 PM, Course Code: ANAT 5217
+Time: 10:00 AM, Course Code: COMM 4125 02
+Time: 10:00 AM, Course Code: COMM 4125 02
+Time: 10:00 AM, Course Code: COMM 4125 02
+Time: 10:00 AM, Course Code: COMM 4125 02
+Time: 1:00 PM, Course Code: DENT 2110
+Time: 1:30 PM, Course Code: BIOL 4071
+Time: 1:30 PM, Course Code: MATH 1030
+Time: 1:30 PM, Course Code: BIOL 4071
+Time: 1:30 PM, Course Code: MATH 1030
+Time: 1:30 PM, Course Code: PHIL 1500
+Time: 2:30 PM, Course Code: SCIE 2001
+Time: 2:30 PM, Course Code: SCIE 2001

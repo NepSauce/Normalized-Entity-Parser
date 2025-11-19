@@ -40,8 +40,63 @@ public class GroupedButtonPalette{
         JButton open = new JButton("Open");
         
         generate.addActionListener((ActionEvent e) -> {
+    JDialog loadingDialog = new JDialog((Frame) null, "Processing...", true);
+    loadingDialog.setSize(350, 150);
+    loadingDialog.setLayout(new BorderLayout());
+    loadingDialog.setLocationRelativeTo(null);
+
+    // Status text
+    JLabel statusLabel = new JLabel("Starting...", SwingConstants.CENTER);
+    statusLabel.setFont(new Font("Arial", Font.BOLD, 14));
+    loadingDialog.add(statusLabel, BorderLayout.CENTER);
+
+    // Indeterminate progress bar
+    JProgressBar progressBar = new JProgressBar();
+    progressBar.setIndeterminate(true);
+    progressBar.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+    loadingDialog.add(progressBar, BorderLayout.SOUTH);
+
+    loadingDialog.setDefaultCloseOperation(JDialog.DO_NOTHING_ON_CLOSE);
+
+    SwingWorker<Void, String> worker = new SwingWorker<Void, String>() {
+        @Override
+        protected Void doInBackground() throws Exception {
+            // staged messages
+            publish("Initiated Grouping");
+            Thread.sleep(1500);
+            publish("Grouping by Course Code");
+            Thread.sleep(1500);
+            publish("Sorting Time");
+            Thread.sleep(1500);
+            publish("Splitting By Period");
+            Thread.sleep(1500);
+
+            // Run your actual task
             PDFCleaner.generateGroupedAppointments();
-        });
+            return null;
+        }
+
+        @Override
+        protected void process(List<String> chunks) {
+            // update label with latest published text
+            String latest = chunks.get(chunks.size() - 1);
+            statusLabel.setText(latest);
+        }
+
+        @Override
+        protected void done() {
+            loadingDialog.dispose();
+            JOptionPane.showMessageDialog(null,
+                    "Grouped appointments generated successfully!",
+                    "Success",
+                    JOptionPane.INFORMATION_MESSAGE);
+        }
+    };
+
+    worker.execute();
+    loadingDialog.setVisible(true); // blocks until dialog disposed
+});
+
         
         open.addActionListener((ActionEvent e) -> {
             openMostRecentGroupedFile();

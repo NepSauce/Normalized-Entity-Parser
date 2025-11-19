@@ -19,7 +19,7 @@ public class NepFrame extends JFrame{
      * EXIT_ON_CLOSE
      */
     public NepFrame(){
-        setTitle("Normalized Entity Parser (Build-1.0.0-Alpha)");
+        setTitle("Normalized Entity Parser (Build-1.1.0-Beta)");
         setSize(600, 375);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLocationRelativeTo(null);

@@ -10,7 +10,7 @@ package nep;
 
 import javax.swing.SwingUtilities;
 
-import nep.swing.NepFrame;
+import nep.swing.panels.devmodepanels.DebugFrame;
 
 public class MainEntity{
     /**
@@ -23,7 +23,7 @@ public class MainEntity{
        SwingUtilities.invokeLater(new Runnable() {
         @Override
            public void run() {
-               NepFrame nepFrame = new NepFrame();
+               DebugFrame debugFrame = new DebugFrame();
            }
        });
     }

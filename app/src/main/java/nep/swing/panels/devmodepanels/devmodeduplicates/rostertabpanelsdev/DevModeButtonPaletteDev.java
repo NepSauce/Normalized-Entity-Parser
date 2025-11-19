@@ -4,10 +4,13 @@ import nep.swing.panels.devmodepanels.TerminalFrame;
 
 import javax.swing.*;
 import javax.swing.border.BevelBorder;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.*;
+
+import nep.swing.NepFrame;
 
 /**
  * The DevModeButtonPalette class is a Swing panel that provides a user interface with buttons for
@@ -27,19 +30,18 @@ public class DevModeButtonPaletteDev{
         devModePanel.setBorder(BorderFactory.createBevelBorder(BevelBorder.LOWERED));
         devModePanel.setPreferredSize(new Dimension(100, 60));
         
-        JPanel buttonContainer = new JPanel(new GridLayout(1, 3, 10, 0));
+        JPanel buttonContainer = new JPanel(new GridLayout(1, 2, 10, 0));
         buttonContainer.setBackground(Color.WHITE);
         buttonContainer.setBounds(10, 10, 225, 35);
         
-        JButton debugButton = new JButton("Trace");
-        debugButton.setEnabled(false);
+        JButton debugButton = new JButton("SUI");
         JButton bashButton = new JButton("Node");
         JButton helpButton = new JButton("Docs");
         
         debugButton.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e) {
-                openDebugFrame();
+                openNepFrame();
             }
         });
         
@@ -57,7 +59,6 @@ public class DevModeButtonPaletteDev{
             }
         });
         
-        buttonContainer.add(debugButton);
         buttonContainer.add(bashButton);
         buttonContainer.add(helpButton);
         
@@ -139,8 +140,8 @@ public class DevModeButtonPaletteDev{
     /**
      * Opens a new frame when the "RootNEP" button is pressed.
      */
-    private void openDebugFrame(){
-        nep.swing.panels.devmodepanels.DebugFrame debugFrame = new nep.swing.panels.devmodepanels.DebugFrame();
-        debugFrame.setVisible(true);
+    private void openNepFrame(){
+        NepFrame nepFrame = new NepFrame();
+        nepFrame.setVisible(true);
     }
 }

@@ -11,7 +11,7 @@ public class TerminalFrame extends JFrame {
     private JTextField inputField;
     private JPanel inputPanel;
     
-    private final String prompt = "nep@NormalizedEntityParser[Build-1.0.0-Alpha] | (Mode-SysAcc) >> ";
+    private final String prompt = "nep@NormalizedEntityParser[Build-1.1.0-Beta] | (Mode-SysAcc) >> ";
     
     public TerminalFrame(){
         setTitle("NEP - BlackLight Node");

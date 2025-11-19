@@ -1,27 +1,27 @@
 package nep.swing.panels.devmodepanels.devmodeduplicates.rostertabpanelsdev;
 
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.util.LinkedList;
+
+import javax.swing.BorderFactory;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.Timer;
+import javax.swing.border.BevelBorder;
+
 import nep.entityclass.RosterEntityDetails;
 import nep.rosterconversion.PDFConversion;
-import nep.swing.panels.DatePickerPanel;
-import nep.swing.panels.ExamAddedPanel;
-import nep.swing.panels.ExamLocationPanel;
-import nep.swing.panels.RosterAddedPanel;
 import nep.swing.panels.devmodepanels.devmodeduplicates.CumulativeInfoPanelDev;
 import nep.swing.panels.devmodepanels.devmodeduplicates.ExamAddedPanelDev;
 import nep.swing.panels.devmodepanels.devmodeduplicates.ExamLocationPanelDev;
 import nep.swing.panels.devmodepanels.devmodeduplicates.RosterAddedPanelDev;
 import nep.swing.panels.removedobjectpanels.RemovedObjectPanel;
 import nep.util.FileManager;
-import nep.util.GroupedObjectParser;
 import nep.util.RosterObjectSplitter;
-
-import javax.swing.*;
-import javax.swing.border.BevelBorder;
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.io.File;
-import java.util.LinkedList;
-import java.util.Map;
 
 /**
  * The PanelButtonPalette class creates a panel with buttons for interacting with rosters.
@@ -63,9 +63,7 @@ public class PanelButtonPaletteDev{
         
         JButton submitAllRostersButton = new JButton("Submit");
         JButton clearAllRostersFromPanelButton = new JButton("Clear");
-        clearAllRostersFromPanelButton.setEnabled(false);
         JButton undoLastRosterFromPanelButton = new JButton("Undo");
-        undoLastRosterFromPanelButton.setEnabled(false);
         
         submitAllRostersButton.addActionListener((ActionEvent e) -> {
             PDFConversion.deleteRemovedObjectFile();

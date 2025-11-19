@@ -1,8 +1,5 @@
 package nep.swing.panels.devmodepanels.devmodeduplicates;
 
-import nep.entityclass.RosterEntityDetails;
-import nep.swing.panels.rostertabpanels.SelectionButtonPalette;
-
 import java.awt.Color;
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -14,6 +11,9 @@ import javax.swing.border.BevelBorder;
 import javax.swing.border.Border;
 import javax.swing.border.TitledBorder;
 
+import nep.entityclass.RosterEntityDetails;
+import nep.swing.panels.devmodepanels.devmodeduplicates.rostertabpanelsdev.SelectionButtonPaletteDev;
+
 @SuppressWarnings("FieldMayBeFinal")
 public class ExamAddedPanelDev{
     private JPanel selectedPanel;
@@ -22,8 +22,8 @@ public class ExamAddedPanelDev{
     private int selectedPanelHeight;
     private int currentXPosition = 25;
     private ArrayList<String> addedRosterArray;
-    private ArrayList<JPanel> rosterPanels = new ArrayList<>();
-    private LinkedList<RosterEntityDetails> rosterObjectEntityList = SelectionButtonPalette.getRosterEntityList();
+    private ArrayList<JPanel> rosterPanelsDev = new ArrayList<>();
+    private LinkedList<RosterEntityDetails> rosterObjectEntityList = SelectionButtonPaletteDev.getRosterEntityList();
     
     @SuppressWarnings("Convert2Lambda")
     public ExamAddedPanelDev(LoggingPanelDev loggingPanel){
@@ -77,7 +77,7 @@ public class ExamAddedPanelDev{
         newPanel.add(detailString);
         examListPanel.add(newPanel);
         
-        rosterPanels.add(newPanel);
+        rosterPanelsDev.add(newPanel);
         
         currentXPosition += 30;
         selectedPanel.revalidate();
@@ -86,10 +86,10 @@ public class ExamAddedPanelDev{
     
     
     public void clearAllRostersFromPanel(){
-        for (JPanel panel : rosterPanels){
+        for (JPanel panel : rosterPanelsDev){
             examListPanel.remove(panel);
         }
-        rosterPanels.clear();
+        rosterPanelsDev.clear();
         rosterObjectEntityList.clear();
         currentXPosition = 25;
         selectedPanel.revalidate();
@@ -97,8 +97,8 @@ public class ExamAddedPanelDev{
     }
     
     public void undoLastRoster(){
-        if (!rosterPanels.isEmpty()) {
-            JPanel lastPanel = rosterPanels.removeLast();
+        if (!rosterPanelsDev.isEmpty()) {
+            JPanel lastPanel = rosterPanelsDev.removeLast();
             examListPanel.remove(lastPanel);
             rosterObjectEntityList.removeLast();
             
